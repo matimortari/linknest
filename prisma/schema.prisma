@@ -77,8 +77,8 @@ model VerificationToken {
 
 model UserLink {
   id         String      @id @default(cuid())
-  userId     String      @unique
-  url        String      @unique
+  userId     String
+  url        String
   title      String
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
@@ -88,8 +88,8 @@ model UserLink {
 
 model UserIcon {
   id         String      @id @default(cuid())
-  userId     String      @unique
-  url        String      @unique
+  userId     String
+  url        String
   platform   String
   icon       String
   createdAt  DateTime    @default(now())

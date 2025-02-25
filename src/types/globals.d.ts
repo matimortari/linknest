@@ -11,21 +11,20 @@ interface User {
 }
 
 interface UserLink {
-	id: string
+	id?: string
 	url: string
-	platform: string
-	icon: string
-	createdAt: Date
-	updatedAt: Date
+	title: string
+	createdAt?: Date
+	updatedAt?: Date
 }
 
 interface UserIcon {
-	id: string
+	id?: string
 	url: string
 	platform: string
 	icon: string
-	createdAt: Date
-	updatedAt: Date
+	createdAt?: Date
+	updatedAt?: Date
 }
 
 interface UserPreferences {
@@ -66,6 +65,13 @@ interface DialogProps {
 	onClose: () => void // Function to close the dialog (returns void)
 	title: string // The title of the dialog
 	children: ReactNode // The content inside the dialog (could be any React element)
+}
+
+interface LinkDialogProps {
+	isOpen: boolean
+	onClose: () => void
+	selectedLink: UserLink | null // Can be null for creating a new link
+	onSave: (link: { title: string; url: string }) => void
 }
 
 interface CheckboxInputProps {

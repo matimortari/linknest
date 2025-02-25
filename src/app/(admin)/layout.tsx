@@ -1,5 +1,5 @@
 import Providers from "@/src/components/context/Providers"
-import Sidebar from "@/src/components/Sidebar"
+import Navbar from "@/src/components/Navbar"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
 				<Providers session={session}>
 					<div className="flex flex-col p-4 md:flex-row">
 						<aside className="md:w-2/12">
-							<Sidebar />
+							<Navbar />
 						</aside>
 						<main className="flex-1">{children}</main>
 					</div>

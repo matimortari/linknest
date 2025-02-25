@@ -1,35 +1,49 @@
 "use client"
 
-import Dialog from "@/src/components/Dialog"
 import Preview from "@/src/components/Preview"
-import { useDialog } from "@/src/hooks/useDialog"
+import IconList from "@/src/components/profile/IconList"
+import LinkList from "@/src/components/profile/LinkList"
+import ShareAccount from "@/src/components/profile/ShareAccount"
+import useUserStore from "@/src/hooks/useUserStore"
 import { useSession } from "next-auth/react"
+import { redirect } from "next/navigation"
+import { useEffect } from "react"
 
 export default function Profile() {
-	const { isOpen, openDialog, closeDialog } = useDialog()
+	const { user, setUser } = useUserStore()
+	const { data: session, status } = useSession()
 
-	const { data: session } = useSession()
+	useEffect(() => {
+		if (status === "unauthenticated" || !session?.user) {
+			redirect("/login")
+		}
+
+		setUser(session.user)
+	}, [session, status, setUser])
+
+	if (!user) return <div>Loading...</div>
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card min-h-screen flex-1">
-				<header>
+				<header className="space-y-2">
 					<h2>Profile</h2>
-					<p>
-						Welcome back, <span className="font-bold text-accent">{session?.user?.slug}</span>!
-					</p>
+					<h5>
+						Welcome back, <span className="font-bold text-accent">{user.slug}</span>!
+					</h5>
 				</header>
 
+				<ShareAccount />
+
+				<hr className="my-4" />
+
 				<div className="flex flex-col gap-4">
-					<section>
-						<button onClick={openDialog} className="btn">
-							Open Dialog
-						</button>
-						<Dialog isOpen={isOpen} onClose={closeDialog} title="Dialog Test">
-							<button onClick={closeDialog} className="btn">
-								Close
-							</button>
-						</Dialog>
+					<section className="section-container">
+						<LinkList />
+					</section>
+
+					<section className="section-container">
+						<IconList />
 					</section>
 				</div>
 			</main>

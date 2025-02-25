@@ -17,7 +17,7 @@ export const addIcon = async (newIcon: UserIcon) => {
 }
 
 // Delete an existing social icon by ID
-export const deleteIcon = async (id: number): Promise<number> => {
+export const deleteIcon = async (id: string): Promise<string> => {
 	await fetch(`/api/icons?id=${id}`, { method: "DELETE" })
 
 	return id

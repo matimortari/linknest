@@ -28,7 +28,7 @@ export const updateLink = async (updatedLink: UserLink) => {
 }
 
 // Delete an existing link by ID
-export const deleteLink = async (id: number): Promise<number> => {
+export const deleteLink = async (id: string): Promise<string> => {
 	await fetch(`/api/links?id=${id}`, { method: "DELETE" })
 
 	return id

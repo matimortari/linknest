@@ -3,7 +3,7 @@ export const carouselPresets = [
 		slug: "coffeecorner",
 		description: "Your neighborhood coffee shop ☕",
 		image: "/preset1.png",
-		buttons: [
+		icons: [
 			{ id: 1, icon: "simple-icons:instagram" },
 			{ id: 2, icon: "simple-icons:facebook" },
 			{ id: 3, icon: "simple-icons:gmail" }
@@ -13,7 +13,7 @@ export const carouselPresets = [
 			{ id: 2, title: "Find Us!" },
 			{ id: 3, title: "Contact" }
 		],
-		settings: {
+		preferences: {
 			backgroundType: "FLAT",
 			backgroundColor: "#2c1f14",
 			profilePictureRadius: "0.5rem",
@@ -31,10 +31,10 @@ export const carouselPresets = [
 			linkHoverBackgroundColor: "#7b4a2e",
 			linkBorderRadius: "0.5rem",
 			linkPadding: "1rem",
-			buttonBackgroundColor: "#7b4a2e",
-			isButtonShadow: false,
-			buttonIconColor: "#f5f5f5",
-			buttonHoverBackgroundColor: "#a66240"
+			iconBackgroundColor: "#7b4a2e",
+			isIconShadow: false,
+			iconIconColor: "#f5f5f5",
+			iconHoverBackgroundColor: "#a66240"
 		}
 	},
 
@@ -42,7 +42,7 @@ export const carouselPresets = [
 		slug: "explore-with-anna",
 		description: "Travel Blogger & Adventurer 🌍✈️",
 		image: "/preset3.png",
-		buttons: [
+		icons: [
 			{ id: 1, icon: "simple-icons:instagram" },
 			{ id: 2, icon: "simple-icons:pinterest" },
 			{ id: 3, icon: "simple-icons:youtube" }
@@ -52,7 +52,7 @@ export const carouselPresets = [
 			{ id: 2, title: "Travel Vlogs" },
 			{ id: 3, title: "Travel Tips & Gear" }
 		],
-		settings: {
+		preferences: {
 			backgroundType: "GRADIENT",
 			backgroundGradientStart: "#b2c6b6",
 			backgroundGradientEnd: "#f5f5f5",
@@ -73,12 +73,12 @@ export const carouselPresets = [
 			linkHoverBackgroundColor: "#bdc3c7",
 			linkBorderRadius: "5rem",
 			linkPadding: "0.75rem",
-			buttonBackgroundColor: "#e8ecd6",
-			isButtonShadow: true,
-			buttonShadowColor: "#e7e5e5",
-			buttonShadowWeight: "light",
-			buttonIconColor: "#b75a48",
-			buttonHoverBackgroundColor: "#d1d9c6"
+			iconBackgroundColor: "#e8ecd6",
+			isIconShadow: true,
+			iconShadowColor: "#e7e5e5",
+			iconShadowWeight: "light",
+			iconIconColor: "#b75a48",
+			iconHoverBackgroundColor: "#d1d9c6"
 		}
 	},
 
@@ -86,7 +86,7 @@ export const carouselPresets = [
 		slug: "blitz_corp",
 		description: "Experience high-tech innovation with Blitz Corp, where the future is now.",
 		image: "/preset2.png",
-		buttons: [
+		icons: [
 			{ id: 1, icon: "simple-icons:twitter" },
 			{ id: 2, icon: "simple-icons:linkedin" },
 			{ id: 3, icon: "simple-icons:youtube" }
@@ -96,7 +96,7 @@ export const carouselPresets = [
 			{ id: 2, title: "Our Story" },
 			{ id: 3, title: "Contact Us" }
 		],
-		settings: {
+		preferences: {
 			backgroundType: "FLAT",
 			backgroundColor: "#272525",
 			profilePictureRadius: "1rem",
@@ -116,10 +116,10 @@ export const carouselPresets = [
 			linkHoverBackgroundColor: "#d1ccc0",
 			linkBorderRadius: "0.5rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#f5f3f3",
-			isButtonShadow: false,
-			buttonIconColor: "#3e7a70",
-			buttonHoverBackgroundColor: "#dcdcdc"
+			iconBackgroundColor: "#f5f3f3",
+			isIconShadow: false,
+			iconIconColor: "#3e7a70",
+			iconHoverBackgroundColor: "#dcdcdc"
 		}
 	},
 
@@ -127,7 +127,7 @@ export const carouselPresets = [
 		slug: "matheus-mortari",
 		description: "I'm a full-stack dev :)",
 		image: "/preset4.png",
-		buttons: [
+		icons: [
 			{ id: 1, icon: "simple-icons:github" },
 			{ id: 2, icon: "simple-icons:linkedin" },
 			{ id: 3, icon: "simple-icons:gmail" }
@@ -137,7 +137,7 @@ export const carouselPresets = [
 			{ id: 2, title: "My Blog" },
 			{ id: 3, title: "Contact Me" }
 		],
-		settings: {
+		preferences: {
 			backgroundType: "GRADIENT",
 			backgroundGradientStart: "#08080e",
 			backgroundGradientEnd: "#19192e",
@@ -158,12 +158,12 @@ export const carouselPresets = [
 			linkHoverBackgroundColor: "#4c4083",
 			linkBorderRadius: "5rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#42413e",
-			isButtonShadow: true,
-			buttonShadowColor: "#42413e",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#ececec",
-			buttonHoverBackgroundColor: "#4c4083"
+			iconBackgroundColor: "#42413e",
+			isIconShadow: true,
+			iconShadowColor: "#42413e",
+			iconShadowWeight: "medium",
+			iconIconColor: "#ececec",
+			iconHoverBackgroundColor: "#4c4083"
 		}
 	}
 ]

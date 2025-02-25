@@ -29,7 +29,7 @@ export default async function slugPage({ params }: { params: Params }) {
 
 				<Link href="/" className="flex flex-row items-center justify-start gap-2">
 					<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
-					<span className={`text-2xl ${chau.className}`}>Linksy</span>
+					<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 				</Link>
 			</div>
 		)

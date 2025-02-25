@@ -69,7 +69,7 @@ export function useDeleteLink() {
 
 	return useMutation({
 		mutationKey: ["deleteLink"],
-		mutationFn: (id: number) => deleteLink(id),
+		mutationFn: (id: string) => deleteLink(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["getLinks"] })
 		}
@@ -93,7 +93,7 @@ export function useDeleteIcon() {
 
 	return useMutation({
 		mutationKey: ["deleteIcon"],
-		mutationFn: (id: number) => deleteIcon(id),
+		mutationFn: (id: string) => deleteIcon(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["getIcons"] })
 		}

@@ -9,14 +9,14 @@ function ShareDropdown({ isOpen, onClose }) {
 	// const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
 
 	const handleCopy = () => {
-		const pageUrl = `https://linksy-live.vercel.app/${user?.slug}`
+		const pageUrl = `https://linknest-live.vercel.app/${user?.slug}`
 		navigator.clipboard.writeText(pageUrl)
 		alert("Link copied to clipboard!")
 	}
 
 	const handleShareX = () => {
-		const pageUrl = `https://linksy-live.vercel.app/${user?.slug}`
-		const tweetText = `🚀 Check out my #Linksy profile! 🌟\n\n🔗 ${pageUrl}`
+		const pageUrl = `https://linknest-live.vercel.app/${user?.slug}`
+		const tweetText = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${pageUrl}`
 		const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
 		window.open(twitterUrl, "_blank")
 	}
@@ -82,13 +82,13 @@ export default function ShareBanner() {
 	return (
 		<div className="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
 			<div className="flex w-full flex-col gap-1 overflow-x-hidden">
-				<h4 className="text-foreground">Share your Linksy Page:</h4>
+				<h4 className="text-foreground">Share your LinkNest Page:</h4>
 				<Link
 					href={`/${user?.slug}`}
-					title={`linksy-live.vercel.app/${user?.slug}`}
+					title={`linknest-live.vercel.app/${user?.slug}`}
 					className="truncate text-xs font-medium"
 				>
-					<span>linksy-live.vercel.app/{user?.slug}</span>
+					<span>linknest-live.vercel.app/{user?.slug}</span>
 				</Link>
 			</div>
 

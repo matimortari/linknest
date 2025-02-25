@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	const slug = session?.user?.slug
 
 	const metadata: Metadata = {
-		title: slug ? `${slug} | Linksy` : "Linksy",
+		title: slug ? `${slug} | LinkNest` : "LinkNest",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
 	}
 

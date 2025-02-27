@@ -89,7 +89,7 @@ export default function Home() {
 
 			<hr />
 
-			{/* Features Section */}
+			{/* Features section */}
 			<div className="flex flex-col items-center justify-center space-y-8 py-12 text-center">
 				<h2>Why Choose LinkNest?</h2>
 				<div className="grid grid-cols-1 gap-4 px-10 md:grid-cols-4">
@@ -109,7 +109,7 @@ export default function Home() {
 
 			<hr />
 
-			{/* CTA Section */}
+			{/* CTA section */}
 			<div className="flex flex-col items-center justify-center space-y-4 py-8 text-center">
 				<h2>Ready to Try?</h2>
 				<p>Create an account and build your page today!</p>

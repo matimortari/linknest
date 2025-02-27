@@ -21,12 +21,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#3f5243",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#3f5243",
-			isButtonShadow: true,
-			buttonShadowColor: "#3f5243",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#ebe8e8",
-			buttonHoverBackgroundColor: "#5e7464"
+			icoonBackgroundColor: "#3f5243",
+			isIcoonShadow: true,
+			iconShadowColor: "#3f5243",
+			iconShadowWeight: "medium",
+			iconIconColor: "#ebe8e8",
+			iconHoverBackgroundColor: "#5e7464"
 		}
 	},
 
@@ -52,12 +52,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#bdc3c7",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#bdc3c7",
-			isButtonShadow: true,
-			buttonShadowColor: "#404345",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#2c3e50",
-			buttonHoverBackgroundColor: "#ecf0f1"
+			icoonBackgroundColor: "#bdc3c7",
+			isIcoonShadow: true,
+			iconShadowColor: "#404345",
+			iconShadowWeight: "medium",
+			iconIconColor: "#2c3e50",
+			iconHoverBackgroundColor: "#ecf0f1"
 		}
 	},
 
@@ -84,12 +84,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#607d8b",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#607d8b",
-			isButtonShadow: true,
-			buttonShadowColor: "#363c40",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#ebe8e8",
-			buttonHoverBackgroundColor: "#78909c"
+			icoonBackgroundColor: "#607d8b",
+			isIcoonShadow: true,
+			iconShadowColor: "#363c40",
+			iconShadowWeight: "medium",
+			iconIconColor: "#ebe8e8",
+			iconHoverBackgroundColor: "#78909c"
 		}
 	},
 
@@ -116,12 +116,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#1f1638",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.85rem",
-			buttonBackgroundColor: "#333333",
-			isButtonShadow: true,
-			buttonShadowColor: "#b3c2a3",
-			buttonShadowWeight: "light",
-			buttonIconColor: "#ebe8e8",
-			buttonHoverBackgroundColor: "#444444"
+			icoonBackgroundColor: "#333333",
+			isIcoonShadow: true,
+			iconShadowColor: "#b3c2a3",
+			iconShadowWeight: "light",
+			iconIconColor: "#ebe8e8",
+			iconHoverBackgroundColor: "#444444"
 		}
 	},
 
@@ -145,12 +145,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#ff8080",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.85rem",
-			buttonBackgroundColor: "#88b07b",
-			isButtonShadow: true,
-			buttonShadowColor: "#596e52",
-			buttonShadowWeight: "light",
-			buttonIconColor: "#374234",
-			buttonHoverBackgroundColor: "#ff8080"
+			icoonBackgroundColor: "#88b07b",
+			isIcoonShadow: true,
+			iconShadowColor: "#596e52",
+			iconShadowWeight: "light",
+			iconIconColor: "#374234",
+			iconHoverBackgroundColor: "#ff8080"
 		}
 	},
 
@@ -177,12 +177,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#3d392f",
 			linkBorderRadius: "5rem",
 			linkPadding: "0.9rem",
-			buttonBackgroundColor: "#3d392f",
-			isButtonShadow: true,
-			buttonShadowColor: "#171615",
-			buttonShadowWeight: "light",
-			buttonIconColor: "#e8e4da",
-			buttonHoverBackgroundColor: "#171615"
+			icoonBackgroundColor: "#3d392f",
+			isIcoonShadow: true,
+			iconShadowColor: "#171615",
+			iconShadowWeight: "light",
+			iconIconColor: "#e8e4da",
+			iconHoverBackgroundColor: "#171615"
 		}
 	},
 
@@ -209,8 +209,8 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#3d004f",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.75rem",
-			buttonBackgroundColor: "#3b2d42",
-			isButtonShadow: false,
+			icoonBackgroundColor: "#3b2d42",
+			isIcoonShadow: false,
 			buttonIconColor: "#8d799c",
 			buttonHoverBackgroundColor: "#1a0033"
 		}
@@ -236,8 +236,8 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#555555",
 			linkBorderRadius: "0.5rem",
 			linkPadding: "0.75rem",
-			buttonBackgroundColor: "#555555",
-			isButtonShadow: false,
+			icoonBackgroundColor: "#555555",
+			isIcoonShadow: false,
 			buttonIconColor: "#ebe8e8",
 			buttonHoverBackgroundColor: "#444444"
 		}
@@ -267,8 +267,8 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#bdb97c",
 			linkBorderRadius: "5rem",
 			linkPadding: "0.9rem",
-			buttonBackgroundColor: "#bdb97c",
-			isButtonShadow: false,
+			icoonBackgroundColor: "#bdb97c",
+			isIcoonShadow: false,
 			buttonIconColor: "#ebe8e8",
 			buttonHoverBackgroundColor: "#8e7e53"
 		}
@@ -296,12 +296,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#f0f0f0",
 			linkBorderRadius: "0.5rem",
 			linkPadding: "0.85rem",
-			buttonBackgroundColor: "#ebe8e8",
-			isButtonShadow: true,
-			buttonShadowColor: "#333436",
-			buttonShadowWeight: "light",
-			buttonIconColor: "#2c3e50",
-			buttonHoverBackgroundColor: "#f0f0f0"
+			icoonBackgroundColor: "#ebe8e8",
+			isIcoonShadow: true,
+			iconShadowColor: "#333436",
+			iconShadowWeight: "light",
+			iconIconColor: "#2c3e50",
+			iconHoverBackgroundColor: "#f0f0f0"
 		}
 	},
 
@@ -327,12 +327,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#2c4e38",
 			linkBorderRadius: "5rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#223c2e",
-			isButtonShadow: true,
-			buttonShadowColor: "#182b21",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#a3b69e",
-			buttonHoverBackgroundColor: "#2c4e38"
+			icoonBackgroundColor: "#223c2e",
+			isIcoonShadow: true,
+			iconShadowColor: "#182b21",
+			iconShadowWeight: "medium",
+			iconIconColor: "#a3b69e",
+			iconHoverBackgroundColor: "#2c4e38"
 		}
 	},
 
@@ -358,12 +358,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#484f52",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.5rem",
-			buttonBackgroundColor: "#484f52",
-			isButtonShadow: true,
-			buttonShadowColor: "#5c6d74",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#c4cfd3",
-			buttonHoverBackgroundColor: "#5c6d74"
+			icoonBackgroundColor: "#484f52",
+			isIcoonShadow: true,
+			iconShadowColor: "#5c6d74",
+			iconShadowWeight: "medium",
+			iconIconColor: "#c4cfd3",
+			iconHoverBackgroundColor: "#5c6d74"
 		}
 	},
 
@@ -389,12 +389,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#4a1f2b",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.75rem",
-			buttonBackgroundColor: "#5c2a3c",
-			isButtonShadow: true,
-			buttonShadowColor: "#4a1f2b",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#f4d5d7",
-			buttonHoverBackgroundColor: "#4a1f2b"
+			icoonBackgroundColor: "#5c2a3c",
+			isIcoonShadow: true,
+			iconShadowColor: "#4a1f2b",
+			iconShadowWeight: "medium",
+			iconIconColor: "#f4d5d7",
+			iconHoverBackgroundColor: "#4a1f2b"
 		}
 	},
 
@@ -419,12 +419,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#023a44",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.85rem",
-			buttonBackgroundColor: "#053940",
-			isButtonShadow: true,
-			buttonShadowColor: "#023a44",
-			buttonShadowWeight: "heavy",
-			buttonIconColor: "#3da19a",
-			buttonHoverBackgroundColor: "#023a44"
+			icoonBackgroundColor: "#053940",
+			isIcoonShadow: true,
+			iconShadowColor: "#023a44",
+			iconShadowWeight: "heavy",
+			iconIconColor: "#3da19a",
+			iconHoverBackgroundColor: "#023a44"
 		}
 	},
 
@@ -451,12 +451,12 @@ export const themePresets = [
 			linkHoverBackgroundColor: "#bf540d",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.75rem",
-			buttonBackgroundColor: "#b5631d",
-			isButtonShadow: true,
-			buttonShadowColor: "#572e13",
-			buttonShadowWeight: "medium",
-			buttonIconColor: "#f4e4c7",
-			buttonHoverBackgroundColor: "#572e13"
+			icoonBackgroundColor: "#b5631d",
+			isIcoonShadow: true,
+			iconShadowColor: "#572e13",
+			iconShadowWeight: "medium",
+			iconIconColor: "#f4e4c7",
+			iconHoverBackgroundColor: "#572e13"
 		}
 	}
 ]

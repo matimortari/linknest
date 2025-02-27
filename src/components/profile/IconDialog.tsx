@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import Dialog from "../Dialog"
 
-export default function IconDialog({ isOpen, onClose, onSave }: ButtonDialogProps) {
+export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps) {
 	const [selectedPlatform, setSelectedPlatform] = useState<string>("")
 	const [iconUrl, setIconUrl] = useState<string>("")
 

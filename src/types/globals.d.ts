@@ -74,7 +74,7 @@ interface LinkDialogProps {
 	onSave: (link: { title: string; url: string }) => void
 }
 
-interface ButtonDialogProps {
+interface IconDialogProps {
 	isOpen: boolean
 	onClose: () => void
 	onSave: (icon: { platform: string; icon: string; url: string }) => void

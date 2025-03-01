@@ -27,46 +27,46 @@ export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser 
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Edit User Info">
-			<div className="space-y-2">
-				<div>
-					<label htmlFor="slug" className="block text-sm font-medium">
+			<div className="space-y-4">
+				<div className="flex flex-col gap-2">
+					<label htmlFor="slug" className="font-semibold">
 						Slug
 					</label>
 					<input
 						id="slug"
 						type="text"
-						className="input"
 						value={slug}
 						onChange={(e) => setSlug(e.target.value)}
 						placeholder="Your unique identifier"
+						className="rounded-2xl border p-2 text-sm"
 					/>
 				</div>
 
-				<div>
-					<label htmlFor="description" className="block text-sm font-medium">
+				<div className="flex flex-col gap-2">
+					<label htmlFor="description" className="font-semibold">
 						Description
 					</label>
 					<input
 						id="description"
 						type="text"
-						className="input"
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						placeholder="A short bio about yourself"
+						className="rounded-2xl border p-2 text-sm"
 					/>
 				</div>
 
-				<div>
-					<label htmlFor="image" className="block text-sm font-medium">
+				<div className="flex flex-col gap-2">
+					<label htmlFor="image" className="font-semibold">
 						Image
 					</label>
 					<input
 						id="image"
 						type="url"
-						className="input"
 						value={image}
 						onChange={(e) => setImage(e.target.value)}
 						placeholder="Your profile picture URL"
+						className="rounded-2xl border p-2 text-sm"
 					/>
 				</div>
 

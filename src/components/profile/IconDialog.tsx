@@ -23,37 +23,35 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add Social Icon">
-			<div className="space-y-2">
-				<div>
-					<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9">
-						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
-							<button
-								key={platform}
-								onClick={() => setSelectedPlatform(platform)}
-								tabIndex={0}
-								className={`flex flex-col items-center justify-center rounded-lg border p-2 ${
-									selectedPlatform === platform ? "bg-accent" : "bg-transparent"
-								} hover:bg-muted active:bg-accent`}
-							>
-								<Icon icon={icon} width={20} height={20} />
-								<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
-							</button>
-						))}
-					</div>
+			<div className="space-y-4">
+				<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9">
+					{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
+						<button
+							key={platform}
+							onClick={() => setSelectedPlatform(platform)}
+							tabIndex={0}
+							className={`flex flex-col items-center justify-center rounded-lg border p-2 ${
+								selectedPlatform === platform ? "bg-accent" : "bg-transparent"
+							} hover:bg-muted active:bg-accent`}
+						>
+							<Icon icon={icon} width={20} height={20} />
+							<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
+						</button>
+					))}
+				</div>
 
-					<div>
-						<label htmlFor="iconUrl" className="block text-sm font-medium">
-							Social Icon URL
-						</label>
-						<input
-							id="linkUrl"
-							type="url"
-							className="input"
-							value={iconUrl}
-							onChange={(e) => setIconUrl(e.target.value)}
-							placeholder="Enter link URL"
-						/>
-					</div>
+				<div className="flex flex-col gap-2">
+					<label htmlFor="iconUrl" className="font-semibold">
+						Social Icon URL
+					</label>
+					<input
+						id="linkUrl"
+						type="url"
+						value={iconUrl}
+						onChange={(e) => setIconUrl(e.target.value)}
+						placeholder="Enter link URL"
+						className="w-2/4 rounded-2xl border p-2 text-sm"
+					/>
 				</div>
 
 				<div className="input-group">

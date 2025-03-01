@@ -19,7 +19,7 @@ export default function DeleteAccount() {
 	}
 
 	return (
-		<>
+		<div className="">
 			<header className="my-2">
 				<h2>Delete Account</h2>
 				<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
@@ -32,6 +32,6 @@ export default function DeleteAccount() {
 			</div>
 
 			{error && <div className="mt-2 text-danger">{error.message}</div>}
-		</>
+		</div>
 	)
 }

@@ -24,7 +24,7 @@ export default function UserIcon({ url, icon, preferences, iconId, userId }) {
 			className="flex size-10 flex-row items-center justify-center rounded-full"
 			style={{
 				backgroundColor: isHovered ? preferences.iconHoverBackgroundColor : preferences.iconBackgroundColor,
-				boxShadow: preferences.isIcononShadow ? shadowStyles[preferences.iconShadowWeight] : "none",
+				boxShadow: preferences.isIconShadow ? shadowStyles[preferences.iconShadowWeight] : "none",
 				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 			}}
 		>

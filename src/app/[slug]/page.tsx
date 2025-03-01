@@ -1,6 +1,7 @@
 import SupportBanner from "@/src/components/SupportBanner"
 import UserIcon from "@/src/components/UserIcon"
 import UserLink from "@/src/components/UserLink"
+import { trackPageVisit, updateClickStats } from "@/src/lib/analyticsHelpers"
 import { db } from "@/src/lib/db"
 import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"
@@ -44,8 +45,8 @@ export default async function slugPage({ params }: { params: Params }) {
 		id: userId
 	} = user
 
-	// await trackPageVisit(userId)
-	// await updateClickStats(userId)
+	await trackPageVisit(userId)
+	await updateClickStats(userId)
 
 	const backgroundStyle =
 		userPreferences?.backgroundType === "GRADIENT"

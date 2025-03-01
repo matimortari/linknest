@@ -1,3 +1,11 @@
+export const BANNER_OPTIONS = [
+	{ value: "NONE", label: "None" },
+	{ value: "LGBTQ_RIGHTS", label: "LGBTQ Rights" },
+	{ value: "ANTI_RACISM", label: "Anti-Racism" },
+	{ value: "MENTAL_HEALTH", label: "Mental Health" },
+	{ value: "CLIMATE_ACTION", label: "Climate Action" }
+]
+
 export const BANNER_MESSAGES = {
 	LGBTQ_RIGHTS: "Support the LGBTQIA+ Community",
 	ANTI_RACISM: "Stand Against Racism and Injustice",

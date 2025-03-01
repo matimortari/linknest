@@ -33,7 +33,7 @@ export default function IconList() {
 							<Link href={b.url} title={b.platform} target="_blank" rel="noopener noreferrer">
 								<Icon icon={b.icon} width={25} height={25} className="m-1" />
 							</Link>
-							<button onClick={() => {}} title="Remove Social Button" className="absolute bottom-0 right-0 p-1">
+							<button onClick={() => {}} title="Remove Social Icon" className="absolute bottom-0 right-0 p-1">
 								<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger" />
 							</button>
 						</li>

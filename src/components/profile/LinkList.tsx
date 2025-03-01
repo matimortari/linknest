@@ -1,5 +1,5 @@
 import { useDialog } from "@/src/hooks/useDialog"
-import { useAddLink, useUpdateLink } from "@/src/hooks/useMutations"
+import { useAddLink, useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
@@ -12,12 +12,17 @@ export default function LinkList() {
 	const { data: userLinks = [] } = useGetLinks()
 	const { mutate: addLink } = useAddLink()
 	const { mutate: updateLink } = useUpdateLink()
+	const { mutate: deleteLink } = useDeleteLink()
 
 	const [selectedLink, setSelectedLink] = useState<UserLink | null>(null)
 
 	const handleUpdateLink = (link: UserLink) => {
 		setSelectedLink(link)
 		openDialog()
+	}
+
+	const handleDeleteLink = (id: string) => {
+		deleteLink(id)
 	}
 
 	const handleSave = (link: { title: string; url: string }) => {
@@ -52,7 +57,7 @@ export default function LinkList() {
 										<button onClick={() => handleUpdateLink(l)} title="Edit Link">
 											<Icon icon="mdi:circle-edit-outline" width={20} height={20} className="text-accent" />
 										</button>
-										<button onClick={() => {}} title="Remove Link">
+										<button onClick={() => l.id && handleDeleteLink(l.id)} title="Remove Link">
 											<Icon
 												icon="mdi:remove-circle-outline"
 												width={20}

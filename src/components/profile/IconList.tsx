@@ -1,5 +1,5 @@
 import { useDialog } from "@/src/hooks/useDialog"
-import { useAddIcon } from "@/src/hooks/useMutations"
+import { useAddIcon, useDeleteIcon } from "@/src/hooks/useMutations"
 import { useGetIcons } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
@@ -11,6 +11,11 @@ export default function IconList() {
 	const { data: userIcons = [] } = useGetIcons()
 
 	const { mutate: addIcon } = useAddIcon()
+	const { mutate: deleteIcon } = useDeleteIcon()
+
+	const handleDeleteIcon = (id: string) => {
+		deleteIcon(id)
+	}
 
 	const handleSave = (icon: { platform: string; icon: string; url: string }) => {
 		addIcon(icon)
@@ -33,8 +38,12 @@ export default function IconList() {
 							<Link href={b.url} title={b.platform} target="_blank" rel="noopener noreferrer">
 								<Icon icon={b.icon} width={25} height={25} className="m-1" />
 							</Link>
-							<button onClick={() => {}} title="Remove Social Icon" className="absolute bottom-0 right-0 p-1">
-								<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger" />
+							<button
+								onClick={() => b.id && handleDeleteIcon(b.id)}
+								title="Remove Social Icon"
+								className="absolute bottom-0 right-0 p-1"
+							>
+								<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger-foreground" />
 							</button>
 						</li>
 					))}

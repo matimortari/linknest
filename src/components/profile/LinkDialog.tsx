@@ -26,32 +26,32 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title={selectedLink ? "Edit Link" : "Add Link"}>
-			<div className="space-y-2">
-				<div>
-					<label htmlFor="linkTitle" className="block text-sm font-medium">
+			<div className="space-y-4">
+				<div className="flex flex-col gap-2">
+					<label htmlFor="linkTitle" className="font-semibold">
 						Link Title
 					</label>
 					<input
 						id="linkTitle"
 						type="text"
-						className="input"
 						value={linkTitle}
 						onChange={(e) => setLinkTitle(e.target.value)}
 						placeholder="Enter link title"
+						className="rounded-2xl border p-2 text-sm"
 					/>
 				</div>
 
-				<div>
-					<label htmlFor="linkUrl" className="block text-sm font-medium">
+				<div className="flex flex-col gap-2">
+					<label htmlFor="linkUrl" className="font-semibold">
 						Link URL
 					</label>
 					<input
 						id="linkUrl"
 						type="url"
-						className="input"
 						value={linkUrl}
 						onChange={(e) => setLinkUrl(e.target.value)}
 						placeholder="Enter link URL"
+						className="rounded-2xl border p-2 text-sm"
 					/>
 				</div>
 

@@ -46,9 +46,9 @@ export default function Dialog({ isOpen, onClose, title, children }): JSX.Elemen
 
 	return (
 		<div className="animate-slide-in fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-			<div ref={dialogRef} className="popover">
+			<div ref={dialogRef} className="popover min-w-96 max-w-full">
 				<header>
-					<h2>{title}</h2>
+					<h3>{title}</h3>
 				</header>
 
 				<hr className="my-2" />

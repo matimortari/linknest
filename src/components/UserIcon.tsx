@@ -3,8 +3,8 @@
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
+import { trackClick } from "../services/analyticsService"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function UserIcon({ url, icon, preferences, iconId, userId }) {
 	const [isHovered, setIsHovered] = useState(false)
 
@@ -16,7 +16,7 @@ export default function UserIcon({ url, icon, preferences, iconId, userId }) {
 	}
 
 	const handleClick = async () => {
-		// await trackClick(iconId, "icon", userId)
+		await trackClick(iconId, "icon", userId)
 	}
 
 	return (

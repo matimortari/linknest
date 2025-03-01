@@ -7,7 +7,7 @@ interface User {
 	description?: string
 	icons: UserIcon[]
 	links: UserLink[]
-	preferences: UserPreferences
+	preferences: UserPreferences[]
 }
 
 interface UserLink {

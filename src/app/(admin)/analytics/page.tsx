@@ -2,8 +2,23 @@
 
 import AnalyticsPanel from "@/src/components/analytics/AnalyticsPanel"
 import ClicksByLink from "@/src/components/analytics/ClicksByLink"
+import useUserStore from "@/src/hooks/useUserStore"
+import { useSession } from "next-auth/react"
+import { redirect } from "next/navigation"
+import { useEffect } from "react"
 
 export default function Analytics() {
+	const { setUser } = useUserStore()
+	const { data: session, status } = useSession()
+
+	useEffect(() => {
+		if (status === "unauthenticated" || !session?.user) {
+			redirect("/login")
+		}
+
+		setUser(session.user)
+	}, [session, status, setUser])
+
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card min-h-screen flex-1">

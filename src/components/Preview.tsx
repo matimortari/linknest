@@ -21,12 +21,12 @@ function HeaderBar() {
 
 function PreviewContent({ slug, description, image, userIcons, userLinks, userPreferences, sessionId }) {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4 py-6 text-center">
+		<div className="flex flex-col items-center justify-center gap-4 text-center md:my-6">
 			<Image
 				src={image}
 				alt={slug}
-				width={80}
-				height={80}
+				width={100}
+				height={100}
 				style={{ borderRadius: userPreferences.profilePictureRadius }}
 			/>
 			<p
@@ -48,7 +48,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 				{description}
 			</p>
 			{userIcons.length > 0 ? (
-				<ul className="my-2 flex flex-row justify-center gap-2">
+				<ul className="my-2 flex flex-row items-center justify-center gap-2">
 					{userIcons.map((i: UserIcon) => (
 						<UserIcon
 							key={i.id}
@@ -64,7 +64,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 				<hr />
 			)}
 			{userLinks.length > 0 ? (
-				<ul className="space-y-4">
+				<ul className="flex flex-col items-center gap-4">
 					{userLinks.map((l: UserLink) => (
 						<UserLink
 							key={l.id}
@@ -138,7 +138,7 @@ export default function Preview() {
 
 			{/* Full-screen preview for mobile */}
 			<div
-				className={`fixed left-0 top-0 z-10 size-full bg-background transition-all duration-300 md:hidden ${
+				className={`fixed left-0 top-0 z-10 size-full bg-background p-12 transition-all duration-300 md:hidden ${
 					isVisible ? "block" : "hidden"
 				}`}
 				style={backgroundStyle}
@@ -151,14 +151,14 @@ export default function Preview() {
 						userIcons={userIcons}
 						userLinks={userLinks}
 						userPreferences={userPreferences}
-						sessionId={session?.user.id}
+						sessionId={session.user.id}
 					/>
 				)}
 			</div>
 
 			{/* Desktop Preview */}
 			<div
-				className="popover preview-scrollbar relative m-2 hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
+				className="popover preview-scrollbar relative mx-2 hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
 				style={backgroundStyle}
 			>
 				<HeaderBar />

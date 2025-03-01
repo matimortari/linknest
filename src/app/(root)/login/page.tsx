@@ -10,7 +10,7 @@ const lato = Lato({ subsets: ["latin"], weight: "700" })
 export default function Login() {
 	return (
 		<div className="flex min-h-screen">
-			<main className="flex w-1/2 flex-col items-center justify-center p-10">
+			<div className="flex flex-col items-center p-10 md:w-1/2 md:justify-center">
 				<header className="my-8 flex w-full flex-col items-center gap-6">
 					<h1 className={`${bowlby.className}`}>Sign In</h1>
 					<p className={`${lato.className} text-muted-foreground`}>Sign in with Google or GitHub to continue.</p>
@@ -18,7 +18,7 @@ export default function Login() {
 
 				<hr className="w-full" />
 
-				<div className="my-8 flex w-full flex-col items-center gap-4">
+				<section className="my-8 flex w-full flex-col items-center gap-4">
 					<button
 						onClick={() => signIn("google", { callbackUrl: "/profile" })}
 						className="btn max-w-xs bg-[#db4437] text-white"
@@ -33,13 +33,13 @@ export default function Login() {
 						<Icon icon="simple-icons:github" width={20} height={20} />
 						Sign in with GitHub
 					</button>
-				</div>
-			</main>
+				</section>
+			</div>
 
-			<aside className="relative hidden w-1/2 md:block">
-				<div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#db4437] to-[#333333]" />
+			<section className="relative hidden md:block md:w-1/2">
+				<div className="absolute inset-0 rounded-l-lg bg-gradient-to-r from-[#db4437] to-[#333333]" />
 				{/* <Image src="/login-image.jpg" alt="Login Visual" layout="fill" objectFit="cover" /> */}
-			</aside>
+			</section>
 		</div>
 	)
 }

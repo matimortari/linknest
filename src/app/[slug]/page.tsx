@@ -1,7 +1,7 @@
 import SupportBanner from "@/src/components/SupportBanner"
 import UserIcon from "@/src/components/UserIcon"
 import UserLink from "@/src/components/UserLink"
-import { trackPageVisit, updateClickStats } from "@/src/lib/analyticsHelpers"
+import { trackPageVisit, updateClickStats } from "@/src/lib/analytics"
 import { db } from "@/src/lib/db"
 import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"

@@ -1,40 +1,26 @@
-import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "@/src/hooks/useMutations"
-import useUserStore from "@/src/hooks/useUserStore"
-import { useSession } from "next-auth/react"
-import { redirect } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Dialog from "./Dialog"
 
 export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser }) {
-	const { user, setUser } = useUserStore()
+	const [slug, setSlug] = useState("")
+	const [description, setDescription] = useState("")
+	const [image, setImage] = useState("")
 
-	const { data: session, status } = useSession()
-
-	const { mutate: updateSlug } = useUpdateSlug()
-	const { mutate: updateDescription } = useUpdateDescription()
-	const { mutate: updateImage } = useUpdateImage()
-
-	// Redirect if the user is unauthenticated
+	// Pre-fill form fields with currentUser
 	useEffect(() => {
-		if (status === "unauthenticated" || !session?.user) {
-			redirect("/login")
+		if (currentUser) {
+			setSlug(currentUser.slug)
+			setDescription(currentUser.description)
+			setImage(currentUser.image)
 		}
-
-		if (session?.user) {
-			setUser(session.user) // This sets the user data to your store
-		}
-	}, [session, status, setUser])
-
-	useEffect(() => {
-		const { slug, description, image } = user || {}
-
-		if (slug) updateSlug(slug)
-		if (description) updateDescription(description)
-		if (image) updateImage(image)
-	}, [updateSlug, updateDescription, updateImage])
+	}, [currentUser])
 
 	const handleSubmit = () => {
-		// Do something with the updated user data
+		onUpdateUser({
+			slug,
+			description,
+			image
+		})
 		onClose()
 	}
 
@@ -49,8 +35,8 @@ export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser 
 						id="slug"
 						type="text"
 						className="input"
-						value={user?.slug || ""}
-						onChange={(e) => updateSlug(e.target.value)}
+						value={slug}
+						onChange={(e) => setSlug(e.target.value)}
 						placeholder="Your unique identifier"
 					/>
 				</div>
@@ -63,8 +49,8 @@ export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser 
 						id="description"
 						type="text"
 						className="input"
-						value={user?.description || ""}
-						onChange={(e) => updateDescription(e.target.value)}
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
 						placeholder="A short bio about yourself"
 					/>
 				</div>
@@ -77,8 +63,8 @@ export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser 
 						id="image"
 						type="url"
 						className="input"
-						value={user?.image || ""}
-						onChange={(e) => updateImage(e.target.value)}
+						value={image}
+						onChange={(e) => setImage(e.target.value)}
 						placeholder="Your profile picture URL"
 					/>
 				</div>

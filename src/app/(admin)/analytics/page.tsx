@@ -23,8 +23,8 @@ export default function Analytics() {
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card min-h-screen flex-1">
 				<header className="space-y-2">
-					<h2>Profile</h2>
-					<h5>View your profile analytics.</h5>
+					<h2>Analytics</h2>
+					<p className="text-sm font-semibold text-muted-foreground">View your profile analytics.</p>
 				</header>
 
 				<hr className="my-4" />

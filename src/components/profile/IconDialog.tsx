@@ -32,8 +32,8 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 								onClick={() => setSelectedPlatform(platform)}
 								tabIndex={0}
 								className={`flex flex-col items-center justify-center rounded-lg border p-2 ${
-									selectedPlatform === platform ? "bg-muted" : "bg-transparent"
-								} hover:bg-muted`}
+									selectedPlatform === platform ? "bg-accent" : "bg-transparent"
+								} hover:bg-muted active:bg-accent`}
 							>
 								<Icon icon={icon} width={20} height={20} />
 								<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
@@ -57,10 +57,12 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 				</div>
 
 				<div className="input-group">
-					<button onClick={handleSubmit} className="btn">
+					<button onClick={handleSubmit} className="btn-secondary">
+						<Icon icon="mdi:check-circle" width={20} height={20} />
 						Add Social Icon
 					</button>
-					<button onClick={onClose} className="btn text-muted-foreground">
+					<button onClick={onClose} className="btn">
+						<Icon icon="mdi:close-circle" width={20} height={20} />
 						Close
 					</button>
 				</div>

@@ -30,14 +30,14 @@ export default function Header() {
 		<div className="flex w-full items-center justify-between p-4">
 			<Link href="/" className="flex flex-row items-center justify-start gap-2">
 				<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
-				<span className={`text-2xl ${chau.className}`}>Linksy</span>
+				<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 			</Link>
 
 			<div className="flex flex-row items-center justify-end gap-2">
-				<button onClick={handleThemeToggle} title={themeTitle} className="btn bg-card">
+				<button onClick={handleThemeToggle} title={themeTitle} className="btn">
 					<Icon icon={themeIcon} width={25} height={25} />
 				</button>
-				<Link href="/login" title="Sign In" className="btn bg-card">
+				<Link href="/login" title="Sign In" className="btn">
 					<Icon icon="material-symbols:login" width={25} height={25} />
 				</Link>
 			</div>

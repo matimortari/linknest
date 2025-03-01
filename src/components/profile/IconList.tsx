@@ -23,14 +23,14 @@ export default function IconList() {
 	}
 
 	return (
-		<>
-			<header className="my-2">
+		<div>
+			<header className="my-2 flex flex-col gap-2">
 				<h3>My Social Icons</h3>
-				<h6 className="text-muted-foreground">Manage your social icons.</h6>
+				<p className="text-sm font-semibold text-muted-foreground">Manage your social icons.</p>
 			</header>
 
 			{userIcons.length === 0 ? (
-				<h4 className="my-2 text-center text-muted-foreground">No social icons here yet. Get started!</h4>
+				<p className="my-2 text-center font-semibold text-muted-foreground">No social icons here yet. Get started!</p>
 			) : (
 				<ul className="flex flex-row gap-2">
 					{userIcons.map((b: UserIcon) => (
@@ -51,11 +51,12 @@ export default function IconList() {
 			)}
 
 			<div className="input-group justify-end">
-				<button onClick={openDialog} className="btn">
+				<button onClick={openDialog} className="btn-primary">
+					<Icon icon="mdi:favorite-add" width={20} height={20} />
 					Add Social Icon
 				</button>
 				<IconDialog isOpen={isOpen} onClose={closeDialog} onSave={handleSave} />
 			</div>
-		</>
+		</div>
 	)
 }

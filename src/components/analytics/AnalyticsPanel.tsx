@@ -20,9 +20,9 @@ export default function AnalyticsPanel() {
 
 	return (
 		<div className="flex flex-col gap-2">
-			<header className="my-2">
-				<h2>Analytics Summary</h2>
-				<h6 className="text-muted-foreground">Your Key Metrics.</h6>
+			<header className="my-2 flex flex-col gap-2">
+				<h3>Analytics Summary</h3>
+				<p className="text-sm font-semibold text-muted-foreground">Your Key Metrics.</p>
 			</header>
 
 			<div className="my-2 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -61,9 +61,9 @@ export default function AnalyticsPanel() {
 
 			<hr />
 
-			<header className="my-2">
+			<header className="my-2 flex flex-col gap-2">
 				<h3>Profile Views</h3>
-				<h6 className="text-muted-foreground">Total views for your page over the last 30 days.</h6>
+				<p className="text-sm font-semibold text-muted-foreground">Total views for your page over the last 30 days.</p>
 			</header>
 
 			{totalViews === 0 || !hasEnoughData ? (
@@ -89,9 +89,9 @@ export default function AnalyticsPanel() {
 
 			<div className="my-2 flex flex-col justify-between gap-2 md:flex-row">
 				<div className="flex w-full flex-col gap-2">
-					<header className="my-2">
+					<header className="my-2 flex flex-col gap-2">
 						<h3 className="subtitle">Link Clicks</h3>
-						<h6 className="text-muted-foreground">Total link clicks over the last 30 days.</h6>
+						<p className="text-sm font-semibold text-muted-foreground">Total link clicks over the last 30 days.</p>
 					</header>
 
 					{totalClicks === 0 || !hasEnoughData ? (
@@ -115,9 +115,11 @@ export default function AnalyticsPanel() {
 				</div>
 
 				<div className="flex w-full flex-col gap-2">
-					<header className="my-2">
+					<header className="my-2 flex flex-col gap-2">
 						<h3 className="subtitle">Social Icon Clicks</h3>
-						<h6 className="text-muted-foreground">Total social icon clicks over the last 30 days.</h6>
+						<p className="text-sm font-semibold text-muted-foreground">
+							Total social icon clicks over the last 30 days.
+						</p>
 					</header>
 
 					{totalClicks === 0 || !hasEnoughData ? (

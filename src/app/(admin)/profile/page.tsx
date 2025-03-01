@@ -28,9 +28,9 @@ export default function Profile() {
 			<main className="card min-h-screen flex-1">
 				<header className="space-y-2">
 					<h2>Profile</h2>
-					<h5>
+					<p className="text-sm font-semibold text-muted-foreground">
 						Welcome back, <span className="font-bold text-accent">{user.slug}</span>!
-					</h5>
+					</p>
 				</header>
 
 				<ShareAccount />

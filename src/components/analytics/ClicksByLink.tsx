@@ -6,14 +6,14 @@ export default function ClicksByLink() {
 	const { data: items } = useGetClicksByLink()
 
 	return (
-		<>
-			<header className="my-2">
-				<h2>Clicks By Link</h2>
-				<h6 className="text-muted-foreground">Your most visited links & social icons.</h6>
+		<div>
+			<header className="my-2 flex flex-col gap-2">
+				<h3>Clicks By Link</h3>
+				<p className="text-sm font-semibold text-muted-foreground">Your most visited links & social icons.</p>
 			</header>
 
 			{!items || items.length === 0 ? (
-				<h4 className="my-2 text-center text-muted-foreground">No links or social icons available yet.</h4>
+				<p className="my-2 text-center font-semibold text-muted-foreground">No links or social icons available yet.</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
 					{items.map((item) => (
@@ -39,6 +39,6 @@ export default function ClicksByLink() {
 					))}
 				</ul>
 			)}
-		</>
+		</div>
 	)
 }

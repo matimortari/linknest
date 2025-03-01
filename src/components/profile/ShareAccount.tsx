@@ -93,7 +93,7 @@ export default function ShareBanner() {
 			</div>
 
 			<div className="input-group">
-				<button onClick={toggleDropdown} title="See sharing options" className="btn bg-card text-foreground">
+				<button onClick={toggleDropdown} title="See sharing options" className="btn-secondary">
 					<Icon icon="mdi:share-variant" width={20} height={20} />
 					Share Now
 				</button>

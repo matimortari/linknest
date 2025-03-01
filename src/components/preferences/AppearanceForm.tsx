@@ -12,6 +12,7 @@ import { useUpdatePreferences } from "@/src/hooks/useMutations"
 import { useGetPreferences } from "@/src/hooks/useQueries"
 import { useEffect, useState } from "react"
 import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "../Inputs"
+import ThemeForm from "./ThemeForm"
 
 export default function AppearanceForm() {
 	const { data: preferences = {} } = useGetPreferences()
@@ -24,16 +25,9 @@ export default function AppearanceForm() {
 		setSelectedPreferences(preferences)
 	}, [preferences])
 
-	const tabs = [
-		{ label: "Background", value: "background" },
-		{ label: "User Info", value: "user" },
-		{ label: "Links", value: "links" },
-		{ label: "Social Icons", value: "icons" }
-	]
-
 	const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
-		setSelectedPreferences((prevPreferences: UserPreferences) => ({
+		setSelectedPreferences((prevPreferences) => ({
 			...prevPreferences,
 			[field]: value
 		}))
@@ -43,6 +37,14 @@ export default function AppearanceForm() {
 	const isBackgroundGradient = selectedPreferences.backgroundType === "GRADIENT"
 	const isLinkShadowDisabled = !selectedPreferences.isLinkShadow
 	const isIconShadowDisabled = !selectedPreferences.isIconShadow
+
+	const tabs = [
+		{ label: "Background", value: "background" },
+		{ label: "User Info", value: "user" },
+		{ label: "Links", value: "links" },
+		{ label: "Social Icons", value: "icons" },
+		{ label: "Themes", value: "themes" }
+	]
 
 	return (
 		<div>
@@ -297,6 +299,8 @@ export default function AppearanceForm() {
 					</div>
 				</div>
 			)}
+
+			{tab === "themes" && <ThemeForm setTheme={setSelectedPreferences} />}
 		</div>
 	)
 }

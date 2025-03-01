@@ -36,7 +36,7 @@ export default function LinkList() {
 	}
 
 	return (
-		<div>
+		<div className="flex flex-col gap-2">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>My Links</h3>
 				<p className="text-sm font-semibold text-muted-foreground">Manage your social links.</p>

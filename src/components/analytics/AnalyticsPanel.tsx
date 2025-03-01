@@ -19,7 +19,7 @@ export default function AnalyticsPanel() {
 	const clickRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex flex-col gap-4">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Analytics Summary</h3>
 				<p className="text-sm font-semibold text-muted-foreground">Your Key Metrics.</p>

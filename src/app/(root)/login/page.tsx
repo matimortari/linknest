@@ -11,24 +11,24 @@ export default function Login() {
 	return (
 		<div className="flex min-h-screen">
 			<main className="flex w-1/2 flex-col items-center justify-center p-10">
-				<header className="my-8 flex w-full flex-col items-center gap-4">
+				<header className="my-8 flex w-full flex-col items-center gap-6">
 					<h1 className={`${bowlby.className}`}>Sign In</h1>
-					<h5 className={`${lato.className} text-muted-foreground`}>Sign in with Google or GitHub to continue.</h5>
+					<p className={`${lato.className} text-muted-foreground`}>Sign in with Google or GitHub to continue.</p>
 				</header>
 
 				<hr className="w-full" />
 
-				<div className="my-8 flex w-full flex-col items-center gap-2">
+				<div className="my-8 flex w-full flex-col items-center gap-4">
 					<button
 						onClick={() => signIn("google", { callbackUrl: "/profile" })}
-						className="btn w-full max-w-xs bg-[#db4437] text-white"
+						className="btn max-w-xs bg-[#db4437] text-white"
 					>
 						<Icon icon="simple-icons:google" width={20} height={20} />
 						Sign in with Google
 					</button>
 					<button
 						onClick={() => signIn("github", { callbackUrl: "/profile" })}
-						className="btn w-full max-w-xs bg-[#333333] text-white"
+						className="btn max-w-xs bg-[#333333] text-white"
 					>
 						<Icon icon="simple-icons:github" width={20} height={20} />
 						Sign in with GitHub

@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import Dialog from "./Dialog"
 
@@ -70,10 +71,12 @@ export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser 
 				</div>
 
 				<div className="input-group">
-					<button onClick={handleSubmit} className="btn">
+					<button onClick={handleSubmit} className="btn-secondary">
+						<Icon icon="mdi:content-save-check" width={20} height={20} />
 						Save Changes
 					</button>
-					<button onClick={onClose} className="btn text-muted-foreground">
+					<button onClick={onClose} className="btn">
+						<Icon icon="mdi:close-circle" width={20} height={20} />
 						Close
 					</button>
 				</div>

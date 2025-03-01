@@ -58,11 +58,11 @@
 		--muted: #3b3b41;
 		--muted-foreground: #c7c4c4;
 
-		--danger: #c53333;
-		--danger-foreground: #e7d8d9;
+		--danger: #e7d8d9;
+		--danger-foreground: #c53333;
 
-		--success: #5e836d;
-		--success-foreground: #c7dbd0;
+		--success: #c7dbd0;
+		--success-foreground: #5e836d;
 
 		--border: #3b3b41;
 		--input: #111016;
@@ -84,19 +84,19 @@
 	}
 
 	h1 {
-		font-size: 1.875rem;
-		line-height: 2.5rem;
-		font-weight: 700;
+		font-size: 3rem;
+		line-height: 3rem;
+		font-weight: 800;
 	}
 	h2 {
-		font-size: 1.5rem;
-		line-height: 2rem;
-		font-weight: 700;
+		font-size: 1.875rem;
+		line-height: 1.75rem;
+		font-weight: 800;
 	}
 	h3 {
-		font-size: 1.25rem;
+		font-size: 1.5rem;
 		line-height: 1.75rem;
-		font-weight: 700;
+		font-weight: 800;
 	}
 	h4 {
 		font-size: 1rem;
@@ -156,7 +156,11 @@
 		gap: 0.25rem;
 	}
 
-	.btn {
+	.btn,
+	.btn-primary,
+	.btn-secondary,
+	.btn-danger,
+	.btn-success {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -187,32 +191,48 @@
 		opacity: 0.5;
 	}
 
+	.btn {
+		background-color: var(--card);
+		color: var(--card-foreground);
+	}
+	.btn-primary {
+		background-color: var(--primary);
+		color: var(--primary-foreground);
+	}
+	.btn-secondary {
+		background-color: var(--secondary);
+		color: var(--secondary-foreground);
+	}
+	.btn-danger {
+		background-color: var(--card);
+		color: var(--danger-foreground);
+	}
+	.btn-success {
+		background-color: var(--card);
+		color: var(--success-foreground);
+	}
+
 	/* Match background and foreground colors */
 	.bg-primary {
 		background-color: var(--primary);
 		color: var(--primary-foreground);
 	}
-
 	.bg-secondary {
 		background-color: var(--secondary);
 		color: var(--secondary-foreground);
 	}
-
 	.bg-accent {
 		background-color: var(--accent);
 		color: var(--accent-foreground);
 	}
-
 	.bg-muted {
 		background-color: var(--muted);
 		color: var(--muted-foreground);
 	}
-
 	.bg-danger {
 		background-color: var(--danger);
 		color: var(--danger-foreground);
 	}
-
 	.bg-success {
 		background-color: var(--success);
 		color: var(--success-foreground);

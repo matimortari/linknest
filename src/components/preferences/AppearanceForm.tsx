@@ -10,6 +10,7 @@ import {
 import { BANNER_OPTIONS } from "@/src/config/supportBannerConfig"
 import { useUpdatePreferences } from "@/src/hooks/useMutations"
 import { useGetPreferences } from "@/src/hooks/useQueries"
+import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "../Inputs"
 import ThemeForm from "./ThemeForm"
@@ -48,9 +49,9 @@ export default function AppearanceForm() {
 
 	return (
 		<div>
-			<header className="my-2">
-				<h2>Appearance</h2>
-				<h6 className="text-muted-foreground">Customize the appearance for your page.</h6>
+			<header className="my-2 flex flex-col gap-2">
+				<h3>Appearance</h3>
+				<p className="text-sm font-semibold text-muted-foreground">Customize the appearance for your page.</p>
 			</header>
 
 			<div className="flex flex-row items-center justify-between gap-4">
@@ -68,7 +69,8 @@ export default function AppearanceForm() {
 					))}
 				</div>
 				<div className="input-group justify-end">
-					<button onClick={() => updatePreferencesMutation(selectedPreferences)} className="btn bg-card">
+					<button onClick={() => updatePreferencesMutation(selectedPreferences)} className="btn-primary">
+						<Icon icon="mdi:content-save-check" width={20} height={20} />
 						Save Changes
 					</button>
 				</div>

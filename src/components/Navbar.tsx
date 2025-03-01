@@ -21,7 +21,7 @@ const navLinks = [
 const Logo = () => (
 	<Link href="/" className="flex items-center gap-2">
 		<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon" />
-		<span className={`text-2xl ${chau.className}`}>Linksy</span>
+		<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 	</Link>
 )
 
@@ -40,7 +40,7 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 		<div className="flex w-full flex-col gap-1 overflow-x-hidden">
 			<Link
 				href={`/${slug}`}
-				title={`linksy-live.vercel.app/${slug}`}
+				title={`linknest-live.vercel.app/${slug}`}
 				className="truncate text-xs font-medium hover:underline"
 			>
 				@{slug}
@@ -51,7 +51,7 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 )
 
 const NavLink = ({ href, icon, label }) => (
-	<Link href={href} title={label} className="btn bg-card">
+	<Link href={href} title={label} className="btn">
 		<Icon icon={icon} width={25} height={25} />
 		{label}
 	</Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
 						<button onClick={() => setIsNavOpen(!isNavOpen)} className="btn">
 							<Icon icon={isNavOpen ? "mdi:close" : "mdi:menu"} width={25} height={25} />
 						</button>
-						<button onClick={() => signOut({ callbackUrl: "/" })} className="btn bg-danger">
+						<button onClick={() => signOut({ callbackUrl: "/" })} className="btn-danger">
 							<Icon icon="material-symbols:logout" width={25} height={25} />
 						</button>
 					</nav>
@@ -126,15 +126,11 @@ export default function Navbar() {
 				</div>
 
 				<div className="mt-auto flex flex-col gap-2 py-4">
-					<button
-						onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-						title={themeTitle}
-						className="btn bg-card"
-					>
+					<button onClick={() => setTheme(theme === "light" ? "dark" : "light")} title={themeTitle} className="btn">
 						{themeIcon && <Icon icon={themeIcon} width={25} height={25} />}
 						<span>{mounted ? (theme === "light" ? "Dark" : "Light") : ""} Mode</span>
 					</button>
-					<button onClick={() => signOut({ callbackUrl: "/" })} title="Sign Out" className="btn bg-danger">
+					<button onClick={() => signOut({ callbackUrl: "/" })} title="Sign Out" className="btn-danger">
 						<Icon icon="material-symbols:logout" width={25} height={25} />
 						<p className="hidden md:block">Sign Out</p>
 					</button>

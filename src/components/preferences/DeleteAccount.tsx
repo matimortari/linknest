@@ -2,7 +2,7 @@ import { useDeleteUser } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
 
 export default function DeleteAccount() {
-	const { mutate: deleteUser, isPending, error } = useDeleteUser()
+	const { mutate: deleteUser, error } = useDeleteUser()
 
 	const handleDeleteAccount = () => {
 		const confirm = window.confirm("Are you sure you want to delete your account?")
@@ -19,19 +19,22 @@ export default function DeleteAccount() {
 	}
 
 	return (
-		<div className="">
-			<header className="my-2">
-				<h2>Delete Account</h2>
-				<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
+		<div>
+			<header className="my-2 flex flex-col gap-2">
+				<h3>Delete Account</h3>
+				<p className="text-sm font-semibold text-danger-foreground">
+					This action is irreversible. All data will be lost.
+				</p>
 			</header>
+
 			<div className="input-group justify-end md:justify-start">
-				<button onClick={handleDeleteAccount} title="Delete Account" className="btn bg-danger">
+				<button onClick={handleDeleteAccount} title="Delete Account" className="btn-danger">
 					<Icon icon="mdi:user-remove" width={20} height={20} />
-					{isPending ? "Deleting..." : "Delete Account"}
+					Delete Account
 				</button>
 			</div>
 
-			{error && <div className="mt-2 text-danger">{error.message}</div>}
+			{error && <div className="mt-2 text-danger-foreground">{error.message}</div>}
 		</div>
 	)
 }

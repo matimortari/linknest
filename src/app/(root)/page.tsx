@@ -33,7 +33,7 @@ export default function Home() {
 		{
 			id: 4,
 			title: "Free to Use!",
-			description: "linknest is completely free to use, with no hidden fees.",
+			description: "Linknest is completely free to use, with no hidden fees.",
 			icon: "ri:price-tag-3-fill"
 		}
 	]
@@ -53,9 +53,9 @@ export default function Home() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
 					>
-						<div className="space-y-4 text-center md:text-start">
+						<div className="space-y-8 text-center md:space-y-4 md:text-start">
 							<h3 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h3>
-							<h1 className={`${bowlby.className} max-w-md text-4xl md:text-5xl`}>Keep all your stuff together!</h1>
+							<h1 className={`${bowlby.className} max-w-md`}>Keep all your stuff together!</h1>
 							<p className={`${lato.className} max-w-lg text-muted-foreground`}>
 								Welcome to <span className="text-accent">LinkNest</span>! Your links, profiles, contact info, and more
 								in one place. Create and customize your page and share it with your audience.
@@ -68,7 +68,7 @@ export default function Home() {
 								<span className="hidden cursor-default sm:inline">linknest-live.vercel.app/</span>
 								<span className="cursor-default sm:hidden">@</span>
 								<input type="text" placeholder="your_name" className="flex-1 outline-none" />
-								<Link href="/login" className="btn bg-primary">
+								<Link href="/login" className="btn-primary">
 									Get Started!
 								</Link>
 							</motion.div>
@@ -87,14 +87,18 @@ export default function Home() {
 				</div>
 			</main>
 
-			<hr />
-
 			{/* Features section */}
-			<div className="flex flex-col items-center justify-center space-y-8 py-12 text-center">
+			<div className="relative z-10 flex flex-col items-center justify-center space-y-8 py-12 text-center">
 				<h2>Why Choose LinkNest?</h2>
 				<div className="grid grid-cols-1 gap-4 px-10 md:grid-cols-4">
 					{features.map((feature, index) => (
-						<div key={index} className="card text-start">
+						<motion.div
+							key={index}
+							className="card text-start"
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6, delay: index * 0.1 }}
+						>
 							<div className="flex flex-row items-center gap-2">
 								<span className="rounded-full bg-muted p-2">
 									<Icon icon={feature.icon} width={20} height={20} />
@@ -102,19 +106,18 @@ export default function Home() {
 								<h4>{feature.title}</h4>
 							</div>
 							<p className="text-sm text-muted-foreground">{feature.description}</p>
-						</div>
+						</motion.div>
 					))}
 				</div>
 			</div>
 
-			<hr />
-
 			{/* CTA section */}
-			<div className="flex flex-col items-center justify-center space-y-4 py-8 text-center">
+			<div className="relative z-10 flex flex-col items-center justify-center space-y-4 border bg-card py-12 text-center">
 				<h2>Ready to Try?</h2>
-				<p>Create an account and build your page today!</p>
-				<Link href="/login" className="btn bg-primary">
-					Sign In
+				<p className="font-semibold">Create an account and build your page today!</p>
+				<Link href="/login" className="flex flex-row items-center gap-2 rounded-2xl bg-accent p-4 font-semibold">
+					Get Started
+					<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
 				</Link>
 			</div>
 		</div>

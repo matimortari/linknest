@@ -36,14 +36,14 @@ export default function LinkList() {
 	}
 
 	return (
-		<>
-			<header className="my-2">
+		<div>
+			<header className="my-2 flex flex-col gap-2">
 				<h3>My Links</h3>
-				<h6 className="text-muted-foreground">Manage your social links.</h6>
+				<p className="text-sm font-semibold text-muted-foreground">Manage your social links.</p>
 			</header>
 
 			{userLinks.length === 0 ? (
-				<h4 className="my-2 text-center text-muted-foreground">No links here yet. Get started!</h4>
+				<p className="my-2 text-center font-semibold text-muted-foreground">No links here yet. Get started!</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					{userLinks.map((l: UserLink) => (
@@ -80,12 +80,13 @@ export default function LinkList() {
 						setSelectedLink(null) // When adding a new link, set selectedLink to null
 						openDialog()
 					}}
-					className="btn"
+					className="btn-primary"
 				>
+					<Icon icon="mdi:link-add" width={20} height={20} />
 					Add Link
 				</button>
 				<LinkDialog isOpen={isOpen} onClose={closeDialog} selectedLink={selectedLink} onSave={handleSave} />
 			</div>
-		</>
+		</div>
 	)
 }

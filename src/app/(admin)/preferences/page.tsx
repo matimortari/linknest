@@ -26,8 +26,8 @@ export default function Preferences() {
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card min-h-screen flex-1">
 				<header className="space-y-2">
-					<h2>Profile</h2>
-					<h5>Manage your profile.</h5>
+					<h2>Preferences</h2>
+					<p className="text-sm font-semibold text-muted-foreground">Manage your profile.</p>
 				</header>
 
 				<hr className="my-4" />
@@ -37,7 +37,7 @@ export default function Preferences() {
 						<AppearanceForm />
 					</section>
 
-					<section className="section-container border-danger">
+					<section className="section-container border-danger-foreground">
 						<DeleteAccount />
 					</section>
 				</div>

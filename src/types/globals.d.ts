@@ -28,7 +28,7 @@ interface UserIcon {
 }
 
 interface UserPreferences {
-	id: string
+	id?: string
 	backgroundType: BackgroundType
 	backgroundColor: string
 	backgroundGradientStart: string
@@ -101,6 +101,7 @@ interface SelectInputProps {
 	id: string // Select input ID
 	label: string // Label text
 	value: string // Selected value
+	disabled?: boolean // Whether the input is disabled
 	options: { value: string; label: string }[] // Options list
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void // React change event handler
 }

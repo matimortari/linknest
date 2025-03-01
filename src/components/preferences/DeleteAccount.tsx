@@ -19,7 +19,7 @@ export default function DeleteAccount() {
 	}
 
 	return (
-		<div>
+		<div className="flex flex-col gap-4">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Delete Account</h3>
 				<p className="text-sm font-semibold text-danger-foreground">

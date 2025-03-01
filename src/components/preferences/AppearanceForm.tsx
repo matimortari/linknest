@@ -54,8 +54,8 @@ export default function AppearanceForm() {
 				<p className="text-sm font-semibold text-muted-foreground">Customize the appearance for your page.</p>
 			</header>
 
-			<div className="flex flex-row items-center justify-between gap-4">
-				<div className="flex flex-row items-center gap-2">
+			<div className="flex flex-wrap items-center justify-between gap-4">
+				<div className="flex flex-wrap items-center gap-1">
 					{tabs.map((t) => (
 						<button
 							key={t.value}

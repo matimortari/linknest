@@ -23,7 +23,7 @@ export default function IconList() {
 	}
 
 	return (
-		<div>
+		<div className="flex flex-col gap-2">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>My Social Icons</h3>
 				<p className="text-sm font-semibold text-muted-foreground">Manage your social icons.</p>

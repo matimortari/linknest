@@ -9,7 +9,7 @@ const lato = Lato({ subsets: ["latin"], weight: "700" })
 
 export default function Login() {
 	return (
-		<div className="flex min-h-screen">
+		<div className="min-h-screen md:flex">
 			<div className="flex flex-col items-center p-10 md:w-1/2 md:justify-center">
 				<header className="my-8 flex w-full flex-col items-center gap-6">
 					<h1 className={`${bowlby.className}`}>Sign In</h1>

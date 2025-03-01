@@ -6,7 +6,7 @@ export default function ClicksByLink() {
 	const { data: items } = useGetClicksByLink()
 
 	return (
-		<div>
+		<div className="flex flex-col gap-4">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Clicks By Link</h3>
 				<p className="text-sm font-semibold text-muted-foreground">Your most visited links & social icons.</p>

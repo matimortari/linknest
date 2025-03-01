@@ -36,7 +36,6 @@ select {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	cursor: pointer;
 	background-color: transparent;
 	border-color: var(--border);
 	color: var(--muted-foreground);
@@ -56,6 +55,7 @@ select {
 
 input[type="color"],
 input[type="checkbox"] {
+	cursor: pointer;
 	border-width: 1px;
 	border-color: var(--border);
 	border-radius: 50%;

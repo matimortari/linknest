@@ -49,15 +49,15 @@ export default async function slugPage({ params }: { params: Params }) {
 	await updateClickStats(userId)
 
 	const backgroundStyle =
-		userPreferences?.backgroundType === "GRADIENT"
+		userPreferences.backgroundType === "GRADIENT"
 			? {
-					background: `linear-gradient(to bottom, ${userPreferences?.backgroundGradientStart}, ${userPreferences?.backgroundGradientEnd})`
+					background: `linear-gradient(to bottom, ${userPreferences.backgroundGradientStart}, ${userPreferences.backgroundGradientEnd})`
 			  }
-			: { backgroundColor: userPreferences?.backgroundColor }
+			: { backgroundColor: userPreferences.backgroundColor }
 
 	return (
-		<div style={backgroundStyle} className="min-h-screen p-12 pb-24">
-			<div className="flex flex-col items-center justify-center gap-2 text-center">
+		<div style={backgroundStyle} className="min-h-screen p-12">
+			<div className="flex flex-col items-center justify-center gap-4 text-center">
 				{userPreferences && userPreferences.supportBanner !== "NONE" && (
 					<SupportBanner bannerType={userPreferences.supportBanner} />
 				)}
@@ -67,14 +67,14 @@ export default async function slugPage({ params }: { params: Params }) {
 						alt={slug}
 						width={100}
 						height={100}
-						style={{ borderRadius: userPreferences?.profilePictureRadius }}
+						style={{ borderRadius: userPreferences.profilePictureRadius }}
 					/>
 				)}
 				<p
 					style={{
-						color: userPreferences?.slugTextColor,
-						fontWeight: userPreferences?.slugTextWeight,
-						fontSize: userPreferences?.slugTextSize
+						color: userPreferences.slugTextColor,
+						fontWeight: userPreferences.slugTextWeight,
+						fontSize: userPreferences.slugTextSize
 					}}
 				>
 					@{slug}
@@ -82,16 +82,16 @@ export default async function slugPage({ params }: { params: Params }) {
 				{description && (
 					<p
 						style={{
-							color: userPreferences?.headerTextColor,
-							fontWeight: userPreferences?.headerTextWeight,
-							fontSize: userPreferences?.headerTextSize
+							color: userPreferences.headerTextColor,
+							fontWeight: userPreferences.headerTextWeight,
+							fontSize: userPreferences.headerTextSize
 						}}
 					>
 						{description}
 					</p>
 				)}
 				{userIcons.length > 0 ? (
-					<ul className="my-2 flex flex-row justify-center gap-2">
+					<ul className="my-2 flex flex-row items-center justify-center gap-2">
 						{userIcons.map((b) => (
 							<UserIcon
 								key={b.id}
@@ -107,7 +107,7 @@ export default async function slugPage({ params }: { params: Params }) {
 					<hr />
 				)}
 				{userLinks.length > 0 ? (
-					<ul className="space-y-4">
+					<ul className="flex flex-col items-center gap-4">
 						{userLinks.map((l) => (
 							<UserLink
 								key={l.id}

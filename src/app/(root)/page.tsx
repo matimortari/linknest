@@ -8,7 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
-const lato = Lato({ subsets: ["latin"], weight: "700" })
+const lato = Lato({ subsets: ["latin"], weight: ["400", "700"] })
 
 export default function Home() {
 	const features = [
@@ -54,11 +54,11 @@ export default function Home() {
 						transition={{ duration: 0.6 }}
 					>
 						<div className="space-y-8 text-center md:space-y-4 md:text-start">
-							<h3 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h3>
+							<h4 className={`${lato.className} font-bold text-accent`}>Your link-in-bio page 🔗🌐</h4>
 							<h1 className={`${bowlby.className} max-w-md`}>Keep all your stuff together!</h1>
 							<p className={`${lato.className} max-w-lg text-muted-foreground`}>
-								Welcome to <span className="text-accent">LinkNest</span>! Your links, profiles, contact info, and more
-								in one place. Create and customize your page and share it with your audience.
+								Welcome to <span className="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info,
+								and more in one place. Create and customize your page and share it with your audience.
 							</p>
 							<motion.div
 								className="flex max-w-lg flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-2xl"
@@ -112,10 +112,10 @@ export default function Home() {
 			</div>
 
 			{/* CTA section */}
-			<div className="relative z-10 flex flex-col items-center justify-center space-y-4 border bg-card py-12 text-center">
+			<div className="relative z-10 flex w-full flex-col items-center justify-center gap-6 border-y bg-card py-12">
 				<h2>Ready to Try?</h2>
-				<p className="font-semibold">Create an account and build your page today!</p>
-				<Link href="/login" className="flex flex-row items-center gap-2 rounded-2xl bg-accent p-4 font-semibold">
+				<p className="max-w-60 text-center font-medium">Create an account and build your page today!</p>
+				<Link href="/login" className="flex flex-row items-center gap-2 rounded-2xl bg-accent p-2 font-semibold">
 					Get Started
 					<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
 				</Link>

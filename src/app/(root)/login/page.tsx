@@ -12,6 +12,7 @@ export default function Login() {
 	return (
 		<div className="min-h-screen md:flex">
 			<div className="flex flex-col items-center p-10 md:w-1/2 md:justify-center">
+				<Image src="/logo.png" alt="LinkNest Logo" width={80} height={80} />
 				<header className="my-8 flex w-full flex-col items-center gap-6">
 					<h1 className={`${bowlby.className}`}>Sign In</h1>
 					<p className={`${lato.className} text-muted-foreground`}>Sign in with Google or GitHub to continue.</p>
@@ -38,8 +39,15 @@ export default function Login() {
 			</div>
 
 			<section className="relative hidden md:block md:w-1/2">
-				<div className="absolute inset-0 rounded-l-lg bg-gradient-to-r from-[#db4437] to-[#333333]" />
-				<Image src="/login-image.png" alt="Login Visual" fill objectFit="cover" />
+				<div className="absolute inset-0 rounded-b-2xl" />
+				<Image
+					src="/login-image.png"
+					alt="Login Visual"
+					fill
+					unoptimized={true}
+					priority
+					className="rounded-b-2xl border-l object-cover"
+				/>
 			</section>
 		</div>
 	)

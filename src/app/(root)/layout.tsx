@@ -1,6 +1,5 @@
 import Providers from "@/src/components/context/Providers"
 import Footer from "@/src/components/Footer"
-import Header from "@/src/components/Header"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
@@ -15,6 +14,13 @@ export const metadata: Metadata = {
 	title: "LinkNest — Your link-in-bio page 🔗🌐",
 	description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
 	keywords: ["LinkNest", "Link in bio", "LinkNest page"],
+	openGraph: {
+		url: "https://linknest-live.vercel.app",
+		title: "LinkNest — Your link-in-bio page 🔗🌐",
+		description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
+		type: "website",
+		images: "/opengraph-image.png"
+	},
 	other: {
 		"google-site-verification": "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA"
 	}
@@ -27,7 +33,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.className}`}>
 				<Providers session={session}>
-					<Header />
 					<main>{children}</main>
 					<Footer />
 				</Providers>

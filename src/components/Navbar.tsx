@@ -20,7 +20,7 @@ const navLinks = [
 
 const Logo = () => (
 	<Link href="/" className="flex items-center gap-2">
-		<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon" />
+		<Image src="/logo.png" alt="LinkNest Logo" width={35} height={35} className="icon" />
 		<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 	</Link>
 )

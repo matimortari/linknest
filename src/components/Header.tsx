@@ -29,7 +29,7 @@ export default function Header() {
 	return (
 		<div className="flex w-full items-center justify-between p-4">
 			<Link href="/" className="flex flex-row items-center justify-start gap-2">
-				<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
+				<Image src="/logo.png" alt="LinkNest Logo" width={35} height={35} className="icon rounded-full" />
 				<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 			</Link>
 

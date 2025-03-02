@@ -11,6 +11,7 @@ const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
 export default function Header() {
 	const { theme, setTheme } = useTheme()
+
 	const [mounted, setMounted] = useState(false)
 
 	useEffect(() => {

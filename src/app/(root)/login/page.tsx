@@ -42,7 +42,7 @@ export default function Login() {
 				<div className="absolute inset-0 rounded-b-2xl" />
 				<Image
 					src="/login-image.png"
-					alt="Login Visual"
+					alt="Sign In Visual"
 					fill
 					unoptimized={true}
 					priority

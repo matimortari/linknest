@@ -48,15 +48,17 @@ export default async function slugPage({ params }: { params: Params }) {
 	await trackPageVisit(userId)
 	await updateClickStats(userId)
 
-	const backgroundStyle =
-		userPreferences.backgroundType === "GRADIENT"
-			? {
-					background: `linear-gradient(to bottom, ${userPreferences.backgroundGradientStart}, ${userPreferences.backgroundGradientEnd})`
-			  }
-			: { backgroundColor: userPreferences.backgroundColor }
-
 	return (
-		<div style={backgroundStyle} className="min-h-screen p-12">
+		<div
+			style={
+				userPreferences.backgroundType === "GRADIENT"
+					? {
+							background: `linear-gradient(to bottom, ${userPreferences.backgroundGradientStart}, ${userPreferences.backgroundGradientEnd})`
+					  }
+					: { backgroundColor: userPreferences.backgroundColor }
+			}
+			className="min-h-screen p-12"
+		>
 			<div className="flex flex-col items-center justify-center gap-4 text-center">
 				{userPreferences && userPreferences.supportBanner !== "NONE" && (
 					<SupportBanner bannerType={userPreferences.supportBanner} />

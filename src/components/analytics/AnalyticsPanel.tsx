@@ -12,7 +12,7 @@ export default function AnalyticsPanel() {
 		.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
 		.slice(0, 30)
 
-	const hasEnoughData = filteredStats.length > 0 // TODO: Change to 1 later
+	const hasEnoughData = filteredStats.length > 1
 
 	const totalViews = filteredStats.reduce((sum: any, entry: any) => sum + entry.views, 0)
 	const totalClicks = filteredStats.reduce((sum: any, entry: any) => sum + entry.linkClicks + entry.iconClicks, 0)

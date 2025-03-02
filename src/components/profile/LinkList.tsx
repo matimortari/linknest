@@ -16,22 +16,12 @@ export default function LinkList() {
 
 	const [selectedLink, setSelectedLink] = useState<UserLink | null>(null)
 
-	const handleUpdateLink = (link: UserLink) => {
-		setSelectedLink(link)
-		openDialog()
-	}
-
-	const handleDeleteLink = (id: string) => {
-		deleteLink(id)
-	}
-
 	const handleSave = (link: { title: string; url: string }) => {
 		if (selectedLink) {
 			updateLink({ id: selectedLink.id, ...link })
 		} else {
 			addLink(link)
 		}
-
 		closeDialog()
 	}
 
@@ -54,10 +44,16 @@ export default function LinkList() {
 										<h4 className="truncate">{l.title}</h4>
 									</Link>
 									<div className="input-group">
-										<button onClick={() => handleUpdateLink(l)} title="Edit Link">
+										<button
+											onClick={() => {
+												setSelectedLink(l)
+												openDialog()
+											}}
+											title="Edit Link"
+										>
 											<Icon icon="mdi:circle-edit-outline" width={20} height={20} className="text-accent" />
 										</button>
-										<button onClick={() => l.id && handleDeleteLink(l.id)} title="Remove Link">
+										<button onClick={() => l.id && deleteLink(l.id)} title="Remove Link">
 											<Icon
 												icon="mdi:remove-circle-outline"
 												width={20}
@@ -85,6 +81,7 @@ export default function LinkList() {
 					<Icon icon="mdi:link-add" width={20} height={20} />
 					Add Link
 				</button>
+
 				<LinkDialog isOpen={isOpen} onClose={closeDialog} selectedLink={selectedLink} onSave={handleSave} />
 			</div>
 		</div>

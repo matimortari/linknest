@@ -9,13 +9,8 @@ export default function IconList() {
 	const { isOpen, openDialog, closeDialog } = useDialog()
 
 	const { data: userIcons = [] } = useGetIcons()
-
 	const { mutate: addIcon } = useAddIcon()
 	const { mutate: deleteIcon } = useDeleteIcon()
-
-	const handleDeleteIcon = (id: string) => {
-		deleteIcon(id)
-	}
 
 	const handleSave = (icon: { platform: string; icon: string; url: string }) => {
 		addIcon(icon)
@@ -39,7 +34,7 @@ export default function IconList() {
 								<Icon icon={b.icon} width={25} height={25} className="m-1" />
 							</Link>
 							<button
-								onClick={() => b.id && handleDeleteIcon(b.id)}
+								onClick={() => b.id && deleteIcon(b.id)}
 								title="Remove Social Icon"
 								className="absolute bottom-0 right-0 p-1"
 							>
@@ -55,6 +50,7 @@ export default function IconList() {
 					<Icon icon="mdi:favorite-add" width={20} height={20} />
 					Add Social Icon
 				</button>
+
 				<IconDialog isOpen={isOpen} onClose={closeDialog} onSave={handleSave} />
 			</div>
 		</div>

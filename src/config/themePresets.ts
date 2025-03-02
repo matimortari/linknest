@@ -19,8 +19,8 @@ export const themePresets = [
 			linkShadowColor: "#3f5243",
 			linkShadowWeight: "medium",
 			linkHoverBackgroundColor: "#3f5243",
-			linkBorderRadius: "1rem",
-			linkPadding: "0.5rem",
+			linkBorderRadius: "5rem",
+			linkPadding: "0.75rem",
 			iconBackgroundColor: "#3f5243",
 			isIconShadow: true,
 			iconShadowColor: "#3f5243",
@@ -29,7 +29,6 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#5e7464"
 		}
 	},
-
 	{
 		title: "Arctic White",
 		preferences: {
@@ -41,7 +40,7 @@ export const themePresets = [
 			slugTextSize: "1.1rem",
 			headerTextColor: "#2c3e50",
 			headerTextWeight: "500",
-			headerTextSize: "0.9rem",
+			headerTextSize: "1rem",
 			linkBackgroundColor: "#ecf0f1",
 			linkTextColor: "#2c3e50",
 			linkTextWeight: "500",
@@ -60,7 +59,6 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#ecf0f1"
 		}
 	},
-
 	{
 		title: "Arctic Blue",
 		preferences: {
@@ -73,7 +71,7 @@ export const themePresets = [
 			slugTextSize: "1.1rem",
 			headerTextColor: "#ebe8e8",
 			headerTextWeight: "500",
-			headerTextSize: "0.9rem",
+			headerTextSize: "1rem",
 			linkBackgroundColor: "#78909c",
 			linkTextColor: "#ebe8e8",
 			linkTextWeight: "500",
@@ -92,20 +90,49 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#78909c"
 		}
 	},
-
 	{
-		title: "Tokyo",
+		title: "Straw",
+		preferences: {
+			backgroundColor: "#F4E1A6",
+			backgroundType: "FLAT",
+			profilePictureRadius: "0.5rem",
+			slugTextColor: "#8C6239",
+			slugTextWeight: "700",
+			slugTextSize: "1.1rem",
+			headerTextColor: "#8C6239",
+			headerTextWeight: "600",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#E6C07B",
+			linkTextColor: "#5E4223",
+			linkTextWeight: "600",
+			linkTextSize: "0.9rem",
+			isLinkShadow: true,
+			linkShadowColor: "#C4A267",
+			linkShadowWeight: "medium",
+			linkHoverBackgroundColor: "#C4A267",
+			linkBorderRadius: "1rem",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#E6C07B",
+			isIconShadow: true,
+			iconShadowColor: "#8C6239",
+			iconShadowWeight: "medium",
+			iconIconColor: "#5E4223",
+			iconHoverBackgroundColor: "#C4A267"
+		}
+	},
+	{
+		title: "Ultraviolet",
 		preferences: {
 			backgroundType: "GRADIENT",
 			backgroundGradientStart: "#0e0624",
 			backgroundGradientEnd: "#000000",
 			profilePictureRadius: "5rem",
 			slugTextColor: "#b39ddb",
-			slugTextWeight: "600",
+			slugTextWeight: "700",
 			slugTextSize: "1.25rem",
 			headerTextColor: "#b39ddb",
-			headerTextWeight: "500",
-			headerTextSize: "1.1rem",
+			headerTextWeight: "600",
+			headerTextSize: "1rem",
 			linkBackgroundColor: "#090612",
 			linkTextColor: "#ebe8e8",
 			linkTextWeight: "600",
@@ -124,98 +151,34 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#444444"
 		}
 	},
-
 	{
 		title: "Crayons",
 		preferences: {
-			backgroundColor: "#f2e7fe",
+			backgroundColor: "#ececec",
 			backgroundType: "FLAT",
 			profilePictureRadius: "5rem",
-			slugTextColor: "#3d323b",
+			slugTextColor: "#547b94",
 			slugTextWeight: "800",
 			slugTextSize: "1.25rem",
-			headerTextColor: "#4a4a4a",
+			headerTextColor: "#bc7775",
 			headerTextWeight: "600",
 			headerTextSize: "1.1rem",
-			linkBackgroundColor: "#d99696",
+			linkBackgroundColor: "#efb6e5",
 			linkTextColor: "#423634",
 			linkTextWeight: "700",
 			linkTextSize: "0.9rem",
 			isLinkShadow: false,
-			linkHoverBackgroundColor: "#ff8080",
+			linkHoverBackgroundColor: "#bc8fb4",
 			linkBorderRadius: "1rem",
 			linkPadding: "0.85rem",
-			iconBackgroundColor: "#88b07b",
+			iconBackgroundColor: "#fde08d",
 			isIconShadow: true,
 			iconShadowColor: "#596e52",
 			iconShadowWeight: "light",
 			iconIconColor: "#374234",
-			iconHoverBackgroundColor: "#ff8080"
+			iconHoverBackgroundColor: "#cab270"
 		}
 	},
-
-	{
-		title: "Eclipse",
-		preferences: {
-			backgroundType: "GRADIENT",
-			backgroundGradientStart: "#bf9632",
-			backgroundGradientEnd: "#15284a",
-			profilePictureRadius: "0.5rem",
-			slugTextColor: "#e8e4da",
-			slugTextWeight: "800",
-			slugTextSize: "1rem",
-			headerTextColor: "#e8e4da",
-			headerTextWeight: "600",
-			headerTextSize: "1.1rem",
-			linkBackgroundColor: "#0d1626",
-			linkTextColor: "#e8e4da",
-			linkTextWeight: "600",
-			linkTextSize: "0.8rem",
-			isLinkShadow: true,
-			linkShadowColor: "#0d0f12",
-			linkShadowWeight: "heavy",
-			linkHoverBackgroundColor: "#3d392f",
-			linkBorderRadius: "5rem",
-			linkPadding: "0.9rem",
-			iconBackgroundColor: "#3d392f",
-			isIconShadow: true,
-			iconShadowColor: "#171615",
-			iconShadowWeight: "light",
-			iconIconColor: "#e8e4da",
-			iconHoverBackgroundColor: "#171615"
-		}
-	},
-
-	{
-		title: "Purple Rain",
-		preferences: {
-			backgroundType: "GRADIENT",
-			backgroundGradientStart: "#1a0033",
-			backgroundGradientEnd: "#0a0112",
-			profilePictureRadius: "1rem",
-			slugTextColor: "#b9c5d3",
-			slugTextWeight: "700",
-			slugTextSize: "1rem",
-			headerTextColor: "#b9c5d3",
-			headerTextWeight: "500",
-			headerTextSize: "0.9rem",
-			linkBackgroundColor: "#1a0033",
-			linkTextColor: "#8d799c",
-			linkTextWeight: "600",
-			linkTextSize: "0.8rem",
-			isLinkShadow: true,
-			linkShadowColor: "#3d004f",
-			linkShadowWeight: "medium",
-			linkHoverBackgroundColor: "#3d004f",
-			linkBorderRadius: "1rem",
-			linkPadding: "0.75rem",
-			iconBackgroundColor: "#3b2d42",
-			isIconShadow: false,
-			iconIconColor: "#8d799c",
-			iconHoverBackgroundColor: "#1a0033"
-		}
-	},
-
 	{
 		title: "Jet",
 		preferences: {
@@ -227,7 +190,7 @@ export const themePresets = [
 			slugTextSize: "1.25rem",
 			headerTextColor: "#ebe8e8",
 			headerTextWeight: "500",
-			headerTextSize: "1.1rem",
+			headerTextSize: "1.25rem",
 			linkBackgroundColor: "#444444",
 			linkTextColor: "#ebe8e8",
 			linkTextWeight: "600",
@@ -242,7 +205,6 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#444444"
 		}
 	},
-
 	{
 		title: "Vienna",
 		preferences: {
@@ -273,38 +235,6 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#8e7e53"
 		}
 	},
-
-	{
-		title: "Paper",
-		preferences: {
-			backgroundColor: "#f9f9f9",
-			backgroundType: "FLAT",
-			profilePictureRadius: "0.5rem",
-			slugTextColor: "#2c3e50",
-			slugTextWeight: "600",
-			slugTextSize: "1.1rem",
-			headerTextColor: "#2c3e50",
-			headerTextWeight: "500",
-			headerTextSize: "1.1rem",
-			linkBackgroundColor: "#ebe8e8",
-			linkTextColor: "#2c3e50",
-			linkTextWeight: "400",
-			linkTextSize: "1rem",
-			isLinkShadow: true,
-			linkShadowColor: "#333436",
-			linkShadowWeight: "light",
-			linkHoverBackgroundColor: "#f0f0f0",
-			linkBorderRadius: "0.5rem",
-			linkPadding: "0.85rem",
-			iconBackgroundColor: "#ebe8e8",
-			isIconShadow: true,
-			iconShadowColor: "#333436",
-			iconShadowWeight: "light",
-			iconIconColor: "#2c3e50",
-			iconHoverBackgroundColor: "#f0f0f0"
-		}
-	},
-
 	{
 		title: "Midnight Moss",
 		preferences: {
@@ -316,7 +246,7 @@ export const themePresets = [
 			slugTextSize: "1.1rem",
 			headerTextColor: "#a3b69e",
 			headerTextWeight: "600",
-			headerTextSize: "0.9rem",
+			headerTextSize: "1.25rem",
 			linkBackgroundColor: "#223c2e",
 			linkTextColor: "#a3b69e",
 			linkTextWeight: "400",
@@ -335,38 +265,36 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#2c4e38"
 		}
 	},
-
 	{
 		title: "Stormy Slate",
 		preferences: {
-			backgroundColor: "#4f5b63",
 			backgroundType: "FLAT",
+			backgroundColor: "#0b1924",
 			profilePictureRadius: "1rem",
-			slugTextColor: "#c4cfd3",
-			slugTextWeight: "600",
-			slugTextSize: "1.1rem",
-			headerTextColor: "#c4cfd3",
-			headerTextWeight: "400",
+			slugTextColor: "#a3afb8",
+			slugTextWeight: "800",
+			slugTextSize: "1.25rem",
+			headerTextColor: "#a3afb8",
+			headerTextWeight: "600",
 			headerTextSize: "1.1rem",
-			linkBackgroundColor: "#627d88",
-			linkTextColor: "#c4cfd3",
-			linkTextWeight: "600",
-			linkTextSize: "0.9rem",
+			linkBackgroundColor: "#0b1924",
+			linkTextColor: "#ede2cc",
+			linkTextWeight: "700",
+			linkTextSize: "0.8rem",
 			isLinkShadow: true,
-			linkShadowColor: "#4f5b63",
+			linkShadowColor: "#a3afb8",
 			linkShadowWeight: "light",
-			linkHoverBackgroundColor: "#484f52",
+			linkHoverBackgroundColor: "#bf540d",
 			linkBorderRadius: "1rem",
-			linkPadding: "0.5rem",
-			iconBackgroundColor: "#484f52",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#0b1924",
 			isIconShadow: true,
-			iconShadowColor: "#5c6d74",
+			iconShadowColor: "#a3afb8",
 			iconShadowWeight: "medium",
-			iconIconColor: "#c4cfd3",
-			iconHoverBackgroundColor: "#5c6d74"
+			iconIconColor: "#f4e4c7",
+			iconHoverBackgroundColor: "#572e13"
 		}
 	},
-
 	{
 		title: "Crimson Noir",
 		preferences: {
@@ -397,7 +325,36 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#4a1f2b"
 		}
 	},
-
+	{
+		title: "Paper",
+		preferences: {
+			backgroundColor: "#f9f9f9",
+			backgroundType: "FLAT",
+			profilePictureRadius: "0.5rem",
+			slugTextColor: "#2c3e50",
+			slugTextWeight: "600",
+			slugTextSize: "1.1rem",
+			headerTextColor: "#2c3e50",
+			headerTextWeight: "500",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#ebe8e8",
+			linkTextColor: "#2c3e50",
+			linkTextWeight: "400",
+			linkTextSize: "1rem",
+			isLinkShadow: true,
+			linkShadowColor: "#333436",
+			linkShadowWeight: "light",
+			linkHoverBackgroundColor: "#f0f0f0",
+			linkBorderRadius: "0.5rem",
+			linkPadding: "0.85rem",
+			iconBackgroundColor: "#ebe8e8",
+			isIconShadow: true,
+			iconShadowColor: "#333436",
+			iconShadowWeight: "light",
+			iconIconColor: "#2c3e50",
+			iconHoverBackgroundColor: "#f0f0f0"
+		}
+	},
 	{
 		title: "Oceanic Abyss",
 		preferences: {
@@ -410,7 +367,7 @@ export const themePresets = [
 			slugTextSize: "1rem",
 			headerTextColor: "#3da19a",
 			headerTextWeight: "500",
-			headerTextSize: "0.9rem",
+			headerTextSize: "1rem",
 			linkBackgroundColor: "#053940",
 			linkTextColor: "#3da19a",
 			linkTextWeight: "500",
@@ -427,7 +384,6 @@ export const themePresets = [
 			iconHoverBackgroundColor: "#023a44"
 		}
 	},
-
 	{
 		title: "China",
 		preferences: {
@@ -457,6 +413,127 @@ export const themePresets = [
 			iconShadowWeight: "medium",
 			iconIconColor: "#f4e4c7",
 			iconHoverBackgroundColor: "#572e13"
+		}
+	},
+	{
+		title: "Bleu de France",
+		preferences: {
+			backgroundColor: "#318CE7",
+			backgroundType: "FLAT",
+			profilePictureRadius: "1rem",
+			slugTextColor: "#FFFFFF",
+			slugTextWeight: "700",
+			slugTextSize: "1.1rem",
+			headerTextColor: "#FFFFFF",
+			headerTextWeight: "600",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#2673C1",
+			linkTextColor: "#FFFFFF",
+			linkTextWeight: "600",
+			linkTextSize: "0.9rem",
+			isLinkShadow: true,
+			linkShadowColor: "#1A5794",
+			linkShadowWeight: "medium",
+			linkHoverBackgroundColor: "#1A5794",
+			linkBorderRadius: "1rem",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#1A5794",
+			isIconShadow: true,
+			iconShadowColor: "#0D3C6C",
+			iconShadowWeight: "medium",
+			iconIconColor: "#FFFFFF",
+			iconHoverBackgroundColor: "#2673C1"
+		}
+	},
+	{
+		title: "Caribbean",
+		preferences: {
+			backgroundType: "GRADIENT",
+			backgroundGradientStart: "#29AB87",
+			backgroundGradientEnd: "#FFD700",
+			profilePictureRadius: "5rem",
+			slugTextColor: "#FAFAFA",
+			slugTextWeight: "700",
+			slugTextSize: "1.25rem",
+			headerTextColor: "#FAFAFA",
+			headerTextWeight: "600",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#FF8C42",
+			linkTextColor: "#FFFFFF",
+			linkTextWeight: "600",
+			linkTextSize: "0.9rem",
+			isLinkShadow: true,
+			linkShadowColor: "#FF6300",
+			linkShadowWeight: "medium",
+			linkHoverBackgroundColor: "#FF6300",
+			linkBorderRadius: "5rem",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#FF8C42",
+			isIconShadow: true,
+			iconShadowColor: "#E65100",
+			iconShadowWeight: "medium",
+			iconIconColor: "#FFFFFF",
+			iconHoverBackgroundColor: "#FF6300"
+		}
+	},
+	{
+		title: "Cambridge",
+		preferences: {
+			backgroundColor: "#A3C1AD",
+			backgroundType: "FLAT",
+			profilePictureRadius: "1rem",
+			slugTextColor: "#2E3D2F",
+			slugTextWeight: "700",
+			slugTextSize: "1.1rem",
+			headerTextColor: "#2E3D2F",
+			headerTextWeight: "600",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#768F79",
+			linkTextColor: "#FFFFFF",
+			linkTextWeight: "600",
+			linkTextSize: "0.9rem",
+			isLinkShadow: true,
+			linkShadowColor: "#556B5D",
+			linkShadowWeight: "medium",
+			linkHoverBackgroundColor: "#556B5D",
+			linkBorderRadius: "1rem",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#556B5D",
+			isIconShadow: true,
+			iconShadowColor: "#2E3D2F",
+			iconShadowWeight: "medium",
+			iconIconColor: "#FFFFFF",
+			iconHoverBackgroundColor: "#768F79"
+		}
+	},
+	{
+		title: "Space Cadet",
+		preferences: {
+			backgroundColor: "#2A2D43",
+			backgroundType: "FLAT",
+			profilePictureRadius: "5rem",
+			slugTextColor: "#C4C7E2",
+			slugTextWeight: "500",
+			slugTextSize: "1.25rem",
+			headerTextColor: "#C4C7E2",
+			headerTextWeight: "500",
+			headerTextSize: "1.1rem",
+			linkBackgroundColor: "#3B3E68",
+			linkTextColor: "#FFFFFF",
+			linkTextWeight: "700",
+			linkTextSize: "0.9rem",
+			isLinkShadow: true,
+			linkShadowColor: "#1A1C2D",
+			linkShadowWeight: "medium",
+			linkHoverBackgroundColor: "#1A1C2D",
+			linkBorderRadius: "5rem",
+			linkPadding: "0.75rem",
+			iconBackgroundColor: "#3B3E68",
+			isIconShadow: true,
+			iconShadowColor: "#1A1C2D",
+			iconShadowWeight: "medium",
+			iconIconColor: "#FFFFFF",
+			iconHoverBackgroundColor: "#2A2D43"
 		}
 	}
 ]

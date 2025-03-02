@@ -14,6 +14,13 @@ export const metadata: Metadata = {
 	title: "LinkNest — Your link-in-bio page 🔗🌐",
 	description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
 	keywords: ["LinkNest", "Link in bio", "LinkNest page"],
+	openGraph: {
+		url: "https://linknest-live.vercel.app",
+		title: "LinkNest — Your link-in-bio page 🔗🌐",
+		description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
+		type: "website",
+		images: "/opengraph-image.png"
+	},
 	other: {
 		"google-site-verification": "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA"
 	}

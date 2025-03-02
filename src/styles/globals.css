@@ -176,17 +176,34 @@
 	}
 
 	.btn:hover,
-	.btn:focus {
+	.btn-primary:hover,
+	.btn-secondary:hover,
+	.btn-danger:hover,
+	.btn-success:hover {
+		opacity: 0.9;
+	}
+
+	.btn:focus,
+	.btn-primary:focus,
+	.btn-secondary:focus,
+	.btn-danger:focus,
+	.btn-success:focus {
 		opacity: 0.8;
 		outline: none;
 	}
-
-	.btn:active {
+	.btn:active,
+	.btn-primary:active,
+	.btn-secondary:active,
+	.btn-danger:active,
+	.btn-success:active {
 		opacity: 0.9;
 		transform: scale(0.95);
 	}
-
-	.btn:disabled {
+	.btn:disabled,
+	.btn-primary:disabled,
+	.btn-secondary:disabled,
+	.btn-danger:disabled,
+	.btn-success:disabled {
 		cursor: not-allowed;
 		opacity: 0.5;
 	}

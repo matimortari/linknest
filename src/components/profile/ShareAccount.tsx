@@ -2,11 +2,12 @@ import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import QrCodeDialog from "./QrCodeDialog"
 
 function ShareDropdown({ isOpen, onClose }) {
 	const { user } = useUserStore()
 
-	// const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
+	const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
 
 	const handleCopy = () => {
 		const pageUrl = `https://linknest-live.vercel.app/${user?.slug}`
@@ -19,10 +20,6 @@ function ShareDropdown({ isOpen, onClose }) {
 		const tweetText = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${pageUrl}`
 		const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
 		window.open(twitterUrl, "_blank")
-	}
-
-	const handleQRCode = () => {
-		// setIsQrCodeDialogOpen(true)
 	}
 
 	const handleClickOutside = (e: MouseEvent) => {
@@ -51,7 +48,10 @@ function ShareDropdown({ isOpen, onClose }) {
 							<Icon icon="simple-icons:x" width={20} height={20} />
 							Share on X
 						</button>
-						<button onClick={handleQRCode} className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted">
+						<button
+							onClick={() => setIsQrCodeDialogOpen(true)}
+							className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted"
+						>
 							<Icon icon="mdi:qrcode" width={20} height={20} />
 							Get QR Code
 						</button>
@@ -59,9 +59,9 @@ function ShareDropdown({ isOpen, onClose }) {
 				</div>
 			)}
 
-			{/* {isQrCodeDialogOpen && (
-				<QRCodeDialog isOpen={isQrCodeDialogOpen} onClose={() => setIsQrCodeDialogOpen(false)} slug={user?.slug} />
-			)} */}
+			{isQrCodeDialogOpen && (
+				<QrCodeDialog isOpen={isQrCodeDialogOpen} onClose={() => setIsQrCodeDialogOpen(false)} slug={user?.slug} />
+			)}
 		</>
 	)
 }

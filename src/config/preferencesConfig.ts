@@ -3,9 +3,16 @@ export const BACKGROUND_TYPES = [
 	{ value: "GRADIENT", label: "Gradient" }
 ]
 
+export const RADIUS_SIZES = [
+	{ label: "None", value: "0rem" },
+	{ label: "Small", value: "0.5rem" },
+	{ label: "Medium", value: "1rem" },
+	{ label: "Large", value: "5rem" }
+]
+
 export const FONT_SIZES = [
 	{ label: "Small", value: "1rem" },
-	{ label: "Medium", value: "1.10rem" },
+	{ label: "Medium", value: "1.1rem" },
 	{ label: "Large", value: "1.25rem" },
 	{ label: "Extra Large", value: "1.5rem" }
 ]
@@ -34,13 +41,6 @@ export const LINK_PADDING_SIZES = [
 	{ label: "Small", value: "0.5rem" },
 	{ label: "Medium", value: "0.75rem" },
 	{ label: "Large", value: "0.85rem" }
-]
-
-export const RADIUS_SIZES = [
-	{ label: "None", value: "0rem" },
-	{ label: "Small", value: "0.5rem" },
-	{ label: "Medium", value: "1rem" },
-	{ label: "Large", value: "5rem" }
 ]
 
 export const SOCIAL_ICONS: { [key: string]: string } = {

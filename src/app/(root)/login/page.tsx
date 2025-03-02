@@ -3,6 +3,7 @@
 import { Icon } from "@iconify/react"
 import { signIn } from "next-auth/react"
 import { Bowlby_One, Lato } from "next/font/google"
+import Image from "next/image"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
 const lato = Lato({ subsets: ["latin"], weight: "700" })
@@ -38,7 +39,7 @@ export default function Login() {
 
 			<section className="relative hidden md:block md:w-1/2">
 				<div className="absolute inset-0 rounded-l-lg bg-gradient-to-r from-[#db4437] to-[#333333]" />
-				{/* <Image src="/login-image.jpg" alt="Login Visual" layout="fill" objectFit="cover" /> */}
+				<Image src="/login-image.png" alt="Login Visual" fill objectFit="cover" />
 			</section>
 		</div>
 	)

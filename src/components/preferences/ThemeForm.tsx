@@ -35,7 +35,7 @@ export default function ThemeForm({ setTheme }) {
 						onClick={() => handleThemeSelection(title)}
 						tabIndex={0}
 						title={title}
-						className={`flex size-full items-center justify-center rounded-lg border p-6 md:p-4 ${
+						className={`flex size-full items-center justify-center rounded-lg border p-8 ${
 							selectedTheme === title ? "bg-muted" : "bg-transparent"
 						} hover:bg-muted`}
 						style={{

@@ -43,11 +43,11 @@ export const authOptions = {
 				where: { email: user.email }
 			})
 			if (!existingUser) {
-				const slug = generateSlug(profile?.name || user.name || "user")
+				const slug = generateSlug(profile.name || user.name)
 				const newUser = await db.user.create({
 					data: {
 						email: user.email,
-						name: profile?.name || user.name || "Anonymous",
+						name: profile.name || user.name,
 						image: user.image || "",
 						slug
 					}
@@ -60,7 +60,7 @@ export const authOptions = {
 				await db.user.update({
 					where: { id: existingUser.id },
 					data: {
-						name: profile?.name ?? existingUser.name,
+						name: profile.name ?? existingUser.name,
 						image: user.image
 					}
 				})

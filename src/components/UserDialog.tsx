@@ -1,27 +1,53 @@
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
+import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "../hooks/useMutations"
+import useUserStore from "../hooks/useUserStore"
 import Dialog from "./Dialog"
 
-export default function UserDialog({ isOpen, onClose, onUpdateUser, currentUser }) {
-	const [slug, setSlug] = useState("")
-	const [description, setDescription] = useState("")
-	const [image, setImage] = useState("")
+export default function UserDialog({ isOpen, onClose }) {
+	const { user, updateUser } = useUserStore()
 
-	// Pre-fill form fields with currentUser
+	const { mutate: updateSlug } = useUpdateSlug()
+	const { mutate: updateDescription } = useUpdateDescription()
+	const { mutate: updateImage } = useUpdateImage()
+
+	const [slug, setSlug] = useState(user?.slug)
+	const [description, setDescription] = useState(user?.description)
+	const [image, setImage] = useState(user?.image)
+
 	useEffect(() => {
-		if (currentUser) {
-			setSlug(currentUser.slug)
-			setDescription(currentUser.description)
-			setImage(currentUser.image)
+		if (user) {
+			setSlug(user.slug)
+			setDescription(user.description)
+			setImage(user.image)
 		}
-	}, [currentUser])
+	}, [user, isOpen])
 
 	const handleSubmit = () => {
-		onUpdateUser({
-			slug,
-			description,
-			image
-		})
+		let userUpdated = false
+
+		if (slug !== user?.slug) {
+			updateSlug(slug || "")
+			userUpdated = true
+		}
+		if (description !== user?.description) {
+			updateDescription(description || "")
+			userUpdated = true
+		}
+		if (image !== user?.image) {
+			updateImage(image || "")
+			userUpdated = true
+		}
+
+		if (userUpdated) {
+			updateUser({
+				...user,
+				slug,
+				description,
+				image
+			})
+		}
+
 		onClose()
 	}
 

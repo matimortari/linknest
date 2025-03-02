@@ -58,7 +58,7 @@ const NavLink = ({ href, icon, label }) => (
 )
 
 export default function Navbar() {
-	const { user, setUser } = useUserStore()
+	const { user } = useUserStore()
 
 	const { theme, setTheme } = useTheme()
 
@@ -137,12 +137,7 @@ export default function Navbar() {
 				</div>
 			</div>
 
-			<UserDialog
-				isOpen={isDialogOpen}
-				onClose={() => setIsDialogOpen(false)}
-				onUpdateUser={setUser}
-				currentUser={user}
-			/>
+			<UserDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
 		</>
 	)
 }

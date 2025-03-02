@@ -7,7 +7,7 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 	const [selectedPlatform, setSelectedPlatform] = useState<string>("")
 	const [iconUrl, setIconUrl] = useState<string>("")
 
-	const icon = selectedPlatform ? SOCIAL_ICONS[selectedPlatform] : ""
+	const icon = SOCIAL_ICONS[selectedPlatform]
 
 	useEffect(() => {
 		setSelectedPlatform("")

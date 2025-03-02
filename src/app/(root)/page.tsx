@@ -92,7 +92,7 @@ export default function Home() {
 				</main>
 
 				{/* Features section */}
-				<div className="relative z-10 flex flex-col items-center justify-center space-y-8 py-12 text-center">
+				<section className="relative z-10 flex flex-col items-center justify-center space-y-8 py-12 text-center">
 					<h2>Why Choose LinkNest?</h2>
 					<div className="grid grid-cols-1 gap-4 px-10 md:grid-cols-4">
 						{features.map((feature, index) => (
@@ -113,17 +113,17 @@ export default function Home() {
 							</motion.div>
 						))}
 					</div>
-				</div>
+				</section>
 
 				{/* CTA section */}
-				<div className="relative z-10 flex w-full flex-col items-center justify-center gap-6 border-y bg-card py-12">
+				<section className="relative z-10 flex w-full flex-col items-center justify-center gap-6 border-y bg-card py-12">
 					<h2>Ready to Try?</h2>
 					<p className="max-w-60 text-center font-medium">Create an account and build your page today!</p>
 					<Link href="/login" className="flex flex-row items-center gap-2 rounded-2xl bg-accent p-2 font-semibold">
 						Get Started
 						<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
 					</Link>
-				</div>
+				</section>
 			</div>
 		</>
 	)

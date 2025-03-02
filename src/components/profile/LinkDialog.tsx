@@ -6,16 +6,18 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 	const [linkTitle, setLinkTitle] = useState("")
 	const [linkUrl, setLinkUrl] = useState("")
 
-	// Pre-fill the form if a link is selected for editing
+	// Clear or pre-fill form depending on dialog state
 	useEffect(() => {
-		if (selectedLink) {
-			setLinkTitle(selectedLink.title)
-			setLinkUrl(selectedLink.url)
-		} else {
-			setLinkTitle("")
-			setLinkUrl("")
+		if (isOpen) {
+			if (selectedLink) {
+				setLinkTitle(selectedLink.title)
+				setLinkUrl(selectedLink.url)
+			} else {
+				setLinkTitle("")
+				setLinkUrl("")
+			}
 		}
-	}, [selectedLink])
+	}, [isOpen, selectedLink])
 
 	const handleSubmit = () => {
 		if (linkTitle && linkUrl) {

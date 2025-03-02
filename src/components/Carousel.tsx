@@ -9,35 +9,36 @@ import { carouselPresets } from "../config/carouselPresets"
 function CarouselLink({ title, preferences }) {
 	const [isHovered, setIsHovered] = useState(false)
 
-	const shadowStyles = {
-		none: "none",
-		light: `0 2px 4px ${preferences.linkShadowColor}`,
-		medium: `0 4px 6px ${preferences.linkShadowColor}`,
-		heavy: `0 6px 10px ${preferences.linkShadowColor}`
-	}
-
 	return (
 		<li
 			className="flex w-full min-w-32 max-w-72 flex-row items-center justify-center text-center"
 			style={{
 				backgroundColor: isHovered ? preferences.linkHoverBackgroundColor : preferences.linkBackgroundColor,
-				boxShadow: preferences.isLinkShadow ? shadowStyles[preferences.linkShadowWeight] : "none",
+				boxShadow: preferences.isLinkShadow
+					? preferences.linkShadowWeight === "none"
+						? "none"
+						: preferences.linkShadowWeight === "light"
+						? `0 2px 4px ${preferences.linkShadowColor}`
+						: preferences.linkShadowWeight === "medium"
+						? `0 4px 6px ${preferences.linkShadowColor}`
+						: `0 6px 10px ${preferences.linkShadowColor}`
+					: "none",
 				borderRadius: preferences.linkBorderRadius,
 				padding: preferences.linkPadding,
 				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 			}}
 		>
-			<button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-				<span
-					style={{
-						color: preferences.linkTextColor,
-						fontWeight: preferences.linkTextWeight,
-						fontSize: preferences.linkTextSize
-					}}
-				>
-					{title}
-				</span>
-			</button>
+			<span
+				onMouseEnter={() => setIsHovered(true)}
+				onMouseLeave={() => setIsHovered(false)}
+				style={{
+					color: preferences.linkTextColor,
+					fontWeight: preferences.linkTextWeight,
+					fontSize: preferences.linkTextSize
+				}}
+			>
+				{title}
+			</span>
 		</li>
 	)
 }
@@ -45,25 +46,26 @@ function CarouselLink({ title, preferences }) {
 function CarouselIcon({ icon, preferences }) {
 	const [isHovered, setIsHovered] = useState(false)
 
-	const shadowStyles = {
-		none: "none",
-		light: `0 2px 4px ${preferences.iconShadowColor}`,
-		medium: `0 4px 6px ${preferences.iconShadowColor}`,
-		heavy: `0 6px 10px ${preferences.iconShadowColor}`
-	}
-
 	return (
 		<li
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
 			className="flex size-10 items-center justify-center rounded-full"
 			style={{
 				backgroundColor: isHovered ? preferences.iconHoverBackgroundColor : preferences.iconBackgroundColor,
-				boxShadow: preferences.isIconShadow ? shadowStyles[preferences.iconShadowWeight] : "none",
+				boxShadow: preferences.isIconShadow
+					? preferences.iconShadowWeight === "none"
+						? "none"
+						: preferences.iconShadowWeight === "light"
+						? `0 2px 4px ${preferences.iconShadowColor}`
+						: preferences.iconShadowWeight === "medium"
+						? `0 4px 6px ${preferences.iconShadowColor}`
+						: `0 6px 10px ${preferences.iconShadowColor}`
+					: "none",
 				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 			}}
 		>
-			<button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-				<Icon icon={icon} width={20} height={20} style={{ color: preferences.iconIconColor }} />
-			</button>
+			<Icon icon={icon} width={20} height={20} style={{ color: preferences.iconIconColor }} />
 		</li>
 	)
 }
@@ -71,15 +73,17 @@ function CarouselIcon({ icon, preferences }) {
 function CarouselCard({ presetId }) {
 	const { description, links, image, icons, slug, preferences } = carouselPresets[presetId]
 
-	const backgroundStyle =
-		preferences.backgroundType === "GRADIENT"
-			? {
-					background: `linear-gradient(to bottom, ${preferences.backgroundGradientStart}, ${preferences.backgroundGradientEnd})`
-			  }
-			: { backgroundColor: preferences.backgroundColor }
-
 	return (
-		<div className="popover relative w-64 md:w-[300px]" style={backgroundStyle}>
+		<div
+			className="popover relative w-64 md:w-[300px]"
+			style={
+				preferences.backgroundType === "GRADIENT"
+					? {
+							background: `linear-gradient(to bottom, ${preferences.backgroundGradientStart}, ${preferences.backgroundGradientEnd})`
+					  }
+					: { backgroundColor: preferences.backgroundColor }
+			}
+		>
 			<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
 				<Image
 					src={image}

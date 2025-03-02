@@ -9,6 +9,10 @@ function ShareDropdown({ isOpen, onClose }) {
 
 	const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
 
+	const handleClickOutside = (e: MouseEvent) => {
+		if (!(e.target as HTMLElement).closest(".popover")) onClose()
+	}
+
 	const handleCopy = () => {
 		const pageUrl = `https://linknest-live.vercel.app/${user?.slug}`
 		navigator.clipboard.writeText(pageUrl)
@@ -20,10 +24,6 @@ function ShareDropdown({ isOpen, onClose }) {
 		const tweetText = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${pageUrl}`
 		const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
 		window.open(twitterUrl, "_blank")
-	}
-
-	const handleClickOutside = (e: MouseEvent) => {
-		if (!(e.target as HTMLElement).closest(".popover")) onClose()
 	}
 
 	useEffect(() => {
@@ -71,14 +71,6 @@ export default function ShareBanner() {
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-	const toggleDropdown = () => {
-		setIsDropdownOpen((prev) => !prev)
-	}
-
-	const closeDropdown = () => {
-		setIsDropdownOpen(false)
-	}
-
 	return (
 		<div className="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
 			<div className="flex w-full flex-col gap-1 overflow-x-hidden">
@@ -93,13 +85,17 @@ export default function ShareBanner() {
 			</div>
 
 			<div className="input-group">
-				<button onClick={toggleDropdown} title="See sharing options" className="btn-secondary">
+				<button
+					onClick={() => setIsDropdownOpen((prev) => !prev)}
+					title="See sharing options"
+					className="btn-secondary"
+				>
 					<Icon icon="mdi:share-variant" width={20} height={20} />
 					Share Now
 				</button>
 			</div>
 
-			<ShareDropdown isOpen={isDropdownOpen} onClose={closeDropdown} />
+			<ShareDropdown isOpen={isDropdownOpen} onClose={() => setIsDropdownOpen(false)} />
 		</div>
 	)
 }

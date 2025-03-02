@@ -40,7 +40,7 @@ export default function Dialog({ isOpen, onClose, title, children }): JSX.Elemen
 			window.removeEventListener("keydown", handleKeyDown) // Remove keyboard event listener
 			document.removeEventListener("mousedown", handleClickOutside) // Remove click outside event listener
 		}
-	}, [isOpen, onClose]) // Dependencies: rerun effect on isOpen or onClose change
+	}, [isOpen, onClose])
 
 	if (!isOpen) return null
 

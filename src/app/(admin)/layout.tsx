@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] })
 export async function generateMetadata(): Promise<Metadata> {
 	const session = await getServerSession(authOptions)
 
-	const slug = session.user.slug
+	const slug = session?.user.slug
 
 	const metadata: Metadata = {
 		title: slug ? `${slug} | LinkNest` : "LinkNest",

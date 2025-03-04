@@ -7,7 +7,7 @@ export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const preferences = await db.userPreferences.findUnique({ where: { userId: session.user.id } })
+	const preferences = await db.userPreferences.findUnique({ where: { userId: session?.user.id } })
 	if (!preferences) {
 		return NextResponse.json({ error: "User preferences not found" }, { status: 404 })
 	}
@@ -22,15 +22,15 @@ export async function PUT(req: NextRequest) {
 
 	const preferencesData = await req.json()
 
-	const currentPreferences = await db.userPreferences.findUnique({ where: { userId: session.user.id } })
+	const currentPreferences = await db.userPreferences.findUnique({ where: { userId: session?.user.id } })
 	if (!currentPreferences) {
 		return NextResponse.json({ error: "User preferences not found" }, { status: 404 })
 	}
 
 	// Reset by deleting and recreating the preferences
 	if (Object.keys(preferencesData).length === 0) {
-		await db.userPreferences.delete({ where: { userId: session.user.id } })
-		const newPreferences = await db.userPreferences.create({ data: { userId: session.user.id } })
+		await db.userPreferences.delete({ where: { userId: session?.user.id } })
+		const newPreferences = await db.userPreferences.create({ data: { userId: session!.user.id } })
 
 		return NextResponse.json(
 			{ message: "User preferences reset to default", preferences: newPreferences },
@@ -39,7 +39,7 @@ export async function PUT(req: NextRequest) {
 	}
 
 	const updatedPreferences = await db.userPreferences.update({
-		where: { userId: session.user.id },
+		where: { userId: session?.user.id },
 		data: preferencesData
 	})
 

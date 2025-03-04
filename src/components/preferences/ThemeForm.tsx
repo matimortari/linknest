@@ -2,14 +2,14 @@ import { themePresets } from "@/src/config/themePresets"
 import { useState } from "react"
 
 export default function ThemeForm({ setTheme }) {
-	const [selectedTheme, setSelectedTheme] = useState("")
+	const [selectedTheme, setSelectedTheme] = useState<string>("")
 
 	const handleThemeSelection = (themeSlug: string) => {
 		const selected = themePresets.find((theme) => theme.title === themeSlug)
 
 		if (selected) {
 			setSelectedTheme(themeSlug)
-			setTheme(selected.preferences) // Update selected preferences with the selected theme
+			setTheme(selected.preferences)
 		}
 	}
 

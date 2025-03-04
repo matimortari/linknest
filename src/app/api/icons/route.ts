@@ -1,6 +1,8 @@
 import { db } from "@/src/lib/db"
+import { iconSchema } from "@/src/lib/formSchema"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
+import { z } from "zod"
 
 // GET method for getting user social icons
 export async function GET() {
@@ -21,7 +23,15 @@ export async function POST(req: NextRequest) {
 	if (error) return response
 
 	const { platform, url, icon } = await req.json()
-	if (!platform || !url || !icon) return NextResponse.json({ error: "Invalid input" }, { status: 400 })
+
+	try {
+		iconSchema.parse({ platform, url, icon })
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			return NextResponse.json({ error: err.errors }, { status: 400 })
+		}
+		return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+	}
 
 	const newIcon = await db.userIcon.create({ data: { platform, url, icon, userId: session.user.id } })
 

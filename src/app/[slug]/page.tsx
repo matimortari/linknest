@@ -83,6 +83,7 @@ export default async function slugPage({ params }: { params: Params }) {
 				</p>
 				{description && (
 					<p
+						className="max-w-sm truncate whitespace-break-spaces"
 						style={{
 							color: userPreferences.headerTextColor,
 							fontWeight: userPreferences.headerTextWeight,

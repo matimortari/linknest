@@ -28,7 +28,7 @@ export default function AppearanceForm() {
 
 	const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
-		setSelectedPreferences((prevPreferences) => ({
+		setSelectedPreferences((prevPreferences: any) => ({
 			...prevPreferences,
 			[field]: value
 		}))

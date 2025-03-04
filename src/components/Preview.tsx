@@ -30,6 +30,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 				style={{ borderRadius: userPreferences.profilePictureRadius }}
 			/>
 			<p
+				className="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
 				style={{
 					color: userPreferences.slugTextColor,
 					fontWeight: userPreferences.slugTextWeight,
@@ -39,6 +40,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 				@{slug}
 			</p>
 			<p
+				className="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
 				style={{
 					color: userPreferences.headerTextColor,
 					fontWeight: userPreferences.headerTextWeight,
@@ -132,7 +134,7 @@ export default function Preview() {
 
 			{/* Desktop Preview */}
 			<div
-				className="popover preview-scrollbar relative mx-2 hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
+				className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
 				style={
 					userPreferences.backgroundType === "GRADIENT"
 						? {

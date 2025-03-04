@@ -1,3 +1,4 @@
+import { linkSchema, LinkSchemaType } from "@/src/lib/formSchema"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import Dialog from "../Dialog"
@@ -5,6 +6,7 @@ import Dialog from "../Dialog"
 export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: LinkDialogProps) {
 	const [linkTitle, setLinkTitle] = useState("")
 	const [linkUrl, setLinkUrl] = useState("")
+	const [errors, setErrors] = useState<Partial<LinkSchemaType>>({})
 
 	// Clear or pre-fill form depending on dialog state
 	useEffect(() => {
@@ -16,19 +18,31 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 				setLinkTitle("")
 				setLinkUrl("")
 			}
+			setErrors({})
 		}
 	}, [isOpen, selectedLink])
 
-	const handleSubmit = () => {
-		if (linkTitle && linkUrl) {
-			onSave({ title: linkTitle, url: linkUrl })
-			onClose()
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault()
+
+		const validation = linkSchema.safeParse({ title: linkTitle, url: linkUrl })
+
+		if (!validation.success) {
+			const fieldErrors = validation.error.format()
+			setErrors({
+				title: fieldErrors.title?._errors[0],
+				url: fieldErrors.url?._errors[0]
+			})
+			return
 		}
+
+		onSave({ title: linkTitle, url: linkUrl })
+		onClose()
 	}
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title={selectedLink ? "Edit Link" : "Add Link"}>
-			<div className="space-y-4">
+			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="flex flex-col gap-2">
 					<label htmlFor="linkTitle" className="font-semibold">
 						Link Title
@@ -41,6 +55,7 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						placeholder="Enter link title"
 						className="rounded-2xl border p-2 text-sm"
 					/>
+					{errors.title && <p className="text-sm font-semibold text-danger-foreground">{errors.title}</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -55,19 +70,20 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						placeholder="Enter link URL"
 						className="rounded-2xl border p-2 text-sm"
 					/>
+					{errors.url && <p className="text-sm font-semibold text-danger-foreground">{errors.url}</p>}
 				</div>
 
 				<div className="input-group">
-					<button onClick={handleSubmit} className="btn-secondary">
+					<button type="submit" className="btn-secondary">
 						<Icon icon="mdi:check-circle" width={20} height={20} />
 						{selectedLink ? "Update Link" : "Add Link"}
 					</button>
-					<button onClick={onClose} className="btn">
+					<button type="button" onClick={onClose} className="btn">
 						<Icon icon="mdi:close-circle" width={20} height={20} />
 						Close
 					</button>
 				</div>
-			</div>
+			</form>
 		</Dialog>
 	)
 }

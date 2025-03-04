@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "../hooks/useMutations"
 import useUserStore from "../hooks/useUserStore"
+import { userSchema, UserSchemaType } from "../lib/formSchema"
 import Dialog from "./Dialog"
 
 export default function UserDialog({ isOpen, onClose }) {
@@ -14,16 +15,32 @@ export default function UserDialog({ isOpen, onClose }) {
 	const [slug, setSlug] = useState(user?.slug)
 	const [description, setDescription] = useState(user?.description)
 	const [image, setImage] = useState(user?.image)
+	const [errors, setErrors] = useState<Partial<UserSchemaType>>({})
 
 	useEffect(() => {
 		if (user) {
 			setSlug(user.slug)
 			setDescription(user.description)
 			setImage(user.image)
+			setErrors({})
 		}
 	}, [user, isOpen])
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault()
+
+		const validation = userSchema.safeParse({ slug, description, image })
+
+		if (!validation.success) {
+			const fieldErrors = validation.error.format()
+			setErrors({
+				slug: fieldErrors.slug?._errors[0],
+				description: fieldErrors.description?._errors[0],
+				image: fieldErrors.image?._errors[0]
+			})
+			return
+		}
+
 		let userUpdated = false
 
 		if (slug !== user?.slug) {
@@ -53,7 +70,7 @@ export default function UserDialog({ isOpen, onClose }) {
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Edit User Info">
-			<div className="space-y-4">
+			<form onSubmit={handleSubmit} className="space-y-4">
 				<div className="flex flex-col gap-2">
 					<label htmlFor="slug" className="font-semibold">
 						Slug
@@ -66,6 +83,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="Your unique identifier"
 						className="rounded-2xl border p-2 text-sm"
 					/>
+					{errors.slug && <p className="text-sm font-semibold text-danger-foreground">{errors.slug}</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -80,6 +98,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="A short bio about yourself"
 						className="rounded-2xl border p-2 text-sm"
 					/>
+					{errors.description && <p className="text-sm font-semibold text-danger-foreground">{errors.description}</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -94,19 +113,20 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="Your profile picture URL"
 						className="rounded-2xl border p-2 text-sm"
 					/>
+					{errors.image && <p className="text-sm font-semibold text-danger-foreground">{errors.image}</p>}
 				</div>
 
 				<div className="input-group">
-					<button onClick={handleSubmit} className="btn-secondary">
+					<button type="submit" className="btn-secondary">
 						<Icon icon="mdi:content-save-check" width={20} height={20} />
 						Save Changes
 					</button>
-					<button onClick={onClose} className="btn">
+					<button type="button" onClick={onClose} className="btn">
 						<Icon icon="mdi:close-circle" width={20} height={20} />
 						Close
 					</button>
 				</div>
-			</div>
+			</form>
 		</Dialog>
 	)
 }

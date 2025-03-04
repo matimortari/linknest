@@ -1,6 +1,8 @@
 import { db } from "@/src/lib/db"
+import { linkSchema } from "@/src/lib/formSchema"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
+import { z } from "zod"
 
 // GET method for getting user links
 export async function GET() {
@@ -21,9 +23,19 @@ export async function POST(req: NextRequest) {
 	if (error) return response
 
 	const { title, url } = await req.json()
-	if (!title || !url) return NextResponse.json({ error: "Invalid input" }, { status: 400 })
 
-	const newLink = await db.userLink.create({ data: { title, url, userId: session.user.id } })
+	try {
+		linkSchema.parse({ title, url })
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			return NextResponse.json({ error: err.errors }, { status: 400 })
+		}
+		return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+	}
+
+	const newLink = await db.userLink.create({
+		data: { title, url, userId: session.user.id }
+	})
 
 	return NextResponse.json(newLink)
 }
@@ -34,6 +46,15 @@ export async function PUT(req: NextRequest) {
 	if (error) return response
 
 	const { id, title, url } = await req.json()
+
+	try {
+		linkSchema.parse({ title, url })
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			return NextResponse.json({ error: err.errors }, { status: 400 })
+		}
+		return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+	}
 
 	const existingLink = await db.userLink.findUnique({ where: { id } })
 	if (!existingLink || existingLink.userId !== session.user.id) {

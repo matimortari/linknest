@@ -1,11 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { SessionStrategy } from "next-auth"
+import { NextAuthOptions, SessionStrategy } from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import { db } from "./db"
 import { generateSlug } from "./utils"
 
-// Extend the built-in session type
 declare module "next-auth" {
 	interface Session {
 		user: {
@@ -20,7 +19,7 @@ declare module "next-auth" {
 	}
 }
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
 	providers: [
 		GitHubProvider({
 			clientId: process.env.GITHUB_CLIENT_ID ?? "",

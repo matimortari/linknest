@@ -8,7 +8,7 @@ export async function GET() {
 	if (error) return response
 
 	const user = await db.user.findUnique({
-		where: { id: session.user.id },
+		where: { id: session?.user.id },
 		include: {
 			userLinks: true,
 			userIcons: true,
@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest) {
 	}
 
 	const updatedUser = await db.user.update({
-		where: { id: session.user.id },
+		where: { id: session?.user.id },
 		data: updateData
 	})
 
@@ -52,7 +52,7 @@ export async function DELETE() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	await db.user.delete({ where: { id: session.user.id } })
+	await db.user.delete({ where: { id: session?.user.id } })
 
 	return NextResponse.json({ message: "User deleted successfully" }, { status: 200 })
 }

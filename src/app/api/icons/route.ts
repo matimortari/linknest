@@ -9,7 +9,7 @@ export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const userIcons = await db.userIcon.findMany({ where: { userId: session.user.id } })
+	const userIcons = await db.userIcon.findMany({ where: { userId: session?.user.id } })
 	if (!userIcons) {
 		return NextResponse.json({ error: "User Social Icons not found" }, { status: 404 })
 	}
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 		return NextResponse.json({ error: "Internal server error" }, { status: 500 })
 	}
 
-	const newIcon = await db.userIcon.create({ data: { platform, url, icon, userId: session.user.id } })
+	const newIcon = await db.userIcon.create({ data: { platform, url, icon, userId: session!.user.id } })
 
 	return NextResponse.json(newIcon)
 }
@@ -47,7 +47,7 @@ export async function DELETE(req: NextRequest) {
 	if (!id) return NextResponse.json({ error: "Invalid input" }, { status: 400 })
 
 	const existingIcon = await db.userIcon.findUnique({ where: { id } })
-	if (!existingIcon || existingIcon.userId !== session.user.id) {
+	if (!existingIcon || existingIcon.userId !== session?.user.id) {
 		return NextResponse.json({ error: "Social icon not found" }, { status: 404 })
 	}
 

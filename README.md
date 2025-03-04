@@ -10,24 +10,25 @@ It is my first full-stack project built all from scratch, and it's been an amazi
 
 - **User Authentication:** Sign in with Google or GitHub.
 - **Admin Page:** Manage your profile and links, and check analytics from your admin page.
-- **Custom User Page:** Create your landing page, customize it and add as many links as you want. You can change and preview colors, text sizes, borders, and more.
-- **User Links:** Add links to your page with custom titles and layouts.
-- **Social Icons:** Add quick icons to your social media profiles.
+- **Custom User Page:** Create your landing page, personalize it and add as many links as you want. You can change and preview colors, text sizes, borders, and more.
+- **User Links:** Add your important links and customize their colors and layouts.
+- **Social Icons:** Add social icons over your link list for quick access to your social media profiles.
 - **Support Banner:** Support important causes with a profile banner for your landing page.
 - **Analytics Page:** Check metrics such as the number of clicks on your links and the number of visits to your page.
-- **Theme Switch:** Toggle between light and dark theme.
+- **Theme Switch:** Toggle between light and dark themes.
 
 ## 🛠️ Stack
 
-- **Next.js** for routing & server-side rendering.
+- **Next.js** with app router.
 - **Auth.js** for authentication with Google & GitHub.
 - **Prisma** for database management.
 - **Zustand** for global state management.
-- **React Query** for data fetching and caching.
-- **React Hook Form** & **Zod** for form management and validation.
+- **React Query** for asynchronous data management.
+- **Zod** for API and form validation.
 - **Recharts** for data visualization.
 - **TypeScript**.
 - **Tailwind CSS**.
+- **Framer Motion**.
 
 ## 📬 Contact
 

@@ -7,7 +7,7 @@ export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const analyticsData = await db.userStats.findMany({ where: { userId: session.user.id } })
+	const analyticsData = await db.userStats.findMany({ where: { userId: session?.user.id } })
 	if (!analyticsData) {
 		return NextResponse.json({ error: "Analytics data not found" }, { status: 404 })
 	}

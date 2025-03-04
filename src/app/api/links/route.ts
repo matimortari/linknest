@@ -9,7 +9,7 @@ export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const userLinks = await db.userLink.findMany({ where: { userId: session.user.id } })
+	const userLinks = await db.userLink.findMany({ where: { userId: session?.user.id } })
 	if (!userLinks) {
 		return NextResponse.json({ error: "User Links not found" }, { status: 404 })
 	}
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
 	}
 
 	const newLink = await db.userLink.create({
-		data: { title, url, userId: session.user.id }
+		data: { title, url, userId: session!.user.id }
 	})
 
 	return NextResponse.json(newLink)
@@ -57,7 +57,7 @@ export async function PUT(req: NextRequest) {
 	}
 
 	const existingLink = await db.userLink.findUnique({ where: { id } })
-	if (!existingLink || existingLink.userId !== session.user.id) {
+	if (!existingLink || existingLink.userId !== session?.user.id) {
 		return NextResponse.json({ error: "Link not found" }, { status: 404 })
 	}
 
@@ -75,7 +75,7 @@ export async function DELETE(req: NextRequest) {
 	if (!id) return NextResponse.json({ error: "Invalid input" }, { status: 400 })
 
 	const existingLink = await db.userLink.findUnique({ where: { id } })
-	if (!existingLink || existingLink.userId !== session.user.id) {
+	if (!existingLink || existingLink.userId !== session?.user.id) {
 		return NextResponse.json({ error: "Link not found" }, { status: 404 })
 	}
 

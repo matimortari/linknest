@@ -11,6 +11,7 @@ import { ReactNode } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://linknest-live.vercel.app"),
 	title: "LinkNest — Your link-in-bio page 🔗🌐",
 	description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
 	keywords: ["LinkNest", "Link in bio", "LinkNest page"],
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 		title: "LinkNest — Your link-in-bio page 🔗🌐",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience.",
 		type: "website",
-		images: "/opengraph-image.png"
+		images: "/og-image.png"
 	},
 	other: {
 		"google-site-verification": "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA"

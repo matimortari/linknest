@@ -12,10 +12,10 @@ const inter = Inter({ subsets: ["latin"] })
 
 export async function generateMetadata(): Promise<Metadata> {
 	const session = await getServerSession(authOptions)
-
 	const slug = session?.user.slug
 
 	const metadata: Metadata = {
+		metadataBase: new URL("https://linknest-live.vercel.app"),
 		title: slug ? `${slug} | LinkNest` : "LinkNest",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
 	}

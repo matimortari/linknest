@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	const { slug } = await params
 
 	const metadata: Metadata = {
+		metadataBase: new URL("https://linknest-live.vercel.app"),
 		title: slug ? `${slug} | LinkNest` : "LinkNest",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
 	}

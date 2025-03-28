@@ -1,4 +1,4 @@
-const config = {
+const tailwindConfig = {
 	content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
 	darkMode: "class",
 	theme: {
@@ -45,4 +45,4 @@ const config = {
 	}
 }
 
-export default config
+export default tailwindConfig

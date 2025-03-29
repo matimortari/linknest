@@ -5,38 +5,23 @@ import { deleteUser, updateDescription, updateImage, updateSlug } from "@/src/se
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useUpdateSlug() {
-	const queryClient = useQueryClient()
-
 	return useMutation({
 		mutationKey: ["updateSlug"],
-		mutationFn: updateSlug,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
-		}
+		mutationFn: updateSlug
 	})
 }
 
 export function useUpdateDescription() {
-	const queryClient = useQueryClient()
-
 	return useMutation({
 		mutationKey: ["updateDescription"],
-		mutationFn: updateDescription,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
-		}
+		mutationFn: updateDescription
 	})
 }
 
 export function useUpdateImage() {
-	const queryClient = useQueryClient()
-
 	return useMutation({
 		mutationKey: ["updateImage"],
-		mutationFn: updateImage,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
-		}
+		mutationFn: updateImage
 	})
 }
 
@@ -137,13 +122,8 @@ export function useUpdateSupportBanner() {
 }
 
 export function useDeleteUser() {
-	const queryClient = useQueryClient()
-
 	return useMutation({
 		mutationKey: ["deleteUser"],
-		mutationFn: deleteUser,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
-		}
+		mutationFn: deleteUser
 	})
 }

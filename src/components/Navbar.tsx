@@ -3,6 +3,7 @@
 import UserDialog from "@/src/components/UserDialog"
 import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
+import { AnimatePresence, motion } from "framer-motion"
 import { signOut } from "next-auth/react"
 import { useTheme } from "next-themes"
 import { Chau_Philomene_One } from "next/font/google"
@@ -45,7 +46,7 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 			>
 				@{slug}
 			</Link>
-			<p className="break-all text-xs text-muted-foreground md:hidden">{description}</p>
+			<p className="break-all text-xs text-muted-foreground">{description}</p>
 		</div>
 	</div>
 )
@@ -91,25 +92,38 @@ export default function Navbar() {
 				</div>
 
 				{/* Mobile top nav */}
-				{isNavOpen && (
-					<div className="flex flex-col p-4">
-						<nav className="flex flex-row items-center gap-2">
-							{navLinks.map((item) => (
-								<NavLink key={item.label} {...item} />
-							))}
-						</nav>
-						<UserCard
-							slug={user?.slug}
-							description={user?.description}
-							image={user?.image}
-							setIsDialogOpen={setIsDialogOpen}
-						/>
-					</div>
-				)}
+				<AnimatePresence>
+					{isNavOpen && (
+						<motion.div
+							className="flex flex-col p-4"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.3 }}
+						>
+							<nav className="flex flex-row items-center gap-2">
+								{navLinks.map((item) => (
+									<NavLink key={item.label} {...item} />
+								))}
+							</nav>
+							<UserCard
+								slug={user?.slug}
+								description={user?.description}
+								image={user?.image}
+								setIsDialogOpen={setIsDialogOpen}
+							/>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 
 			{/* Desktop sidebar */}
-			<div className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col">
+			<motion.div
+				className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col"
+				initial={{ opacity: 0, x: -50 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ duration: 0.5 }}
+			>
 				<div className="mt-8 flex flex-grow flex-col gap-4">
 					<Logo />
 					<UserCard
@@ -120,7 +134,9 @@ export default function Navbar() {
 					/>
 					<nav className="space-y-2">
 						{navLinks.map((item) => (
-							<NavLink key={item.label} {...item} />
+							<motion.div key={item.label} variants={{ initial: { opacity: 0 }, animate: { opacity: 1 } }}>
+								<NavLink {...item} />
+							</motion.div>
 						))}
 					</nav>
 				</div>
@@ -135,7 +151,7 @@ export default function Navbar() {
 						<p className="hidden md:block">Sign Out</p>
 					</button>
 				</div>
-			</div>
+			</motion.div>
 
 			<UserDialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
 		</>

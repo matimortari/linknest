@@ -1,10 +1,3 @@
-// Get user data
-export const getUserData = async () => {
-	const res = await fetch("/api/user", { method: "GET" })
-
-	return res.json()
-}
-
 // Update user slug
 export const updateSlug = async (newSlug: string): Promise<void> => {
 	const response = await fetch("/api/user", {

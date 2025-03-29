@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion"
 import { JSX, useEffect, useRef } from "react"
 
 export default function Dialog({ isOpen, onClose, title, children }): JSX.Element | null {
@@ -42,19 +43,33 @@ export default function Dialog({ isOpen, onClose, title, children }): JSX.Elemen
 		}
 	}, [isOpen, onClose])
 
-	if (!isOpen) return null
-
 	return (
-		<div className="animate-slide-in fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-			<div ref={dialogRef} className="popover min-w-96 max-w-full">
-				<header>
-					<h3>{title}</h3>
-				</header>
+		<AnimatePresence>
+			{isOpen && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+				>
+					<motion.div
+						ref={dialogRef}
+						initial={{ scale: 0.8, opacity: 0 }}
+						animate={{ scale: 1, opacity: 1 }}
+						exit={{ scale: 0.8, opacity: 0 }}
+						transition={{ duration: 0.3, ease: "easeOut" }}
+						className="popover min-w-96 max-w-full"
+					>
+						<header>
+							<h3>{title}</h3>
+						</header>
 
-				<hr className="my-2" />
+						<hr className="my-2" />
 
-				<main>{children}</main>
-			</div>
-		</div>
+						<main>{children}</main>
+					</motion.div>
+				</motion.div>
+			)}
+		</AnimatePresence>
 	)
 }

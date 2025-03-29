@@ -4,6 +4,7 @@ import Preview from "@/src/components/Preview"
 import IconList from "@/src/components/profile/IconList"
 import LinkList from "@/src/components/profile/LinkList"
 import ShareAccount from "@/src/components/profile/ShareAccount"
+import { useGetPreferences } from "@/src/hooks/useQueries"
 import useUserStore from "@/src/hooks/useUserStore"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
@@ -13,6 +14,8 @@ export default function Profile() {
 	const { user, setUser } = useUserStore()
 	const { data: session, status } = useSession()
 
+	const { data: preferences } = useGetPreferences()
+
 	useEffect(() => {
 		if (status === "unauthenticated" || !session?.user) {
 			redirect("/login")
@@ -21,15 +24,13 @@ export default function Profile() {
 		setUser(session.user)
 	}, [session, status, setUser])
 
-	if (!user) return <div>Loading...</div>
-
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card min-h-screen flex-1">
 				<header className="space-y-2">
 					<h2>Profile</h2>
 					<p className="text-sm font-semibold text-muted-foreground">
-						Welcome back, <span className="font-bold text-accent">{user.slug}</span>!
+						Welcome back, <span className="font-bold text-accent">{user?.slug}</span>!
 					</p>
 				</header>
 
@@ -49,7 +50,7 @@ export default function Profile() {
 			</main>
 
 			<aside className="md:w-4/12">
-				<Preview />
+				<Preview preferences={preferences} />
 			</aside>
 		</div>
 	)

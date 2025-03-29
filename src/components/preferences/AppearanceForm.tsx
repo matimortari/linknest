@@ -9,14 +9,12 @@ import {
 } from "@/src/config/preferencesConfig"
 import { BANNER_OPTIONS } from "@/src/config/supportBannerConfig"
 import { useUpdatePreferences } from "@/src/hooks/useMutations"
-import { useGetPreferences } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "../Inputs"
 import ThemeForm from "./ThemeForm"
 
-export default function AppearanceForm() {
-	const { data: preferences = {} } = useGetPreferences()
+export default function AppearanceForm({ preferences, setPreferences }) {
 	const { mutate: updatePreferencesMutation } = useUpdatePreferences()
 
 	const [tab, setTab] = useState("background")
@@ -28,7 +26,7 @@ export default function AppearanceForm() {
 
 	const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
-		setSelectedPreferences((prevPreferences: any) => ({
+		setPreferences((prevPreferences: any) => ({
 			...prevPreferences,
 			[field]: value
 		}))
@@ -296,7 +294,7 @@ export default function AppearanceForm() {
 				</div>
 			)}
 
-			{tab === "themes" && <ThemeForm setTheme={setSelectedPreferences} />}
+			{tab === "themes" && <ThemeForm setTheme={setPreferences} />}
 		</div>
 	)
 }

@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useState } from "react"
-import { useGetIcons, useGetLinks, useGetPreferences } from "../hooks/useQueries"
+import { useGetIcons, useGetLinks } from "../hooks/useQueries"
 import useUserStore from "../hooks/useUserStore"
 import UserIcon from "./UserIcon"
 import UserLink from "./UserLink"
@@ -19,7 +19,7 @@ function HeaderBar() {
 	)
 }
 
-function PreviewContent({ slug, description, image, userIcons, userLinks, userPreferences, sessionId }) {
+function PreviewContent({ slug, description, image, userIcons, userLinks, preferences, sessionId }) {
 	return (
 		<div className="flex flex-col items-center justify-center gap-4 text-center md:my-6">
 			<Image
@@ -27,14 +27,14 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 				alt={slug}
 				width={100}
 				height={100}
-				style={{ borderRadius: userPreferences.profilePictureRadius }}
+				style={{ borderRadius: preferences?.profilePictureRadius }}
 			/>
 			<p
 				className="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
 				style={{
-					color: userPreferences.slugTextColor,
-					fontWeight: userPreferences.slugTextWeight,
-					fontSize: userPreferences.slugTextSize
+					color: preferences?.slugTextColor,
+					fontWeight: preferences?.slugTextWeight,
+					fontSize: preferences?.slugTextSize
 				}}
 			>
 				@{slug}
@@ -42,9 +42,9 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 			<p
 				className="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
 				style={{
-					color: userPreferences.headerTextColor,
-					fontWeight: userPreferences.headerTextWeight,
-					fontSize: userPreferences.headerTextSize
+					color: preferences?.headerTextColor,
+					fontWeight: preferences?.headerTextWeight,
+					fontSize: preferences?.headerTextSize
 				}}
 			>
 				{description}
@@ -52,14 +52,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 			{userIcons.length > 0 ? (
 				<ul className="my-2 flex flex-row items-center justify-center gap-2">
 					{userIcons.map((i: UserIcon) => (
-						<UserIcon
-							key={i.id}
-							url={i.url}
-							icon={i.icon}
-							iconId={i.id}
-							preferences={userPreferences}
-							userId={sessionId}
-						/>
+						<UserIcon key={i.id} url={i.url} icon={i.icon} iconId={i.id} preferences={preferences} userId={sessionId} />
 					))}
 				</ul>
 			) : (
@@ -73,7 +66,7 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 							url={l.url}
 							title={l.title}
 							linkId={l.id}
-							preferences={userPreferences}
+							preferences={preferences}
 							userId={sessionId}
 						/>
 					))}
@@ -85,13 +78,12 @@ function PreviewContent({ slug, description, image, userIcons, userLinks, userPr
 	)
 }
 
-export default function Preview() {
+export default function Preview({ preferences }) {
 	const { user } = useUserStore()
 	const { data: session } = useSession()
 
 	const { data: userIcons = [] } = useGetIcons()
 	const { data: userLinks = [] } = useGetLinks()
-	const { data: userPreferences = {} } = useGetPreferences()
 
 	const [isVisible, setIsVisible] = useState(false)
 
@@ -112,11 +104,11 @@ export default function Preview() {
 					isVisible ? "block" : "hidden"
 				}`}
 				style={
-					userPreferences.backgroundType === "GRADIENT"
+					preferences?.backgroundType === "GRADIENT"
 						? {
-								background: `linear-gradient(to bottom, ${userPreferences.backgroundGradientStart}, ${userPreferences.backgroundGradientEnd})`
+								background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
 						  }
-						: { backgroundColor: userPreferences.backgroundColor }
+						: { backgroundColor: preferences?.backgroundColor }
 				}
 			>
 				{user && session && (
@@ -126,7 +118,7 @@ export default function Preview() {
 						image={user.image}
 						userIcons={userIcons}
 						userLinks={userLinks}
-						userPreferences={userPreferences}
+						preferences={preferences}
 						sessionId={session.user.id}
 					/>
 				)}
@@ -136,11 +128,11 @@ export default function Preview() {
 			<div
 				className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
 				style={
-					userPreferences.backgroundType === "GRADIENT"
+					preferences?.backgroundType === "GRADIENT"
 						? {
-								background: `linear-gradient(to bottom, ${userPreferences.backgroundGradientStart}, ${userPreferences.backgroundGradientEnd})`
+								background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
 						  }
-						: { backgroundColor: userPreferences.backgroundColor }
+						: { backgroundColor: preferences?.backgroundColor }
 				}
 			>
 				<HeaderBar />
@@ -151,7 +143,7 @@ export default function Preview() {
 						image={user.image}
 						userIcons={userIcons}
 						userLinks={userLinks}
-						userPreferences={userPreferences}
+						preferences={preferences}
 						sessionId={session.user.id}
 					/>
 				)}

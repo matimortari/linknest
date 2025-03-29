@@ -3,14 +3,19 @@
 import AppearanceForm from "@/src/components/preferences/AppearanceForm"
 import DeleteAccount from "@/src/components/preferences/DeleteAccount"
 import Preview from "@/src/components/Preview"
+import { useGetPreferences } from "@/src/hooks/useQueries"
 import useUserStore from "@/src/hooks/useUserStore"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function Preferences() {
 	const { user, setUser } = useUserStore()
 	const { data: session, status } = useSession()
+
+	const { data: preferences = {} } = useGetPreferences()
+
+	const [selectedPreferences, setSelectedPreferences] = useState(preferences)
 
 	useEffect(() => {
 		if (status === "unauthenticated" || !session?.user) {
@@ -19,6 +24,10 @@ export default function Preferences() {
 
 		setUser(session.user)
 	}, [session, status, setUser])
+
+	useEffect(() => {
+		setSelectedPreferences(preferences)
+	}, [preferences])
 
 	if (!user) return <div>Loading...</div>
 
@@ -34,7 +43,7 @@ export default function Preferences() {
 
 				<div className="flex flex-col gap-4">
 					<section className="section-container">
-						<AppearanceForm />
+						<AppearanceForm preferences={selectedPreferences} setPreferences={setSelectedPreferences} />
 					</section>
 
 					<section className="section-container border-danger-foreground">
@@ -44,7 +53,7 @@ export default function Preferences() {
 			</main>
 
 			<aside className="md:w-4/12">
-				<Preview />
+				<Preview preferences={selectedPreferences} />
 			</aside>
 		</div>
 	)

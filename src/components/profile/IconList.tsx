@@ -1,5 +1,6 @@
+import Spinner from "@/src/components/Spinner"
 import IconDialog from "@/src/components/profile/IconDialog"
-import { useDialog } from "@/src/hooks/useDialog"
+import useDialog from "@/src/hooks/useDialog"
 import { useAddIcon, useDeleteIcon } from "@/src/hooks/useMutations"
 import { useGetIcons } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
@@ -8,7 +9,7 @@ import Link from "next/link"
 export default function IconList() {
 	const { isOpen, openDialog, closeDialog } = useDialog()
 
-	const { data: userIcons = [] } = useGetIcons()
+	const { data: userIcons = [], isLoading: isIconsLoading } = useGetIcons()
 	const { mutate: addIcon } = useAddIcon()
 	const { mutate: deleteIcon } = useDeleteIcon()
 
@@ -24,7 +25,9 @@ export default function IconList() {
 				<p className="text-sm font-semibold text-muted-foreground">Manage your social icons.</p>
 			</header>
 
-			{userIcons.length === 0 ? (
+			{isIconsLoading ? (
+				<Spinner />
+			) : userIcons.length === 0 ? (
 				<p className="my-2 text-center font-semibold text-muted-foreground">No social icons here yet. Get started!</p>
 			) : (
 				<ul className="flex flex-row gap-2">

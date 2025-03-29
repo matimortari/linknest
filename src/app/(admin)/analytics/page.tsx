@@ -8,7 +8,7 @@ import { redirect } from "next/navigation"
 import { useEffect } from "react"
 
 export default function Analytics() {
-	const { user, setUser } = useUserStore()
+	const { setUser } = useUserStore()
 	const { data: session, status } = useSession()
 
 	useEffect(() => {
@@ -18,8 +18,6 @@ export default function Analytics() {
 
 		setUser(session.user)
 	}, [session, status, setUser])
-
-	if (!user) return <div>Loading...</div>
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">

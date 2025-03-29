@@ -12,6 +12,8 @@ declare module "next-auth" {
 			slug: string
 			description?: string
 			image?: string
+			createdAt: Date
+			updatedAt: Date
 			links: UserLink[]
 			icons: UserIcon[]
 			preferences: UserPreferences[]
@@ -83,6 +85,8 @@ export const authOptions: NextAuthOptions = {
 					slug: dbUser.slug,
 					description: dbUser.description,
 					image: dbUser.image,
+					createdAt: dbUser.createdAt,
+					updatedAt: dbUser.updatedAt,
 					links: dbUser.userLinks,
 					icons: dbUser.userIcons,
 					preferences: dbUser.userPreferences

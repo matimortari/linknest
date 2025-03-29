@@ -1,5 +1,6 @@
 import LinkDialog from "@/src/components/profile/LinkDialog"
-import { useDialog } from "@/src/hooks/useDialog"
+import Spinner from "@/src/components/Spinner"
+import useDialog from "@/src/hooks/useDialog"
 import { useAddLink, useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
@@ -9,7 +10,7 @@ import { useState } from "react"
 export default function LinkList() {
 	const { isOpen, openDialog, closeDialog } = useDialog()
 
-	const { data: userLinks = [] } = useGetLinks()
+	const { data: userLinks = [], isLoading: isLinksLoading } = useGetLinks()
 	const { mutate: addLink } = useAddLink()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
@@ -32,7 +33,9 @@ export default function LinkList() {
 				<p className="text-sm font-semibold text-muted-foreground">Manage your social links.</p>
 			</header>
 
-			{userLinks.length === 0 ? (
+			{isLinksLoading ? (
+				<Spinner />
+			) : userLinks.length === 0 ? (
 				<p className="my-2 text-center font-semibold text-muted-foreground">No links here yet. Get started!</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">

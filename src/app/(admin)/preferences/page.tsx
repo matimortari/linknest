@@ -10,7 +10,7 @@ import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function Preferences() {
-	const { user, setUser } = useUserStore()
+	const { setUser } = useUserStore()
 	const { data: session, status } = useSession()
 
 	const { data: preferences = {} } = useGetPreferences()
@@ -28,8 +28,6 @@ export default function Preferences() {
 	useEffect(() => {
 		setSelectedPreferences(preferences)
 	}, [preferences])
-
-	if (!user) return <div>Loading...</div>
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">

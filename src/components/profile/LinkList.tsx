@@ -1,10 +1,10 @@
+import LinkDialog from "@/src/components/profile/LinkDialog"
 import { useDialog } from "@/src/hooks/useDialog"
 import { useAddLink, useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
-import LinkDialog from "./LinkDialog"
 
 export default function LinkList() {
 	const { isOpen, openDialog, closeDialog } = useDialog()

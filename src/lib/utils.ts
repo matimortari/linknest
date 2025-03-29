@@ -1,6 +1,6 @@
+import { authOptions } from "@/src/lib/auth"
 import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server"
-import { authOptions } from "./auth"
 
 // Helper function to format a date string
 export function formatDate(dateString: Date) {

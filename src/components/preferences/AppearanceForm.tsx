@@ -1,3 +1,5 @@
+import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "@/src/components/Inputs"
+import ThemeForm from "@/src/components/preferences/ThemeForm"
 import {
 	BACKGROUND_TYPES,
 	FONT_SIZES,
@@ -11,8 +13,6 @@ import { BANNER_OPTIONS } from "@/src/config/supportBannerConfig"
 import { useUpdatePreferences } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
-import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "../Inputs"
-import ThemeForm from "./ThemeForm"
 
 export default function AppearanceForm({ preferences, setPreferences }) {
 	const { mutate: updatePreferencesMutation } = useUpdatePreferences()

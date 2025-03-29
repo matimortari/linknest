@@ -1,10 +1,10 @@
 "use client"
 
+import { carouselPresets } from "@/src/config/carouselPresets"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { carouselPresets } from "../config/carouselPresets"
 
 function CarouselLink({ title, preferences }) {
 	const [isHovered, setIsHovered] = useState(false)

@@ -1,5 +1,7 @@
 "use client"
 
+import UserDialog from "@/src/components/UserDialog"
+import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { signOut } from "next-auth/react"
 import { useTheme } from "next-themes"
@@ -7,8 +9,6 @@ import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import useUserStore from "../hooks/useUserStore"
-import UserDialog from "./UserDialog"
 
 const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 

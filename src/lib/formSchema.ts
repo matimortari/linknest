@@ -8,7 +8,13 @@ export const userSchema = z.object({
 		.max(16, "Slug must be at most 16 characters")
 		.regex(/^[a-zA-Z0-9_-]+$/, "Slug can only contain letters, numbers, hyphens, and underscores"),
 	description: z.string().max(100, "Description must not exceed 100 characters").optional(),
-	image: z.string().url("Invalid URL format").optional()
+	image: z
+		.string()
+		.url("Invalid URL format")
+		.refine((url) => url.startsWith("https://"), {
+			message: "Invalid URL format. Image URL must start with 'https://'"
+		})
+		.optional()
 })
 
 export const linkSchema = z.object({

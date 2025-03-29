@@ -38,8 +38,8 @@ export const BANNER_STYLES = {
 }
 
 export const BANNER_LINKS = {
-	LGBTQ_RIGHTS: "https://www.hrc.org/",
-	ANTI_RACISM: "https://www.naacp.org/",
-	MENTAL_HEALTH: "https://www.nami.org/",
-	CLIMATE_ACTION: "https://www.nrdc.org/"
+	LGBTQ_RIGHTS: "https://www.hrc.org",
+	ANTI_RACISM: "https://www.naacp.org",
+	MENTAL_HEALTH: "https://www.nami.org",
+	CLIMATE_ACTION: "https://www.nrdc.org"
 }

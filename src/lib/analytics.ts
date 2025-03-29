@@ -1,4 +1,4 @@
-import { db } from "./db"
+import { db } from "@/src/lib/db"
 
 // Track page visits and update UserStats table
 export async function trackPageVisit(userId: string) {

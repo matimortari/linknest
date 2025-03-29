@@ -1,9 +1,9 @@
 "use client"
 
+import { trackClick } from "@/src/services/analyticsService"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
-import { trackClick } from "../services/analyticsService"
 
 export default function UserIcon({ url, icon, preferences, iconId, userId }) {
 	const [isHovered, setIsHovered] = useState(false)

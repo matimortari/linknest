@@ -1,5 +1,5 @@
+import Dialog from "@/src/components/Dialog"
 import { QRCodeCanvas } from "qrcode.react"
-import Dialog from "../Dialog"
 
 export default function QrCodeDialog({ isOpen, onClose, slug }) {
 	const handleDownloadQrCode = (slug: string) => {

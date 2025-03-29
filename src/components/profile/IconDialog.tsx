@@ -1,8 +1,8 @@
+import Dialog from "@/src/components/Dialog"
 import { SOCIAL_ICONS } from "@/src/config/preferencesConfig"
 import { iconSchema, IconSchemaType } from "@/src/lib/formSchema"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
-import Dialog from "../Dialog"
 
 export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps) {
 	const [selectedPlatform, setSelectedPlatform] = useState<string>("")

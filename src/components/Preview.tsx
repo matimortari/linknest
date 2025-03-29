@@ -1,11 +1,11 @@
+import UserIcon from "@/src/components/UserIcon"
+import UserLink from "@/src/components/UserLink"
+import { useGetIcons, useGetLinks } from "@/src/hooks/useQueries"
+import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useState } from "react"
-import { useGetIcons, useGetLinks } from "../hooks/useQueries"
-import useUserStore from "../hooks/useUserStore"
-import UserIcon from "./UserIcon"
-import UserLink from "./UserLink"
 
 function HeaderBar() {
 	return (

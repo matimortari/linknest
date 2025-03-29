@@ -1,9 +1,9 @@
+import { db } from "@/src/lib/db"
+import { generateSlug } from "@/src/lib/utils"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { NextAuthOptions, SessionStrategy } from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-import { db } from "./db"
-import { generateSlug } from "./utils"
 
 declare module "next-auth" {
 	interface Session {

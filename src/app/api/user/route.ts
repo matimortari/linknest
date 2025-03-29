@@ -13,7 +13,7 @@ export async function GET() {
 			userLinks: true,
 			userIcons: true,
 			userPreferences: true
-		} // Include related data
+		}
 	})
 	if (!user) {
 		return NextResponse.json({ error: "User not found" }, { status: 404 })

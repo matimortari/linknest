@@ -1,7 +1,7 @@
+import Dialog from "@/src/components/Dialog"
 import { linkSchema, LinkSchemaType } from "@/src/lib/formSchema"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
-import Dialog from "../Dialog"
 
 export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: LinkDialogProps) {
 	const [linkTitle, setLinkTitle] = useState("")

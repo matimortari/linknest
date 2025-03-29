@@ -1,8 +1,8 @@
+import QrCodeDialog from "@/src/components/profile/QrCodeDialog"
 import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import QrCodeDialog from "./QrCodeDialog"
 
 function ShareDropdown({ isOpen, onClose }) {
 	const { user } = useUserStore()

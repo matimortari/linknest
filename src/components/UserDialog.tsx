@@ -1,9 +1,9 @@
+import Dialog from "@/src/components/Dialog"
+import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "@/src/hooks/useMutations"
+import useUserStore from "@/src/hooks/useUserStore"
+import { userSchema, UserSchemaType } from "@/src/lib/formSchema"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
-import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "../hooks/useMutations"
-import useUserStore from "../hooks/useUserStore"
-import { userSchema, UserSchemaType } from "../lib/formSchema"
-import Dialog from "./Dialog"
 
 export default function UserDialog({ isOpen, onClose }) {
 	const { user, updateUser } = useUserStore()

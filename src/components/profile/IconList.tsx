@@ -1,9 +1,9 @@
+import IconDialog from "@/src/components/profile/IconDialog"
 import { useDialog } from "@/src/hooks/useDialog"
 import { useAddIcon, useDeleteIcon } from "@/src/hooks/useMutations"
 import { useGetIcons } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
-import IconDialog from "./IconDialog"
 
 export default function IconList() {
 	const { isOpen, openDialog, closeDialog } = useDialog()

@@ -2,11 +2,14 @@
 
 import Carousel from "@/src/components/Carousel"
 import Header from "@/src/components/Header"
+import quotes from "@/src/config/quotes.json"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { Bowlby_One, Lato } from "next/font/google"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700"] })
@@ -38,6 +41,13 @@ export default function Home() {
 			icon: "ri:price-tag-3-fill"
 		}
 	]
+
+	const [randomQuote, setRandomQuote] = useState(quotes[0])
+
+	useEffect(() => {
+		const randomIndex = Math.floor(Math.random() * quotes.length)
+		setRandomQuote(quotes[randomIndex])
+	}, [])
 
 	return (
 		<>
@@ -92,19 +102,19 @@ export default function Home() {
 				</main>
 
 				{/* Features section */}
-				<section className="relative z-10 flex flex-col items-center justify-center space-y-8 py-12 text-center">
+				<section className="relative z-10 flex flex-col items-center justify-center gap-12 py-12 text-center">
 					<h2>Why Choose LinkNest?</h2>
 					<div className="grid grid-cols-1 gap-4 px-10 md:grid-cols-4">
 						{features.map((feature, index) => (
 							<motion.div
 								key={index}
-								className="card text-start"
+								className="card space-y-2 text-start"
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
 							>
 								<div className="flex flex-row items-center gap-2">
-									<span className="rounded-full bg-muted p-2">
+									<span className="rounded-full bg-gradient-to-tr from-accent to-muted p-2">
 										<Icon icon={feature.icon} width={20} height={20} />
 									</span>
 									<h4>{feature.title}</h4>
@@ -116,13 +126,19 @@ export default function Home() {
 				</section>
 
 				{/* CTA section */}
-				<section className="relative z-10 flex w-full flex-col items-center justify-center gap-6 border-y bg-card py-12">
-					<h2>Ready to Try?</h2>
-					<p className="max-w-60 text-center font-medium">Create an account and build your page today!</p>
-					<Link href="/login" className="flex flex-row items-center gap-2 rounded-2xl bg-accent p-2 font-semibold">
-						Get Started
-						<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
-					</Link>
+				<section className="relative z-10 flex w-full flex-col items-center justify-center gap-12 border-y bg-card p-12">
+					<div className="flex flex-col items-center justify-center gap-4">
+						<h2>Ready to Try?</h2>
+						<p className="text-center font-medium">Create an account and build your page today!</p>
+						<Link href="/login" className="btn-secondary">
+							Get Started
+							<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
+						</Link>
+					</div>
+
+					<p className="text-center text-xs italic">
+						"{randomQuote.quote}" - <span className="font-medium text-muted-foreground">{randomQuote.author}</span>
+					</p>
 				</section>
 			</div>
 		</>

@@ -7,7 +7,7 @@ export function CheckboxInput({ id, label, checked = false, onChange }: Checkbox
 				<label htmlFor={id} className="text-sm font-semibold">
 					{label}
 				</label>
-				<input id={id} type="checkbox" checked={checked} onChange={onChange} />
+				<input id={id} type="checkbox" checked={checked} onChange={onChange} className="scale-md" />
 			</div>
 		</>
 	)
@@ -22,7 +22,7 @@ export function ColorInput({ id, label, value = "#000000", onChange, disabled = 
 				</label>
 				<div className="flex flex-row items-center gap-2">
 					<span className="text-xs text-muted-foreground">{value}</span>
-					<input id={id} type="color" value={value} onChange={onChange} disabled={disabled} />
+					<input id={id} type="color" value={value} onChange={onChange} disabled={disabled} className="scale-md" />
 				</div>
 			</div>
 		</>
@@ -50,7 +50,12 @@ export function SelectInput({ id, label, value, onChange, options, disabled = fa
 						</option>
 					))}
 				</select>
-				<Icon icon="mdi:chevron-down" width={20} height={20} className="pointer-events-none text-muted-foreground" />
+				<Icon
+					icon="mdi:chevron-down"
+					width={20}
+					height={20}
+					className="scale-md cursor-pointer text-muted-foreground"
+				/>
 			</div>
 		</div>
 	)
@@ -70,6 +75,7 @@ export function RadioOptions({ options, name, value, onChange, label, disabled =
 							checked={value === option.value}
 							onChange={onChange}
 							disabled={disabled}
+							className="scale-md"
 						/>
 						<span className={disabled ? "text-muted line-through" : ""}>{option.label}</span>
 					</label>

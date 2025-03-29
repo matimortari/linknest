@@ -36,7 +36,7 @@ export default function IconList() {
 							<button
 								onClick={() => b.id && deleteIcon(b.id)}
 								title="Remove Social Icon"
-								className="absolute bottom-0 right-0 p-1"
+								className="scale-md absolute bottom-0 right-0 p-1"
 							>
 								<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger-foreground" />
 							</button>

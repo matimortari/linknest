@@ -50,10 +50,11 @@ export default function LinkList() {
 												openDialog()
 											}}
 											title="Edit Link"
+											className="scale-md"
 										>
 											<Icon icon="mdi:circle-edit-outline" width={20} height={20} className="text-accent" />
 										</button>
-										<button onClick={() => l.id && deleteLink(l.id)} title="Remove Link">
+										<button onClick={() => l.id && deleteLink(l.id)} title="Remove Link" className="scale-md">
 											<Icon
 												icon="mdi:remove-circle-outline"
 												width={20}

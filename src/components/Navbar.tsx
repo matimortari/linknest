@@ -19,7 +19,7 @@ const navLinks = [
 ]
 
 const Logo = () => (
-	<Link href="/" className="flex items-center gap-2">
+	<Link href="/" className="scale-xs flex items-center gap-2">
 		<Image src="/logo.png" alt="LinkNest Logo" width={35} height={35} className="icon" />
 		<span className={`text-2xl ${chau.className}`}>LinkNest</span>
 	</Link>
@@ -32,7 +32,7 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 			<button
 				onClick={() => setIsDialogOpen(true)}
 				title="Edit Profile Information"
-				className="absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
+				className="scale-sm absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
 			>
 				<Icon icon="mdi:square-edit-outline" width={20} height={20} />
 			</button>

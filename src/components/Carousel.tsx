@@ -75,7 +75,7 @@ function CarouselCard({ presetId }) {
 
 	return (
 		<div
-			className="popover relative w-64 md:w-[300px]"
+			className="popover relative w-64 opacity-80 md:w-[300px]"
 			style={
 				preferences.backgroundType === "GRADIENT"
 					? {

@@ -55,15 +55,9 @@ export default function AppearanceForm() {
 			</header>
 
 			<div className="flex flex-wrap items-center justify-between gap-4">
-				<div className="flex flex-wrap items-center gap-1">
+				<div className="flex flex-wrap items-center gap-2">
 					{tabs.map((t) => (
-						<button
-							key={t.value}
-							className={`rounded-full p-2 text-sm font-medium text-muted-foreground hover:bg-muted ${
-								t.value === tab ? "bg-muted font-bold" : ""
-							}`}
-							onClick={() => setTab(t.value)}
-						>
+						<button key={t.value} className="btn" onClick={() => setTab(t.value)}>
 							{t.label}
 						</button>
 					))}

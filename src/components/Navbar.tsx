@@ -1,6 +1,6 @@
 "use client"
 
-import UserDialog from "@/src/components/UserDialog"
+import UserDialog from "@/src/components/profile/UserDialog"
 import useUserStore from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
@@ -51,8 +51,8 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 	</div>
 )
 
-const NavLink = ({ href, icon, label }) => (
-	<Link href={href} title={label} className="btn">
+const NavLink = ({ href, icon, label, isActive, onClick }) => (
+	<Link href={href} title={label} className={`btn ${isActive ? "btn-selected" : ""}`} onClick={onClick}>
 		<Icon icon={icon} width={25} height={25} />
 		{label}
 	</Link>
@@ -66,6 +66,7 @@ export default function Navbar() {
 	const [isNavOpen, setIsNavOpen] = useState(false)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [mounted, setMounted] = useState(false)
+	const [activeTab, setActiveTab] = useState("/profile")
 
 	useEffect(() => setMounted(true), [])
 
@@ -95,15 +96,20 @@ export default function Navbar() {
 				<AnimatePresence>
 					{isNavOpen && (
 						<motion.div
-							className="flex flex-col p-4"
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.3 }}
+							className="flex flex-col p-4"
 						>
 							<nav className="flex flex-row items-center gap-2">
 								{navLinks.map((item) => (
-									<NavLink key={item.label} {...item} />
+									<NavLink
+										key={item.label}
+										{...item}
+										isActive={activeTab === item.href}
+										onClick={() => setActiveTab(item.href)}
+									/>
 								))}
 							</nav>
 							<UserCard
@@ -119,10 +125,10 @@ export default function Navbar() {
 
 			{/* Desktop sidebar */}
 			<motion.div
-				className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col"
 				initial={{ opacity: 0, x: -50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.5 }}
+				className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col"
 			>
 				<div className="mt-8 flex flex-grow flex-col gap-4">
 					<Logo />
@@ -135,7 +141,7 @@ export default function Navbar() {
 					<nav className="space-y-2">
 						{navLinks.map((item) => (
 							<motion.div key={item.label} variants={{ initial: { opacity: 0 }, animate: { opacity: 1 } }}>
-								<NavLink {...item} />
+								<NavLink {...item} onClick={() => setActiveTab(item.href)} isActive={activeTab === item.href} />
 							</motion.div>
 						))}
 					</nav>

@@ -33,20 +33,20 @@ export default function Preferences() {
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<motion.main
-				className="card min-h-screen flex-1"
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.6 }}
+				className="card min-h-screen flex-1"
 			>
 				<header className="space-y-2">
 					<motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
 						Preferences
 					</motion.h2>
 					<motion.p
-						className="text-sm font-semibold text-muted-foreground"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.6, delay: 0.4 }}
+						className="text-sm font-semibold text-muted-foreground"
 					>
 						Manage your profile.
 					</motion.p>
@@ -55,10 +55,10 @@ export default function Preferences() {
 				<hr className="my-4" />
 
 				<motion.div
-					className="flex flex-col gap-4"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, delay: 0.8 }}
+					className="flex flex-col gap-4"
 				>
 					<section className="section-container">
 						<AppearanceForm preferences={selectedPreferences} setPreferences={setSelectedPreferences} />
@@ -71,10 +71,10 @@ export default function Preferences() {
 			</motion.main>
 
 			<motion.aside
-				className="md:w-4/12"
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.6 }}
+				className="md:w-4/12"
 			>
 				<Preview preferences={selectedPreferences} />
 			</motion.aside>

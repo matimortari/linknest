@@ -25,7 +25,7 @@ export default function ClicksByLink() {
 								</div>
 							) : (
 								<div className="mb-2 flex flex-row items-center gap-2">
-									{item.icon && <Icon icon={item.icon} className="size-5 text-muted-foreground" />}
+									{item.icon && <Icon icon={item.icon} width={20} height={20} className="text-muted-foreground" />}
 									<h4 className="truncate text-muted-foreground">{item.platform}</h4>
 									<span className="whitespace-nowrap font-semibold"> - {item.clicks} clicks</span>
 								</div>

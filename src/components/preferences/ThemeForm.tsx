@@ -22,8 +22,8 @@ export default function ThemeForm({ setTheme }) {
 					tabIndex={0}
 					title={title}
 					className={`flex size-full items-center justify-center rounded-lg border p-8 ${
-						selectedTheme === title ? "bg-muted" : "bg-transparent"
-					} hover:bg-muted`}
+						selectedTheme === title ? "opacity-40" : "border-muted"
+					}`}
 					style={{
 						backgroundImage:
 							preferences.backgroundType === "GRADIENT"

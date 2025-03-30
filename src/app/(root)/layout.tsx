@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className}`}>
+			<body className={`${inter.className} bg-image`}>
 				<Providers session={session}>
 					<main>{children}</main>
 					<Footer />

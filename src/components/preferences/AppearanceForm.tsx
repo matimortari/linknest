@@ -17,7 +17,7 @@ import { useEffect, useState } from "react"
 export default function AppearanceForm({ preferences, setPreferences }) {
 	const { mutate: updatePreferencesMutation } = useUpdatePreferences()
 
-	const [tab, setTab] = useState("background")
+	const [activeTab, setActiveTab] = useState("background")
 	const [selectedPreferences, setSelectedPreferences] = useState(preferences)
 
 	useEffect(() => {
@@ -55,7 +55,11 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 			<div className="flex flex-wrap items-center justify-between gap-4">
 				<div className="flex flex-wrap items-center gap-2">
 					{tabs.map((t) => (
-						<button key={t.value} className="btn" onClick={() => setTab(t.value)}>
+						<button
+							key={t.value}
+							className={`btn ${activeTab === t.value ? "btn-selected" : ""}`}
+							onClick={() => setActiveTab(t.value)}
+						>
 							{t.label}
 						</button>
 					))}
@@ -70,8 +74,8 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 
 			<hr className="my-2" />
 
-			{tab === "background" && (
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+			{activeTab === "background" && (
+				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					<RadioOptions
 						name="backgroundType"
 						label="Background Type"
@@ -79,6 +83,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 						value={selectedPreferences.backgroundType}
 						onChange={handleChange("backgroundType")}
 					/>
+
 					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="backgroundColor"
@@ -105,22 +110,22 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 				</div>
 			)}
 
-			{tab === "user" && (
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+			{activeTab === "user" && (
+				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					<div className="flex flex-col gap-2">
+						<SelectInput
+							id="supportBanner"
+							label="Support Banner"
+							options={BANNER_OPTIONS}
+							value={selectedPreferences.supportBanner || "NONE"}
+							onChange={handleChange("supportBanner")}
+						/>
 						<SelectInput
 							id="profilePictureRadius"
 							label="Profile Picture Radius"
 							options={RADIUS_SIZES}
 							value={selectedPreferences.profilePictureRadius}
 							onChange={handleChange("profilePictureRadius")}
-						/>
-						<SelectInput
-							id="supportBanner"
-							label="Select Support Banner"
-							options={BANNER_OPTIONS}
-							value={selectedPreferences.supportBanner || "NONE"}
-							onChange={handleChange("supportBanner")}
 						/>
 						<SelectInput
 							id="slugTextSize"
@@ -169,8 +174,8 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 				</div>
 			)}
 
-			{tab === "links" && (
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+			{activeTab === "links" && (
+				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="linkBackgroundColor"
@@ -199,27 +204,28 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 							onChange={handleChange("linkTextWeight")}
 						/>
 						<SelectInput
+							id="linkBorderRadius"
+							label="Radius"
+							options={RADIUS_SIZES}
+							value={selectedPreferences.linkBorderRadius}
+							onChange={handleChange("linkBorderRadius")}
+						/>
+						<SelectInput
 							id="linkPadding"
 							label="Padding"
 							options={LINK_PADDING_SIZES}
 							value={selectedPreferences.linkPadding}
 							onChange={handleChange("linkPadding")}
 						/>
+					</div>
+
+					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="linkHoverBackgroundColor"
 							label="Hover Background Color"
 							value={selectedPreferences.linkHoverBackgroundColor}
 							onChange={handleChange("linkHoverBackgroundColor")}
 						/>
-						<CheckboxInput
-							id="showCopyButton"
-							label="Show 'Copy to Clipboard' Button"
-							checked={selectedPreferences.showCopyButton}
-							onChange={handleChange("showCopyButton")}
-						/>
-					</div>
-
-					<div className="flex flex-col gap-2">
 						<CheckboxInput
 							id="isLinkShadow"
 							label="Enable Shadow"
@@ -241,12 +247,18 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 							onChange={handleChange("linkShadowWeight")}
 							disabled={isLinkShadowDisabled}
 						/>
+						<CheckboxInput
+							id="showCopyButton"
+							label="Show 'Copy to Clipboard' Button"
+							checked={selectedPreferences.showCopyButton}
+							onChange={handleChange("showCopyButton")}
+						/>
 					</div>
 				</div>
 			)}
 
-			{tab === "icons" && (
-				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+			{activeTab === "icons" && (
+				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="iconBackgroundColor"
@@ -294,7 +306,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 				</div>
 			)}
 
-			{tab === "themes" && <ThemeForm setTheme={setPreferences} />}
+			{activeTab === "themes" && <ThemeForm setTheme={setPreferences} />}
 		</div>
 	)
 }

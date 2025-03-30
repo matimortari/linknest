@@ -6,7 +6,6 @@ export default function Loading() {
 	return (
 		<div className="flex min-h-screen w-full flex-col items-center justify-center gap-4">
 			<motion.div
-				className="h-1 w-1/2 rounded-full bg-gradient-to-tr from-accent to-muted"
 				initial={{ width: 0 }}
 				animate={{ width: "10%" }}
 				transition={{
@@ -14,12 +13,13 @@ export default function Loading() {
 					duration: 2,
 					ease: "linear"
 				}}
+				className="h-1 w-1/2 rounded-full bg-gradient-to-r from-primary to-secondary"
 			/>
 
 			<motion.p
-				className="text-sm font-semibold text-muted-foreground"
 				animate={{ opacity: [0.3, 1, 0.3] }}
 				transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+				className="text-sm font-semibold text-muted-foreground"
 			>
 				Loading
 				<motion.span animate={{ opacity: [0, 1, 0], transition: { duration: 1, repeat: Infinity } }}>.</motion.span>

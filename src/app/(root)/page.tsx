@@ -6,7 +6,6 @@ import quotes from "@/src/config/quotes.json"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { Bowlby_One, Lato } from "next/font/google"
-import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -53,51 +52,47 @@ export default function Home() {
 			<Header />
 
 			<div className="relative">
-				<div className="absolute inset-x-0 bottom-0 hidden opacity-20 md:block md:h-3/6">
-					<Image src="/grid-bg.png" alt="Background" fill />
-				</div>
-
 				<main className="relative z-10 flex min-h-screen flex-col items-center px-4 py-12 md:px-12 md:py-0">
 					<div className="flex w-full flex-col md:flex-row">
 						{/* Hero section */}
 						<motion.section
-							className="flex flex-col md:w-1/2 md:py-20"
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
+							initial={{ opacity: 0, scale: 0.8 }}
+							whileInView={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 0.6 }}
+							className="flex flex-col md:w-1/2 md:py-20"
 						>
 							<div className="space-y-8 text-center md:space-y-4 md:text-start">
 								<motion.h4
-									className={`${lato.className} font-bold text-accent`}
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.1 }}
+									className={`${lato.className} font-bold text-accent`}
 								>
 									Your link-in-bio page 🔗🌐
 								</motion.h4>
 
 								<motion.h1
-									className={`${bowlby.className} max-w-md`}
 									initial={{ opacity: 0, scale: 0.8 }}
 									animate={{ opacity: 1, scale: 1 }}
 									transition={{ duration: 0.8, ease: "easeOut" }}
+									className={`${bowlby.className} max-w-md`}
 								>
 									Keep all your stuff together!
 								</motion.h1>
 
 								<motion.p
-									className={`${lato.className} max-w-lg text-muted-foreground`}
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.2 }}
+									className={`${lato.className} max-w-lg text-muted-foreground`}
 								>
 									Welcome to <span className="font-bold text-accent">LinkNest</span>! Your links, profiles, contact
 									info, and more in one place. Create and customize your page and share it with your audience.
 								</motion.p>
 								<motion.div
-									className="flex max-w-lg flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-2xl"
 									whileHover={{ scale: 1.05 }}
-									transition={{ type: "spring", stiffness: 400, damping: 10 }}
+									transition={{ type: "spring", stiffness: 200, damping: 10 }}
+									className="flex max-w-lg flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-2xl"
 								>
 									<span className="hidden cursor-default sm:inline">linknest-live.vercel.app/</span>
 									<span className="cursor-default sm:hidden">@</span>
@@ -111,10 +106,10 @@ export default function Home() {
 
 						{/* Carousel section */}
 						<motion.section
-							className="pt-20 md:w-1/2 md:pt-0"
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 0.6, delay: 0.2 }}
+							className="pt-20 md:w-1/2 md:pt-0"
 						>
 							<Carousel />
 						</motion.section>
@@ -123,7 +118,7 @@ export default function Home() {
 
 				{/* Features section */}
 				<section className="relative z-10 flex flex-col items-center justify-center gap-12 py-12 text-center">
-					<motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+					<motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
 						Why Choose LinkNest?
 					</motion.h2>
 
@@ -131,13 +126,13 @@ export default function Home() {
 						{features.map((feature, index) => (
 							<motion.div
 								key={index}
-								className="card space-y-2 text-start"
 								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
+								whileInView={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.6, delay: index * 0.1 }}
+								className="card space-y-2 text-start"
 							>
 								<div className="flex flex-row items-center gap-2">
-									<span className="rounded-full bg-gradient-to-tr from-accent to-muted p-2">
+									<span className="rounded-full bg-gradient-to-bl from-primary to-secondary p-2 text-[#ebe8e8]">
 										<Icon icon={feature.icon} width={20} height={20} />
 									</span>
 									<h4>{feature.title}</h4>
@@ -153,8 +148,8 @@ export default function Home() {
 					<div className="flex flex-col items-center justify-center gap-4">
 						<motion.h2
 							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 0.2 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6 }}
 						>
 							Ready to Try?
 						</motion.h2>

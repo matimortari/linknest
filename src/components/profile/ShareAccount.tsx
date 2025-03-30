@@ -38,7 +38,7 @@ function ShareDropdown({ isOpen, onClose }) {
 	return (
 		<>
 			{isOpen && (
-				<div className="animate-slide-in popover absolute right-0 top-full">
+				<div className="popover absolute right-0 top-full">
 					<div className="flex flex-col items-start gap-2 text-xs font-semibold">
 						<button onClick={handleCopy} className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted">
 							<Icon icon="mdi:clipboard-multiple-outline" width={20} height={20} />

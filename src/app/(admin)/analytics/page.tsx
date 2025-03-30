@@ -23,20 +23,20 @@ export default function Analytics() {
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<motion.main
-				className="card min-h-screen flex-1"
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.6 }}
+				className="card min-h-screen flex-1"
 			>
 				<header className="space-y-2">
 					<motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
 						Analytics
 					</motion.h2>
 					<motion.p
-						className="text-sm font-semibold text-muted-foreground"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.6, delay: 0.4 }}
+						className="text-sm font-semibold text-muted-foreground"
 					>
 						View your profile analytics.
 					</motion.p>
@@ -45,10 +45,10 @@ export default function Analytics() {
 				<hr className="my-4" />
 
 				<motion.div
-					className="flex flex-col gap-4"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, delay: 0.8 }}
+					className="flex flex-col gap-4"
 				>
 					<section className="section-container">
 						<AnalyticsPanel />

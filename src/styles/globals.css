@@ -17,7 +17,7 @@
 		--primary: #45698a;
 		--primary-foreground: #ebe8e8;
 
-		--secondary: #3c4557;
+		--secondary: #222d42;
 		--secondary-foreground: #ebe8e8;
 
 		--accent: #31589c;
@@ -49,7 +49,7 @@
 		--primary: #222d42;
 		--primary-foreground: #ebe8e8;
 
-		--secondary: #42629e;
+		--secondary: #45698a;
 		--secondary-foreground: #ebe8e8;
 
 		--accent: #31589c;
@@ -174,41 +174,24 @@
 		white-space: nowrap;
 		transition: all 0.2s ease-in-out;
 	}
-
+	.btn-selected {
+		filter: brightness(0.6);
+	}
 	.btn:hover,
 	.btn-primary:hover,
 	.btn-secondary:hover,
 	.btn-danger:hover,
 	.btn-success:hover {
-		opacity: 0.8;
+		filter: brightness(0.6);
 		transform: scale(1.05);
-	}
-
-	.btn:active,
-	.btn-primary:active,
-	.btn-secondary:active,
-	.btn-danger:active,
-	.btn-success:active {
-		opacity: 0.6;
-		transform: scale(1.1);
 		box-shadow: 0 0 0 1px var(--success-foreground);
 	}
-
-	.btn:focus,
-	.btn-primary:focus,
-	.btn-secondary:focus,
-	.btn-danger:focus,
-	.btn-success:focus {
-		outline: none;
-		opacity: 0.6;
-	}
-
 	.btn:disabled,
 	.btn-primary:disabled,
 	.btn-secondary:disabled,
 	.btn-danger:disabled,
 	.btn-success:disabled {
-		opacity: 0.8;
+		filter: brightness(0.4);
 		cursor: not-allowed;
 	}
 
@@ -265,6 +248,10 @@
 	.preview-scrollbar {
 		scrollbar-width: thin;
 		scrollbar-color: var(--border) var(--background);
+	}
+
+	.bg-image {
+		background-image: url("/topography.png");
 	}
 
 	.scale-xs,

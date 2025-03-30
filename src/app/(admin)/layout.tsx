@@ -28,7 +28,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={inter.className}>
+			<body className={`${inter.className} bg-image fill-accent`}>
 				<Providers session={session}>
 					<div className="flex flex-col p-4 md:flex-row">
 						<aside className="md:w-2/12">

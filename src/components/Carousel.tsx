@@ -138,7 +138,7 @@ export default function Carousel() {
 	}, [])
 
 	return (
-		<div className="animate-float relative my-4 flex h-[480px] select-none items-center justify-center">
+		<div className="relative my-4 flex h-[480px] select-none items-center justify-center">
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={currentIndex}

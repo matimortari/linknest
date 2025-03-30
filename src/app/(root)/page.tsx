@@ -10,7 +10,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
-const lato = Lato({ subsets: ["latin"], weight: ["400", "700"] })
+const lato = Lato({ subsets: ["latin"], weight: ["700"] })
 
 export default function Home() {
 	const features = [
@@ -62,14 +62,7 @@ export default function Home() {
 							className="flex flex-col md:w-1/2 md:py-20"
 						>
 							<div className="space-y-8 text-center md:space-y-4 md:text-start">
-								<motion.h4
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: 0.1 }}
-									className={`${lato.className} font-bold text-accent`}
-								>
-									Your link-in-bio page 🔗🌐
-								</motion.h4>
+								<h4 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h4>
 
 								<motion.h1
 									initial={{ opacity: 0, scale: 0.8 }}
@@ -80,15 +73,10 @@ export default function Home() {
 									Keep all your stuff together!
 								</motion.h1>
 
-								<motion.p
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6, delay: 0.2 }}
-									className={`${lato.className} max-w-lg text-muted-foreground`}
-								>
+								<p className={`${lato.className} max-w-lg text-muted-foreground`}>
 									Welcome to <span className="font-bold text-accent">LinkNest</span>! Your links, profiles, contact
 									info, and more in one place. Create and customize your page and share it with your audience.
-								</motion.p>
+								</p>
 								<motion.div
 									whileHover={{ scale: 1.05 }}
 									transition={{ type: "spring", stiffness: 200, damping: 10 }}
@@ -118,7 +106,12 @@ export default function Home() {
 
 				{/* Features section */}
 				<section className="relative z-10 flex flex-col items-center justify-center gap-12 py-12 text-center">
-					<motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+					<motion.h2
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+						className={`${bowlby.className}`}
+					>
 						Why Choose LinkNest?
 					</motion.h2>
 
@@ -135,7 +128,7 @@ export default function Home() {
 									<span className="rounded-full bg-gradient-to-bl from-primary to-secondary p-2 text-[#ebe8e8]">
 										<Icon icon={feature.icon} width={20} height={20} />
 									</span>
-									<h4>{feature.title}</h4>
+									<h5>{feature.title}</h5>
 								</div>
 								<p className="text-sm text-muted-foreground">{feature.description}</p>
 							</motion.div>
@@ -145,15 +138,16 @@ export default function Home() {
 
 				{/* CTA section */}
 				<section className="relative z-10 flex w-full flex-col items-center justify-center gap-12 border-y bg-card p-12">
-					<div className="flex flex-col items-center justify-center gap-4">
+					<div className="flex flex-col items-center justify-center gap-4 text-center">
 						<motion.h2
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
+							className={`${bowlby.className}`}
 						>
 							Ready to Try?
 						</motion.h2>
-						<p className="text-center font-medium">Create an account and build your page today!</p>
+						<p className="text-lead">Create an account and build your page today!</p>
 						<Link href="/login" className="btn-secondary">
 							Get Started
 							<Icon icon="mdi:rocket-launch-outline" width={25} height={25} />
@@ -161,7 +155,7 @@ export default function Home() {
 					</div>
 
 					<p className="text-center text-xs italic">
-						"{randomQuote.quote}" - <span className="font-medium text-muted-foreground">{randomQuote.author}</span>
+						"{randomQuote.quote}" - <span className="text-muted-foreground">{randomQuote.author}</span>
 					</p>
 				</section>
 			</div>

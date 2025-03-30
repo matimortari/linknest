@@ -49,7 +49,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 		<div>
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Appearance</h3>
-				<p className="text-sm font-semibold text-muted-foreground">Customize the appearance for your page.</p>
+				<p className="text-caption text-muted-foreground">Customize the appearance for your page.</p>
 			</header>
 
 			<div className="flex flex-wrap items-center justify-between gap-4">

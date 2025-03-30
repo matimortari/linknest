@@ -74,13 +74,13 @@ export default function ShareBanner() {
 	return (
 		<div className="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
 			<div className="flex w-full flex-col gap-1 overflow-x-hidden">
-				<h4 className="text-foreground">Share your LinkNest Page:</h4>
+				<h5 className="text-foreground">Share your LinkNest Page:</h5>
 				<Link
 					href={`/${user?.slug}`}
 					title={`linknest-live.vercel.app/${user?.slug}`}
 					className="truncate text-xs font-medium hover:underline"
 				>
-					<span>linknest-live.vercel.app/{user?.slug}</span>
+					<span className="text-label">linknest-live.vercel.app/{user?.slug}</span>
 				</Link>
 			</div>
 

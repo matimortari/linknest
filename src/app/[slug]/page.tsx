@@ -26,7 +26,7 @@ export default async function slugPage({ params }: { params: Params }) {
 	if (!user) {
 		return (
 			<div className="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-				<p className="text-center text-xl text-muted-foreground">User `{slug}` not found.</p>
+				<p className="text-lead text-center text-muted-foreground">User `{slug}` not found.</p>
 
 				<Link href="/" className="flex flex-row items-center justify-start gap-2">
 					<Image src="/logo.png" alt="LinkNest Logo" width={35} height={35} className="icon rounded-full" />

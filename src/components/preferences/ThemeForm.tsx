@@ -33,11 +33,12 @@ export default function ThemeForm({ setTheme }) {
 					}}
 				>
 					<span
-						className="line-clamp-1 truncate rounded-full p-2 text-center text-sm"
+						className="line-clamp-1 truncate p-2 text-center text-sm"
 						style={{
 							backgroundColor: preferences.linkBackgroundColor,
 							fontWeight: preferences.slugTextWeight,
 							color: preferences.linkTextColor,
+							borderRadius: preferences.linkBorderRadius,
 							boxShadow: preferences.isLinkShadow
 								? {
 										none: "none",

@@ -7,7 +7,7 @@ export default function Footer() {
 			<hr className="my-2 w-full" />
 
 			<div className="mx-4 whitespace-nowrap font-light text-muted-foreground">
-				<p>© 2025 Matheus Mortari. All rights reserved.</p>
+				<p className="text-caption text-muted-foreground">© 2025 Matheus Mortari. All rights reserved.</p>
 			</div>
 
 			<div className="mx-4 flex flex-row gap-4 text-muted-foreground">

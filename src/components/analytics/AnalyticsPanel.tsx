@@ -24,7 +24,7 @@ export default function AnalyticsPanel() {
 		<div className="flex flex-col gap-4">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Analytics Summary</h3>
-				<p className="text-sm font-semibold text-muted-foreground">Your Key Metrics.</p>
+				<p className="text-caption text-muted-foreground">Your Key Metrics.</p>
 			</header>
 
 			{isAnalyticsLoading || !session ? (
@@ -34,7 +34,7 @@ export default function AnalyticsPanel() {
 					<div className="flex flex-row items-center gap-2">
 						<Icon icon="material-symbols:table-eye" width={25} height={25} className="text-accent" />
 						<div className="flex flex-col items-start">
-							<p className="text-xs text-muted-foreground">Total Page Views</p>
+							<p className="text-caption text-muted-foreground">Total Page Views</p>
 							<p className="font-semibold md:text-lg">{totalViews}</p>
 						</div>
 					</div>
@@ -42,7 +42,7 @@ export default function AnalyticsPanel() {
 					<div className="flex flex-row items-center gap-2">
 						<Icon icon="material-symbols:ads-click" width={25} height={25} className="text-accent" />
 						<div className="flex flex-col items-start">
-							<p className="text-xs text-muted-foreground">Total Link Clicks</p>
+							<p className="text-caption text-muted-foreground">Total Link Clicks</p>
 							<p className="font-semibold md:text-lg">{totalClicks}</p>
 						</div>
 					</div>
@@ -50,7 +50,7 @@ export default function AnalyticsPanel() {
 					<div className="flex flex-row items-center gap-2">
 						<Icon icon="material-symbols:percent" width={25} height={25} className="text-accent" />
 						<div className="flex flex-col items-start">
-							<p className="text-xs text-muted-foreground">Click Rate</p>
+							<p className="text-caption text-muted-foreground">Click Rate</p>
 							<p className="font-semibold md:text-lg">{clickRate}%</p>
 						</div>
 					</div>
@@ -58,7 +58,7 @@ export default function AnalyticsPanel() {
 					<div className="flex flex-row items-center gap-2">
 						<Icon icon="material-symbols:calendar-month" width={25} height={25} className="text-accent" />
 						<div className="flex flex-col items-start">
-							<p className="text-xs text-muted-foreground">Joined On</p>
+							<p className="text-caption text-muted-foreground">Joined On</p>
 							<p className="font-semibold md:text-lg">{createdAt}</p>
 						</div>
 					</div>
@@ -69,7 +69,7 @@ export default function AnalyticsPanel() {
 
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Profile Views</h3>
-				<p className="text-sm font-semibold text-muted-foreground">Total views for your page over the last 30 days.</p>
+				<p className="text-caption text-muted-foreground">Total views for your page over the last 30 days.</p>
 			</header>
 
 			{totalViews === 0 || !hasEnoughData ? (
@@ -96,8 +96,8 @@ export default function AnalyticsPanel() {
 			<div className="my-2 flex flex-col justify-between gap-2 md:flex-row">
 				<div className="flex w-full flex-col gap-2">
 					<header className="my-2 flex flex-col gap-2">
-						<h3 className="subtitle">Link Clicks</h3>
-						<p className="text-sm font-semibold text-muted-foreground">Total link clicks over the last 30 days.</p>
+						<h3>Link Clicks</h3>
+						<p className="text-caption text-muted-foreground">Total link clicks over the last 30 days.</p>
 					</header>
 
 					{totalClicks === 0 || !hasEnoughData ? (
@@ -122,10 +122,8 @@ export default function AnalyticsPanel() {
 
 				<div className="flex w-full flex-col gap-2">
 					<header className="my-2 flex flex-col gap-2">
-						<h3 className="subtitle">Social Icon Clicks</h3>
-						<p className="text-sm font-semibold text-muted-foreground">
-							Total social icon clicks over the last 30 days.
-						</p>
+						<h3>Social Icon Clicks</h3>
+						<p className="text-caption text-muted-foreground">Total social icon clicks over the last 30 days.</p>
 					</header>
 
 					{totalClicks === 0 || !hasEnoughData ? (

@@ -41,7 +41,7 @@ export default function Profile() {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.6, delay: 0.4 }}
-						className="text-sm font-semibold text-muted-foreground"
+						className="text-caption text-muted-foreground"
 					>
 						Welcome back, <span className="font-bold text-accent">{user?.slug}</span>!
 					</motion.p>

@@ -112,6 +112,5 @@ interface RadioOptionsProps {
 	value: string // Selected value
 	label: string // Label text
 	options: { value: string; label: string }[] // Options list
-	disabled?: boolean // Whether the options are disabled
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // React change event handler
 }

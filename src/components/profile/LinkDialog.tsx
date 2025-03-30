@@ -55,7 +55,7 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						placeholder="Enter link title"
 						className="rounded-2xl border p-2 text-sm"
 					/>
-					{errors.title && <p className="text-sm font-semibold text-danger-foreground">{errors.title}</p>}
+					{errors.title && <p className="text-caption text-danger-foreground">{errors.title}.</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -70,7 +70,7 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						placeholder="Enter link URL"
 						className="rounded-2xl border p-2 text-sm"
 					/>
-					{errors.url && <p className="text-sm font-semibold text-danger-foreground">{errors.url}</p>}
+					{errors.url && <p className="text-caption text-danger-foreground">{errors.url}.</p>}
 				</div>
 
 				<div className="input-group">

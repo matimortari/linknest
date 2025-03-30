@@ -50,11 +50,13 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 							} hover:bg-muted active:bg-accent`}
 						>
 							<Icon icon={icon} width={20} height={20} />
-							<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
+							<span className="text-label mt-1 text-center">
+								{platform.charAt(0).toUpperCase() + platform.slice(1)}
+							</span>
 						</button>
 					))}
 				</div>
-				{errors.platform && <p className="text-sm font-semibold text-danger-foreground">{errors.platform}</p>}
+				{errors.platform && <p className="text-caption text-danger-foreground">{errors.platform}.</p>}
 
 				<div className="flex flex-col gap-2">
 					<label htmlFor="iconUrl" className="font-semibold">
@@ -69,7 +71,7 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 							placeholder="Enter link URL"
 							className="max-w-sm rounded-2xl border p-2 text-sm"
 						/>
-						{errors.url && <p className="text-sm font-semibold text-danger-foreground">{errors.url}</p>}
+						{errors.url && <p className="text-caption text-danger-foreground">{errors.url}.</p>}
 					</div>
 				</div>
 

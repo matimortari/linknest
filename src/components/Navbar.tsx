@@ -42,11 +42,11 @@ const UserCard = ({ slug, description, image, setIsDialogOpen }) => (
 			<Link
 				href={`/${slug}`}
 				title={`linknest-live.vercel.app/${slug}`}
-				className="truncate text-xs font-medium hover:underline"
+				className="text-caption truncate hover:underline"
 			>
 				@{slug}
 			</Link>
-			<p className="break-all text-xs text-muted-foreground">{description}</p>
+			<p className="text-label break-all text-muted-foreground">{description}</p>
 		</div>
 	</div>
 )

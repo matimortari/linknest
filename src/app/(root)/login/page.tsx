@@ -32,7 +32,14 @@ export default function Login() {
 					transition={{ duration: 0.6, delay: 0.2 }}
 					className="my-8 flex w-full flex-col items-center gap-6"
 				>
-					<h2 className={`${bowlby.className}`}>Sign In</h2>
+					<motion.h2
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+						className={`${bowlby.className}`}
+					>
+						Sign In
+					</motion.h2>
 					<p className={`${lato.className} text-muted-foreground`}>Sign in with Google or GitHub to continue.</p>
 				</motion.header>
 

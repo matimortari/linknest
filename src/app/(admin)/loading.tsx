@@ -19,7 +19,7 @@ export default function Loading() {
 			<motion.p
 				animate={{ opacity: [0.3, 1, 0.3] }}
 				transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-				className="text-sm font-semibold text-muted-foreground"
+				className="text-caption text-muted-foreground"
 			>
 				Loading
 				<motion.span animate={{ opacity: [0, 1, 0], transition: { duration: 1, repeat: Infinity } }}>.</motion.span>

@@ -18,7 +18,7 @@ export default function QrCodeDialog({ isOpen, onClose, slug }) {
 			<div className="my-4 flex flex-col items-center gap-4">
 				<QRCodeCanvas value={`https://linknest-live.vercel.app/${slug}`} size={200} />
 
-				<p className="text-muted-foreground">Scan this QR code to visit your LinkNest profile!</p>
+				<p className="text-caption text-muted-foreground">Scan this QR code to visit your LinkNest profile!</p>
 
 				<div className="input-group">
 					<button onClick={() => handleDownloadQrCode(slug)} title="Download Your QR Code" className="btn-secondary">

@@ -22,9 +22,7 @@ export default function DeleteAccount() {
 		<div className="flex flex-col gap-4">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>Delete Account</h3>
-				<p className="text-sm font-semibold text-danger-foreground">
-					This action is irreversible. All data will be lost.
-				</p>
+				<p className="text-caption text-danger-foreground">This action is irreversible. All data will be lost.</p>
 			</header>
 
 			<div className="input-group justify-end md:justify-start">

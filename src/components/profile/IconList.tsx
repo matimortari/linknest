@@ -22,13 +22,13 @@ export default function IconList() {
 		<div className="flex flex-col gap-2">
 			<header className="my-2 flex flex-col gap-2">
 				<h3>My Social Icons</h3>
-				<p className="text-sm font-semibold text-muted-foreground">Manage your social icons.</p>
+				<p className="text-caption text-muted-foreground">Manage your social icons.</p>
 			</header>
 
 			{isIconsLoading ? (
 				<Spinner />
 			) : userIcons.length === 0 ? (
-				<p className="my-2 text-center font-semibold text-muted-foreground">No social icons here yet. Get started!</p>
+				<p className="text-lead my-2 text-center text-muted-foreground">No social icons here yet. Get started!</p>
 			) : (
 				<ul className="flex flex-row gap-2">
 					{userIcons.map((b: UserIcon) => (

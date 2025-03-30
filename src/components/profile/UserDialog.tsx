@@ -83,7 +83,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="Your unique identifier"
 						className="rounded-2xl border p-2 text-sm"
 					/>
-					{errors.slug && <p className="text-sm font-semibold text-danger-foreground">{errors.slug}</p>}
+					{errors.slug && <p className="text-caption text-danger-foreground">{errors.slug}.</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -98,7 +98,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="A short bio about yourself"
 						className="rounded-2xl border p-2 text-sm"
 					/>
-					{errors.description && <p className="text-sm font-semibold text-danger-foreground">{errors.description}</p>}
+					{errors.description && <p className="text-caption text-danger-foreground">{errors.description}.</p>}
 				</div>
 
 				<div className="flex flex-col gap-2">
@@ -113,7 +113,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						placeholder="Your profile picture URL"
 						className="rounded-2xl border p-2 text-sm"
 					/>
-					{errors.image && <p className="text-sm font-semibold text-danger-foreground">{errors.image}</p>}
+					{errors.image && <p className="text-caption text-danger-foreground">{errors.image}.</p>}
 				</div>
 
 				<div className="input-group">

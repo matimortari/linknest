@@ -2,14 +2,24 @@
 
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { Bowlby_One, Lato } from "next/font/google"
 import Image from "next/image"
+import { redirect } from "next/navigation"
+import { useEffect } from "react"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
 const lato = Lato({ subsets: ["latin"], weight: "700" })
 
 export default function Login() {
+	const { status } = useSession()
+
+	useEffect(() => {
+		if (status === "authenticated") {
+			redirect("/profile")
+		}
+	}, [status])
+
 	return (
 		<div className="min-h-screen md:flex">
 			<motion.div

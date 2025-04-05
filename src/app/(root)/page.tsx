@@ -5,8 +5,10 @@ import Header from "@/src/components/Header"
 import quotes from "@/src/config/quotes.json"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
+import { useSession } from "next-auth/react"
 import { Bowlby_One, Lato } from "next/font/google"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
@@ -40,7 +42,15 @@ export default function Home() {
 		}
 	]
 
+	const { status } = useSession()
+
 	const [randomQuote, setRandomQuote] = useState(quotes[0])
+
+	useEffect(() => {
+		if (status === "authenticated") {
+			redirect("/profile")
+		}
+	}, [status])
 
 	useEffect(() => {
 		const randomIndex = Math.floor(Math.random() * quotes.length)
@@ -80,11 +90,15 @@ export default function Home() {
 								<motion.div
 									whileHover={{ scale: 1.05 }}
 									transition={{ type: "spring", stiffness: 200, damping: 10 }}
-									className="flex max-w-lg flex-row items-center justify-between rounded-2xl border bg-card p-1 pl-3 text-sm shadow-2xl"
+									className="flex max-w-lg flex-row items-center justify-between rounded-2xl border bg-card p-1 pl-3 text-sm shadow-2xl shadow-accent"
 								>
 									<span className="hidden cursor-default sm:inline">linknest-live.vercel.app/</span>
 									<span className="cursor-default sm:hidden">@</span>
-									<input type="text" placeholder="your_name" className="flex-1 appearance-none" />
+									<input
+										type="text"
+										placeholder="your_name"
+										className="flex-1 appearance-none bg-transparent outline-none"
+									/>
 									<Link href="/login" className="btn-primary">
 										Go!
 									</Link>
@@ -106,6 +120,7 @@ export default function Home() {
 
 				{/* Features section */}
 				<section className="relative z-10 flex flex-col items-center justify-center gap-12 py-12 text-center">
+					<div className="absolute -z-10 h-44 w-10/12 rounded-full bg-accent opacity-20 blur-2xl" />
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -138,6 +153,18 @@ export default function Home() {
 
 				{/* CTA section */}
 				<section className="relative z-10 flex w-full flex-col items-center justify-center gap-12 border-y bg-card p-12">
+					<div
+						className="absolute inset-0 -z-10 m-6 opacity-60"
+						style={{
+							backgroundImage: `
+        linear-gradient(to right, var(--muted) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--muted) 1px, transparent 1px)
+      `,
+							backgroundSize: `60px 60px`,
+							backgroundPosition: `center`
+						}}
+					/>
+
 					<div className="flex flex-col items-center justify-center gap-4 text-center">
 						<motion.h2
 							initial={{ opacity: 0, y: 20 }}

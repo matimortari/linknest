@@ -62,14 +62,14 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 					<label htmlFor="iconUrl" className="font-semibold">
 						Social Icon URL
 					</label>
-					<div className="flex flex-col items-center gap-2 md:flex-row">
+					<div className="flex flex-col items-start gap-2 md:max-w-sm md:flex-row md:items-center">
 						<input
 							id="iconUrl"
 							type="url"
 							value={iconUrl}
 							onChange={(e) => setIconUrl(e.target.value)}
 							placeholder="Enter link URL"
-							className="max-w-sm rounded-2xl border p-2 text-sm"
+							className="card text-caption w-full text-muted-foreground"
 						/>
 						{errors.url && <p className="text-caption text-danger-foreground">{errors.url}.</p>}
 					</div>

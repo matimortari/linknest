@@ -81,7 +81,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						value={slug}
 						onChange={(e) => setSlug(e.target.value)}
 						placeholder="Your unique identifier"
-						className="rounded-2xl border p-2 text-sm"
+						className="card text-caption text-muted-foreground"
 					/>
 					{errors.slug && <p className="text-caption text-danger-foreground">{errors.slug}.</p>}
 				</div>
@@ -96,7 +96,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						placeholder="A short bio about yourself"
-						className="rounded-2xl border p-2 text-sm"
+						className="card text-caption text-muted-foreground"
 					/>
 					{errors.description && <p className="text-caption text-danger-foreground">{errors.description}.</p>}
 				</div>
@@ -111,7 +111,7 @@ export default function UserDialog({ isOpen, onClose }) {
 						value={image}
 						onChange={(e) => setImage(e.target.value)}
 						placeholder="Your profile picture URL"
-						className="rounded-2xl border p-2 text-sm"
+						className="card text-caption text-muted-foreground"
 					/>
 					{errors.image && <p className="text-caption text-danger-foreground">{errors.image}.</p>}
 				</div>

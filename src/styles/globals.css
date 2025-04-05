@@ -186,6 +186,7 @@
 	}
 	.btn-selected {
 		filter: brightness(0.6);
+		box-shadow: 0 0 0 0.5px var(--success-foreground);
 	}
 	.btn:hover,
 	.btn-primary:hover,
@@ -194,7 +195,7 @@
 	.btn-success:hover {
 		filter: brightness(0.6);
 		transform: scale(1.05);
-		box-shadow: 0 0 0 1px var(--success-foreground);
+		box-shadow: 0 0 0 0.5px var(--accent);
 	}
 	.btn:disabled,
 	.btn-primary:disabled,

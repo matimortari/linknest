@@ -80,11 +80,11 @@ export default function Home() {
 								<motion.div
 									whileHover={{ scale: 1.05 }}
 									transition={{ type: "spring", stiffness: 200, damping: 10 }}
-									className="flex max-w-lg flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-2xl"
+									className="flex max-w-lg flex-row items-center justify-between rounded-2xl border bg-card p-1 pl-3 text-sm shadow-2xl"
 								>
 									<span className="hidden cursor-default sm:inline">linknest-live.vercel.app/</span>
 									<span className="cursor-default sm:hidden">@</span>
-									<input type="text" placeholder="your_name" className="flex-1 outline-none" />
+									<input type="text" placeholder="your_name" className="flex-1 appearance-none" />
 									<Link href="/login" className="btn-primary">
 										Go!
 									</Link>

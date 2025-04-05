@@ -26,23 +26,8 @@ input:checked + .slider:before {
 	transform: translateX(12px);
 }
 
-input[type="text"],
-input[type="url"],
-textarea,
-select,
-option {
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	background-color: transparent;
-	border-color: var(--border);
-	color: var(--muted-foreground);
-	flex: 1 1 0%;
-	border-radius: 1rem;
-	padding: 0.5rem;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	height: 2rem;
+select {
+	text-align-last: end;
 }
 
 input[type="checkbox"],

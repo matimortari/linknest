@@ -53,7 +53,7 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						value={linkTitle}
 						onChange={(e) => setLinkTitle(e.target.value)}
 						placeholder="Enter link title"
-						className="rounded-2xl border p-2 text-sm"
+						className="card text-caption text-muted-foreground"
 					/>
 					{errors.title && <p className="text-caption text-danger-foreground">{errors.title}.</p>}
 				</div>
@@ -68,7 +68,7 @@ export default function LinkDialog({ isOpen, onClose, selectedLink, onSave }: Li
 						value={linkUrl}
 						onChange={(e) => setLinkUrl(e.target.value)}
 						placeholder="Enter link URL"
-						className="rounded-2xl border p-2 text-sm"
+						className="card text-caption text-muted-foreground"
 					/>
 					{errors.url && <p className="text-caption text-danger-foreground">{errors.url}.</p>}
 				</div>

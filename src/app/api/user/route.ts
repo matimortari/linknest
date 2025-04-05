@@ -2,7 +2,7 @@ import { db } from "@/src/lib/db"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 
-// GET method for getting extended user data
+// Get user data
 export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -22,7 +22,7 @@ export async function GET() {
 	return NextResponse.json(user, { status: 200 })
 }
 
-// PUT method for updating user data
+// Update user data
 export async function PUT(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -47,7 +47,7 @@ export async function PUT(req: NextRequest) {
 	return NextResponse.json({ message: "User updated successfully", updatedUser }, { status: 200 })
 }
 
-// DELETE method for deleting user
+// Delete user
 export async function DELETE() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response

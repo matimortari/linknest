@@ -32,7 +32,7 @@ export default function ThemeForm({ setTheme }) {
 						backgroundColor: preferences.backgroundType !== "GRADIENT" ? preferences.backgroundColor : "none"
 					}}
 				>
-					<span
+					<div
 						className="line-clamp-1 truncate p-2 text-center text-sm"
 						style={{
 							backgroundColor: preferences.linkBackgroundColor,
@@ -50,7 +50,7 @@ export default function ThemeForm({ setTheme }) {
 						}}
 					>
 						{title}
-					</span>
+					</div>
 				</button>
 			))}
 		</div>

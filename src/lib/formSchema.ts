@@ -19,14 +19,22 @@ export const userSchema = z.object({
 
 export const linkSchema = z.object({
 	title: z.string().min(1, "Title is required").max(32, "Title must not exceed 32 characters"),
-	url: z.string().url("Invalid URL format")
+	url: z
+		.string()
+		.url("Invalid URL format")
+		.refine((url) => url.startsWith("https://"), {
+			message: "Invalid URL format. Link URL must start with 'https://'"
+		})
 })
 
-const validPlatforms = Object.keys(SOCIAL_ICONS) as [string, ...string[]]
-
 export const iconSchema = z.object({
-	platform: z.enum(validPlatforms, { message: "Invalid platform selected" }),
-	url: z.string().url("Invalid URL format")
+	platform: z.enum(Object.keys(SOCIAL_ICONS) as [string, ...string[]], { message: "Invalid platform selected" }),
+	url: z
+		.string()
+		.url("Invalid URL format")
+		.refine((url) => url.startsWith("https://"), {
+			message: "Invalid URL format. Icon URL must start with 'https://'"
+		})
 })
 
 export type UserSchemaType = z.infer<typeof userSchema>

@@ -67,7 +67,7 @@ export default function LinkList() {
 										</button>
 									</div>
 								</div>
-								<span className="text-label truncate text-muted-foreground">{l.url}</span>
+								<p className="text-label truncate text-muted-foreground">{l.url}</p>
 							</div>
 						</li>
 					))}

@@ -1,4 +1,3 @@
-// Update user slug
 export const updateSlug = async (newSlug: string): Promise<void> => {
 	const response = await fetch("/api/user", {
 		method: "PUT",
@@ -11,7 +10,6 @@ export const updateSlug = async (newSlug: string): Promise<void> => {
 	return response.json()
 }
 
-// Update user description
 export const updateDescription = async (newDescription: string): Promise<void> => {
 	const response = await fetch("/api/user", {
 		method: "PUT",
@@ -24,7 +22,6 @@ export const updateDescription = async (newDescription: string): Promise<void> =
 	return response.json()
 }
 
-// Update user image
 export const updateImage = async (newImageUrl: string): Promise<void> => {
 	const response = await fetch("/api/user", {
 		method: "PUT",
@@ -41,7 +38,6 @@ export const updateImage = async (newImageUrl: string): Promise<void> => {
 	return response.json()
 }
 
-// Delete user account
 export const deleteUser = async () => {
 	const response = await fetch("/api/user", { method: "DELETE" })
 

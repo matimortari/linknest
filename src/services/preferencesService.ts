@@ -1,10 +1,8 @@
-// Get user preferences
 export const getPreferences = async () => {
 	const res = await fetch("/api/preferences", { method: "GET" })
 	return res.json()
 }
 
-// Update user preferences
 export const updatePreferences = async (newPreferences: object) => {
 	const res = await fetch("/api/preferences", {
 		method: "PUT",
@@ -14,7 +12,6 @@ export const updatePreferences = async (newPreferences: object) => {
 	return res.json()
 }
 
-// Update user preferences for support banner
 export const updateSupportBanner = async (newBanner: string) => {
 	const res = await fetch("/api/preferences", {
 		method: "PUT",
@@ -24,7 +21,6 @@ export const updateSupportBanner = async (newBanner: string) => {
 	return res.json()
 }
 
-// Reset user preferences (send empty object to trigger defaults in Prisma)
 export const resetPreferences = async () => {
 	const res = await fetch("/api/preferences", {
 		method: "PUT",

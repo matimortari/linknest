@@ -2,7 +2,7 @@ import { db } from "@/src/lib/db"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 
-// GET method for getting user preferences
+// Get user preferences
 export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -15,7 +15,7 @@ export async function GET() {
 	return NextResponse.json(preferences, { status: 200 })
 }
 
-// PUT method for updating user preferences or resetting to default
+// Update user preferences or reset to default
 export async function PUT(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response

@@ -4,7 +4,7 @@ import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-// GET method for getting user social icons
+// Get user social icons
 export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -17,7 +17,7 @@ export async function GET() {
 	return NextResponse.json(userIcons, { status: 200 })
 }
 
-// POST method for creating a new user social icon
+// Create a new user social icon
 export async function POST(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 	return NextResponse.json(newIcon)
 }
 
-// DELETE method for deleting a user social icon
+// Delete a user social icon
 export async function DELETE(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response

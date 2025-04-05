@@ -32,8 +32,8 @@ export default function ClicksByLink() {
 							)}
 
 							<div className="flex flex-col gap-1">
-								<span className="text-label text-muted-foreground">{item.url}</span>
-								<span className="text-label text-muted-foreground">Created at {formatDate(item.createdAt)}</span>
+								<p className="text-label text-muted-foreground">{item.url}</p>
+								<p className="text-label text-muted-foreground">Created at {formatDate(item.createdAt)}</p>
 							</div>
 						</li>
 					))}

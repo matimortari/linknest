@@ -4,7 +4,7 @@ import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-// GET method for getting user links
+// Get user links
 export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -17,7 +17,7 @@ export async function GET() {
 	return NextResponse.json(userLinks, { status: 200 })
 }
 
-// POST method for creating a new user link
+// Create a new user link
 export async function POST(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 	return NextResponse.json(newLink)
 }
 
-// PUT method for updating a user link
+// Update a user link
 export async function PUT(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -66,7 +66,7 @@ export async function PUT(req: NextRequest) {
 	return NextResponse.json(updatedLink)
 }
 
-// DELETE method for deleting a user link
+// Delete a user link
 export async function DELETE(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response

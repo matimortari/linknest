@@ -154,7 +154,7 @@ export default function Navbar() {
 					</button>
 					<button onClick={() => signOut({ callbackUrl: "/" })} title="Sign Out" className="btn-danger">
 						<Icon icon="material-symbols:logout" width={25} height={25} />
-						<p className="hidden md:block">Sign Out</p>
+						<span className="hidden md:block">Sign Out</span>
 					</button>
 				</div>
 			</motion.div>

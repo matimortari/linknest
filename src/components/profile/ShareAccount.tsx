@@ -78,9 +78,9 @@ export default function ShareBanner() {
 				<Link
 					href={`/${user?.slug}`}
 					title={`linknest-live.vercel.app/${user?.slug}`}
-					className="truncate text-xs font-medium hover:underline"
+					className="text-label truncate hover:underline"
 				>
-					<span className="text-label">linknest-live.vercel.app/{user?.slug}</span>
+					linknest-live.vercel.app/{user?.slug}
 				</Link>
 			</div>
 

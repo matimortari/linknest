@@ -62,15 +62,15 @@ interface UserPreferences {
 
 interface DialogProps {
 	isOpen: boolean // Whether the dialog is open or closed
-	onClose: () => void // Function to close the dialog (returns void)
-	title: string // The title of the dialog
+	onClose: () => void // Function to close the dialog
+	title: string // The title for the dialog (Shown at the header)
 	children: ReactNode // The content inside the dialog (could be any React element)
 }
 
 interface LinkDialogProps {
 	isOpen: boolean
 	onClose: () => void
-	selectedLink: UserLink | null // Can be null for creating a new link
+	selectedLink: UserLink | null // Can be null for when creating a new link
 	onSave: (link: { title: string; url: string }) => void
 }
 
@@ -81,24 +81,22 @@ interface IconDialogProps {
 }
 
 interface CheckboxInputProps {
-	id: string // Checkbox ID
+	id: string
 	label: string // Label text
 	checked?: boolean // Whether the checkbox is checked
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // React change event handler
 }
 
-// ColorInput component props
 interface ColorInputProps {
-	id: string // Color input ID
+	id: string
 	label: string // Label text
-	value?: string // Color value (default "#000000")
+	value?: string // Color value
 	disabled?: boolean // Whether the input is disabled
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // React change event handler
 }
 
-// SelectInput component props
 interface SelectInputProps {
-	id: string // Select input ID
+	id: string
 	label: string // Label text
 	value: string // Selected value
 	disabled?: boolean // Whether the input is disabled
@@ -106,11 +104,10 @@ interface SelectInputProps {
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void // React change event handler
 }
 
-// RadioOptions component props
 interface RadioOptionsProps {
-	name: string // Radio button name
-	value: string // Selected value
+	name: string
 	label: string // Label text
+	value: string // Selected value
 	options: { value: string; label: string }[] // Options list
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // React change event handler
 }

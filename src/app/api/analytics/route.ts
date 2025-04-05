@@ -2,7 +2,7 @@ import { db } from "@/src/lib/db"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 
-// GET method for getting user analytics data
+// Get user analytics data
 export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
@@ -15,7 +15,7 @@ export async function GET() {
 	return NextResponse.json(analyticsData, { status: 200 })
 }
 
-// POST method for processing link and social icon clicks
+// Process link and social icon clicks
 export async function POST(req: NextRequest) {
 	const { type, id } = await req.json()
 

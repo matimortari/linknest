@@ -8,12 +8,12 @@ interface Store {
 }
 
 const useUserStore = create<Store>((set) => ({
-	user: null, // Initially, the user is null
-	setUser: (user) => set({ user }), // Set user data
-	clearUser: () => set({ user: null }), // Clear user data (e.g., for logout)
+	user: null,
+	setUser: (user) => set({ user }),
+	clearUser: () => set({ user: null }),
 	updateUser: (userData) =>
 		set((state) => ({
-			user: { ...state.user, ...userData } as User // Merge user data
+			user: { ...state.user, ...userData } as User
 		}))
 }))
 

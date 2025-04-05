@@ -11,7 +11,7 @@ type Params = Promise<{ slug: string }>
 
 const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
-export default async function slugPage({ params }: { params: Params }) {
+export default async function SlugPage({ params }: { params: Params }) {
 	const { slug } = await params
 
 	const user = await db.user.findUnique({

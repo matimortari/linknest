@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useState } from "react"
+import Spinner from "./Spinner"
 
 function HeaderBar() {
 	return (
@@ -82,72 +83,78 @@ export default function Preview({ preferences }) {
 	const { user } = useUserStore()
 	const { data: session } = useSession()
 
-	const { data: userIcons = [] } = useGetIcons()
-	const { data: userLinks = [] } = useGetLinks()
+	const { data: userLinks = [], isLoading: isLinksLoading } = useGetLinks()
+	const { data: userIcons = [], isLoading: isIconsLoading } = useGetIcons()
 
 	const [isVisible, setIsVisible] = useState(false)
 
 	return (
-		<div className="my-6 flex h-full max-h-[560px] flex-col items-center gap-2">
-			{/* Preview toggle for mobile */}
-			<button
-				onClick={() => setIsVisible((prev) => !prev)}
-				className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
-			>
-				<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} width={20} height={20} />
-				{isVisible ? "Close Preview" : "Preview"}
-			</button>
+		<>
+			{isLinksLoading || isIconsLoading ? (
+				<Spinner />
+			) : (
+				<div className="my-6 flex h-full max-h-[560px] flex-col items-center gap-2">
+					{/* Preview toggle for mobile */}
+					<button
+						onClick={() => setIsVisible((prev) => !prev)}
+						className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
+					>
+						<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} width={20} height={20} />
+						{isVisible ? "Close Preview" : "Preview"}
+					</button>
 
-			{/* Full-screen preview for mobile */}
-			<div
-				className={`fixed left-0 top-0 z-10 size-full bg-background p-12 transition-all duration-300 md:hidden ${
-					isVisible ? "block" : "hidden"
-				}`}
-				style={
-					preferences?.backgroundType === "GRADIENT"
-						? {
-								background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
-						  }
-						: { backgroundColor: preferences?.backgroundColor }
-				}
-			>
-				{user && session && (
-					<PreviewContent
-						slug={user.slug}
-						description={user.description}
-						image={user.image}
-						userIcons={userIcons}
-						userLinks={userLinks}
-						preferences={preferences}
-						sessionId={session.user.id}
-					/>
-				)}
-			</div>
+					{/* Full-screen preview for mobile */}
+					<div
+						className={`fixed left-0 top-0 z-10 size-full bg-background p-12 transition-all duration-300 md:hidden ${
+							isVisible ? "block" : "hidden"
+						}`}
+						style={
+							preferences?.backgroundType === "GRADIENT"
+								? {
+										background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
+								  }
+								: { backgroundColor: preferences?.backgroundColor }
+						}
+					>
+						{user && session && (
+							<PreviewContent
+								slug={user.slug}
+								description={user.description}
+								image={user.image}
+								userIcons={userIcons}
+								userLinks={userLinks}
+								preferences={preferences}
+								sessionId={session.user.id}
+							/>
+						)}
+					</div>
 
-			{/* Desktop Preview */}
-			<div
-				className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
-				style={
-					preferences?.backgroundType === "GRADIENT"
-						? {
-								background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
-						  }
-						: { backgroundColor: preferences?.backgroundColor }
-				}
-			>
-				<HeaderBar />
-				{user && session && (
-					<PreviewContent
-						slug={user.slug}
-						description={user.description}
-						image={user.image}
-						userIcons={userIcons}
-						userLinks={userLinks}
-						preferences={preferences}
-						sessionId={session.user.id}
-					/>
-				)}
-			</div>
-		</div>
+					{/* Desktop Preview */}
+					<div
+						className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
+						style={
+							preferences?.backgroundType === "GRADIENT"
+								? {
+										background: `linear-gradient(to bottom, ${preferences?.backgroundGradientStart}, ${preferences?.backgroundGradientEnd})`
+								  }
+								: { backgroundColor: preferences?.backgroundColor }
+						}
+					>
+						<HeaderBar />
+						{user && session && (
+							<PreviewContent
+								slug={user.slug}
+								description={user.description}
+								image={user.image}
+								userIcons={userIcons}
+								userLinks={userLinks}
+								preferences={preferences}
+								sessionId={session.user.id}
+							/>
+						)}
+					</div>
+				</div>
+			)}
+		</>
 	)
 }

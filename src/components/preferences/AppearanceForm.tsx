@@ -10,12 +10,13 @@ import {
 	SHADOW_WEIGHTS
 } from "@/src/config/preferencesConfig"
 import { BANNER_OPTIONS } from "@/src/config/supportBannerConfig"
-import { useUpdatePreferences } from "@/src/hooks/useMutations"
+import { useResetPreferences, useUpdatePreferences } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 
 export default function AppearanceForm({ preferences, setPreferences }) {
 	const { mutate: updatePreferencesMutation } = useUpdatePreferences()
+	const { mutate: resetPreferencesMutation } = useResetPreferences()
 
 	const [activeTab, setActiveTab] = useState("background")
 	const [selectedPreferences, setSelectedPreferences] = useState(preferences)
@@ -68,6 +69,9 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 					<button onClick={() => updatePreferencesMutation(selectedPreferences)} className="btn-primary">
 						<Icon icon="mdi:content-save-check" width={20} height={20} />
 						Save Changes
+					</button>
+					<button onClick={() => resetPreferencesMutation()} title="Reset Preferences" className="btn-danger">
+						<Icon icon="mdi:close" width={20} height={20} />
 					</button>
 				</div>
 			</div>

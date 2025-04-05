@@ -35,7 +35,7 @@ export default function LinkList() {
 
 			{isLinksLoading ? (
 				<Spinner />
-			) : userLinks.length === 0 ? (
+			) : !userLinks?.length ? (
 				<p className="text-lead my-2 text-center text-muted-foreground">No links here yet. Get started!</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">

@@ -1,9 +1,10 @@
+import Spinner from "@/src/components/Spinner"
 import { useGetClicksByLink } from "@/src/hooks/useQueries"
 import { formatDate } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 
 export default function ClicksByLink() {
-	const { data: items } = useGetClicksByLink()
+	const { data: items = [], isLoading: isClicksByLinkLoading } = useGetClicksByLink()
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -12,7 +13,9 @@ export default function ClicksByLink() {
 				<p className="text-caption text-muted-foreground">Your most visited links & social icons.</p>
 			</header>
 
-			{!items || items.length === 0 ? (
+			{isClicksByLinkLoading ? (
+				<Spinner />
+			) : !items.length ? (
 				<p className="text-lead my-2 text-center text-muted-foreground">No links or social icons available yet.</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">

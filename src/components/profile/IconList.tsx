@@ -27,7 +27,7 @@ export default function IconList() {
 
 			{isIconsLoading ? (
 				<Spinner />
-			) : userIcons.length === 0 ? (
+			) : !userIcons?.length ? (
 				<p className="text-lead my-2 text-center text-muted-foreground">No social icons here yet. Get started!</p>
 			) : (
 				<ul className="flex flex-row gap-2">

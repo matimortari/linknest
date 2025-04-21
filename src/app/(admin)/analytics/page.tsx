@@ -1,8 +1,8 @@
 "use client"
 
-import AnalyticsPanel from "@/src/components/analytics/AnalyticsPanel"
-import ClicksByLink from "@/src/components/analytics/ClicksByLink"
-import useUserStore from "@/src/hooks/useUserStore"
+import AnalyticsPanel from "@/src/app/(admin)/analytics/analytics-panel"
+import ClicksByLink from "@/src/app/(admin)/analytics/clicks-by-link"
+import useUserStore from "@/src/hooks/use-store"
 import { motion } from "framer-motion"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"

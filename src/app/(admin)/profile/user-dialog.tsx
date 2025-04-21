@@ -1,7 +1,7 @@
-import Dialog from "@/src/components/Dialog"
-import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "@/src/hooks/useMutations"
-import useUserStore from "@/src/hooks/useUserStore"
-import { userSchema, UserSchemaType } from "@/src/lib/formSchema"
+import Dialog from "@/src/components/dialog"
+import { useUpdateDescription, useUpdateImage, useUpdateSlug } from "@/src/hooks/use-mutations"
+import useUserStore from "@/src/hooks/use-store"
+import { userSchema, UserSchemaType } from "@/src/lib/schemas"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 

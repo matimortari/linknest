@@ -1,12 +1,12 @@
-import UserIcon from "@/src/components/UserIcon"
-import UserLink from "@/src/components/UserLink"
-import { useGetIcons, useGetLinks } from "@/src/hooks/useQueries"
-import useUserStore from "@/src/hooks/useUserStore"
+import Spinner from "@/src/components/spinner"
+import UserIcon from "@/src/components/user-icon"
+import UserLink from "@/src/components/user-link"
+import { useGetIcons, useGetLinks } from "@/src/hooks/use-queries"
+import useUserStore from "@/src/hooks/use-store"
 import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useState } from "react"
-import Spinner from "./Spinner"
 
 function HeaderBar() {
 	return (

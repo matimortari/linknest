@@ -1,4 +1,4 @@
-import Providers from "@/src/components/context/Providers"
+import Providers from "@/src/components/context/providers"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import type { Metadata } from "next"

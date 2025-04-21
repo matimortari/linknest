@@ -1,5 +1,5 @@
-import Dialog from "@/src/components/Dialog"
-import { linkSchema, LinkSchemaType } from "@/src/lib/formSchema"
+import Dialog from "@/src/components/dialog"
+import { linkSchema, LinkSchemaType } from "@/src/lib/schemas"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { carouselPresets } from "@/src/config/carouselPresets"
+import { carouselPresets } from "@/src/config/carousel-presets"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"

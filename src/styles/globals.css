@@ -82,7 +82,11 @@
 		margin: 0;
 		padding: 0;
 	}
+}
 
+/* Components layer for custom reusable components */
+@layer components {
+	/* Headers and typography */
 	h1 {
 		font-size: 3rem;
 		line-height: 3rem;
@@ -124,10 +128,8 @@
 		line-height: 1rem;
 		font-weight: 400;
 	}
-}
 
-/* Components layer for custom reusable components */
-@layer components {
+	/* UI components */
 	.card {
 		background-color: var(--card);
 		color: var(--card-foreground);
@@ -166,6 +168,7 @@
 		gap: 0.25rem;
 	}
 
+	/* Buttons */
 	.btn,
 	.btn-primary,
 	.btn-secondary,
@@ -226,6 +229,34 @@
 		background-color: var(--card);
 		color: var(--success-foreground);
 	}
+}
+
+/* Utilities layer for custom utility classes */
+@layer utilities {
+	.preview-scrollbar {
+		scrollbar-width: thin;
+		scrollbar-color: var(--border) var(--background);
+	}
+
+	.bg-image {
+		background-image: url("/topography.png");
+	}
+
+	/* Scale animation */
+	.scale-xs,
+	.scale-sm,
+	.scale-md {
+		transition: transform 0.2s ease-in-out;
+	}
+	.scale-xs:hover {
+		transform: scale(1.05);
+	}
+	.scale-sm:hover {
+		transform: scale(1.1);
+	}
+	.scale-md:hover {
+		transform: scale(1.2);
+	}
 
 	/* Match background and foreground colors */
 	.bg-primary {
@@ -251,33 +282,6 @@
 	.bg-success {
 		background-color: var(--success);
 		color: var(--success-foreground);
-	}
-}
-
-/* Utilities layer for custom utility classes */
-@layer utilities {
-	.preview-scrollbar {
-		scrollbar-width: thin;
-		scrollbar-color: var(--border) var(--background);
-	}
-
-	.bg-image {
-		background-image: url("/topography.png");
-	}
-
-	.scale-xs,
-	.scale-sm,
-	.scale-md {
-		transition: transform 0.2s ease-in-out;
-	}
-	.scale-xs:hover {
-		transform: scale(1.05);
-	}
-	.scale-sm:hover {
-		transform: scale(1.1);
-	}
-	.scale-md:hover {
-		transform: scale(1.2);
 	}
 }
 

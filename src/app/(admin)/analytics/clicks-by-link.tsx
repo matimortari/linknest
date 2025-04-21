@@ -1,5 +1,5 @@
-import Spinner from "@/src/components/Spinner"
-import { useGetClicksByLink } from "@/src/hooks/useQueries"
+import Spinner from "@/src/components/spinner"
+import { useGetClicksByLink } from "@/src/hooks/use-queries"
 import { formatDate } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 

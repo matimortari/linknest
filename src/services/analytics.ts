@@ -1,6 +1,6 @@
 import { formatDate } from "@/src/lib/utils"
-import { getIcons } from "@/src/services/iconsService"
-import { getLinks } from "@/src/services/linksService"
+import { getIcons } from "@/src/services/icons"
+import { getLinks } from "@/src/services/links"
 
 export const getAnalytics = async () => {
 	const res = await fetch("/api/analytics", { method: "GET" })

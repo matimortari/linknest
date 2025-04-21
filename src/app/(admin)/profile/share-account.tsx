@@ -1,5 +1,5 @@
-import QrCodeDialog from "@/src/components/profile/QrCodeDialog"
-import useUserStore from "@/src/hooks/useUserStore"
+import QrCodeDialog from "@/src/app/(admin)/profile/qr-code-dialog"
+import useUserStore from "@/src/hooks/use-store"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"

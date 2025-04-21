@@ -1,5 +1,5 @@
-import Spinner from "@/src/components/Spinner"
-import { useGetAnalytics } from "@/src/hooks/useQueries"
+import Spinner from "@/src/components/spinner"
+import { useGetAnalytics } from "@/src/hooks/use-queries"
 import { formatDate } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"

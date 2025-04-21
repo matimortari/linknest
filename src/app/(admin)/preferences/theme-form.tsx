@@ -1,11 +1,11 @@
-import { themePresets } from "@/src/config/themePresets"
+import { themes } from "@/src/config/themes"
 import { useState } from "react"
 
 export default function ThemeForm({ setTheme }) {
 	const [selectedTheme, setSelectedTheme] = useState("")
 
 	const handleThemeSelection = (themeTitle: string) => {
-		const selected = themePresets.find((theme) => theme.title === themeTitle)
+		const selected = themes.find((theme) => theme.title === themeTitle)
 
 		if (selected) {
 			setSelectedTheme(themeTitle)
@@ -15,7 +15,7 @@ export default function ThemeForm({ setTheme }) {
 
 	return (
 		<div className="preview-scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto md:grid-cols-3">
-			{themePresets.map(({ title, preferences }) => (
+			{themes.map(({ title, preferences }) => (
 				<button
 					key={title}
 					onClick={() => handleThemeSelection(title)}

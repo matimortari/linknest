@@ -1,7 +1,7 @@
-import { addIcon, deleteIcon } from "@/src/services/iconsService"
-import { addLink, deleteLink, updateLink } from "@/src/services/linksService"
-import { resetPreferences, updatePreferences, updateSupportBanner } from "@/src/services/preferencesService"
-import { deleteUser, updateDescription, updateImage, updateSlug } from "@/src/services/userService"
+import { addIcon, deleteIcon } from "@/src/services/icons"
+import { addLink, deleteLink, updateLink } from "@/src/services/links"
+import { resetPreferences, updatePreferences, updateSupportBanner } from "@/src/services/preferences"
+import { deleteUser, updateDescription, updateImage, updateSlug } from "@/src/services/user"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useUpdateSlug() {

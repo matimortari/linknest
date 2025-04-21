@@ -1,7 +1,7 @@
-import { getAnalytics, getClicksByLink } from "@/src/services/analyticsService"
-import { getIcons } from "@/src/services/iconsService"
-import { getLinks } from "@/src/services/linksService"
-import { getPreferences } from "@/src/services/preferencesService"
+import { getAnalytics, getClicksByLink } from "@/src/services/analytics"
+import { getIcons } from "@/src/services/icons"
+import { getLinks } from "@/src/services/links"
+import { getPreferences } from "@/src/services/preferences"
 import { useQuery } from "@tanstack/react-query"
 
 export function useGetLinks() {

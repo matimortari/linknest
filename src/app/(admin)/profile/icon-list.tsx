@@ -1,8 +1,8 @@
-import Spinner from "@/src/components/Spinner"
-import IconDialog from "@/src/components/profile/IconDialog"
-import useDialog from "@/src/hooks/useDialog"
-import { useAddIcon, useDeleteIcon } from "@/src/hooks/useMutations"
-import { useGetIcons } from "@/src/hooks/useQueries"
+import IconDialog from "@/src/app/(admin)/profile/icon-dialog"
+import Spinner from "@/src/components/spinner"
+import useDialog from "@/src/hooks/use-dialog"
+import { useAddIcon, useDeleteIcon } from "@/src/hooks/use-mutations"
+import { useGetIcons } from "@/src/hooks/use-queries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 

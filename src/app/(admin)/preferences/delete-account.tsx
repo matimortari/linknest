@@ -1,4 +1,4 @@
-import { useDeleteUser } from "@/src/hooks/useMutations"
+import { useDeleteUser } from "@/src/hooks/use-mutations"
 import { Icon } from "@iconify/react"
 
 export default function DeleteAccount() {

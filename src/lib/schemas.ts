@@ -1,4 +1,4 @@
-import { SOCIAL_ICONS } from "@/src/config/preferencesConfig"
+import { SOCIAL_ICONS } from "@/src/config/social-icons"
 import { z } from "zod"
 
 export const userSchema = z.object({

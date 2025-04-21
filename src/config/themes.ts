@@ -1,4 +1,6 @@
-export const themePresets = [
+// Array of theme configuration objects for the ThemeForm component
+
+export const themes = [
 	{
 		title: "Mint",
 		preferences: {

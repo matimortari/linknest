@@ -1,5 +1,5 @@
-import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "@/src/components/Inputs"
-import ThemeForm from "@/src/components/preferences/ThemeForm"
+import ThemeForm from "@/src/app/(admin)/preferences/theme-form"
+import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "@/src/components/inputs"
 import {
 	BACKGROUND_TYPES,
 	FONT_SIZES,
@@ -8,9 +8,9 @@ import {
 	LINK_PADDING_SIZES,
 	RADIUS_SIZES,
 	SHADOW_WEIGHTS
-} from "@/src/config/preferencesConfig"
-import { BANNER_OPTIONS } from "@/src/config/supportBannerConfig"
-import { useResetPreferences, useUpdatePreferences } from "@/src/hooks/useMutations"
+} from "@/src/config/appearance-config"
+import { BANNER_OPTIONS } from "@/src/config/banner-config"
+import { useResetPreferences, useUpdatePreferences } from "@/src/hooks/use-mutations"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 

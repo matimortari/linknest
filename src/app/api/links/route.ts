@@ -1,5 +1,5 @@
 import { db } from "@/src/lib/db"
-import { linkSchema } from "@/src/lib/formSchema"
+import { linkSchema } from "@/src/lib/schemas"
 import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"

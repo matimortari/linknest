@@ -1,3 +1,5 @@
+// Configuration constants for the SupportBanner component
+
 export const BANNER_OPTIONS = [
 	{ value: "NONE", label: "None" },
 	{ value: "LGBTQ_RIGHTS", label: "LGBTQ Rights" },

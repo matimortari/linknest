@@ -1,7 +1,7 @@
 "use client"
 
-import UserDialog from "@/src/components/profile/UserDialog"
-import useUserStore from "@/src/hooks/useUserStore"
+import UserDialog from "@/src/app/(admin)/profile/user-dialog"
+import useUserStore from "@/src/hooks/use-store"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { signOut } from "next-auth/react"
@@ -12,12 +12,6 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
-
-const navLinks = [
-	{ href: "/profile", icon: "material-symbols:location-home-outline", label: "Profile" },
-	{ href: "/preferences", icon: "material-symbols:settings-applications-outline", label: "Preferences" },
-	{ href: "/analytics", icon: "material-symbols:chart-data-outline", label: "Analytics" }
-]
 
 const Logo = () => (
 	<Link href="/" className="scale-xs flex items-center gap-2">
@@ -59,6 +53,12 @@ const NavLink = ({ href, icon, label, isActive, onClick }) => (
 )
 
 export default function Navbar() {
+	const navLinks = [
+		{ href: "/profile", icon: "material-symbols:location-home-outline", label: "Profile" },
+		{ href: "/preferences", icon: "material-symbols:settings-applications-outline", label: "Preferences" },
+		{ href: "/analytics", icon: "material-symbols:chart-data-outline", label: "Analytics" }
+	]
+
 	const { user } = useUserStore()
 
 	const { theme, setTheme } = useTheme()

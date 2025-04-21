@@ -1,8 +1,8 @@
 "use client"
 
-import Carousel from "@/src/components/Carousel"
-import Header from "@/src/components/Header"
-import quotes from "@/src/config/quotes.json"
+import Carousel from "@/src/app/(root)/carousel"
+import Header from "@/src/components/header"
+import { quotes } from "@/src/config/quotes"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { useSession } from "next-auth/react"

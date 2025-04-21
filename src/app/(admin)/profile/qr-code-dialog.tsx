@@ -1,4 +1,4 @@
-import Dialog from "@/src/components/Dialog"
+import Dialog from "@/src/components/dialog"
 import { QRCodeCanvas } from "qrcode.react"
 
 export default function QrCodeDialog({ isOpen, onClose, slug }) {

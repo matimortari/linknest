@@ -1,5 +1,5 @@
-import Providers from "@/src/components/context/Providers"
-import Footer from "@/src/components/Footer"
+import Providers from "@/src/components/context/providers"
+import Footer from "@/src/components/footer"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"

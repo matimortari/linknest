@@ -1,6 +1,6 @@
-import Dialog from "@/src/components/Dialog"
-import { SOCIAL_ICONS } from "@/src/config/preferencesConfig"
-import { iconSchema, IconSchemaType } from "@/src/lib/formSchema"
+import Dialog from "@/src/components/dialog"
+import { SOCIAL_ICONS } from "@/src/config/social-icons"
+import { iconSchema, IconSchemaType } from "@/src/lib/schemas"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 

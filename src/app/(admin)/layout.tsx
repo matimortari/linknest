@@ -1,5 +1,5 @@
-import Providers from "@/src/components/context/Providers"
-import Navbar from "@/src/components/Navbar"
+import Providers from "@/src/components/context/providers"
+import Navbar from "@/src/components/navbar"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"

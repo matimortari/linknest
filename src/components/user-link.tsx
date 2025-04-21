@@ -1,6 +1,6 @@
 "use client"
 
-import { trackClick } from "@/src/services/analyticsService"
+import { trackClick } from "@/src/services/analytics"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"

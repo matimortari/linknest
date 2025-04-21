@@ -4,7 +4,7 @@ import {
 	BANNER_LINKS,
 	BANNER_MESSAGES,
 	BANNER_STYLES
-} from "@/src/config/supportBannerConfig"
+} from "@/src/config/banner-config"
 import { Icon } from "@iconify/react"
 
 export default function SupportBanner({ bannerType }) {

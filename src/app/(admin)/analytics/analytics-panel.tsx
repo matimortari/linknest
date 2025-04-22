@@ -12,6 +12,10 @@ export default function AnalyticsPanel() {
 	const filteredStats = stats
 		.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
 		.slice(0, 30)
+		.map((entry: any) => ({
+			...entry,
+			date: formatDate(entry.date)
+		}))
 
 	const hasEnoughData = filteredStats.length > 1 // Check if there are at least 2 data points
 

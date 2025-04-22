@@ -15,7 +15,7 @@ export async function GET() {
 	return NextResponse.json(analyticsData, { status: 200 })
 }
 
-// Process link and social icon clicks
+// Update user analytics data
 export async function POST(req: NextRequest) {
 	const { type, id } = await req.json()
 

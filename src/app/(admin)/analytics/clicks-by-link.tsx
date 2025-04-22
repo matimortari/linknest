@@ -1,10 +1,21 @@
 import Spinner from "@/src/components/spinner"
-import { useGetClicksByLink } from "@/src/hooks/use-queries"
+import { useGetIcons, useGetLinks } from "@/src/hooks/use-queries"
 import { formatDate } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 
 export default function ClicksByLink() {
-	const { data: items = [], isLoading: isClicksByLinkLoading } = useGetClicksByLink()
+	const { data: links = [], isLoading: isLinksLoading } = useGetLinks()
+	const { data: icons = [], isLoading: isIconsLoading } = useGetIcons()
+
+	// Merge links and icons into a single array
+	function mergeClicks(links: any[], icons: any[]) {
+		const combinedItems = [
+			...links.map((link: any) => ({ ...link, type: "link" })),
+			...icons.map((icon: any) => ({ ...icon, type: "icon" }))
+		]
+
+		return combinedItems
+	}
 
 	return (
 		<div className="flex flex-col gap-4">
@@ -13,13 +24,13 @@ export default function ClicksByLink() {
 				<p className="text-caption text-muted-foreground">Your most visited links & social icons.</p>
 			</header>
 
-			{isClicksByLinkLoading ? (
+			{isLinksLoading || isIconsLoading ? (
 				<Spinner />
-			) : !items.length ? (
+			) : !links.length || !icons.length ? (
 				<p className="text-lead my-2 text-center text-muted-foreground">No links or social icons available yet.</p>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
-					{items.map((item) => (
+					{mergeClicks(links, icons).map((item) => (
 						<li key={item.url} className="card">
 							{item.type === "link" ? (
 								<div className="mb-2 flex flex-row items-center gap-2">

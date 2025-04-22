@@ -1,4 +1,4 @@
-import { getAnalytics, getClicksByLink } from "@/src/services/analytics"
+import { getAnalytics } from "@/src/services/analytics"
 import { getIcons } from "@/src/services/icons"
 import { getLinks } from "@/src/services/links"
 import { getPreferences } from "@/src/services/preferences"
@@ -29,12 +29,5 @@ export function useGetAnalytics() {
 	return useQuery({
 		queryKey: ["getAnalytics"],
 		queryFn: getAnalytics
-	})
-}
-
-export function useGetClicksByLink() {
-	return useQuery({
-		queryKey: ["getClicksByLink"],
-		queryFn: getClicksByLink
 	})
 }

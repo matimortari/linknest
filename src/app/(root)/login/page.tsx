@@ -1,15 +1,12 @@
 "use client"
 
+import { bowlby, lato } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { signIn, useSession } from "next-auth/react"
-import { Bowlby_One, Lato } from "next/font/google"
 import Image from "next/image"
 import { redirect } from "next/navigation"
 import { useEffect } from "react"
-
-const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
-const lato = Lato({ subsets: ["latin"], weight: "700" })
 
 export default function Login() {
 	const { status } = useSession()
@@ -21,12 +18,12 @@ export default function Login() {
 	}, [status])
 
 	return (
-		<div className="min-h-screen md:flex">
+		<div className="min-h-screen lg:flex">
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6 }}
-				className="flex flex-col items-center p-10 md:w-1/2 md:justify-center"
+				className="flex flex-col items-center p-10 lg:w-1/2 lg:justify-center"
 			>
 				<motion.div
 					initial={{ opacity: 0, scale: 0.8 }}
@@ -82,7 +79,7 @@ export default function Login() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.6, delay: 0.4 }}
-				className="relative hidden md:block md:w-1/2"
+				className="relative hidden lg:block lg:w-1/2"
 			>
 				<Image
 					src="/login-image.png"

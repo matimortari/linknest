@@ -31,12 +31,12 @@ export default function Preferences() {
 	}, [preferences])
 
 	return (
-		<div className="flex w-full flex-col gap-4 md:flex-row">
+		<div className="flex w-full flex-col gap-4 lg:flex-row">
 			<motion.main
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.6 }}
-				className="card min-h-screen flex-1"
+				className="card flex-1"
 			>
 				<header className="space-y-2">
 					<motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }}>
@@ -74,7 +74,7 @@ export default function Preferences() {
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.6 }}
-				className="md:w-4/12"
+				className="lg:w-4/12"
 			>
 				<Preview preferences={selectedPreferences} />
 			</motion.aside>

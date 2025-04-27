@@ -79,7 +79,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 			<hr className="my-2" />
 
 			{activeTab === "background" && (
-				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+				<div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
 					<RadioOptions
 						name="backgroundType"
 						label="Background Type"
@@ -115,7 +115,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 			)}
 
 			{activeTab === "user" && (
-				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+				<div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
 					<div className="flex flex-col gap-2">
 						<SelectInput
 							id="supportBanner"
@@ -179,7 +179,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 			)}
 
 			{activeTab === "links" && (
-				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+				<div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
 					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="linkBackgroundColor"
@@ -262,7 +262,7 @@ export default function AppearanceForm({ preferences, setPreferences }) {
 			)}
 
 			{activeTab === "icons" && (
-				<div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+				<div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
 					<div className="flex flex-col gap-2">
 						<ColorInput
 							id="iconBackgroundColor"

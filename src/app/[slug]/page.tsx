@@ -2,14 +2,11 @@ import SupportBanner from "@/src/app/[slug]/support-banner"
 import UserIcon from "@/src/components/user-icon"
 import UserLink from "@/src/components/user-link"
 import { db } from "@/src/lib/db"
-import { trackPageVisit, updateClickStats } from "@/src/lib/utils"
-import { Chau_Philomene_One } from "next/font/google"
+import { chau, trackPageVisit, updateClickStats } from "@/src/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 
 type Params = Promise<{ slug: string }>
-
-const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
 export default async function SlugPage({ params }: { params: Params }) {
 	const { slug } = await params

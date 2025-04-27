@@ -25,7 +25,7 @@ export default function DeleteAccount() {
 				<p className="text-caption text-danger-foreground">This action is irreversible. All data will be lost.</p>
 			</header>
 
-			<div className="input-group justify-end md:justify-start">
+			<div className="input-group justify-end lg:justify-start">
 				<button onClick={handleDeleteAccount} title="Delete Account" className="btn-danger">
 					<Icon icon="mdi:user-remove" width={20} height={20} />
 					Delete Account

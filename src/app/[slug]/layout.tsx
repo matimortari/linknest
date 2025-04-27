@@ -1,12 +1,10 @@
 import Providers from "@/src/components/context/providers"
 import { authOptions } from "@/src/lib/auth"
+import { inter } from "@/src/lib/utils"
 import "@/src/styles/globals.css"
 import type { Metadata } from "next"
 import { getServerSession } from "next-auth"
-import { Inter } from "next/font/google"
 import { ReactNode } from "react"
-
-const inter = Inter({ subsets: ["latin"] })
 
 type Params = Promise<{ slug: string }>
 

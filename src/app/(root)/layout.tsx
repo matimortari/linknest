@@ -1,14 +1,12 @@
 import Providers from "@/src/components/context/providers"
 import Footer from "@/src/components/footer"
 import { authOptions } from "@/src/lib/auth"
+import { inter } from "@/src/lib/utils"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
 import type { Metadata } from "next"
 import { getServerSession } from "next-auth"
-import { Inter } from "next/font/google"
 import { ReactNode } from "react"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://linknest-live.vercel.app"),

@@ -38,7 +38,7 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add Social Icon">
 			<form onSubmit={handleSubmit} className="space-y-4">
-				<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9">
+				<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 lg:max-h-full lg:grid-cols-9">
 					{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 						<button
 							key={platform}
@@ -62,7 +62,7 @@ export default function IconDialog({ isOpen, onClose, onSave }: IconDialogProps)
 					<label htmlFor="iconUrl" className="font-semibold">
 						Social Icon URL
 					</label>
-					<div className="flex flex-col items-start gap-2 md:max-w-sm md:flex-row md:items-center">
+					<div className="flex flex-col items-start gap-2 lg:max-w-sm lg:flex-row lg:items-center">
 						<input
 							id="iconUrl"
 							type="url"

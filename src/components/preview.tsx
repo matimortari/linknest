@@ -22,7 +22,7 @@ function HeaderBar() {
 
 function PreviewContent({ slug, description, image, userIcons, userLinks, preferences, sessionId }) {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4 text-center md:my-6">
+		<div className="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
 			<Image
 				src={image}
 				alt={slug}
@@ -97,7 +97,9 @@ export default function Preview({ preferences }) {
 					{/* Preview toggle for mobile */}
 					<button
 						onClick={() => setIsVisible((prev) => !prev)}
-						className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
+						className={`btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 lg:hidden ${
+							isVisible ? "bg-card" : "bg-secondary"
+						}`}
 					>
 						<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} width={20} height={20} />
 						{isVisible ? "Close Preview" : "Preview"}
@@ -105,7 +107,7 @@ export default function Preview({ preferences }) {
 
 					{/* Full-screen preview for mobile */}
 					<div
-						className={`fixed left-0 top-0 z-10 size-full bg-background p-12 transition-all duration-300 md:hidden ${
+						className={`fixed left-0 top-0 z-10 size-full bg-background p-12 transition-all duration-300 lg:hidden ${
 							isVisible ? "block" : "hidden"
 						}`}
 						style={
@@ -131,7 +133,7 @@ export default function Preview({ preferences }) {
 
 					{/* Desktop Preview */}
 					<div
-						className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
+						className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden lg:block lg:w-[300px]"
 						style={
 							preferences?.backgroundType === "GRADIENT"
 								? {

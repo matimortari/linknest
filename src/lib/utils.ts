@@ -1,6 +1,7 @@
 import { authOptions } from "@/src/lib/auth"
 import { db } from "@/src/lib/db"
 import { getServerSession } from "next-auth"
+import { Bowlby_One, Chau_Philomene_One, Inter, Lato } from "next/font/google"
 import { NextResponse } from "next/server"
 
 // API: Get the current session or return an unauthorized response
@@ -112,3 +113,9 @@ export function formatDate(dateString: Date) {
 
 	return formattedDate.charAt(0).toLowerCase() + formattedDate.slice(1)
 }
+
+// Next.js fonts
+export const inter = Inter({ subsets: ["latin"] })
+export const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
+export const lato = Lato({ subsets: ["latin"], weight: ["700"] })
+export const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })

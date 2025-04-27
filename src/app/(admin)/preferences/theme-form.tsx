@@ -14,7 +14,7 @@ export default function ThemeForm({ setTheme }) {
 	}
 
 	return (
-		<div className="preview-scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto md:grid-cols-3">
+		<div className="preview-scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto lg:grid-cols-3">
 			{themes.map(({ title, preferences }) => (
 				<button
 					key={title}

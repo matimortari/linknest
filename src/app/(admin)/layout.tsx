@@ -1,14 +1,13 @@
 import Providers from "@/src/components/context/providers"
+import Footer from "@/src/components/footer"
 import Navbar from "@/src/components/navbar"
 import { authOptions } from "@/src/lib/auth"
+import { inter } from "@/src/lib/utils"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
 import type { Metadata } from "next"
 import { getServerSession } from "next-auth"
-import { Inter } from "next/font/google"
 import { ReactNode } from "react"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export async function generateMetadata(): Promise<Metadata> {
 	const session = await getServerSession(authOptions)
@@ -28,14 +27,15 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className} bg-image fill-accent`}>
+			<body className={`${inter.className} bg-image`}>
 				<Providers session={session}>
-					<div className="flex flex-col p-4 md:flex-row">
-						<aside className="md:w-2/12">
+					<div className="flex flex-col p-4 lg:flex-row">
+						<aside className="lg:w-2/12">
 							<Navbar />
 						</aside>
-						<main className="flex-1">{children}</main>
+						<main className="lg:w-10/12">{children}</main>
 					</div>
+					<Footer />
 				</Providers>
 			</body>
 		</html>

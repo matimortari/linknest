@@ -2,16 +2,14 @@
 
 import UserDialog from "@/src/app/(admin)/profile/user-dialog"
 import useUserStore from "@/src/hooks/use-store"
+import { chau } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { signOut } from "next-auth/react"
 import { useTheme } from "next-themes"
-import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-
-const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
 const Logo = () => (
 	<Link href="/" className="scale-xs flex items-center gap-2">
@@ -63,25 +61,28 @@ export default function Navbar() {
 
 	const { theme, setTheme } = useTheme()
 
+	const [activeTab, setActiveTab] = useState("/profile")
 	const [isNavOpen, setIsNavOpen] = useState(false)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [mounted, setMounted] = useState(false)
-	const [activeTab, setActiveTab] = useState("/profile")
 
 	useEffect(() => setMounted(true), [])
 
-	const themeIcon = mounted ? (theme === "light" ? "radix-icons:moon" : "radix-icons:sun") : null
-	const themeTitle = mounted ? `Switch to ${theme === "light" ? "dark" : "light"} mode` : "Loading..."
+	if (!mounted) return null
 
 	return (
 		<>
 			{/* Mobile header */}
-			<div className="md:hidden">
+			<div className="lg:hidden">
 				<div className="flex flex-row items-center justify-between p-4">
 					<Logo />
 					<nav className="flex flex-row items-center gap-2">
-						<button onClick={() => setTheme(theme === "light" ? "dark" : "light")} title={themeTitle} className="btn">
-							{themeIcon && <Icon icon={themeIcon} width={25} height={25} />}
+						<button
+							onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+							title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+							className="btn"
+						>
+							<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} width={25} height={25} />
 						</button>
 						<button onClick={() => setIsNavOpen(!isNavOpen)} className="btn">
 							<Icon icon={isNavOpen ? "mdi:close" : "mdi:menu"} width={25} height={25} />
@@ -92,7 +93,7 @@ export default function Navbar() {
 					</nav>
 				</div>
 
-				{/* Mobile top nav */}
+				{/* Mobile top navigation */}
 				<AnimatePresence>
 					{isNavOpen && (
 						<motion.div
@@ -128,7 +129,7 @@ export default function Navbar() {
 				initial={{ opacity: 0, x: -50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ duration: 0.5 }}
-				className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col"
+				className="hidden w-44 lg:fixed lg:inset-y-0 lg:flex lg:flex-col"
 			>
 				<div className="mt-8 flex flex-grow flex-col gap-4">
 					<Logo />
@@ -147,14 +148,18 @@ export default function Navbar() {
 					</nav>
 				</div>
 
-				<div className="mt-auto flex flex-col gap-2 py-4">
-					<button onClick={() => setTheme(theme === "light" ? "dark" : "light")} title={themeTitle} className="btn">
-						{themeIcon && <Icon icon={themeIcon} width={25} height={25} />}
-						<span>{mounted ? (theme === "light" ? "Dark" : "Light") : ""} Mode</span>
+				<div className="mt-auto flex flex-col gap-2 py-8">
+					<button
+						onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+						title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+						className="btn"
+					>
+						<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} width={25} height={25} />
+						<span>{theme === "light" ? "Dark" : "Light"} Mode</span>
 					</button>
 					<button onClick={() => signOut({ callbackUrl: "/" })} title="Sign Out" className="btn-danger">
 						<Icon icon="material-symbols:logout" width={25} height={25} />
-						<span className="hidden md:block">Sign Out</span>
+						<span className="hidden lg:block">Sign Out</span>
 					</button>
 				</div>
 			</motion.div>

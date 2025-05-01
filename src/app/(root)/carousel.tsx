@@ -75,7 +75,7 @@ function CarouselCard({ presetId }) {
 
 	return (
 		<div
-			className="popover relative w-64 opacity-80 md:w-[300px]"
+			className="relative w-64 rounded-xl p-2 opacity-80 md:w-[300px]"
 			style={
 				preferences.backgroundType === "GRADIENT"
 					? {
@@ -84,6 +84,17 @@ function CarouselCard({ presetId }) {
 					: { backgroundColor: preferences.backgroundColor }
 			}
 		>
+			<div className="rounded-t-xl bg-gradient-to-r from-primary to-secondary p-1">
+				<div className="flex items-center justify-between rounded-t-xl bg-card p-2">
+					<div className="flex items-center gap-2">
+						<div className="size-3 rounded-full bg-red-500"></div>
+						<div className="size-3 rounded-full bg-yellow-500"></div>
+						<div className="size-3 rounded-full bg-green-500"></div>
+					</div>
+					<div className="rounded bg-muted px-2 py-1 font-mono text-xs">@/{slug}</div>
+				</div>
+			</div>
+
 			<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
 				<Image
 					src={image}
@@ -138,7 +149,7 @@ export default function Carousel() {
 	}, [])
 
 	return (
-		<div className="relative my-4 flex h-[480px] select-none items-center justify-center">
+		<div className="relative flex h-[480px] select-none items-center justify-center">
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={currentIndex}

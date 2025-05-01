@@ -1,6 +1,5 @@
 "use client"
 
-import Carousel from "@/src/app/(root)/carousel"
 import Header from "@/src/components/header"
 import { quotes } from "@/src/config/quotes"
 import { Icon } from "@iconify/react"
@@ -10,6 +9,7 @@ import { Bowlby_One, Lato } from "next/font/google"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
+import Carousel from "./carousel"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
 const lato = Lato({ subsets: ["latin"], weight: ["700"] })
@@ -61,51 +61,39 @@ export default function Home() {
 		<>
 			<Header />
 
-			<main className="relative z-10 flex min-h-screen flex-col items-center px-4 py-12 md:px-12 md:py-0">
-				<div className="flex w-full flex-col md:flex-row">
-					{/* Hero section */}
-					<motion.section
-						initial={{ opacity: 0, scale: 0.8 }}
-						whileInView={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.6 }}
-						className="flex flex-col md:w-1/2 md:py-20"
-					>
-						<div className="space-y-8 text-center md:space-y-4 md:text-start">
-							<h4 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h4>
+			<section
+				id="hero"
+				className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden border-b-2 p-20 px-4"
+			>
+				<div className="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
+				<div className="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-secondary opacity-20 blur-3xl" />
 
-							<motion.h1
-								initial={{ opacity: 0, scale: 0.8 }}
-								animate={{ opacity: 1, scale: 1 }}
-								transition={{ duration: 0.8, ease: "easeOut" }}
-								className={`${bowlby.className} max-w-md`}
-							>
-								Keep all your stuff together!
-							</motion.h1>
+				<div className="container mx-auto flex flex-col items-center justify-between gap-12 lg:flex-row">
+					<div className="flex max-w-2xl flex-col items-center gap-4 text-center lg:items-start lg:text-left">
+						<h4 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h4>
+						<motion.h1
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.8, ease: "easeOut" }}
+							className={`${bowlby.className} max-w-md`}
+						>
+							Keep all your stuff together!
+						</motion.h1>
+						<motion.p
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, delay: 0.2 }}
+							className={`${lato.className} max-w-lg text-muted-foreground`}
+						>
+							Welcome to <span className="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info,
+							and more in one place. Create and customize your page and share it with your audience.
+						</motion.p>
+						<Link href="/login" className="btn-primary">
+							Get Started Free
+							<Icon icon="ri:arrow-right-line" width={20} height={20} />
+						</Link>
+					</div>
 
-							<p className={`${lato.className} max-w-lg text-muted-foreground`}>
-								Welcome to <span className="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info,
-								and more in one place. Create and customize your page and share it with your audience.
-							</p>
-							<motion.div
-								whileHover={{ scale: 1.05 }}
-								transition={{ type: "spring", stiffness: 200, damping: 10 }}
-								className="flex max-w-lg flex-row items-center justify-between rounded-2xl border bg-card p-1 pl-3 text-sm shadow-2xl shadow-accent"
-							>
-								<span className="hidden cursor-default sm:inline">linknest-live.vercel.app/</span>
-								<span className="cursor-default sm:hidden">@</span>
-								<input
-									type="text"
-									placeholder="your_name"
-									className="flex-1 appearance-none bg-transparent outline-none"
-								/>
-								<Link href="/login" className="btn-primary">
-									Go!
-								</Link>
-							</motion.div>
-						</div>
-					</motion.section>
-
-					{/* Carousel section */}
 					<motion.section
 						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
@@ -115,10 +103,12 @@ export default function Home() {
 						<Carousel />
 					</motion.section>
 				</div>
-			</main>
+			</section>
 
-			{/* Features section */}
-			<section className="relative z-10 flex flex-col items-center justify-center gap-12 p-12 text-center">
+			<section
+				id="features"
+				className="relative z-10 flex flex-col items-center justify-center gap-12 p-12 text-center"
+			>
 				<div className="absolute -z-10 h-44 w-10/12 bg-accent opacity-20 blur-2xl" />
 				<motion.h2
 					initial={{ opacity: 0, y: 20 }}
@@ -150,8 +140,10 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* CTA section */}
-			<section className="relative z-10 flex flex-col items-center justify-center gap-12 border-y bg-card p-12">
+			<section
+				id="cta"
+				className="relative z-10 flex flex-col items-center justify-center gap-12 border-y bg-card p-12"
+			>
 				<div
 					className="absolute inset-0 -z-10 m-6 opacity-60"
 					style={{

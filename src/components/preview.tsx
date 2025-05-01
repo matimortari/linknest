@@ -133,7 +133,7 @@ export default function Preview({ preferences }) {
 
 					{/* Desktop Preview */}
 					<div
-						className="popover preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden lg:block lg:w-[300px]"
+						className="preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden rounded-xl p-2 lg:block lg:w-[300px]"
 						style={
 							preferences?.backgroundType === "GRADIENT"
 								? {

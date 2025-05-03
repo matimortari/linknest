@@ -7,12 +7,15 @@ export async function GET() {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const analyticsData = await db.userStats.findMany({ where: { userId: session?.user.id } })
-	if (!analyticsData) {
-		return NextResponse.json({ error: "Analytics data not found" }, { status: 404 })
+	try {
+		const analyticsData = await db.userStats.findMany({ where: { userId: session?.user.id } })
+		if (!analyticsData || analyticsData.length === 0) {
+			return NextResponse.json({ error: "Analytics data not found" }, { status: 404 })
+		}
+		return NextResponse.json(analyticsData, { status: 200 })
+	} catch (err) {
+		return NextResponse.json({ error: "Failed to retrieve analytics data", details: String(err) }, { status: 500 })
 	}
-
-	return NextResponse.json(analyticsData, { status: 200 })
 }
 
 // Update user analytics data
@@ -20,8 +23,8 @@ export async function POST(req: NextRequest) {
 	const { type, id } = await req.json()
 
 	// Create a new linkClick or iconClick entry with the current date for every click and increment the clicks count
-	if (type === "link") {
-		try {
+	try {
+		if (type === "link") {
 			const linkClick = await db.linkClick.create({
 				data: {
 					userLinkId: id,
@@ -35,11 +38,10 @@ export async function POST(req: NextRequest) {
 			})
 
 			return NextResponse.json(linkClick, { status: 200 })
-		} catch {
-			return NextResponse.json({ error: "Failed to create link click" }, { status: 500 })
 		}
-	} else if (type === "icon") {
-		try {
+
+		// Handle icon click tracking
+		if (type === "icon") {
 			const iconClick = await db.iconClick.create({
 				data: {
 					userIconId: id,
@@ -53,8 +55,10 @@ export async function POST(req: NextRequest) {
 			})
 
 			return NextResponse.json(iconClick, { status: 200 })
-		} catch {
-			return NextResponse.json({ error: "Failed to create social icon click" }, { status: 500 })
 		}
+
+		return NextResponse.json({ error: "Invalid type provided" }, { status: 400 })
+	} catch (err) {
+		return NextResponse.json({ error: "Failed to update analytics data", details: String(err) }, { status: 500 })
 	}
 }

@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
 	return {
@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
 			userAgent: "*",
 			allow: "/",
 			disallow: "/private/"
-		}
+		},
+		sitemap: "https://linknest-live.vercel.app/sitemap.xml"
 	}
 }

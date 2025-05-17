@@ -5,7 +5,7 @@ export const userSchema = z.object({
 	slug: z
 		.string()
 		.min(3, "Slug must be at least 3 characters")
-		.max(16, "Slug must be at most 16 characters")
+		.max(32, "Slug must be at most 32 characters")
 		.regex(/^[a-zA-Z0-9_-]+$/, "Slug can only contain letters, numbers, hyphens, and underscores"),
 	description: z.string().max(100, "Description must not exceed 100 characters").optional(),
 	image: z

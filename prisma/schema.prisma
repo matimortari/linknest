@@ -55,7 +55,6 @@ model User {
   name            String?
   description     String?
   email           String            @unique
-  emailVerified   DateTime?
   image           String?
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
@@ -65,14 +64,6 @@ model User {
   userIcons       UserIcon[]
   userPreferences UserPreferences[]
   userStats       UserStats[]
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
 }
 
 model UserPreferences {
@@ -153,12 +144,12 @@ model LinkClick {
   id         String   @id @default(cuid())
   userLinkId String
   date       DateTime @default(now())
-  userLink   UserLink @relation(fields: [userLinkId], references: [id])
+  userLink   UserLink @relation(fields: [userLinkId], references: [id], onDelete: Cascade)
 }
 
 model IconClick {
   id         String   @id @default(cuid())
   userIconId String
   date       DateTime @default(now())
-  userIcon   UserIcon @relation(fields: [userIconId], references: [id])
+  userIcon   UserIcon @relation(fields: [userIconId], references: [id], onDelete: Cascade)
 }

@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BackgroundType {
+  FLAT
+  GRADIENT
+}
+
+enum SupportBanner {
+  NONE
+  LGBTQ_RIGHTS
+  ANTI_RACISM
+  MENTAL_HEALTH
+  CLIMATE_ACTION
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id              String            @id @default(cuid())
+  slug            String            @unique
+  name            String?
+  description     String?
+  email           String            @unique
+  image           String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  accounts        Account[]
+  sessions        Session[]
+  userLinks       UserLink[]
+  userIcons       UserIcon[]
+  userPreferences UserPreferences[]
+  userStats       UserStats[]
+}
+
+model UserPreferences {
+  id                       String         @id @default(cuid())
+  userId                   String         @unique
+  backgroundType           BackgroundType @default(FLAT)
+  backgroundColor          String         @default("#ffffff")
+  backgroundGradientStart  String         @default("#000000")
+  backgroundGradientEnd    String         @default("#000000")
+  profilePictureRadius     String         @default("0.5rem")
+  slugTextColor            String         @default("#1e1e1e")
+  slugTextWeight           String         @default("500")
+  slugTextSize             String         @default("1rem")
+  headerTextColor          String         @default("#1e1e1e")
+  headerTextWeight         String         @default("400")
+  headerTextSize           String         @default("1.1rem")
+  linkBackgroundColor      String         @default("#ffffff")
+  linkTextColor            String         @default("#1e1e1e")
+  linkTextWeight           String         @default("500")
+  linkTextSize             String         @default("0.9rem")
+  isLinkShadow             Boolean        @default(false)
+  linkShadowColor          String         @default("#1e1e1e")
+  linkShadowWeight         String         @default("medium")
+  linkHoverBackgroundColor String         @default("#eeeeee")
+  linkBorderRadius         String         @default("0.5rem")
+  linkPadding              String         @default("0.5rem")
+  iconBackgroundColor      String         @default("#ffffff")
+  isIconShadow             Boolean        @default(false)
+  iconShadowColor          String         @default("#1e1e1e")
+  iconShadowWeight         String         @default("medium")
+  iconIconColor            String         @default("#1e1e1e")
+  iconHoverBackgroundColor String         @default("#eeeeee")
+  showCopyButton           Boolean        @default(true)
+  supportBanner            SupportBanner  @default(NONE)
+  user                     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserLink {
+  id         String      @id @default(cuid())
+  userId     String
+  url        String
+  title      String
+  clicks     Int         @default(0)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  linkClicks LinkClick[]
+}
+
+model UserIcon {
+  id         String      @id @default(cuid())
+  userId     String
+  url        String
+  platform   String
+  icon       String
+  clicks     Int         @default(0)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  iconClicks IconClick[]
+}
+
+model UserStats {
+  id         String   @id @default(cuid())
+  userId     String
+  date       DateTime @default(now())
+  views      Int      @default(0)
+  linkClicks Int      @default(0)
+  iconClicks Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}
+
+model LinkClick {
+  id         String   @id @default(cuid())
+  userLinkId String
+  date       DateTime @default(now())
+  userLink   UserLink @relation(fields: [userLinkId], references: [id], onDelete: Cascade)
+}
+
+model IconClick {
+  id         String   @id @default(cuid())
+  userIconId String
+  date       DateTime @default(now())
+  userIcon   UserIcon @relation(fields: [userIconId], references: [id], onDelete: Cascade)
+}

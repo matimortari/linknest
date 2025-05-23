@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base layer for custom theme variables and global styles */
+@layer base {
+  :root {
+    --background: #e0dddd;
+    --foreground: #131212;
+
+    --card: #eeeded;
+    --card-foreground: #131212;
+
+    --popover: #eeeded;
+    --popover-foreground: #131212;
+
+    --primary: #45698a;
+    --primary-foreground: #ebe8e8;
+
+    --secondary: #222d42;
+    --secondary-foreground: #ebe8e8;
+
+    --accent: #31589c;
+    --accent-foreground: #ebe8e8;
+
+    --muted: #b8b5b5;
+    --muted-foreground: #535353;
+
+    --danger: #e7d8d9;
+    --danger-foreground: #c53333;
+
+    --success: #c7dbd0;
+    --success-foreground: #5e836d;
+
+    --border: #b8b5b5;
+    --input: #eeeded;
+  }
+
+  .dark {
+    --background: #040308;
+    --foreground: #ebe8e8;
+
+    --card: #111016;
+    --card-foreground: #ebe8e8;
+
+    --popover: #111016;
+    --popover-foreground: #ebe8e8;
+
+    --primary: #222d42;
+    --primary-foreground: #ebe8e8;
+
+    --secondary: #45698a;
+    --secondary-foreground: #ebe8e8;
+
+    --accent: #31589c;
+    --accent-foreground: #ebe8e8;
+
+    --muted: #3b3b41;
+    --muted-foreground: #c7c4c4;
+
+    --danger: #e7d8d9;
+    --danger-foreground: #c53333;
+
+    --success: #c7dbd0;
+    --success-foreground: #5e836d;
+
+    --border: #3b3b41;
+    --input: #111016;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+    text-decoration: none;
+  }
+
+  html {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Components layer for custom reusable components */
+@layer components {
+  /* Headers and typography */
+  h1 {
+    font-size: 3rem;
+    line-height: 3rem;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: 2rem;
+    line-height: 1.75rem;
+    font-weight: 800;
+  }
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+  }
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+  }
+
+  .text-lead {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+  }
+  .text-caption {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+  }
+  .text-label {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 400;
+  }
+
+  /* UI components */
+  .card {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border-radius: 1rem;
+    padding: 1rem;
+    border-width: 1px;
+    border-color: var(--border);
+  }
+
+  .popover {
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    border-radius: 2rem;
+    padding: 1rem;
+    border-width: 1px;
+    border-color: var(--border);
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--background);
+    color: var(--foreground);
+    border-radius: 1rem;
+    border-width: 1px;
+    border-color: var(--border);
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* Buttons */
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-success {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 5rem;
+    border: 1px solid var(--border);
+    user-select: none;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn-selected {
+    filter: brightness(0.6);
+    box-shadow: 0 0 0 0.5px var(--success-foreground);
+  }
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-danger:hover,
+  .btn-success:hover {
+    filter: brightness(0.6);
+    transform: scale(1.05);
+    box-shadow: 0 0 0 0.5px var(--accent);
+  }
+  .btn:disabled,
+  .btn-primary:disabled,
+  .btn-secondary:disabled,
+  .btn-danger:disabled,
+  .btn-success:disabled {
+    filter: brightness(0.4);
+    cursor: not-allowed;
+  }
+
+  .btn {
+    background-color: var(--card);
+    color: var(--card-foreground);
+  }
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+  .btn-danger {
+    background-color: var(--card);
+    color: var(--danger-foreground);
+  }
+  .btn-success {
+    background-color: var(--card);
+    color: var(--success-foreground);
+  }
+}
+
+/* Utilities layer for custom utility classes */
+@layer utilities {
+  .preview-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--background);
+  }
+
+  .bg-image {
+    background-image: url("/topography.png");
+  }
+
+  /* Scale animation */
+  .scale-xs,
+  .scale-sm,
+  .scale-md {
+    transition: transform 0.2s ease-in-out;
+  }
+  .scale-xs:hover {
+    transform: scale(1.05);
+  }
+  .scale-sm:hover {
+    transform: scale(1.1);
+  }
+  .scale-md:hover {
+    transform: scale(1.2);
+  }
+
+  /* Match background and foreground colors */
+  .bg-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+  .bg-muted {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+  }
+  .bg-danger {
+    background-color: var(--danger);
+    color: var(--danger-foreground);
+  }
+  .bg-success {
+    background-color: var(--success);
+    color: var(--success-foreground);
+  }
+}
+
+/* Support banner styling */
+.banner.lgbtq-rights {
+  background-color: #5c3963;
+}
+.banner.anti-racism {
+  background-color: #1a1919;
+}
+.banner.mental-health {
+  background-color: #285274;
+}
+.banner.climate-action {
+  background-color: #287445;
+}

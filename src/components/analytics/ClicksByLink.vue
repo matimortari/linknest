@@ -1,0 +1,118 @@
+<template>
+  <div class="flex flex-col gap-4">
+    <header class="my-2 flex flex-col gap-2">
+      <h3>Clicks By Link</h3>
+
+      <p class="text-caption text-muted-foreground">
+        Your most visited links & social icons.
+      </p>
+    </header>
+
+    <p v-if="!links.length && !icons.length" class="text-lead my-2 text-center text-muted-foreground">
+      No links or social icons available yet.
+    </p>
+
+    <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
+      <li v-for="item in mergedItems" :key="item.url" class="card">
+        <div class="mb-2 flex flex-row items-center gap-2">
+          <Icon
+            v-if="item.type === 'icon' && item.icon"
+            :name="item.icon"
+            size="20"
+            class="text-muted-foreground"
+          />
+
+          <h5 class="truncate text-muted-foreground">
+            {{ item.type === 'link' ? item.title : item.platform }}
+          </h5>
+
+          <span class="text-label whitespace-nowrap">
+            - {{ item.clicks }} clicks
+          </span>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <p class="text-label truncate">
+            {{ item.url }}
+          </p>
+
+          <p class="text-label text-muted-foreground">
+            Created at {{ item.formattedDate }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { getIcons } from "~/lib/services/icons"
+import { getLinks } from "~/lib/services/links"
+
+const links = ref<LinkType[]>([])
+const icons = ref<IconType[]>([])
+
+onMounted(async () => {
+  try {
+    const [getLinksResult, getIconsResult] = await Promise.all([
+      getLinks(),
+      getIcons(),
+    ])
+
+    links.value = getLinksResult
+    icons.value = getIconsResult
+  }
+  catch (error) {
+    console.error("Failed to get user data", error)
+  }
+})
+
+interface MergedLinkItem {
+  type: "link"
+  formattedDate: string
+  title: string
+  url: string
+  createdAt?: Date
+  updatedAt?: Date
+  clicks: number
+}
+
+interface MergedIconItem {
+  type: "icon"
+  formattedDate: string
+  platform: string
+  icon: string
+  url: string
+  createdAt?: Date
+  updatedAt?: Date
+  clicks: number
+}
+
+type MergedItem = MergedLinkItem | MergedIconItem
+
+const mergedItems = computed<MergedItem[]>(() => {
+  const typedLinks: MergedLinkItem[] = links.value.map(link => ({
+    ...link,
+    type: "link",
+    clicks: link.clicks ?? 0,
+    formattedDate: new Date(link.createdAt ?? 0).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }),
+  }))
+
+  const typedIcons: MergedIconItem[] = icons.value.map(icon => ({
+    ...icon,
+    type: "icon",
+    clicks: icon.clicks ?? 0,
+    formattedDate: new Date(icon.createdAt ?? 0).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }),
+  }))
+
+  return [...typedLinks, ...typedIcons]
+})
+</script>

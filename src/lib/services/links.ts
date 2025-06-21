@@ -1,0 +1,49 @@
+export async function getLinks(): Promise<LinkType[]> {
+  const response = await fetch("/api/links", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function createLink(newLink: LinkType): Promise<LinkType> {
+  const response = await fetch("/api/links", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newLink),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function updateLink(updatedLink: LinkType): Promise<LinkType> {
+  const response = await fetch(`/api/links/${updatedLink.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedLink),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function deleteLink(id: string): Promise<LinkType> {
+  const response = await fetch(`/api/links/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}

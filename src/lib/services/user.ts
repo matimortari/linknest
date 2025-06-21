@@ -1,0 +1,74 @@
+export async function getUser(): Promise<UserType> {
+  const response = await fetch("/api/user", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function getUserBySlug(slug: string): Promise<UserType> {
+  const response = await fetch(`/api/user/${slug}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function updateUserData(data: UserType): Promise<UserType> {
+  const response = await fetch("/api/user", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function deleteUser(): Promise<UserType> {
+  const response = await fetch("/api/user", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json", },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function trackPageVisit(userId: string) {
+  const response = await fetch("/api/user", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", },
+    body: JSON.stringify({ type: "pageView", userId }),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function trackClick(id: string, type: "icon" | "link", userId: string) {
+  const response = await fetch("/api/user", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", },
+    body: JSON.stringify({ id, type, userId }),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}

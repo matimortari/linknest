@@ -1,0 +1,50 @@
+export async function getPreferences(): Promise<UserPreferencesType> {
+  const response = await fetch("/api/preferences", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function updatePreferences(newPreferences: UserPreferencesType) {
+  const response = await fetch("/api/preferences", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newPreferences),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function updateSupportBanner(newBanner: string) {
+  const response = await fetch("/api/preferences", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ supportBanner: newBanner }),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+export async function resetPreferences(): Promise<UserPreferencesType> {
+  const response = await fetch("/api/preferences", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ reset: true }),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`)
+  }
+
+  return response.json()
+}

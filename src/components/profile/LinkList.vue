@@ -7,7 +7,9 @@
       </p>
     </header>
 
-    <div v-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
+    <Spinner v-if="isLoading" />
+
+    <div v-else-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
       <p>No links yet. Add your first link!</p>
     </div>
 
@@ -52,6 +54,7 @@
 import { deleteLink, getLinks } from "~/lib/services/links"
 
 const links = ref<LinkType[]>([])
+const isLoading = ref(true)
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
 
@@ -70,6 +73,9 @@ onMounted(async () => {
   }
   catch (error) {
     console.error("Failed to load links", error)
+  }
+  finally {
+    isLoading.value = false
   }
 })
 

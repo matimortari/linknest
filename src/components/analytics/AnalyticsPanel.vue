@@ -7,7 +7,9 @@
       </p>
     </header>
 
-    <div class="my-2 grid grid-cols-2 gap-4 md:grid-cols-4 md:place-items-center">
+    <Spinner v-if="isLoading" />
+
+    <div v-else class="my-2 grid grid-cols-2 gap-4 md:grid-cols-4 md:place-items-center">
       <div class="flex flex-row items-center gap-2">
         <Icon name="material-symbols:table-eye" size="25" class="text-accent" />
         <div class="flex flex-col items-start">
@@ -66,7 +68,9 @@
       </p>
     </header>
 
-    <div v-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
+    <Spinner v-if="isLoading" />
+
+    <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
       <p>Not enough data yet.</p>
     </div>
 
@@ -83,7 +87,9 @@
           </p>
         </header>
 
-        <div v-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
+        <Spinner v-if="isLoading" />
+
+        <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
           <p>Not enough data yet.</p>
         </div>
 
@@ -98,7 +104,9 @@
           </p>
         </header>
 
-        <div v-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
+        <Spinner v-if="isLoading" />
+
+        <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
           <p>Not enough data yet.</p>
         </div>
 
@@ -113,12 +121,19 @@ import { getUser } from "~/lib/services/user"
 
 const user = ref<UserType | null>(null)
 
+const isLoading = ref(true)
+
 onMounted(async () => {
   try {
+    isLoading.value = true
     user.value = await getUser()
+    // TODO: Fetch and assign real analytics data to stats.value
   }
   catch (error) {
     console.error("Failed to get user data:", error)
+  }
+  finally {
+    isLoading.value = false
   }
 })
 

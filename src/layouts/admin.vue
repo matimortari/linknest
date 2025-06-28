@@ -5,9 +5,11 @@
         <UserMenu />
       </div>
 
-      <main class="flex-1 overflow-y-auto">
+      <main class="flex-1 overflow-y-auto relative min-h-[200px]">
         <Loading v-if="!isLoaded" />
-        <slot />
+        <div :class="{ hidden: !isLoaded }">
+          <slot />
+        </div>
       </main>
     </div>
 

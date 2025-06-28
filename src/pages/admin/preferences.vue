@@ -25,7 +25,8 @@
     </main>
 
     <aside v-motion class="lg:w-1/3 w-full" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="600">
-      <Preview v-if="preferences" :preferences="preferences" />
+      <Spinner v-if="isLoading" />
+      <Preview v-else-if="preferences" :preferences="preferences" />
     </aside>
   </div>
 </template>
@@ -34,14 +35,17 @@
 import { getPreferences } from "~/lib/services/preferences"
 
 const preferences = ref<UserPreferencesType | null>(null)
+const isLoading = ref(true)
 
 onMounted(async () => {
   try {
-    const result = await getPreferences()
-    preferences.value = result
+    preferences.value = await getPreferences()
   }
   catch (error) {
     console.error("Failed to load preferences:", error)
+  }
+  finally {
+    isLoading.value = false
   }
 })
 

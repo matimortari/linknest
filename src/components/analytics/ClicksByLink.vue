@@ -2,40 +2,35 @@
   <div class="flex flex-col gap-4">
     <header class="my-2 flex flex-col gap-2">
       <h3>Clicks By Link</h3>
-
       <p class="text-caption text-muted-foreground">
         Your most visited links & social icons.
       </p>
     </header>
 
-    <p v-if="!links.length && !icons.length" class="text-lead my-2 text-center text-muted-foreground">
+    <Spinner v-if="isLoading" />
+
+    <p
+      v-else-if="!links.length && !icons.length"
+      class="text-lead my-2 text-center text-muted-foreground"
+    >
       No links or social icons available yet.
     </p>
 
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
         <div class="mb-2 flex flex-row items-center gap-2">
-          <Icon
-            v-if="item.type === 'icon' && item.icon"
-            :name="item.icon"
-            size="20"
-            class="text-muted-foreground"
-          />
-
+          <Icon v-if="item.type === 'icon' && item.icon" :name="item.icon" size="20" class="text-muted-foreground" />
           <h5 class="truncate text-muted-foreground">
             {{ item.type === 'link' ? item.title : item.platform }}
           </h5>
-
           <span class="text-label whitespace-nowrap">
             - {{ item.clicks }} clicks
           </span>
         </div>
-
         <div class="flex flex-col gap-1">
           <p class="text-label truncate">
             {{ item.url }}
           </p>
-
           <p class="text-label text-muted-foreground">
             Created at {{ item.formattedDate }}
           </p>
@@ -51,19 +46,23 @@ import { getLinks } from "~/lib/services/links"
 
 const links = ref<LinkType[]>([])
 const icons = ref<IconType[]>([])
+const isLoading = ref(true)
 
 onMounted(async () => {
   try {
+    isLoading.value = true
     const [getLinksResult, getIconsResult] = await Promise.all([
       getLinks(),
       getIcons(),
     ])
-
     links.value = getLinksResult
     icons.value = getIconsResult
   }
   catch (error) {
     console.error("Failed to get user data", error)
+  }
+  finally {
+    isLoading.value = false
   }
 })
 

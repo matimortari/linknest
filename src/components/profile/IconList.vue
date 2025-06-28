@@ -7,7 +7,9 @@
       </p>
     </header>
 
-    <div v-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
+    <Spinner v-if="isLoading" />
+
+    <div v-else-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
       <p>No social icons yet. Add your first social icon!</p>
     </div>
 
@@ -38,6 +40,7 @@
 import { deleteIcon, getIcons } from "~/lib/services/icons"
 
 const icons = ref<IconType[]>([])
+const isLoading = ref(true)
 const isDialogOpen = ref(false)
 
 function openDialog() {
@@ -49,10 +52,14 @@ function closeDialog() {
 
 onMounted(async () => {
   try {
+    isLoading.value = true
     icons.value = await getIcons()
   }
   catch (error) {
     console.error("Failed to load social icons", error)
+  }
+  finally {
+    isLoading.value = false
   }
 })
 

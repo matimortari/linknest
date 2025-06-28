@@ -2,28 +2,29 @@ import { computed, onMounted } from "vue"
 
 export function useTheme() {
   const colorMode = useState<"light" | "dark">("theme", () => "light")
+  const storageKey = "nuxt-color-mode"
 
   const updateHtmlClass = () => {
     const html = document.documentElement
-    if (colorMode.value === "dark") {
-      html.classList.add("dark")
-    }
-    else {
-      html.classList.remove("dark")
-    }
+    html.classList.remove("light", "dark")
+    html.classList.add(colorMode.value)
   }
 
   const syncThemeFromLocalStorage = () => {
-    const saved = localStorage.getItem("theme")
+    const saved = localStorage.getItem(storageKey)
     if (saved === "dark" || saved === "light") {
       colorMode.value = saved
+    }
+    else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      colorMode.value = prefersDark ? "dark" : "light"
     }
     updateHtmlClass()
   }
 
   const toggleTheme = () => {
     colorMode.value = colorMode.value === "dark" ? "light" : "dark"
-    localStorage.setItem("theme", colorMode.value)
+    localStorage.setItem(storageKey, colorMode.value)
     updateHtmlClass()
   }
 

@@ -2,6 +2,7 @@ import { defineNuxtConfig } from "nuxt/config"
 
 export default defineNuxtConfig({
   modules: [
+    "@nuxtjs/color-mode",
     "@nuxt/eslint",
     "@nuxtjs/google-fonts",
     "@nuxt/icon",
@@ -23,6 +24,12 @@ export default defineNuxtConfig({
       enablePeriodically: 20000,
       enableOnWindowFocus: true,
     }
+  },
+  colorMode: {
+    classSuffix: "",
+    preference: "system",
+    fallback: "light",
+    storageKey: "nuxt-color-mode"
   },
   googleFonts: {
     families: {

@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-  :root {
+  html.light {
     --background: #e0dddd;
     --foreground: #131212;
 
@@ -33,7 +33,7 @@
     --input: #eeeded;
   }
 
-  .dark {
+  html.dark {
     --background: #040308;
     --foreground: #ebe8e8;
 

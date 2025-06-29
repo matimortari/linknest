@@ -7,7 +7,7 @@
         </h2>
         <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Welcome back,
-          <span class="font-bold text-accent">{{ session?.user?.slug }}</span>!
+          <span class="font-bold text-accent">{{ user?.slug }}</span>!
         </p>
       </header>
 
@@ -34,11 +34,14 @@
 
 <script setup lang="ts">
 import { usePreferencesStore } from "~/lib/stores/preferences-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const { data: session } = useAuth()
 const preferencesStore = usePreferencesStore()
+const userStore = useUserStore()
 
 const preferences = computed(() => preferencesStore.preferences)
+const user = computed(() => userStore.user)
 const isLoading = computed(() => preferencesStore.isLoading)
 
 onMounted(async () => {

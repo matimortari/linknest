@@ -17,9 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { deleteUser } from "~/lib/services/user-service"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
+
+const userStore = useUserStore()
 
 async function handleDeleteAccount() {
   // eslint-disable-next-line no-alert
@@ -27,7 +29,7 @@ async function handleDeleteAccount() {
     return
 
   try {
-    await deleteUser()
+    await userStore.removeUser()
     await signOut({ callbackUrl: "/" })
   }
   catch (error) {

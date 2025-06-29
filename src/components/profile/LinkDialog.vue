@@ -24,8 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { createLink, updateLink } from "~/lib/services/links-service"
-
 const props = defineProps<{
   isOpen: boolean
   selectedLink?: LinkType | null
@@ -52,20 +50,8 @@ watch(() => props.isOpen, (open) => {
   }
 }, { immediate: true })
 
-async function handleSave() {
-  try {
-    let newLink: LinkType
-    if (form.value.id) {
-      newLink = await updateLink(form.value)
-    }
-    else {
-      newLink = await createLink(form.value)
-    }
-    emit("save", newLink)
-    emit("close")
-  }
-  catch (err) {
-    console.error("Failed to save link:", err)
-  }
+function handleSave() {
+  emit("save", { ...form.value })
+  emit("close")
 }
 </script>

@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { deleteUser } from "~/lib/services/user"
+import { deleteUser } from "~/lib/services/user-service"
 
 const { signOut } = useAuth()
 

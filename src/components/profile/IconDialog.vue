@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { SOCIAL_ICONS } from "~/lib/config/social-icons"
-import { createIcon } from "~/lib/services/icons"
+import { createIcon } from "~/lib/services/icons-service"
 
 const props = defineProps<{
   isOpen: boolean

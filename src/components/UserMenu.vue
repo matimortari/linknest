@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/userStore"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
 

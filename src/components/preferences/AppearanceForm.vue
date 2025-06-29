@@ -205,7 +205,7 @@
 <script setup lang="ts">
 import { BACKGROUND_TYPES, FONT_SIZES, FONT_WEIGHTS, LINK_FONT_SIZES, LINK_PADDING_SIZES, RADIUS_SIZES, SHADOW_WEIGHTS } from "~/lib/config/appearance-config"
 import { BANNER_OPTIONS } from "~/lib/config/banner-config"
-import { usePreferencesStore } from "~/lib/stores/preferencesStore"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
 
 const tabs = [
   { label: "Background", value: "background" },

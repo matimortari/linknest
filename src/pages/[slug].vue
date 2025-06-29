@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { trackClick, trackPageVisit } from "~/lib/services/user"
+import { trackClick, trackPageVisit } from "~/lib/services/user-service"
 
 const route = useRoute()
 const slug = route.params.slug as string

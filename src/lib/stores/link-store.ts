@@ -1,4 +1,3 @@
-import { defineStore } from "pinia"
 import { createLink, deleteLink, getLinks, updateLink } from "~/lib/services/links-service"
 
 export const useLinkStore = defineStore("link", {

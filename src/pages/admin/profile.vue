@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col gap-4 w-full min-h-screen lg:flex-row">
-    <main v-motion class="flex-1 card" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="600">
+    <main v-motion class="flex-1 card" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
       <header class="space-y-2">
-        <h2 v-motion :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
+        <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Profile
         </h2>
-        <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
+        <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Welcome back,
           <span class="font-bold text-accent">{{ session?.user?.slug }}</span>!
         </p>
@@ -25,7 +25,7 @@
       </div>
     </main>
 
-    <aside v-motion class="lg:w-1/3 w-full" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="600">
+    <aside class="lg:w-1/3 w-full">
       <Spinner v-if="isLoading" />
       <Preview v-else-if="preferences" :preferences="preferences" />
     </aside>

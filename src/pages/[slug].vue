@@ -14,33 +14,13 @@
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
-      <img
-        v-if="user.image"
-        :src="user.image"
-        alt="Profile picture"
-        class="size-20"
-        :style="{ borderRadius: user.preferences?.profilePictureRadius }"
-      >
+      <img v-if="user.image" :src="user.image" alt="Profile picture" class="size-20" :style="profileImageStyle">
 
-      <p
-        :style="{
-          color: user.preferences?.slugTextColor,
-          fontWeight: user.preferences?.slugTextWeight,
-          fontSize: user.preferences?.slugTextSize,
-        }"
-      >
+      <p :style="slugTextStyle">
         {{ `@${user.slug}` }}
       </p>
 
-      <p
-        v-if="user.description"
-        class="max-w-sm truncate whitespace-break-spaces"
-        :style="{
-          color: user.preferences?.headerTextColor,
-          fontWeight: user.preferences?.headerTextWeight,
-          fontSize: user.preferences?.headerTextSize,
-        }"
-      >
+      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
         {{ user.description }}
       </p>
 
@@ -53,7 +33,7 @@
           :preferences="user.preferences"
           :icon-id="icon.id"
           :user-id="user.id"
-          @click="handleClick(icon.id, 'icon')"
+          @click="handleClick(icon.id ?? '', 'icon')"
         />
       </ul>
 
@@ -66,7 +46,7 @@
           :preferences="user.preferences"
           :link-id="link.id"
           :user-id="user.id"
-          @click="handleClick(link.id, 'link')"
+          @click="handleClick(link.id ?? '', 'link')"
         />
       </ul>
 
@@ -78,25 +58,17 @@
 </template>
 
 <script setup lang="ts">
-import { trackClick, trackPageVisit } from "~/lib/services/user-service"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const route = useRoute()
 const slug = route.params.slug as string
+const userStore = useUserStore()
 
-const { data: user } = await useFetch(`/api/user/${slug}`, {
-  headers: useRequestHeaders(["cookie"]),
+onMounted(async () => {
+  await userStore.fetchUserBySlug(slug)
 })
 
-watch(() => user.value?.id, async (id) => {
-  if (id) {
-    try {
-      await trackPageVisit(id)
-    }
-    catch (error) {
-      console.error("Failed to track page visit:", error)
-    }
-  }
-}, { immediate: true })
+const user = computed(() => userStore.user)
 
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)
@@ -104,38 +76,51 @@ const backgroundStyle = computed(() => {
   const prefs = user.value.preferences
 
   return prefs.backgroundType === "GRADIENT"
-    ? {
-        background: `linear-gradient(to bottom, ${prefs.backgroundGradientStart}, ${prefs.backgroundGradientEnd})`,
-      }
+    ? { background: `linear-gradient(to bottom, ${prefs.backgroundGradientStart}, ${prefs.backgroundGradientEnd})` }
     : { backgroundColor: prefs.backgroundColor }
 })
+
+const profileImageStyle = computed(() => ({
+  borderRadius: user.value?.preferences?.profilePictureRadius,
+}))
+
+const slugTextStyle = computed(() => ({
+  color: user.value?.preferences?.slugTextColor,
+  fontWeight: user.value?.preferences?.slugTextWeight,
+  fontSize: user.value?.preferences?.slugTextSize,
+}))
+
+const headerTextStyle = computed(() => ({
+  color: user.value?.preferences?.headerTextColor,
+  fontWeight: user.value?.preferences?.headerTextWeight,
+  fontSize: user.value?.preferences?.headerTextSize,
+}))
 
 async function handleClick(id: string, type: "link" | "icon") {
   if (!user.value)
     return
   try {
-    await trackClick(id, type, user.value.id)
+    await userStore.trackClick(id, type, user.value.id ?? "")
   }
   catch (error) {
     console.error(`Failed to track ${type} click:`, error)
   }
 }
 
-useHead({
-  title: `@${user?.value?.slug || slug} – LinkNest`,
-  link: [
-    { rel: "canonical", href: `https://linknest.app/${user?.value?.slug || slug}` },
-    { rel: "icon", href: "/favicon.ico" }
-  ],
-  meta: [
-    { name: "description", content: `@${user?.value?.slug || slug} profile on LinkNest.` }
-  ],
-})
+watch(() => user.value?.slug, (newSlug) => {
+  if (newSlug) {
+    useHead({
+      title: `@${newSlug} – LinkNest`,
+      link: [{ rel: "canonical", href: `https://linknest.app/${newSlug}` }, { rel: "icon", href: "/favicon.ico" },],
+      meta: [{ name: "description", content: `@${newSlug} profile on LinkNest.` },],
+    })
 
-useSeoMeta({
-  title: `@${user?.value?.slug || slug} – LinkNest`,
-  description: `@${user?.value?.slug || slug} profile on LinkNest.`,
-})
+    useSeoMeta({
+      title: `@${newSlug} – LinkNest`,
+      description: `@${newSlug} profile on LinkNest.`,
+    })
+  }
+}, { immediate: true })
 
 definePageMeta({
   layout: "user"

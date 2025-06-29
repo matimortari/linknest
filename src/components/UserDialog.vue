@@ -29,7 +29,6 @@
 </template>
 
 <script setup lang="ts">
-import { updateUserData } from "~/lib/services/user-service"
 import { useUserStore } from "~/lib/stores/user-store"
 
 const props = defineProps<{
@@ -66,10 +65,11 @@ watch(() => props.isOpen, (open) => {
 
 async function handleSave() {
   try {
-    await updateUserData({
+    await userStore.updateUser({
+      ...userStore.user!,
       slug: form.value.slug,
       description: form.value.description,
-      image: form.value.image
+      image: form.value.image,
     })
 
     userStore.user = { ...form.value }

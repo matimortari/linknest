@@ -117,94 +117,74 @@
 </template>
 
 <script setup lang="ts">
-import { getUser } from "~/lib/services/user-service"
+import { useUserStore } from "~/lib/stores/user-store"
 
-const user = ref<UserType | null>(null)
+const userStore = useUserStore()
 
-const isLoading = ref(true)
+const stats = ref<UserStats[]>([])
 
 onMounted(async () => {
-  try {
-    isLoading.value = true
-    user.value = await getUser()
-    // TODO: Fetch and assign real analytics data to stats.value
+  if (!userStore.user) {
+    await userStore.fetchUser()
   }
-  catch (error) {
-    console.error("Failed to get user data:", error)
-  }
-  finally {
-    isLoading.value = false
-  }
+
+  stats.value = [
+    { date: "2025-06-01", pageViews: 1, linkClicks: 3, iconClicks: 1 },
+    { date: "2025-06-02", pageViews: 5, linkClicks: 1, iconClicks: 0 },
+    // ...
+  ]
 })
 
-// Compute total page views from user.views
-const totalViews = computed(() => user.value?.views?.length ?? 0)
+// Use store state and computed getters
+const isLoading = computed(() => userStore.isLoading)
+const user = computed(() => userStore.user)
 
-// Compute total link clicks by summing clicks
+// Analytics computations
+const totalViews = computed(() => user.value?.views?.length ?? 0)
 const totalClicks = computed(() => {
   const linkClicks = user.value?.links?.reduce((acc, link) => acc + (link.clicks ?? 0), 0) ?? 0
   const iconClicks = user.value?.icons?.reduce((acc, icon) => acc + (icon.clicks ?? 0), 0) ?? 0
   return linkClicks + iconClicks
 })
-
-// Calculate click rate as (totalClicks / totalViews) * 100, handle division by zero
 const clickRate = computed(() => {
   const views = totalViews.value
   if (views === 0)
     return 0
   return ((totalClicks.value / views) * 100).toFixed(2)
 })
-
-// Format user.createdAt date nicely
 const createdAt = computed(() => {
   if (!user.value?.createdAt)
     return "Unknown"
   return new Date(user.value.createdAt).toLocaleDateString()
 })
 
-// Prepare dummy or empty stats arrays for chart components
-// You’ll want to replace this with real logic based on your analytics data
-const stats = ref<UserStats[]>([]) // replace with actual analytics data when available
+// Chart data
+const barChartData = computed(() => ({
+  labels: stats.value.map(item => item.date),
+  datasets: [{
+    label: "Page Views",
+    data: stats.value.map(item => item.pageViews),
+    backgroundColor: "#4f46e5",
+  }],
+}))
 
-// Example bar chart data structure - adjust to your chart component's API
-const barChartData = computed(() => {
-  return {
-    labels: stats.value.map(item => item.date),
-    datasets: [
-      {
-        label: "Page Views",
-        data: stats.value.map(item => item.pageViews),
-        backgroundColor: "#4f46e5",
-      },
-    ],
-  }
-})
+const linkClicksChartData = computed(() => ({
+  labels: stats.value.map(item => item.date),
+  datasets: [{
+    label: "Link Clicks",
+    data: stats.value.map(item => item.linkClicks),
+    borderColor: "#9333ea",
+    fill: false,
+  }],
+}))
 
-const linkClicksChartData = computed(() => {
-  return {
-    labels: stats.value.map(item => item.date),
-    datasets: [
-      {
-        label: "Link Clicks",
-        data: stats.value.map(item => item.linkClicks),
-        borderColor: "#9333ea",
-        fill: false,
-      },
-    ],
-  }
-})
-
-const iconClicksChartData = computed(() => {
-  return {
-    labels: stats.value.map(item => item.date),
-    datasets: [
-      {
-        label: "Icon Clicks",
-        data: stats.value.map(item => item.iconClicks),
-        borderColor: "#10b981",
-        fill: false,
-      },
-    ],
-  }
-})
+const iconClicksChartData = computed(() => ({
+  labels: stats.value.map(item => item.date),
+  datasets: [{
+    label: "Icon Clicks",
+    data: stats.value.map(item => item.iconClicks),
+    borderColor: "#10b981",
+    fill: false,
+  }],
+}))
 </script>

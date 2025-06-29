@@ -47,13 +47,13 @@ useHead({
 })
 useSeoMeta({
   title: "Sign In – LinkNest",
-  description: "Sign In to LinkNest.",
+  description: "Sign In to LinkNest."
 })
 
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/admin/profile",
+    navigateAuthenticatedTo: "/admin/profile"
   }
 })
 </script>

@@ -218,7 +218,6 @@ const tabs = [
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
 
-// Use Pinia store instead of local ref
 const preferencesStore = usePreferencesStore()
 const { preferences } = storeToRefs(preferencesStore)
 
@@ -250,7 +249,7 @@ async function handleUpdatePreferences() {
 
 async function handleResetPreferences() {
   try {
-    await preferencesStore.resetPreferences()
+    await preferencesStore.defaultPreferences()
     status.value = "reset"
   }
   catch (error) {

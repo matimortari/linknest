@@ -20,7 +20,8 @@ export async function createIcon(newIcon: IconType): Promise<IconType> {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.icon
 }
 
 export async function deleteIcon(id: string): Promise<IconType> {

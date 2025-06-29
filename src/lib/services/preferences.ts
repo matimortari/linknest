@@ -20,7 +20,8 @@ export async function updatePreferences(newPreferences: UserPreferencesType) {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.preferences
 }
 
 export async function updateSupportBanner(newBanner: string) {
@@ -33,7 +34,8 @@ export async function updateSupportBanner(newBanner: string) {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.preferences
 }
 
 export async function resetPreferences(): Promise<UserPreferencesType> {
@@ -46,5 +48,6 @@ export async function resetPreferences(): Promise<UserPreferencesType> {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.preferences
 }

@@ -32,7 +32,8 @@ export async function updateUserData(data: UserType): Promise<UserType> {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.user
 }
 
 export async function deleteUser(): Promise<UserType> {

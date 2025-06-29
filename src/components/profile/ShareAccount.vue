@@ -4,8 +4,8 @@
       <h5 class="text-foreground">
         Share your Page:
       </h5>
-      <NuxtLink :to="`/${session?.user?.slug}`" :title="`linknest-live.vercel.app/${session?.user?.slug}`" class="text-label truncate hover:underline">
-        linknest-live.vercel.app/{{ session?.user?.slug }}
+      <NuxtLink :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-label truncate hover:underline">
+        linknest-live.vercel.app/{{ user?.slug }}
       </NuxtLink>
     </div>
 
@@ -36,11 +36,15 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="session?.user?.slug ?? ''" @close="closeDialog" />
+  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="closeDialog" />
 </template>
 
 <script setup lang="ts">
-const { data: session } = useAuth()
+import { useUserStore } from "~/lib/stores/user-store"
+
+const userStore = useUserStore()
+
+const user = computed(() => userStore.user)
 
 const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
@@ -80,13 +84,13 @@ onBeforeUnmount(() => {
 })
 
 function handleCopy() {
-  const pageUrl = `https://linknest-live.vercel.app/${session.value?.user?.slug}`
+  const pageUrl = `https://linknest-live.vercel.app/${user.value?.slug}`
   navigator.clipboard.writeText(pageUrl)
   isDropdownOpen.value = false
 }
 
 function handleShareTwitter() {
-  const pageUrl = `https://linknest-live.vercel.app/${session.value?.user?.slug}`
+  const pageUrl = `https://linknest-live.vercel.app/${user.value?.slug}`
   const tweetText = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${pageUrl}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweetText

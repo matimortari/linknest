@@ -35,7 +35,6 @@
 
 <script setup lang="ts">
 import { SOCIAL_ICONS } from "~/lib/config/social-icons"
-import { createIcon } from "~/lib/services/icons-service"
 
 const props = defineProps<{
   isOpen: boolean
@@ -69,14 +68,8 @@ watch(() => props.isOpen, (open) => {
   }
 }, { immediate: true })
 
-async function handleSave() {
-  try {
-    const newIcon = await createIcon(form.value)
-    emit("save", newIcon)
-    emit("close")
-  }
-  catch (err) {
-    console.error("Failed to save social icon:", err)
-  }
+function handleSave() {
+  emit("save", { ...form.value })
+  emit("close")
 }
 </script>

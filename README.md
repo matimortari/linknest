@@ -22,6 +22,7 @@ Create your own landing page for sharing links to your social media profiles, we
 - **Prisma** for database management.
 - **Pinia** for global state management.
 - **Zod** for API and form validation.
+- **Chart.js** for analytics charts.
 - **TypeScript**.
 - **Tailwind CSS**.
 - **Framer Motion**.

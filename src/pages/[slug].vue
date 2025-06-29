@@ -1,5 +1,9 @@
 <template>
-  <div v-if="!user || !user.id || !user.preferences" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
+  <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
+    <Spinner />
+  </div>
+
+  <div v-else-if="!user || !user.id" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
     <p class="text-lead text-center text-muted-foreground">
       User {{ slug }} not found.
     </p>
@@ -24,7 +28,7 @@
         {{ user.description }}
       </p>
 
-      <ul v-if="user.icons?.length" class="my-2 flex flex-row items-center justify-center gap-2">
+      <ul v-if="user.icons?.length && user.preferences" class="my-2 flex flex-row items-center justify-center gap-2">
         <UserIcon
           v-for="icon in user.icons"
           :key="icon.id"
@@ -37,7 +41,7 @@
         />
       </ul>
 
-      <ul v-if="user.links?.length" class="flex flex-col items-center gap-4">
+      <ul v-if="user.links?.length && user.preferences" class="flex flex-col items-center gap-4">
         <UserLink
           v-for="link in user.links"
           :key="link.id"
@@ -66,9 +70,14 @@ const userStore = useUserStore()
 
 onMounted(async () => {
   await userStore.fetchUserBySlug(slug)
+
+  if (userStore.user?.id) {
+    userStore.trackPageVisit(userStore.user.id)
+  }
 })
 
 const user = computed(() => userStore.user)
+const isLoading = computed(() => userStore.isLoading)
 
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)

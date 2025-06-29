@@ -74,7 +74,7 @@
       <p>Not enough data yet.</p>
     </div>
 
-    <AnalyticsBarChart v-else :chart-data="barChartData" />
+    <AnalyticsBarChart v-else :chart-data="pageViewsChartData" />
 
     <hr class="my-2 w-full">
 
@@ -120,38 +120,67 @@
 import { useUserStore } from "~/lib/stores/user-store"
 
 const userStore = useUserStore()
-
+const isLoading = computed(() => userStore.isLoading)
+const user = computed(() => userStore.user)
 const stats = ref<UserStats[]>([])
+
+function groupByDate<T extends { date: string | Date }>(items: T[]) {
+  const result: Record<string, number> = {}
+  for (const item of items) {
+    const date = new Date(item.date).toISOString().split("T")[0]
+    result[date] = (result[date] || 0) + 1
+  }
+  return result
+}
 
 onMounted(async () => {
   if (!userStore.user) {
     await userStore.fetchUser()
   }
 
-  stats.value = [
-    { date: "2025-06-01", pageViews: 1, linkClicks: 3, iconClicks: 1 },
-    { date: "2025-06-02", pageViews: 5, linkClicks: 1, iconClicks: 0 },
-    // ...
-  ]
-})
+  if (!user.value)
+    return
 
-// Use store state and computed getters
-const isLoading = computed(() => userStore.isLoading)
-const user = computed(() => userStore.user)
+  const viewsByDate = groupByDate(user.value.views ?? [])
+
+  const linkClicks = user.value.links?.flatMap(link => link.linkClicks ?? []) ?? []
+  const linkClicksByDate = groupByDate(linkClicks)
+
+  const iconClicks = user.value.icons?.flatMap(icon => icon.iconClicks ?? []) ?? []
+  const iconClicksByDate = groupByDate(iconClicks)
+
+  const allDates = new Set([
+    ...Object.keys(viewsByDate),
+    ...Object.keys(linkClicksByDate),
+    ...Object.keys(iconClicksByDate),
+  ])
+
+  stats.value = [...allDates]
+    .sort()
+    .map(date => ({
+      date,
+      pageViews: viewsByDate[date] ?? 0,
+      linkClicks: linkClicksByDate[date] ?? 0,
+      iconClicks: iconClicksByDate[date] ?? 0,
+    }))
+})
 
 // Analytics computations
 const totalViews = computed(() => user.value?.views?.length ?? 0)
+
 const totalClicks = computed(() => {
   const linkClicks = user.value?.links?.reduce((acc, link) => acc + (link.clicks ?? 0), 0) ?? 0
   const iconClicks = user.value?.icons?.reduce((acc, icon) => acc + (icon.clicks ?? 0), 0) ?? 0
   return linkClicks + iconClicks
 })
+
 const clickRate = computed(() => {
   const views = totalViews.value
   if (views === 0)
     return 0
   return ((totalClicks.value / views) * 100).toFixed(2)
 })
+
 const createdAt = computed(() => {
   if (!user.value?.createdAt)
     return "Unknown"
@@ -159,12 +188,12 @@ const createdAt = computed(() => {
 })
 
 // Chart data
-const barChartData = computed(() => ({
+const pageViewsChartData = computed(() => ({
   labels: stats.value.map(item => item.date),
   datasets: [{
     label: "Page Views",
     data: stats.value.map(item => item.pageViews),
-    backgroundColor: "#4f46e5",
+    backgroundColor: "#31589c",
   }],
 }))
 
@@ -173,7 +202,7 @@ const linkClicksChartData = computed(() => ({
   datasets: [{
     label: "Link Clicks",
     data: stats.value.map(item => item.linkClicks),
-    borderColor: "#9333ea",
+    borderColor: "#31589c",
     fill: false,
   }],
 }))
@@ -181,9 +210,9 @@ const linkClicksChartData = computed(() => ({
 const iconClicksChartData = computed(() => ({
   labels: stats.value.map(item => item.date),
   datasets: [{
-    label: "Icon Clicks",
+    label: "Social Icon Clicks",
     data: stats.value.map(item => item.iconClicks),
-    borderColor: "#10b981",
+    borderColor: "#31589c",
     fill: false,
   }],
 }))

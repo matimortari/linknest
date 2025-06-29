@@ -7,12 +7,21 @@ export default defineEventHandler(async (event) => {
   const user = await db.user.findUnique({
     where: { email: sessionUser.email },
     include: {
-      links: true,
-      icons: true,
+      links: {
+        include: {
+          linkClicks: true
+        },
+      },
+      icons: {
+        include: {
+          iconClicks: true
+        },
+      },
       views: true,
-      preferences: true
-    }
+      preferences: true,
+    },
   })
+
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
   }

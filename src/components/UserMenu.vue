@@ -6,7 +6,7 @@
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 
-      <div class="my-4 flex items-center gap-4">
+      <div v-if="session" class="my-4 flex items-center gap-4">
         <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
           <img v-if="session?.user?.image" :src="session?.user?.image" :alt="session?.user?.slug" class="size-full rounded-full border object-cover">
 
@@ -52,7 +52,7 @@
   <div class="lg:hidden fixed top-0 inset-x-0 bg-card border-b flex items-center justify-between px-4 h-14 z-50">
     <NuxtLink to="/" class="flex items-center gap-2">
       <img src="/logo.png" alt="LinkNest Logo" width="30" height="30" class="icon">
-      <span class="text-2xl font-semibold">LinkNest</span>
+      <span class="text-2xl font-chau">LinkNest</span>
     </NuxtLink>
 
     <button class="btn" @click="isMobileNavOpen = !isMobileNavOpen">

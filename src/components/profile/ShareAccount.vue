@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="session?.user?.slug ?? ''" @close="closeDialog" @save="handleSave" />
+  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="session?.user?.slug ?? ''" @close="closeDialog" />
 </template>
 
 <script setup lang="ts">
@@ -93,10 +93,6 @@ function handleShareTwitter() {
   )}`
   window.open(twitterUrl, "_blank")
   isDropdownOpen.value = false
-}
-
-function handleSave() {
-  isDialogOpen.value = false
 }
 
 watch([isDropdownOpen, isDialogOpen], ([dropdownOpen, dialogOpen]) => {

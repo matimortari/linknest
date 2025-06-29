@@ -146,6 +146,9 @@ useSeoMeta({
 })
 
 definePageMeta({
-  auth: { unauthenticatedOnly: true, navigateAuthenticatedTo: "/admin/profile" }
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: "/admin/profile",
+  }
 })
 </script>

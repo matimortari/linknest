@@ -20,6 +20,7 @@ export default defineNuxtConfig({
       type: "authjs",
       defaultProvider: "github"
     },
+    globalAppMiddleware: true,
     sessionRefresh: {
       enablePeriodically: 20000,
       enableOnWindowFocus: true,

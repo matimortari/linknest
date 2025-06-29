@@ -1,9 +1,16 @@
 <template>
-  <div
-    v-if="user && user.preferences"
-    class="min-h-screen p-12"
-    :style="backgroundStyle"
-  >
+  <div v-if="!user || !user.id || !user.preferences" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
+    <p class="text-lead text-center text-muted-foreground">
+      User {{ slug }} not found.
+    </p>
+
+    <NuxtLink href="/" class="flex flex-row items-center gap-2 scale-sm">
+      <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="rounded-full">
+      <span class="text-2xl font-chau">LinkNest</span>
+    </NuxtLink>
+  </div>
+
+  <div v-else class="min-h-screen p-12" :style="backgroundStyle">
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
@@ -67,27 +74,6 @@
         No links yet.
       </p>
     </div>
-  </div>
-
-  <div v-else class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-    <p class="text-lead text-center text-muted-foreground">
-      User {{ slug }} not found.
-    </p>
-
-    <NuxtLink
-      href="/"
-      class="flex flex-row items-center gap-2 scale-sm"
-    >
-      <img
-        src="/logo.png"
-        alt="LinkNest Logo"
-        width="35"
-        height="35"
-        class="rounded-full"
-      >
-
-      <span class="text-2xl font-chau">LinkNest</span>
-    </NuxtLink>
   </div>
 </template>
 

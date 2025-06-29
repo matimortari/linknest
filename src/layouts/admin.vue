@@ -6,7 +6,7 @@
       </div>
 
       <main class="flex-1 overflow-y-auto relative min-h-[200px]">
-        <Loading v-if="!isLoaded" />
+        <Loading v-if="!isLoaded || !session" />
         <div :class="{ hidden: !isLoaded }">
           <slot />
         </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script setup lang="ts">
+const { data: session } = useAuth()
+
 const isLoaded = ref(false)
 
 onMounted(() => {

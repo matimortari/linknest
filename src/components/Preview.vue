@@ -1,10 +1,7 @@
 <template>
   <div class="my-6 flex max-h-[560px] select-none flex-col items-center justify-center">
     <!-- Mobile Preview Toggle -->
-    <button
-      class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 lg:hidden"
-      @click="isVisible = !isVisible"
-    >
+    <button class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 lg:hidden" @click="isVisible = !isVisible">
       <Icon :name="isVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
       <span>{{ isVisible ? 'Close Preview' : 'Preview' }}</span>
     </button>
@@ -16,33 +13,14 @@
       class="fixed left-0 top-0 z-10 size-full overflow-y-auto bg-background p-12 lg:hidden"
       :style="backgroundStyle"
     >
-      <div class="absolute left-1/2 right-3 top-2 h-[6px] w-[80px] -translate-x-1/2 rounded-full bg-black" />
-
-      <div class="absolute right-4 top-2 flex flex-row items-center gap-2 text-foreground">
-        <Icon name="mdi:signal" size="20" />
-        <Icon name="mdi:wifi" size="15" />
-      </div>
-
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img
-          :src="session?.user?.image"
-          alt="Profile picture"
-          class="size-24 object-cover"
-          :style="profileImageStyle"
-        >
+        <img :src="session?.user?.image" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
 
-        <p
-          class="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
-          :style="slugTextStyle"
-        >
+        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
           @{{ session?.user?.slug }}
         </p>
 
-        <p
-          v-if="session?.user?.description"
-          class="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
-          :style="headerTextStyle"
-        >
+        <p v-if="session?.user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
           {{ session?.user?.description }}
         </p>
 
@@ -92,17 +70,9 @@
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img
-          :src="session?.user?.image"
-          alt="Profile picture"
-          class="size-24 object-cover"
-          :style="profileImageStyle"
-        >
+        <img :src="session?.user?.image" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
 
-        <p
-          class="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
-          :style="slugTextStyle"
-        >
+        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
           @{{ session?.user?.slug }}
         </p>
 

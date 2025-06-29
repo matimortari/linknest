@@ -10,7 +10,6 @@
 </template>
 
 <style scoped>
-/* Loading Dots */
 .dot {
   opacity: 0;
   animation: fadeIn 1.2s infinite;
@@ -35,7 +34,6 @@
   }
 }
 
-/* Bar Animation */
 @keyframes slideBar {
   0% {
     left: -50%;

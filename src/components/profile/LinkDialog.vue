@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { createLink, updateLink } from "~/lib/services/links"
+import { createLink, updateLink } from "~/lib/services/links-service"
 
 const props = defineProps<{
   isOpen: boolean

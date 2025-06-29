@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import { getUser } from "~/lib/services/user"
+import { getUser } from "~/lib/services/user-service"
 
 const user = ref<UserType | null>(null)
 

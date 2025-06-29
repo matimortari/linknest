@@ -33,7 +33,7 @@ useHead({
 
 useSeoMeta({
   title: "Analytics – LinkNest",
-  description: "LinkNest analytics page.",
+  description: "LinkNest analytics page."
 })
 
 definePageMeta({

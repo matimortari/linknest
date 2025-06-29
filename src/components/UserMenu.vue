@@ -6,23 +6,23 @@
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 
-      <div v-if="session" class="flex items-center gap-4 my-4">
+      <div v-if="user" class="flex items-center gap-4 my-4">
         <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
-          <img v-if="session?.user?.image" :src="session?.user?.image" :alt="session?.user?.slug" class="size-full rounded-full border object-cover">
+          <img v-if="user?.image" :src="user?.image" :alt="user?.slug" class="size-full rounded-full border object-cover">
           <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
             <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
           </button>
         </div>
         <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
-          <NuxtLink :to="`/${session?.user?.slug}`" :title="`linknest-live.vercel.app/${session?.user?.slug}`" class="text-caption truncate hover:underline">
-            @{{ session?.user?.slug }}
+          <NuxtLink :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-caption truncate hover:underline">
+            @{{ user?.slug }}
           </NuxtLink>
           <p class="text-label break-words text-muted-foreground max-w-full">
-            {{ session?.user?.description }}
+            {{ user?.description }}
           </p>
         </div>
 
-        <nav v-if="session" class="flex flex-row gap-2 lg:hidden">
+        <nav v-if="user" class="flex flex-row gap-2 lg:hidden">
           <button class="btn" @click="toggleTheme">
             <Icon :name="themeIcon" size="25" />
           </button>
@@ -37,7 +37,7 @@
     </div>
 
     <nav
-      v-if="session"
+      v-if="user"
       class="w-full mt-4 gap-2 lg:items-start lg:justify-start lg:flex-col lg:flex" :class="[
         isMobileNavOpen ? 'flex flex-row items-center justify-center' : 'hidden',
       ]"
@@ -55,7 +55,7 @@
 
     <div class="lg:flex-1" />
 
-    <nav v-if="session" class="flex-col w-full gap-2 hidden lg:flex">
+    <nav v-if="user" class="flex-col w-full gap-2 hidden lg:flex">
       <button class="btn" @click="toggleTheme">
         <Icon :name="themeIcon" size="25" />
         <span>Toggle Theme</span>
@@ -67,11 +67,27 @@
     </nav>
   </div>
 
-  <UserDialog :is-open="isDialogOpen" :slug="session?.user?.slug" :description="session?.user?.description" :image="session?.user?.image" @close="closeDialog" />
+  <UserDialog
+    :is-open="isDialogOpen"
+    :slug="user?.slug ?? undefined"
+    :description="user?.description ?? undefined"
+    :image="user?.image ?? undefined"
+    @close="closeDialog"
+  />
 </template>
 
 <script setup lang="ts">
-const { data: session, signOut } = useAuth()
+import { useUserStore } from "~/lib/stores/userStore"
+
+const { signOut } = useAuth()
+
+const userStore = useUserStore()
+const { user } = storeToRefs(userStore)
+
+onMounted(() => {
+  if (!user.value)
+    userStore.fetchUser()
+})
 
 const { toggleTheme, themeIcon } = useTheme()
 

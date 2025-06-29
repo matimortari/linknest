@@ -51,10 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { deleteLink, getLinks } from "~/lib/services/links"
+import { useLinkStore } from "~/lib/stores/linkStore"
 
-const links = ref<LinkType[]>([])
-const isLoading = ref(true)
+const linkStore = useLinkStore()
+const { links, isLoading } = storeToRefs(linkStore)
+
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
 
@@ -67,40 +68,25 @@ function closeDialog() {
   selectedLink.value = null
 }
 
-onMounted(async () => {
-  try {
-    links.value = await getLinks()
-  }
-  catch (error) {
-    console.error("Failed to load links", error)
-  }
-  finally {
-    isLoading.value = false
-  }
+onMounted(() => {
+  linkStore.fetchLinks()
 })
 
 async function handleDeleteLink(id: string) {
-  try {
-    await deleteLink(id)
-    links.value = links.value.filter(link => link.id !== id)
-  }
-  catch (error) {
-    console.error("Failed to delete link", error)
-  }
+  await linkStore.removeLink(id)
 }
+
 function editLink(link: LinkType) {
   selectedLink.value = link
   isDialogOpen.value = true
 }
 
-function handleSave(savedLink: LinkType) {
-  const index = links.value.findIndex(link => link.id === savedLink.id)
-  if (index > -1) {
-    links.value[index] = savedLink
-  }
-  else {
-    links.value.push(savedLink)
-  }
+async function handleSave(link: LinkType) {
+  const existing = links.value.find(l => l.id === link.id)
+  if (existing)
+    await linkStore.updateLink(link)
+  else await linkStore.addLink(link)
+
   closeDialog()
 }
 </script>

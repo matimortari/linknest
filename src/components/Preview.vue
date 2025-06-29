@@ -14,40 +14,40 @@
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="session?.user?.image" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
-          @{{ session?.user?.slug }}
+          @{{ user?.slug }}
         </p>
 
-        <p v-if="session?.user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
-          {{ session?.user?.description }}
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
+          {{ user?.description }}
         </p>
 
         <div class="my-2 w-full">
-          <ul v-if="session?.user?.icons?.length" class="flex flex-row items-center justify-center gap-2">
+          <ul v-if="icons.length" class="flex flex-row items-center justify-center gap-2">
             <UserIcon
-              v-for="icon in session.user.icons"
+              v-for="icon in icons"
               :key="icon.id"
               :url="icon.url"
               :icon="icon.icon"
-              :preferences="preferences"
+              :preferences="preferences!"
               :icon-id="icon.id"
-              :user-id="session.user.id"
+              :user-id="user?.id"
             />
           </ul>
         </div>
 
         <div class="w-full">
-          <ul v-if="session?.user?.links?.length" class="flex flex-col items-center gap-4">
+          <ul v-if="links?.length" class="flex flex-col items-center gap-4">
             <UserLink
-              v-for="link in session.user.links"
+              v-for="link in links"
               :key="link.id"
               :url="link.url"
               :title="link.title"
-              :preferences="preferences"
+              :preferences="preferences!"
               :link-id="link.id"
-              :user-id="session.user.id"
+              :user-id="user?.id"
             />
           </ul>
 
@@ -70,44 +70,40 @@
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="session?.user?.image" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
-          @{{ session?.user?.slug }}
+          @{{ user?.slug }}
         </p>
 
-        <p
-          v-if="session?.user?.description"
-          class="line-clamp-3 max-w-sm truncate whitespace-break-spaces"
-          :style="headerTextStyle"
-        >
-          {{ session?.user?.description }}
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
+          {{ user?.description }}
         </p>
 
         <div class="my-2 w-full">
-          <ul v-if="session?.user?.icons?.length" class="flex flex-row items-center justify-center gap-2">
+          <ul v-if="icons.length" class="flex flex-row items-center justify-center gap-2">
             <UserIcon
-              v-for="icon in session.user.icons"
+              v-for="icon in icons"
               :key="icon.id"
               :url="icon.url"
               :icon="icon.icon"
-              :preferences="preferences"
+              :preferences="preferences!"
               :icon-id="icon.id"
-              :user-id="session.user.id"
+              :user-id="user?.id"
             />
           </ul>
         </div>
 
         <div class="w-full">
-          <ul v-if="session?.user?.links?.length" class="flex flex-col items-center gap-4">
+          <ul v-if="links.length" class="flex flex-col items-center gap-4">
             <UserLink
-              v-for="link in session.user.links"
+              v-for="link in links"
               :key="link.id"
               :url="link.url"
               :title="link.title"
-              :preferences="preferences"
+              :preferences="preferences!"
               :link-id="link.id"
-              :user-id="session.user.id"
+              :user-id="user?.id"
             />
           </ul>
 
@@ -121,14 +117,28 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  preferences: UserPreferencesType
-}>()
+import { useIconStore } from "~/lib/stores/iconStore"
+import { useLinkStore } from "~/lib/stores/linkStore"
+import { usePreferencesStore } from "~/lib/stores/preferencesStore"
+import { useUserStore } from "~/lib/stores/userStore"
 
 const isVisible = ref(false)
-const { data: session } = useAuth()
 
-const preferences = computed(() => props.preferences ?? {})
+const iconStore = useIconStore()
+const linkStore = useLinkStore()
+const preferencesStore = usePreferencesStore()
+const userStore = useUserStore()
+
+const { icons } = storeToRefs(iconStore)
+const { links } = storeToRefs(linkStore)
+const { preferences } = storeToRefs(preferencesStore)
+const { user } = storeToRefs(userStore)
+
+onMounted(() => {
+  if (!preferences.value)
+    preferencesStore.fetchPreferences()
+  userStore.fetchUser()
+})
 
 const backgroundStyle = computed(() => {
   if (!preferences.value)

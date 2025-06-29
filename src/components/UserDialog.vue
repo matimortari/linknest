@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { updateUserData } from "~/lib/services/user"
+import { useUserStore } from "~/lib/stores/userStore"
 
 const props = defineProps<{
   isOpen: boolean
@@ -40,10 +41,11 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void
-  (e: "save", payload: UserType): void
 }>()
 
-const form = ref<UserType>({
+const userStore = useUserStore()
+
+const form = ref({
   slug: "",
   description: "",
   image: ""
@@ -70,7 +72,8 @@ async function handleSave() {
       image: form.value.image
     })
 
-    emit("save", { ...form.value })
+    userStore.user = { ...form.value }
+
     emit("close")
   }
   catch (err) {

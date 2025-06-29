@@ -30,27 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import { getPreferences } from "~/lib/services/preferences"
+import { usePreferencesStore } from "~/lib/stores/preferencesStore"
 
 const { data: session } = useAuth()
+const preferencesStore = usePreferencesStore()
 
-const preferences = ref<UserPreferencesType | null>(null)
-const isLoading = ref(true)
+const preferences = computed(() => preferencesStore.preferences)
+const isLoading = computed(() => preferencesStore.isLoading)
 
 onMounted(async () => {
   if (!session.value?.user) {
     return navigateTo("/sign-in")
   }
-
-  try {
-    preferences.value = await getPreferences()
-  }
-  catch (error) {
-    console.error("Failed to load preferences:", error)
-  }
-  finally {
-    isLoading.value = false
-  }
+  await preferencesStore.fetchPreferences()
 })
 
 useHead({
@@ -61,7 +53,7 @@ useHead({
 
 useSeoMeta({
   title: "Preferences – LinkNest",
-  description: "LinkNest preferences page.",
+  description: "LinkNest preferences page."
 })
 
 definePageMeta({

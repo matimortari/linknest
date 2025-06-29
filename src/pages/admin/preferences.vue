@@ -5,7 +5,6 @@
         <h2 v-motion :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
           Preferences
         </h2>
-
         <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
           Manage your profile.
         </p>
@@ -17,7 +16,6 @@
         <section class="section-container">
           <PreferencesAppearanceForm />
         </section>
-
         <section class="section-container">
           <PreferencesDeleteAccount />
         </section>
@@ -34,10 +32,16 @@
 <script setup lang="ts">
 import { getPreferences } from "~/lib/services/preferences"
 
+const { data: session } = useAuth()
+
 const preferences = ref<UserPreferencesType | null>(null)
 const isLoading = ref(true)
 
 onMounted(async () => {
+  if (!session.value?.user) {
+    return navigateTo("/sign-in")
+  }
+
   try {
     preferences.value = await getPreferences()
   }
@@ -62,5 +66,9 @@ useSeoMeta({
 
 definePageMeta({
   layout: "admin",
+  auth: {
+    unauthenticatedOnly: false,
+    navigateUnauthenticatedTo: "/"
+  }
 })
 </script>

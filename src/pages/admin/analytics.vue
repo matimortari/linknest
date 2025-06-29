@@ -5,7 +5,6 @@
         <h2 v-motion :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="400">
           Analytics
         </h2>
-
         <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="400">
           View your profile analytics.
         </p>
@@ -17,7 +16,6 @@
         <section class="section-container">
           <AnalyticsPanel />
         </section>
-
         <section class="section-container">
           <AnalyticsClicksByLink />
         </section>
@@ -40,5 +38,9 @@ useSeoMeta({
 
 definePageMeta({
   layout: "admin",
+  auth: {
+    unauthenticatedOnly: false,
+    navigateUnauthenticatedTo: "/sign-in"
+  }
 })
 </script>

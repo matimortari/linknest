@@ -5,6 +5,8 @@ interface LinkType {
   clicks?: number
   createdAt?: Date
   updatedAt?: Date
+  linkClicks?: { date: string | Date }[]
+
 }
 
 interface IconType {
@@ -15,6 +17,8 @@ interface IconType {
   clicks?: number
   createdAt?: Date
   updatedAt?: Date
+  iconClicks?: { date: string | Date }[]
+
 }
 
 interface UserType {

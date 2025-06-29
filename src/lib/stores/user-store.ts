@@ -6,7 +6,7 @@ import {
   trackClick,
   trackPageVisit,
   updateUserData,
-} from "~/lib/services/user"
+} from "~/lib/services/user-service"
 
 export const useUserStore = defineStore("user", {
   state: () => ({

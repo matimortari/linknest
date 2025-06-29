@@ -46,8 +46,8 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/iconStore"
-import { useLinkStore } from "~/lib/stores/linkStore"
+import { useIconStore } from "~/lib/stores/icon-store"
+import { useLinkStore } from "~/lib/stores/link-store"
 
 const iconStore = useIconStore()
 const linkStore = useLinkStore()

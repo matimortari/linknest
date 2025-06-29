@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/iconStore"
+import { useIconStore } from "~/lib/stores/icon-store"
 
 const iconStore = useIconStore()
 const { icons, isLoading } = storeToRefs(iconStore)

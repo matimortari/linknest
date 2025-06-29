@@ -117,10 +117,10 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/iconStore"
-import { useLinkStore } from "~/lib/stores/linkStore"
-import { usePreferencesStore } from "~/lib/stores/preferencesStore"
-import { useUserStore } from "~/lib/stores/userStore"
+import { useIconStore } from "~/lib/stores/icon-store"
+import { useLinkStore } from "~/lib/stores/link-store"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const isVisible = ref(false)
 

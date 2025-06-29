@@ -20,7 +20,7 @@ const chartOptions = {
   maintainAspectRatio: true,
   aspectRatio: 2, // width / height
   plugins: {
-    legend: { display: true },
+    legend: { display: false },
   },
 }
 </script>

@@ -24,6 +24,7 @@
 
     <aside class="lg:w-1/3 w-full">
       <Spinner v-if="isLoading" />
+      
       <Preview v-else-if="preferences" :preferences="preferences" />
     </aside>
   </div>

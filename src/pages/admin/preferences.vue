@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePreferencesStore } from "~/lib/stores/preferencesStore"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
 
 const { data: session } = useAuth()
 const preferencesStore = usePreferencesStore()

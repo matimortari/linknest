@@ -4,7 +4,7 @@ import {
   resetPreferences,
   updatePreferences,
   updateSupportBanner,
-} from "~/lib/services/preferences"
+} from "~/lib/services/preferences-service"
 
 export const usePreferencesStore = defineStore("preferences", {
   state: () => ({

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { createIcon, deleteIcon, getIcons } from "~/lib/services/icons"
+import { createIcon, deleteIcon, getIcons } from "~/lib/services/icons-service"
 
 export const useIconStore = defineStore("icon", {
   state: () => ({

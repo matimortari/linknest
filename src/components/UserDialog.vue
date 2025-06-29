@@ -29,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { updateUserData } from "~/lib/services/user"
-import { useUserStore } from "~/lib/stores/userStore"
+import { updateUserData } from "~/lib/services/user-service"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const props = defineProps<{
   isOpen: boolean

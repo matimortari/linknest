@@ -19,7 +19,12 @@
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
         <div class="mb-2 flex flex-row items-center gap-2">
-          <Icon v-if="item.type === 'icon' && item.icon" :name="item.icon" size="20" class="text-muted-foreground" />
+          <Icon
+            v-if="item.type === 'icon' && item.icon"
+            :name="item.icon"
+            size="20"
+            class="text-muted-foreground"
+          />
           <h5 class="truncate text-muted-foreground">
             {{ item.type === 'link' ? item.title : item.platform }}
           </h5>
@@ -41,29 +46,18 @@
 </template>
 
 <script setup lang="ts">
-import { getIcons } from "~/lib/services/icons"
-import { getLinks } from "~/lib/services/links"
+import { useIconStore } from "~/lib/stores/iconStore"
+import { useLinkStore } from "~/lib/stores/linkStore"
 
-const links = ref<LinkType[]>([])
-const icons = ref<IconType[]>([])
-const isLoading = ref(true)
+const iconStore = useIconStore()
+const linkStore = useLinkStore()
+
+const isLoading = computed(() => iconStore.isLoading || linkStore.isLoading)
+const icons = computed(() => iconStore.icons)
+const links = computed(() => linkStore.links)
 
 onMounted(async () => {
-  try {
-    isLoading.value = true
-    const [getLinksResult, getIconsResult] = await Promise.all([
-      getLinks(),
-      getIcons(),
-    ])
-    links.value = getLinksResult
-    icons.value = getIconsResult
-  }
-  catch (error) {
-    console.error("Failed to get user data", error)
-  }
-  finally {
-    isLoading.value = false
-  }
+  await Promise.all([iconStore.fetchIcons(), linkStore.fetchLinks()])
 })
 
 interface MergedLinkItem {

@@ -18,7 +18,6 @@
         <a :href="icon.url" target="_blank" rel="noopener">
           <Icon :name="icon.icon" :size="30" />
         </a>
-
         <button class="absolute bottom-0 right-0 p-1" @click="handleDeleteIcon(icon.id!)">
           <Icon name="mdi:remove-circle-outline" size="20" class="scale-md text-danger-foreground" />
         </button>
@@ -37,44 +36,41 @@
 </template>
 
 <script setup lang="ts">
-import { deleteIcon, getIcons } from "~/lib/services/icons"
+import { useIconStore } from "~/lib/stores/iconStore"
 
-const icons = ref<IconType[]>([])
-const isLoading = ref(true)
+const iconStore = useIconStore()
+const { icons, isLoading } = storeToRefs(iconStore)
+
 const isDialogOpen = ref(false)
 
 function openDialog() {
   isDialogOpen.value = true
 }
+
 function closeDialog() {
   isDialogOpen.value = false
 }
 
-onMounted(async () => {
-  try {
-    isLoading.value = true
-    icons.value = await getIcons()
-  }
-  catch (error) {
-    console.error("Failed to load social icons", error)
-  }
-  finally {
-    isLoading.value = false
-  }
+onMounted(() => {
+  iconStore.fetchIcons()
 })
 
 async function handleDeleteIcon(id: string) {
   try {
-    await deleteIcon(id)
-    icons.value = icons.value.filter(icon => icon.id !== id)
+    await iconStore.removeIcon(id)
   }
   catch (error) {
     console.error("Failed to delete social icon", error)
   }
 }
 
-function handleSave(savedIcon: IconType) {
-  icons.value.push(savedIcon)
-  closeDialog()
+async function handleSave(savedIcon: IconType) {
+  try {
+    await iconStore.addIcon(savedIcon)
+    closeDialog()
+  }
+  catch (error) {
+    console.error("Failed to add social icon", error)
+  }
 }
 </script>

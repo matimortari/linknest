@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="preferences">
     <header class="my-2 flex flex-col gap-2">
       <h3>Appearance</h3>
       <p class="text-caption text-muted-foreground">
@@ -205,7 +205,7 @@
 <script setup lang="ts">
 import { BACKGROUND_TYPES, FONT_SIZES, FONT_WEIGHTS, LINK_FONT_SIZES, LINK_PADDING_SIZES, RADIUS_SIZES, SHADOW_WEIGHTS } from "~/lib/config/appearance-config"
 import { BANNER_OPTIONS } from "~/lib/config/banner-config"
-import { getPreferences, resetPreferences, updatePreferences } from "~/lib/services/preferences"
+import { usePreferencesStore } from "~/lib/stores/preferencesStore"
 
 const tabs = [
   { label: "Background", value: "background" },
@@ -218,45 +218,15 @@ const tabs = [
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
 
-const preferences = ref<UserPreferencesType>({
-  backgroundType: "FLAT",
-  backgroundColor: "#ffffff",
-  backgroundGradientStart: "#ffffff",
-  backgroundGradientEnd: "#ffffff",
-  profilePictureRadius: "0.5rem",
-  slugTextColor: "#ffffff",
-  slugTextWeight: "400",
-  slugTextSize: "1rem",
-  headerTextColor: "#ffffff",
-  headerTextWeight: "400",
-  headerTextSize: "1rem",
-  linkBackgroundColor: "#ffffff",
-  linkTextColor: "#ffffff",
-  linkTextWeight: "400",
-  linkTextSize: "1rem",
-  isLinkShadow: false,
-  linkShadowColor: "#ffffff",
-  linkShadowWeight: "light",
-  linkHoverBackgroundColor: "#ffffff",
-  linkBorderRadius: "0.5rem",
-  linkPadding: "0.5rem",
-  iconBackgroundColor: "#ffffff",
-  isIconShadow: false,
-  iconShadowColor: "#ffffff",
-  iconShadowWeight: "light",
-  iconIconColor: "#ffffff",
-  iconHoverBackgroundColor: "#ffffff",
-  showCopyButton: false,
-  supportBanner: "NONE"
-})
+// Use Pinia store instead of local ref
+const preferencesStore = usePreferencesStore()
+const { preferences } = storeToRefs(preferencesStore)
 
-onMounted(async () => {
-  try {
-    const result = await getPreferences()
-    preferences.value = result
-  }
-  catch (error) {
-    console.error("Failed to load preferences:", error)
+onMounted(() => {
+  if (!preferences.value) {
+    preferencesStore.fetchPreferences().catch((error) => {
+      console.error("Failed to load preferences:", error)
+    })
   }
 })
 
@@ -265,13 +235,12 @@ function setActiveTab(tabValue: string) {
 }
 
 function applyTheme(newPreferences: UserPreferencesType) {
-  preferences.value = newPreferences
+  preferencesStore.preferences = newPreferences
 }
 
 async function handleUpdatePreferences() {
   try {
-    const response = await updatePreferences(preferences.value)
-    Object.assign(preferences.value, response.preferences)
+    await preferencesStore.savePreferences(preferences.value!)
     status.value = "saved"
   }
   catch (error) {
@@ -281,8 +250,7 @@ async function handleUpdatePreferences() {
 
 async function handleResetPreferences() {
   try {
-    const response = await resetPreferences()
-    Object.assign(preferences.value, response)
+    await preferencesStore.resetPreferences()
     status.value = "reset"
   }
   catch (error) {
@@ -295,15 +263,12 @@ watch(status, (newStatus, _, onInvalidate) => {
     const timer = setTimeout(() => {
       status.value = "idle"
     }, 2000)
-
-    onInvalidate(() => {
-      clearTimeout(timer)
-    })
+    onInvalidate(() => clearTimeout(timer))
   }
 })
 
-const isBackgroundFlat = computed(() => preferences.value.backgroundType === "FLAT")
-const isBackgroundGradient = computed(() => preferences.value.backgroundType === "GRADIENT")
-const isLinkShadowDisabled = computed(() => !preferences.value.isLinkShadow)
-const isIconShadowDisabled = computed(() => !preferences.value.isIconShadow)
+const isBackgroundFlat = computed(() => preferences.value?.backgroundType === "FLAT")
+const isBackgroundGradient = computed(() => preferences.value?.backgroundType === "GRADIENT")
+const isLinkShadowDisabled = computed(() => !preferences.value?.isLinkShadow)
+const isIconShadowDisabled = computed(() => !preferences.value?.isIconShadow)
 </script>

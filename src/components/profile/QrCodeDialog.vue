@@ -26,13 +26,10 @@ import QrcodeVue from "qrcode.vue"
 
 const props = defineProps({
   isOpen: Boolean,
-  slug: {
-    type: String,
-    required: true,
-  },
+  slug: String
 })
 
-const emit = defineEmits(["update:isOpen"])
+const emit = defineEmits(["close", "update:isOpen"])
 
 function close() {
   emit("update:isOpen", false)

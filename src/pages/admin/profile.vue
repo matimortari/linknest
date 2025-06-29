@@ -5,7 +5,6 @@
         <h2 v-motion :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
           Profile
         </h2>
-
         <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="600">
           Welcome back,
           <span class="font-bold text-accent">{{ session?.user?.slug }}</span>!
@@ -20,7 +19,6 @@
         <section class="section-container">
           <ProfileLinkList />
         </section>
-
         <section class="section-container">
           <ProfileIconList />
         </section>
@@ -43,6 +41,10 @@ const preferences = ref<UserPreferencesType | null>(null)
 const isLoading = ref(true)
 
 onMounted(async () => {
+  if (!session.value?.user) {
+    return navigateTo("/sign-in")
+  }
+
   try {
     preferences.value = await getPreferences()
   }

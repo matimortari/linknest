@@ -7,11 +7,12 @@
         <h2 v-motion class="font-bowlby" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
           Sign In
         </h2>
-
         <p v-motion class="text-muted-foreground" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
           Sign in with Google or GitHub to continue.
         </p>
       </div>
+
+      <hr class="my-2 w-full">
 
       <div v-motion class="my-8 flex w-full flex-col items-center gap-4" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
         <div class="flex flex-col items-center gap-4">
@@ -50,6 +51,9 @@ useSeoMeta({
 })
 
 definePageMeta({
-  auth: { unauthenticatedOnly: true, navigateAuthenticatedTo: "/admin/profile" }
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: "/admin/profile",
+  }
 })
 </script>

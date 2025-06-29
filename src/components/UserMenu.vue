@@ -1,107 +1,73 @@
 <template>
-  <div class="hidden lg:my-8 lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:w-52">
+  <div class="lg:my-8 lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:w-52">
     <div class="flex flex-col gap-4">
       <NuxtLink to="/" class="flex flex-row items-center gap-2 scale-sm">
         <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="icon">
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 
-      <div v-if="session" class="my-4 flex items-center gap-4">
+      <div v-if="session" class="flex items-center gap-4 my-4">
         <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
           <img v-if="session?.user?.image" :src="session?.user?.image" :alt="session?.user?.slug" class="size-full rounded-full border object-cover">
-
           <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
             <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
           </button>
         </div>
-
         <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
           <NuxtLink :to="`/${session?.user?.slug}`" :title="`linknest-live.vercel.app/${session?.user?.slug}`" class="text-caption truncate hover:underline">
             @{{ session?.user?.slug }}
           </NuxtLink>
-
           <p class="text-label break-words text-muted-foreground max-w-full">
             {{ session?.user?.description }}
           </p>
         </div>
+
+        <nav v-if="session" class="flex flex-row gap-2 lg:hidden">
+          <button class="btn" @click="toggleTheme">
+            <Icon :name="themeIcon" size="25" />
+          </button>
+          <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
+            <Icon name="material-symbols:logout" size="25" />
+          </button>
+          <button class="btn" @click="isMobileNavOpen = !isMobileNavOpen">
+            <Icon name="material-symbols:menu" size="25" />
+          </button>
+        </nav>
       </div>
     </div>
 
-    <nav class="flex flex-col w-full gap-2">
-      <NuxtLink v-for="link in navLinks" :key="link.href" :to="link.href" class="btn">
-        <Icon :name="link.icon" size="25" />
-        <span class="hidden sm:inline">{{ link.label }}</span>
-      </NuxtLink>
-    </nav>
-
-    <div class="flex-1" />
-
-    <div class="flex flex-col w-full gap-2">
-      <button class="btn" @click="toggleTheme">
-        <Icon :name="themeIcon" size="25" />
-        <span class="hidden sm:inline">Toggle Theme</span>
-      </button>
-
-      <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
-        <Icon name="material-symbols:logout" size="25" />
-        <span class="hidden sm:inline">Sign Out</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="lg:hidden fixed top-0 inset-x-0 bg-card border-b flex items-center justify-between px-4 h-14 z-50">
-    <NuxtLink to="/" class="flex items-center gap-2">
-      <img src="/logo.png" alt="LinkNest Logo" width="30" height="30" class="icon">
-      <span class="text-2xl font-chau">LinkNest</span>
-    </NuxtLink>
-
-    <button class="btn" @click="isMobileNavOpen = !isMobileNavOpen">
-      <Icon :name="isMobileNavOpen ? 'ph:x' : 'ph:list'" size="25" />
-    </button>
-  </div>
-
-  <!-- Mobile Navigation Drawer -->
-  <nav v-if="isMobileNavOpen" class="lg:hidden fixed top-14 inset-x-0 bg-card border-b flex flex-col gap-2 p-4 z-40">
-    <div class="my-4 flex items-center gap-4">
-      <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
-        <img v-if="session?.user?.image" :src="session?.user?.image" :alt="session?.user?.slug" class="size-full rounded-full border object-cover">
-        <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
-          <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
-        </button>
-      </div>
-
-      <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
-        <NuxtLink :to="`/${session?.user?.slug}`" :title="`linknest-live.vercel.app/${session?.user?.slug}`" class="text-caption truncate hover:underline">
-          @{{ session?.user?.slug }}
-        </NuxtLink>
-
-        <p class="text-label break-words text-muted-foreground max-w-full">
-          {{ session?.user?.description }}
-        </p>
-      </div>
-    </div>
-
-    <div class="flex flex-col w-full gap-2 mt-2">
-      <NuxtLink v-for="link in navLinks" :key="link.href" :to="link.href" class="btn" @click="isMobileNavOpen = false">
+    <nav
+      v-if="session"
+      class="w-full mt-4 gap-2 lg:items-start lg:justify-start lg:flex-col lg:flex" :class="[
+        isMobileNavOpen ? 'flex flex-row items-center justify-center' : 'hidden',
+      ]"
+    >
+      <NuxtLink
+        v-for="link in navLinks"
+        :key="link.href"
+        :to="link.href"
+        class="btn lg:w-full"
+      >
         <Icon :name="link.icon" size="25" />
         <span>{{ link.label }}</span>
       </NuxtLink>
-    </div>
+    </nav>
 
-    <div class="flex flex-col w-full gap-2 mt-4">
+    <div class="lg:flex-1" />
+
+    <nav v-if="session" class="flex-col w-full gap-2 hidden lg:flex">
       <button class="btn" @click="toggleTheme">
         <Icon :name="themeIcon" size="25" />
         <span>Toggle Theme</span>
       </button>
-
       <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
         <Icon name="material-symbols:logout" size="25" />
         <span>Sign Out</span>
       </button>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
-  <UserDialog :is-open="isDialogOpen" :slug="session?.user?.slug" :description="session?.user?.description" :image="session?.user?.image" @close="closeDialog" @save="handleSave" />
+  <UserDialog :is-open="isDialogOpen" :slug="session?.user?.slug" :description="session?.user?.description" :image="session?.user?.image" @close="closeDialog" />
 </template>
 
 <script setup lang="ts">
@@ -136,9 +102,4 @@ const navLinks = [
     label: "Analytics",
   },
 ]
-
-function handleSave() {
-  // eslint-disable-next-line no-console
-  console.log("User profile updated!")
-}
 </script>

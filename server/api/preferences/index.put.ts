@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     await db.userPreferences.delete({ where: { userId: user.id } })
     const defaultPreferences = await db.userPreferences.create({ data: { userId: user.id } })
 
-    return defaultPreferences
+    return { message: "Preferences reset to default", preferences: defaultPreferences }
   }
 
   const updatedPreferences = await db.userPreferences.update({

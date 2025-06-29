@@ -45,7 +45,7 @@ export const usePreferencesStore = defineStore("preferences", {
       }
     },
 
-    async resetPreferences() {
+    async defaultPreferences() {
       try {
         const reset = await resetPreferences()
         this.preferences = reset

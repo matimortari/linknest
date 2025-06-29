@@ -20,7 +20,8 @@ export async function createLink(newLink: LinkType): Promise<LinkType> {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.link
 }
 
 export async function updateLink(updatedLink: LinkType): Promise<LinkType> {
@@ -33,7 +34,8 @@ export async function updateLink(updatedLink: LinkType): Promise<LinkType> {
     throw new Error(`Failed to fetch: ${response.statusText}`)
   }
 
-  return response.json()
+  const json = await response.json()
+  return json.link
 }
 
 export async function deleteLink(id: string): Promise<LinkType> {

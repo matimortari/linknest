@@ -19,7 +19,7 @@
 
       <div class="flex flex-row items-center gap-2">
         <button
-          class="btn flex items-center gap-2 transition-all duration-500 ease-in-out"
+          class="btn transition-all duration-500 ease-in-out"
           :class="status === 'saved' || status === 'reset' ? 'btn-success' : 'btn-primary'"
           @click="handleUpdatePreferences"
         >
@@ -46,18 +46,15 @@
         v-model:value="preferences.backgroundType" name="backgroundType"
         label="Background Type" :options="BACKGROUND_TYPES"
       />
-
       <div class="flex flex-col gap-2">
         <PreferencesColorInput
           id="backgroundColor" v-model:value="preferences.backgroundColor"
           label="Background Color" :disabled="isBackgroundGradient"
         />
-
         <PreferencesColorInput
           id="backgroundGradientStart" v-model:value="preferences.backgroundGradientStart"
           label="Gradient Start Color" :disabled="isBackgroundFlat"
         />
-
         <PreferencesColorInput
           id="backgroundGradientEnd" v-model:value="preferences.backgroundGradientEnd"
           label="Gradient End Color" :disabled="isBackgroundFlat"
@@ -71,22 +68,18 @@
           id="supportBanner" v-model:value="preferences.supportBanner" label="Support Banner"
           :options="BANNER_OPTIONS"
         />
-
         <PreferencesSelectInput
           id="profilePictureRadius" v-model:value="preferences.profilePictureRadius"
           label="Profile Picture Radius" :options="RADIUS_SIZES"
         />
-
         <PreferencesSelectInput
           id="slugTextSize" v-model:value="preferences.slugTextSize" label="Username Font Size"
           :options="FONT_SIZES"
         />
-
         <PreferencesSelectInput
           id="slugTextWeight" v-model:value="preferences.slugTextWeight"
           label="Username Font Weight" :options="FONT_WEIGHTS"
         />
-
         <PreferencesColorInput
           id="slugTextColor" v-model:value="preferences.slugTextColor"
           label="Username Font Color"
@@ -98,12 +91,10 @@
           id="headerTextSize" v-model:value="preferences.headerTextSize"
           label="Header Font Size" :options="FONT_SIZES"
         />
-
         <PreferencesSelectInput
           id="headerTextWeight" v-model:value="preferences.headerTextWeight"
           label="Header Font Weight" :options="FONT_WEIGHTS"
         />
-
         <PreferencesColorInput
           id="headerTextColor" v-model:value="preferences.headerTextColor"
           label="Header Font Color"
@@ -117,24 +108,19 @@
           id="linkBackgroundColor" v-model:value="preferences.linkBackgroundColor"
           label="Background Color"
         />
-
         <PreferencesColorInput id="linkTextColor" v-model:value="preferences.linkTextColor" label="Font Color" />
-
         <PreferencesSelectInput
           id="linkTextSize" v-model:value="preferences.linkTextSize" label="Font Size"
           :options="LINK_FONT_SIZES"
         />
-
         <PreferencesSelectInput
           id="linkTextWeight" v-model:value="preferences.linkTextWeight" label="Font Weight"
           :options="FONT_WEIGHTS"
         />
-
         <PreferencesSelectInput
           id="linkBorderRadius" v-model:value="preferences.linkBorderRadius" label="Radius"
           :options="RADIUS_SIZES"
         />
-
         <PreferencesSelectInput
           id="linkPadding" v-model:value="preferences.linkPadding" label="Padding"
           :options="LINK_PADDING_SIZES"
@@ -146,19 +132,15 @@
           id="linkHoverBackgroundColor" v-model:value="preferences.linkHoverBackgroundColor"
           label="Hover Background Color"
         />
-
         <PreferencesCheckboxInput id="isLinkShadow" v-model:value="preferences.isLinkShadow" label="Enable Shadow" />
-
         <PreferencesColorInput
           id="linkShadowColor" v-model:value="preferences.linkShadowColor" label="Shadow Color"
           :disabled="isLinkShadowDisabled"
         />
-
         <PreferencesSelectInput
           id="linkShadowWeight" v-model:value="preferences.linkShadowWeight"
           label="Shadow Weight" :options="SHADOW_WEIGHTS" :disabled="isLinkShadowDisabled"
         />
-
         <PreferencesCheckboxInput
           id="showCopyButton" v-model:value="preferences.showCopyButton"
           label="Show 'Copy to Clipboard' Button"
@@ -172,9 +154,7 @@
           id="iconBackgroundColor" v-model:value="preferences.iconBackgroundColor"
           label="Background Color"
         />
-
         <PreferencesColorInput id="iconIconColor" v-model:value="preferences.iconIconColor" label="Icon Color" />
-
         <PreferencesColorInput
           id="iconHoverBackgroundColor" v-model:value="preferences.iconHoverBackgroundColor"
           label="Hover Background Color"
@@ -183,12 +163,10 @@
 
       <div class="flex flex-col gap-2">
         <PreferencesCheckboxInput id="isIconShadow" v-model:value="preferences.isIconShadow" label="Enable Shadow" />
-
         <PreferencesColorInput
           id="iconShadowColor" v-model:value="preferences.iconShadowColor" label="Shadow Color"
           :disabled="isIconShadowDisabled"
         />
-
         <PreferencesSelectInput
           id="iconShadowWeight" v-model:value="preferences.iconShadowWeight"
           label="Shadow Weight" :options="SHADOW_WEIGHTS" :disabled="isIconShadowDisabled"
@@ -197,7 +175,7 @@
     </div>
 
     <div v-if="activeTab === 'themes'">
-      <PreferencesThemeForm :set-theme="applyTheme" />
+      <PreferencesThemeForm :set-theme="handleApplyTheme" />
     </div>
   </div>
 </template>
@@ -220,11 +198,9 @@ const status = ref<"idle" | "saved" | "reset">("idle")
 
 const { preferences } = storeToRefs(usePreferencesStore())
 
-onMounted(() => {
+onMounted(async () => {
   if (!preferences.value) {
-    usePreferencesStore().getPreferences().catch((error) => {
-      console.error("Failed to load preferences:", error)
-    })
+    await usePreferencesStore().getPreferences()
   }
 })
 
@@ -232,8 +208,8 @@ function setActiveTab(tabValue: string) {
   activeTab.value = tabValue
 }
 
-function applyTheme(newPreferences: UserPreferencesType) {
-  usePreferencesStore().preferences = newPreferences
+function handleApplyTheme(newPreferences: UserPreferencesType) {
+  preferences.value = newPreferences
 }
 
 async function handleUpdatePreferences() {

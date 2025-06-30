@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 400,
       statusMessage: "Invalid input",
-      data: parseResult.error.flatten()
+      data: parseResult.error.flatten(),
     })
   }
 
@@ -22,12 +22,12 @@ export default defineEventHandler(async (event) => {
   if (!icon) {
     throw createError({
       statusCode: 400,
-      statusMessage: `No social icon found for platform: ${platform}`
+      statusMessage: `No social icon found for platform: ${platform}`,
     })
   }
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email }
+    where: { email: sessionUser.email },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
       platform,
       url,
       icon,
-    }
+    },
   })
 
   return { message: "Social icon created", icon: newIcon }

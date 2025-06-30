@@ -42,20 +42,20 @@ const emit = defineEmits<{
   (e: "close"): void
 }>()
 
-const userStore = useUserStore()
-
 const form = ref({
   slug: "",
   description: "",
-  image: ""
+  image: "",
 })
+
+const { user } = storeToRefs(useUserStore())
 
 watch(() => props.isOpen, (open) => {
   if (open) {
     form.value = {
       slug: props.slug || "",
       description: props.description || "",
-      image: props.image || ""
+      image: props.image || "",
     }
   }
   else {
@@ -65,19 +65,19 @@ watch(() => props.isOpen, (open) => {
 
 async function handleSave() {
   try {
-    await userStore.updateUser({
-      ...userStore.user!,
+    await useUserStore().updateUser({
+      ...user.value!,
       slug: form.value.slug,
       description: form.value.description,
       image: form.value.image,
     })
 
-    userStore.user = { ...form.value }
+    user.value = { ...form.value }
 
     emit("close")
   }
-  catch (err) {
-    console.error("Failed to save user data:", err)
+  catch (error) {
+    console.error("Failed to update user data:", error)
   }
 }
 </script>

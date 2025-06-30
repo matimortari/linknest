@@ -9,12 +9,12 @@ export default defineEventHandler(async (event) => {
     include: {
       links: {
         include: {
-          linkClicks: true
+          linkClicks: true,
         },
       },
       icons: {
         include: {
-          iconClicks: true
+          iconClicks: true,
         },
       },
       views: true,

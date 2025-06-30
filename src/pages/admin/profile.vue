@@ -38,36 +38,33 @@ import { usePreferencesStore } from "~/lib/stores/preferences-store"
 import { useUserStore } from "~/lib/stores/user-store"
 
 const { data: session } = useAuth()
-const preferencesStore = usePreferencesStore()
-const userStore = useUserStore()
 
-const preferences = computed(() => preferencesStore.preferences)
-const user = computed(() => userStore.user)
-const isLoading = computed(() => preferencesStore.isLoading)
+const { user } = storeToRefs(useUserStore())
+const { preferences, isLoading } = storeToRefs(usePreferencesStore())
 
 onMounted(async () => {
   if (!session.value?.user) {
     return navigateTo("/sign-in")
   }
-  await preferencesStore.getPreferences()
+  await usePreferencesStore().getPreferences()
 })
 
 useHead({
   title: "Profile – LinkNest",
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" }, { rel: "icon", href: "/favicon.ico" }],
-  meta: [{ name: "description", content: "LinkNest profile page." }]
+  meta: [{ name: "description", content: "LinkNest profile page." }],
 })
 
 useSeoMeta({
   title: "Profile – LinkNest",
-  description: "LinkNest profile page."
+  description: "LinkNest profile page.",
 })
 
 definePageMeta({
   layout: "admin",
   auth: {
     unauthenticatedOnly: false,
-    navigateUnauthenticatedTo: "/"
-  }
+    navigateUnauthenticatedTo: "/",
+  },
 })
 </script>

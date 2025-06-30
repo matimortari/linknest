@@ -133,19 +133,14 @@ function groupByDate<T extends { date: string | Date }>(items: T[]) {
 }
 
 onMounted(async () => {
-  if (!useUserStore().user) {
-    await useUserStore().getUser()
-  }
+  await useUserStore().getUser()
 
-  if (!user.value)
-    return
+  const viewsByDate = groupByDate(user.value?.views ?? [])
 
-  const viewsByDate = groupByDate(user.value.views ?? [])
-
-  const linkClicks = user.value.links?.flatMap(link => link.linkClicks ?? []) ?? []
+  const linkClicks = user.value?.links?.flatMap(link => link.linkClicks ?? []) ?? []
   const linkClicksByDate = groupByDate(linkClicks)
 
-  const iconClicks = user.value.icons?.flatMap(icon => icon.iconClicks ?? []) ?? []
+  const iconClicks = user.value?.icons?.flatMap(icon => icon.iconClicks ?? []) ?? []
   const iconClicksByDate = groupByDate(iconClicks)
 
   const allDates = new Set([

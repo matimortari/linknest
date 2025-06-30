@@ -1,10 +1,7 @@
 <template>
   <div class="relative flex max-h-[550px] select-none items-center justify-center overflow-hidden">
     <Transition name="carousel-fade" mode="out-in">
-      <CarouselCard
-        :key="currentIndex"
-        :preset="CAROUSEL_PRESETS[currentIndex]"
-      />
+      <CarouselCard :key="currentIndex" :preset="CAROUSEL_PRESETS[currentIndex]" />
     </Transition>
   </div>
 </template>
@@ -18,7 +15,7 @@ function nextCard() {
   currentIndex.value = (currentIndex.value + 1) % CAROUSEL_PRESETS.length
 }
 
-let intervalId: number | undefined
+let intervalId: number
 
 onMounted(() => {
   intervalId = window.setInterval(nextCard, 5000)

@@ -1,19 +1,16 @@
 <template>
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4 p-4">
-      <div class="flex flex-col gap-2">
-        <label class="text-sm font-medium">Select Icon</label>
-
-        <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 preview-scrollbar">
-          <button
-            v-for="[label, iconName] in iconEntries" :key="label" type="button"
-            class="flex flex-col items-center justify-center rounded-lg border p-2 hover:bg-muted active:bg-accent"
-            :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
-          >
-            <Icon :name="iconName" size="25" />
-            <span class="text-xs truncate">{{ label }}</span>
-          </button>
-        </div>
+      <label class="text-sm font-medium">Select Icon</label>
+      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 preview-scrollbar">
+        <button
+          v-for="[label, iconName] in iconEntries" :key="label" type="button"
+          class="flex flex-col items-center justify-center rounded-lg border p-2 hover:bg-muted active:bg-accent"
+          :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
+        >
+          <Icon :name="iconName" size="25" />
+          <span class="text-xs truncate">{{ label }}</span>
+        </button>
       </div>
 
       <div class="form-group">
@@ -48,7 +45,7 @@ const emit = defineEmits<{
 const form = ref<IconType>({
   platform: "",
   icon: "",
-  url: ""
+  url: "",
 })
 
 const iconEntries = computed(() => Object.entries(SOCIAL_ICONS))
@@ -63,7 +60,7 @@ watch(() => props.isOpen, (open) => {
     form.value = {
       platform: "",
       icon: "",
-      url: ""
+      url: "",
     }
   }
 }, { immediate: true })

@@ -1,20 +1,19 @@
 <template>
-  <Dialog :is-open="isOpen" title="QR Code for Your Page" @update:is-open="updateOpen">
+  <Dialog :is-open="isOpen" title="QR Code for Your Page" @update:is-open="emit('close')">
     <div class="flex flex-col items-center gap-4">
       <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted p-2 bg-white" />
-
       <p class="text-center text-sm text-muted-foreground truncate">
-        <button class="hover:underline" @click="copyToClipboard">
+        <button class="hover:underline" @click="handleCopyToClipboard">
           {{ props.slug }}
         </button>
       </p>
     </div>
 
     <template #footer>
-      <button class="btn-secondary" @click="copyToClipboard">
+      <button class="btn-secondary" @click="handleCopyToClipboard">
         Copy Link
       </button>
-      <button class="btn-primary" @click="close">
+      <button class="btn-primary" @click="emit('close')">
         Close
       </button>
     </template>
@@ -26,20 +25,12 @@ import QrcodeVue from "qrcode.vue"
 
 const props = defineProps({
   isOpen: Boolean,
-  slug: String
+  slug: String,
 })
 
 const emit = defineEmits(["close", "update:isOpen"])
 
-function close() {
-  emit("update:isOpen", false)
-}
-
-function updateOpen(value: boolean) {
-  emit("update:isOpen", value)
-}
-
-function copyToClipboard() {
+function handleCopyToClipboard() {
   navigator.clipboard.writeText(`https://linknest-live.vercel.app/${props.slug}`)
 }
 </script>

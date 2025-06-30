@@ -81,12 +81,11 @@ import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
 
-const userStore = useUserStore()
-const { user } = storeToRefs(userStore)
+const { user } = storeToRefs(useUserStore())
 
 onMounted(() => {
   if (!user.value)
-    userStore.fetchUser()
+    useUserStore().getUser()
 })
 
 const { toggleTheme, themeIcon } = useTheme()

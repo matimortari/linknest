@@ -119,9 +119,8 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const userStore = useUserStore()
-const isLoading = computed(() => userStore.isLoading)
-const user = computed(() => userStore.user)
+const { user, isLoading } = storeToRefs(useUserStore())
+
 const stats = ref<UserStats[]>([])
 
 function groupByDate<T extends { date: string | Date }>(items: T[]) {
@@ -134,8 +133,8 @@ function groupByDate<T extends { date: string | Date }>(items: T[]) {
 }
 
 onMounted(async () => {
-  if (!userStore.user) {
-    await userStore.fetchUser()
+  if (!useUserStore().user) {
+    await useUserStore().getUser()
   }
 
   if (!user.value)

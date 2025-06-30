@@ -1,44 +1,39 @@
 import {
-  deleteUser,
-  getUser,
-  getUserBySlug,
-  trackClick,
-  trackPageVisit,
-  updateUserData,
+  deleteUserService,
+  getUserBySlugService,
+  getUserService,
+  trackClickService,
+  trackPageVisitService,
+  updateUserService,
 } from "~/lib/services/user-service"
 
 export const useUserStore = defineStore("user", {
   state: () => ({
     user: null as UserType | null,
     isLoading: false,
-    error: null as string | null,
   }),
 
   actions: {
-    async fetchUser() {
+    async getUser() {
       this.isLoading = true
-      this.error = null
       try {
-        this.user = await getUser()
+        this.user = await getUserService()
       }
-      catch (error: any) {
-        this.error = error.message || "Failed to fetch user"
-        console.error("fetchUser error:", error)
+      catch (error) {
+        console.error("Failed to get user data", error)
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async fetchUserBySlug(slug: string) {
+    async getUserBySlug(slug: string) {
       this.isLoading = true
-      this.error = null
       try {
-        this.user = await getUserBySlug(slug)
+        this.user = await getUserBySlugService(slug)
       }
-      catch (error: any) {
-        this.error = error.message || "Failed to fetch user by slug"
-        console.error("fetchUserBySlug error:", error)
+      catch (error) {
+        console.error("failed to get user by slug:", error)
       }
       finally {
         this.isLoading = false
@@ -47,30 +42,26 @@ export const useUserStore = defineStore("user", {
 
     async updateUser(data: UserType) {
       this.isLoading = true
-      this.error = null
       try {
-        const updatedUser = await updateUserData(data)
+        const updatedUser = await updateUserService(data)
         this.user = updatedUser
       }
-      catch (error: any) {
-        this.error = error.message || "Failed to update user"
-        console.error("updateUser error:", error)
+      catch (error) {
+        console.error("failed to update user data:", error)
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async removeUser() {
+    async deleteUser() {
       this.isLoading = true
-      this.error = null
       try {
-        await deleteUser()
+        await deleteUserService()
         this.user = null
       }
-      catch (error: any) {
-        this.error = error.message || "Failed to delete user"
-        console.error("removeUser error:", error)
+      catch (error) {
+        console.error("failed to delete user:", error)
       }
       finally {
         this.isLoading = false
@@ -79,19 +70,19 @@ export const useUserStore = defineStore("user", {
 
     async trackPageVisit(userId: string) {
       try {
-        await trackPageVisit(userId)
+        await trackPageVisitService(userId)
       }
       catch (error) {
-        console.error("trackPageVisit error:", error)
+        console.error("failed to track page visit:", error)
       }
     },
 
     async trackClick(id: string, type: "icon" | "link", userId: string) {
       try {
-        await trackClick(id, type, userId)
+        await trackClickService(id, type, userId)
       }
       catch (error) {
-        console.error("trackClick error:", error)
+        console.error("failed to track click:", error)
       }
     },
   },

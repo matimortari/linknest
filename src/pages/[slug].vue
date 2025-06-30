@@ -69,7 +69,7 @@ const slug = route.params.slug as string
 const userStore = useUserStore()
 
 onMounted(async () => {
-  await userStore.fetchUserBySlug(slug)
+  await userStore.getUserBySlug(slug)
 
   if (userStore.user?.id) {
     userStore.trackPageVisit(userStore.user.id)

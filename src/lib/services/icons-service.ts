@@ -1,4 +1,4 @@
-export async function getIcons(): Promise<IconType[]> {
+export async function getIconsService(): Promise<IconType[]> {
   const response = await fetch("/api/icons", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -10,7 +10,7 @@ export async function getIcons(): Promise<IconType[]> {
   return response.json()
 }
 
-export async function createIcon(newIcon: IconType): Promise<IconType> {
+export async function createIconService(newIcon: IconType): Promise<IconType> {
   const response = await fetch("/api/icons", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export async function createIcon(newIcon: IconType): Promise<IconType> {
   return json.icon
 }
 
-export async function deleteIcon(id: string): Promise<IconType> {
+export async function deleteIconService(id: string): Promise<IconType> {
   const response = await fetch(`/api/icons/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },

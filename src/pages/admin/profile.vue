@@ -49,7 +49,7 @@ onMounted(async () => {
   if (!session.value?.user) {
     return navigateTo("/sign-in")
   }
-  await preferencesStore.fetchPreferences()
+  await preferencesStore.getPreferences()
 })
 
 useHead({

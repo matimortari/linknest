@@ -53,8 +53,7 @@
 <script setup lang="ts">
 import { useLinkStore } from "~/lib/stores/link-store"
 
-const linkStore = useLinkStore()
-const { links, isLoading } = storeToRefs(linkStore)
+const { links, isLoading } = storeToRefs(useLinkStore())
 
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
@@ -69,11 +68,11 @@ function closeDialog() {
 }
 
 onMounted(() => {
-  linkStore.fetchLinks()
+  useLinkStore().getLinks()
 })
 
 async function handleDeleteLink(id: string) {
-  await linkStore.removeLink(id)
+  await useLinkStore().deleteLink(id)
 }
 
 function editLink(link: LinkType) {
@@ -84,8 +83,8 @@ function editLink(link: LinkType) {
 async function handleSave(link: LinkType) {
   const existing = links.value.find(l => l.id === link.id)
   if (existing)
-    await linkStore.updateLink(link)
-  else await linkStore.addLink(link)
+    await useLinkStore().updateLink(link)
+  else await useLinkStore().createLink(link)
 
   closeDialog()
 }

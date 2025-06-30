@@ -1,4 +1,4 @@
-export async function getUser(): Promise<UserType> {
+export async function getUserService(): Promise<UserType> {
   const response = await fetch("/api/user", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -10,7 +10,7 @@ export async function getUser(): Promise<UserType> {
   return response.json()
 }
 
-export async function getUserBySlug(slug: string): Promise<UserType> {
+export async function getUserBySlugService(slug: string): Promise<UserType> {
   const response = await fetch(`/api/user/${slug}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -22,7 +22,7 @@ export async function getUserBySlug(slug: string): Promise<UserType> {
   return response.json()
 }
 
-export async function updateUserData(data: UserType): Promise<UserType> {
+export async function updateUserService(data: UserType): Promise<UserType> {
   const response = await fetch("/api/user", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ export async function updateUserData(data: UserType): Promise<UserType> {
   return json.user
 }
 
-export async function deleteUser(): Promise<UserType> {
+export async function deleteUserService(): Promise<UserType> {
   const response = await fetch("/api/user", {
     method: "DELETE",
     headers: { "Content-Type": "application/json", },
@@ -48,7 +48,7 @@ export async function deleteUser(): Promise<UserType> {
   return response.json()
 }
 
-export async function trackPageVisit(userId: string) {
+export async function trackPageVisitService(userId: string) {
   const response = await fetch("/api/user", {
     method: "POST",
     headers: { "Content-Type": "application/json", },
@@ -61,7 +61,7 @@ export async function trackPageVisit(userId: string) {
   return response.json()
 }
 
-export async function trackClick(id: string, type: "icon" | "link", userId: string) {
+export async function trackClickService(id: string, type: "icon" | "link", userId: string) {
   const response = await fetch("/api/user", {
     method: "POST",
     headers: { "Content-Type": "application/json", },

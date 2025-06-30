@@ -38,8 +38,7 @@
 <script setup lang="ts">
 import { useIconStore } from "~/lib/stores/icon-store"
 
-const iconStore = useIconStore()
-const { icons, isLoading } = storeToRefs(iconStore)
+const { icons, isLoading } = storeToRefs(useIconStore())
 
 const isDialogOpen = ref(false)
 
@@ -52,12 +51,12 @@ function closeDialog() {
 }
 
 onMounted(() => {
-  iconStore.fetchIcons()
+  useIconStore().getIcons()
 })
 
 async function handleDeleteIcon(id: string) {
   try {
-    await iconStore.removeIcon(id)
+    await useIconStore().deleteIcon(id)
   }
   catch (error) {
     console.error("Failed to delete social icon", error)
@@ -66,7 +65,7 @@ async function handleDeleteIcon(id: string) {
 
 async function handleSave(savedIcon: IconType) {
   try {
-    await iconStore.addIcon(savedIcon)
+    await useIconStore().createIcon(savedIcon)
     closeDialog()
   }
   catch (error) {

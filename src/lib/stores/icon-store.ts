@@ -1,4 +1,4 @@
-import { createIcon, deleteIcon, getIcons } from "~/lib/services/icons-service"
+import { createIconService, deleteIconService, getIconsService } from "~/lib/services/icons-service"
 
 export const useIconStore = defineStore("icon", {
   state: () => ({
@@ -7,27 +7,45 @@ export const useIconStore = defineStore("icon", {
   }),
 
   actions: {
-    async fetchIcons() {
+    async getIcons() {
       this.isLoading = true
       try {
-        this.icons = await getIcons()
+        this.icons = await getIconsService()
       }
       catch (error) {
-        console.error("Failed to fetch icons:", error)
+        console.error("Failed to get social icons:", error)
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async addIcon(icon: IconType) {
-      const newIcon = await createIcon(icon)
-      this.icons.push(newIcon)
+    async createIcon(icon: IconType) {
+      this.isLoading = true
+      try {
+        const newIcon = await createIconService(icon)
+        this.icons.push(newIcon)
+      }
+      catch (error) {
+        console.error("Failed to create social icon:", error)
+      }
+      finally {
+        this.isLoading = false
+      }
     },
 
-    async removeIcon(id: string) {
-      await deleteIcon(id)
-      this.icons = this.icons.filter(icon => icon.id !== id)
+    async deleteIcon(id: string) {
+      this.isLoading = true
+      try {
+        await deleteIconService(id)
+        this.icons = this.icons.filter(icon => icon.id !== id)
+      }
+      catch (error) {
+        console.error("Failed to delete social icon:", error)
+      }
+      finally {
+        this.isLoading = false
+      }
     },
   },
 })

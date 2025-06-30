@@ -1,9 +1,4 @@
-import {
-  getPreferences,
-  resetPreferences,
-  updatePreferences,
-  updateSupportBanner,
-} from "~/lib/services/preferences-service"
+import { getPreferencesService, resetPreferencesService, updatePreferencesService, updateSupportBannerService } from "~/lib/services/preferences-service"
 
 export const usePreferencesStore = defineStore("preferences", {
   state: () => ({
@@ -12,43 +7,43 @@ export const usePreferencesStore = defineStore("preferences", {
   }),
 
   actions: {
-    async fetchPreferences() {
+    async getPreferences() {
       this.isLoading = true
       try {
-        this.preferences = await getPreferences()
+        this.preferences = await getPreferencesService()
       }
       catch (error) {
-        console.error("Failed to load preferences", error)
+        console.error("Failed to get preferences", error)
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async savePreferences(newPreferences: UserPreferencesType) {
+    async updatePreferences(newPreferences: UserPreferencesType) {
       try {
-        const updated = await updatePreferences(newPreferences)
-        this.preferences = updated
+        const updatedPreferences = await updatePreferencesService(newPreferences)
+        this.preferences = updatedPreferences
       }
       catch (error) {
         console.error("Failed to update preferences", error)
       }
     },
 
-    async changeSupportBanner(newBanner: string) {
+    async updateSupportBanner(newBanner: string) {
       try {
-        const updated = await updateSupportBanner(newBanner)
-        this.preferences = updated
+        const updatedBanner = await updateSupportBannerService(newBanner)
+        this.preferences = updatedBanner
       }
       catch (error) {
         console.error("Failed to update support banner", error)
       }
     },
 
-    async defaultPreferences() {
+    async resetPreferences() {
       try {
-        const reset = await resetPreferences()
-        this.preferences = reset
+        const defaultPreferences = await resetPreferencesService()
+        this.preferences = defaultPreferences
       }
       catch (error) {
         console.error("Failed to reset preferences", error)

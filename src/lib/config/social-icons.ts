@@ -1,5 +1,3 @@
-// Social media icon mappings for the IconDialog component
-
 export const SOCIAL_ICONS = {
   "Airbnb": "simple-icons:airbnb",
   "Amazon": "simple-icons:amazon",

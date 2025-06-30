@@ -1,20 +1,20 @@
 <template>
   <div class="my-6 flex max-h-[560px] select-none flex-col items-center justify-center">
     <!-- Mobile Preview Toggle -->
-    <button class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 lg:hidden" @click="isVisible = !isVisible">
-      <Icon :name="isVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
-      <span>{{ isVisible ? 'Close Preview' : 'Preview' }}</span>
+    <button class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 lg:hidden" @click="isMobilePreviewVisible = !isMobilePreviewVisible">
+      <Icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
+      <span>{{ isMobilePreviewVisible ? 'Close Preview' : 'Preview' }}</span>
     </button>
 
     <!-- Mobile Preview -->
     <div
-      v-show="isVisible"
+      v-show="isMobilePreviewVisible"
       id="mobile-preview"
       class="fixed left-0 top-0 z-10 size-full overflow-y-auto bg-background p-12 lg:hidden"
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
           @{{ user?.slug }}
@@ -70,7 +70,7 @@
       </div>
 
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profileImageStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
           @{{ user?.slug }}
@@ -127,13 +127,12 @@ const { links } = storeToRefs(useLinkStore())
 const { preferences } = storeToRefs(usePreferencesStore())
 const { user } = storeToRefs(useUserStore())
 
-onMounted(() => {
+onMounted(async () => {
   if (!preferences.value)
-    usePreferencesStore().getPreferences()
-  useUserStore().getUser()
+    await Promise.all([usePreferencesStore().getPreferences(), useUserStore().getUser()])
 })
 
-const isVisible = ref(false)
+const isMobilePreviewVisible = ref(false)
 
 const backgroundStyle = computed(() => {
   if (!preferences.value)
@@ -146,7 +145,7 @@ const backgroundStyle = computed(() => {
   return { backgroundColor: preferences.value.backgroundColor }
 })
 
-const profileImageStyle = computed(() => ({
+const profilePictureStyle = computed(() => ({
   borderRadius: preferences.value?.profilePictureRadius,
 }))
 

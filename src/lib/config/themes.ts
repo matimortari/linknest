@@ -1,5 +1,3 @@
-// Array of theme configuration objects for the ThemeForm component
-
 export const THEMES = [
   {
     title: "Mint",

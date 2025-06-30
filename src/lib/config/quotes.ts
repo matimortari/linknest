@@ -1,5 +1,3 @@
-// Array of random quote objects for the Home page rotating display
-
 export const QUOTES = [
   {
     quote: "The best way to predict the future is to create it.",

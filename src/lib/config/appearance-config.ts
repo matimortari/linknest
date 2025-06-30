@@ -1,5 +1,3 @@
-// Configuration constants for the AppearanceForm component
-
 export const BACKGROUND_TYPES = [
   { value: "FLAT", label: "Flat" },
   { value: "GRADIENT", label: "Gradient" },

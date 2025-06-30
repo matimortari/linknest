@@ -1,5 +1,3 @@
-// Array of carousel preset objects for the Carousel component
-
 export const CAROUSEL_PRESETS = [
   {
     slug: "coffeecorner",

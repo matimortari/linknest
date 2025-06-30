@@ -33,13 +33,13 @@ export default NuxtAuthHandler({
     // @ts-expect-error Use .default here for it to work during SSR.
     GithubProvider.default({
       clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     // @ts-expect-error Use .default here for it to work during SSR.
     GoogleProvider.default({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
-    })
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
   ],
   callbacks: {
     async jwt({ token, account, profile }) {
@@ -49,7 +49,7 @@ export default NuxtAuthHandler({
         const email = profile.email as string
         const description = ""
 
-        const getProfileImage = (profile: any, provider: string) => {
+        const getProfilePicture = (profile: any, provider: string) => {
           if (provider === "google") {
             return profile.picture ?? ""
           }
@@ -84,7 +84,7 @@ export default NuxtAuthHandler({
               email,
               description,
               name: profile.name ?? "",
-              image: getProfileImage(profile, provider),
+              image: getProfilePicture(profile, provider),
               slug: generateSlug(profile.name ?? email ?? "user"),
               preferences: {
                 create: {},
@@ -173,6 +173,6 @@ export default NuxtAuthHandler({
           icons: user.icons ?? [],
         },
       }
-    }
-  }
+    },
+  },
 })

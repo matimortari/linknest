@@ -10,14 +10,14 @@ export default defineEventHandler(async (event) => {
   }
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email }
+    where: { email: sessionUser.email },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
   }
 
   const icon = await db.userIcon.findUnique({
-    where: { id }
+    where: { id },
   })
   if (!icon || icon.userId !== user.id) {
     throw createError({ statusCode: 404, statusMessage: "Social icon not found or unauthorized" })

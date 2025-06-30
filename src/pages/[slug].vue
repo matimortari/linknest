@@ -18,7 +18,7 @@
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
-      <img v-if="user.image" :src="user.image" alt="Profile picture" class="size-20" :style="profileImageStyle">
+      <img v-if="user.image" :src="user.image" alt="Profile picture" class="size-20" :style="profilePictureStyle">
 
       <p :style="slugTextStyle">
         {{ `@${user.slug}` }}
@@ -66,18 +66,14 @@ import { useUserStore } from "~/lib/stores/user-store"
 
 const route = useRoute()
 const slug = route.params.slug as string
-const userStore = useUserStore()
+
+const { user, isLoading } = storeToRefs(useUserStore())
 
 onMounted(async () => {
-  await userStore.getUserBySlug(slug)
-
-  if (userStore.user?.id) {
-    userStore.trackPageVisit(userStore.user.id)
+  if (user.value?.id) {
+    useUserStore().trackPageVisit(slug)
   }
 })
-
-const user = computed(() => userStore.user)
-const isLoading = computed(() => userStore.isLoading)
 
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)
@@ -89,7 +85,7 @@ const backgroundStyle = computed(() => {
     : { backgroundColor: prefs.backgroundColor }
 })
 
-const profileImageStyle = computed(() => ({
+const profilePictureStyle = computed(() => ({
   borderRadius: user.value?.preferences?.profilePictureRadius,
 }))
 
@@ -109,7 +105,7 @@ async function handleClick(id: string, type: "link" | "icon") {
   if (!user.value)
     return
   try {
-    await userStore.trackClick(id, type, user.value.id ?? "")
+    await useUserStore().trackClick(id, type, user.value.id ?? "")
   }
   catch (error) {
     console.error(`Failed to track ${type} click:`, error)
@@ -120,8 +116,8 @@ watch(() => user.value?.slug, (newSlug) => {
   if (newSlug) {
     useHead({
       title: `@${newSlug} – LinkNest`,
-      link: [{ rel: "canonical", href: `https://linknest.app/${newSlug}` }, { rel: "icon", href: "/favicon.ico" },],
-      meta: [{ name: "description", content: `@${newSlug} profile on LinkNest.` },],
+      link: [{ rel: "canonical", href: `https://linknest.app/${newSlug}` }, { rel: "icon", href: "/favicon.ico" }],
+      meta: [{ name: "description", content: `@${newSlug} profile on LinkNest.` }],
     })
 
     useSeoMeta({
@@ -132,6 +128,6 @@ watch(() => user.value?.slug, (newSlug) => {
 }, { immediate: true })
 
 definePageMeta({
-  layout: "user"
+  layout: "user",
 })
 </script>

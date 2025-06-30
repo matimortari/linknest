@@ -32,8 +32,8 @@ const props = defineProps({
   isOpen: Boolean,
   title: {
     type: String,
-    default: "Dialog Title"
-  }
+    default: "Dialog Title",
+  },
 })
 
 const emit = defineEmits(["update:isOpen", "confirm"])

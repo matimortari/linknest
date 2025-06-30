@@ -10,14 +10,14 @@ export default defineEventHandler(async (event) => {
   }
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email }
+    where: { email: sessionUser.email },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
   }
 
   const link = await db.userLink.findUnique({
-    where: { id }
+    where: { id },
   })
   if (!link || link.userId !== user.id) {
     throw createError({ statusCode: 404, statusMessage: "Link not found or unauthorized" })

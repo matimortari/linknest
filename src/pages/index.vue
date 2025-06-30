@@ -132,7 +132,7 @@ useHead({
     { property: "og:type", content: "website" },
     { property: "og:image", content: "https://linknest-live.vercel.app/og-image.png" },
     { property: "og:url", content: "https://linknest-live.vercel.app" },
-    { name: "google-site-verification", content: "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA" }
+    { name: "google-site-verification", content: "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA" },
   ],
 })
 
@@ -142,13 +142,13 @@ useSeoMeta({
   ogTitle: "LinkNest – Your Link-in-Bio Page!",
   ogDescription: "Create your own landing page for sharing links to your social media profiles, websites, and more!",
   ogImage: "https://linknest-live.vercel.app/og-image.png",
-  ogUrl: "https://linknest-live.vercel.app"
+  ogUrl: "https://linknest-live.vercel.app",
 })
 
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/admin/profile"
-  }
+    navigateAuthenticatedTo: "/admin/profile",
+  },
 })
 </script>

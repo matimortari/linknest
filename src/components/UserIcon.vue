@@ -30,7 +30,7 @@ const iconStyle = computed(() => {
   let boxShadow = "none"
   if (props.preferences?.isIconShadow) {
     const weight = props.preferences.iconShadowWeight
-    const color = props.preferences.iconShadowColor || "rgba(0,0,0,0.3)"
+    const color = props.preferences.iconShadowColor
 
     boxShadow
       = weight === "none"

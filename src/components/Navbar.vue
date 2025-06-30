@@ -9,7 +9,6 @@
       <button class="btn" @click="toggleTheme">
         <Icon :name="themeIcon" size="25" />
       </button>
-
       <NuxtLink href="/sign-in" title="Sign In" class="btn">
         <Icon name="material-symbols:login" size="25" />
       </NuxtLink>

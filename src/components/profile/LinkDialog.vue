@@ -36,7 +36,7 @@ const emit = defineEmits<{
 
 const form = ref<LinkType>({
   title: "",
-  url: ""
+  url: "",
 })
 
 watch(() => props.isOpen, (open) => {

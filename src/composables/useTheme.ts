@@ -1,5 +1,3 @@
-import { computed, onMounted } from "vue"
-
 export function useTheme() {
   const colorMode = useState<"light" | "dark">("theme", () => "light")
   const storageKey = "nuxt-color-mode"
@@ -33,7 +31,7 @@ export function useTheme() {
   })
 
   const themeIcon = computed(() =>
-    colorMode.value === "light" ? "ph:moon" : "ph:sun"
+    colorMode.value === "light" ? "ph:moon" : "ph:sun",
   )
 
   return {

@@ -28,19 +28,19 @@
 useHead({
   title: "Analytics – LinkNest",
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.ico" }],
-  meta: [{ name: "description", content: "LinkNest analytics page." }]
+  meta: [{ name: "description", content: "LinkNest analytics page." }],
 })
 
 useSeoMeta({
   title: "Analytics – LinkNest",
-  description: "LinkNest analytics page."
+  description: "LinkNest analytics page.",
 })
 
 definePageMeta({
   layout: "admin",
   auth: {
     unauthenticatedOnly: false,
-    navigateUnauthenticatedTo: "/sign-in"
-  }
+    navigateUnauthenticatedTo: "/sign-in",
+  },
 })
 </script>

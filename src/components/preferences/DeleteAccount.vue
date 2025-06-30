@@ -8,7 +8,7 @@
     </header>
 
     <div class="input-group justify-end lg:justify-start">
-      <button title="Delete Account" class="btn-danger" @click="handleDeleteAccount">
+      <button title="Delete Account" class="btn-danger" @click="handleDeleteUser">
         <Icon name="mdi:user-remove" size="20" />
         <span>Delete Account</span>
       </button>
@@ -20,7 +20,8 @@
 import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
-async function handleDeleteAccount() {
+
+async function handleDeleteUser() {
   // eslint-disable-next-line no-alert
   if (!confirm("Are you sure you want to delete your account?"))
     return

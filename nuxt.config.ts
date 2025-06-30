@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "@sidebase/nuxt-auth",
-    "@vueuse/motion/nuxt"
+    "@vueuse/motion/nuxt",
   ],
   srcDir: "src",
   serverDir: "server",
@@ -18,33 +18,33 @@ export default defineNuxtConfig({
     originEnvKey: process.env.BASE_URL,
     provider: {
       type: "authjs",
-      defaultProvider: "github"
+      defaultProvider: "github",
     },
     globalAppMiddleware: true,
     sessionRefresh: {
       enablePeriodically: 20000,
       enableOnWindowFocus: true,
-    }
+    },
   },
   colorMode: {
     classSuffix: "",
     preference: "system",
     fallback: "light",
-    storageKey: "nuxt-color-mode"
+    storageKey: "nuxt-color-mode",
   },
   googleFonts: {
     families: {
       "Inter": true,
-      "Lato": { wght: [100, 300, 600, 700, 900,] },
+      "Lato": { wght: [100, 300, 600, 700, 900] },
       "Bowlby One": true,
       "Chau Philomene One": true,
     },
     display: "swap",
     prefetch: true,
-    preconnect: true
+    preconnect: true,
   },
   tailwindcss: {
-    cssPath: "~/styles/globals.css"
+    cssPath: "~/styles/globals.css",
   },
-  compatibilityDate: "2025-05-24"
+  compatibilityDate: "2025-05-24",
 })

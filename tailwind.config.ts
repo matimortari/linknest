@@ -5,7 +5,7 @@ export default {
       sans: ["Inter"],
       lato: ["Lato"],
       bowlby: ["Bowlby One"],
-      chau: ["Chau Philomene One"]
+      chau: ["Chau Philomene One"],
     },
     extend: {
       colors: {
@@ -13,36 +13,36 @@ export default {
         foreground: "var(--foreground)",
         card: {
           DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)"
+          foreground: "var(--card-foreground)",
         },
         popover: {
           DEFAULT: "var(--popover)",
-          foreground: "var(--popover-foreground)"
+          foreground: "var(--popover-foreground)",
         },
         primary: {
           DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)"
+          foreground: "var(--primary-foreground)",
         },
         secondary: {
           DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)"
+          foreground: "var(--secondary-foreground)",
         },
         muted: {
           DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)"
+          foreground: "var(--muted-foreground)",
         },
         danger: {
           DEFAULT: "var(--danger)",
-          foreground: "var(--danger-foreground)"
+          foreground: "var(--danger-foreground)",
         },
         success: {
           DEFAULT: "var(--success)",
-          foreground: "var(--success-foreground)"
+          foreground: "var(--success-foreground)",
         },
         accent: "var(--accent)",
         border: "var(--border)",
-        input: "var(--input)"
-      }
-    }
-  }
+        input: "var(--input)",
+      },
+    },
+  },
 }

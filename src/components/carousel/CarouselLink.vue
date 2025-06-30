@@ -28,7 +28,7 @@ const linkStyle = computed(() => {
     none: "none",
     light: `0 2px 4px ${preferences.value?.iconShadowColor}`,
     medium: `0 4px 6px ${preferences.value?.iconShadowColor}`,
-    heavy: `0 6px 10px ${preferences.value?.iconShadowColor}`
+    heavy: `0 6px 10px ${preferences.value?.iconShadowColor}`,
   }
 
   return {
@@ -40,7 +40,7 @@ const linkStyle = computed(() => {
       : "none",
     borderRadius: props.preferences?.linkBorderRadius,
     padding: props.preferences?.linkPadding,
-    transition: "background-color 0.3s ease, box-shadow 0.3s ease"
+    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
   }
 })
 
@@ -48,7 +48,7 @@ const linkInnerStyle = computed(() => {
   return {
     color: preferences.value?.linkTextColor,
     fontWeight: preferences.value?.linkTextWeight,
-    fontSize: preferences.value?.linkTextSize
+    fontSize: preferences.value?.linkTextSize,
   }
 })
 </script>

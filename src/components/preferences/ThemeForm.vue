@@ -41,7 +41,7 @@ function getThemeButtonStyle(preferences: any) {
         ? `linear-gradient(to right, ${preferences.backgroundGradientStart}, ${preferences.backgroundGradientEnd})`
         : "none",
     backgroundColor:
-      preferences.backgroundType !== "GRADIENT" ? preferences.backgroundColor : "none"
+      preferences.backgroundType !== "GRADIENT" ? preferences.backgroundColor : "none",
   }
 }
 
@@ -50,7 +50,7 @@ function getTitleStyle(preferences: any) {
     none: "none",
     light: `0px 1px 2px ${preferences.linkShadowColor}`,
     medium: `0 2px 6px ${preferences.linkShadowColor}`,
-    heavy: `1px 3px 10px ${preferences.linkShadowColor}`
+    heavy: `1px 3px 10px ${preferences.linkShadowColor}`,
   }
 
   return {
@@ -60,7 +60,7 @@ function getTitleStyle(preferences: any) {
     borderRadius: preferences.linkBorderRadius,
     boxShadow: preferences.isLinkShadow
       ? shadowMap[(preferences.linkShadowWeight as keyof typeof shadowMap) ?? "none"]
-      : "none"
+      : "none",
   }
 }
 </script>

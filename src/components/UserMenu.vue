@@ -6,74 +6,65 @@
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 
-      <div v-if="user" class="flex items-center gap-4 my-4">
-        <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
-          <img v-if="user?.image" :src="user?.image" :alt="user?.slug" class="size-full rounded-full border object-cover">
-          <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
-            <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
-          </button>
-        </div>
-        <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
-          <NuxtLink :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-caption truncate hover:underline">
-            @{{ user?.slug }}
-          </NuxtLink>
-          <p class="text-label break-words text-muted-foreground max-w-full">
-            {{ user?.description }}
-          </p>
+      <Spinner v-if="isLoading" class="my-4" />
+
+      <div v-else class="flex flex-col lg:gap-8">
+        <div class="flex items-center gap-4 my-4">
+          <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
+            <img v-if="user?.image" :src="user?.image" :alt="user?.slug" class="size-full rounded-full border object-cover">
+            <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
+              <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
+            </button>
+          </div>
+          <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
+            <NuxtLink :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-caption truncate hover:underline">
+              @{{ user?.slug }}
+            </NuxtLink>
+            <p class="text-label break-words text-muted-foreground max-w-full">
+              {{ user?.description }}
+            </p>
+          </div>
+
+          <nav class="flex flex-row gap-2 lg:hidden">
+            <button class="btn" @click="toggleTheme">
+              <Icon :name="themeIcon" size="25" />
+            </button>
+            <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
+              <Icon name="material-symbols:logout" size="25" />
+            </button>
+            <button class="btn" @click="isMobileNavOpen = !isMobileNavOpen">
+              <Icon name="material-symbols:menu" size="25" />
+            </button>
+          </nav>
         </div>
 
-        <nav v-if="user" class="flex flex-row gap-2 lg:hidden">
+        <nav
+          class="w-full mt-4 gap-2 lg:items-start lg:justify-start lg:flex-col lg:flex"
+          :class="[isMobileNavOpen ? 'flex flex-row items-center justify-center' : 'hidden']"
+        >
+          <NuxtLink v-for="link in navLinks" :key="link.href" :to="link.href" class="btn lg:w-full">
+            <Icon :name="link.icon" size="25" />
+            <span>{{ link.label }}</span>
+          </NuxtLink>
+        </nav>
+
+        <div class="lg:flex-1" />
+
+        <nav class="flex-col w-full gap-2 hidden lg:flex">
           <button class="btn" @click="toggleTheme">
             <Icon :name="themeIcon" size="25" />
+            <span>Toggle Theme</span>
           </button>
-          <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
+          <button class="btn-danger" @click="() => signOut({ callbackUrl: '/' })">
             <Icon name="material-symbols:logout" size="25" />
-          </button>
-          <button class="btn" @click="isMobileNavOpen = !isMobileNavOpen">
-            <Icon name="material-symbols:menu" size="25" />
+            <span>Sign Out</span>
           </button>
         </nav>
       </div>
     </div>
-
-    <nav
-      v-if="user"
-      class="w-full mt-4 gap-2 lg:items-start lg:justify-start lg:flex-col lg:flex" :class="[
-        isMobileNavOpen ? 'flex flex-row items-center justify-center' : 'hidden',
-      ]"
-    >
-      <NuxtLink
-        v-for="link in navLinks"
-        :key="link.href"
-        :to="link.href"
-        class="btn lg:w-full"
-      >
-        <Icon :name="link.icon" size="25" />
-        <span>{{ link.label }}</span>
-      </NuxtLink>
-    </nav>
-
-    <div class="lg:flex-1" />
-
-    <nav v-if="user" class="flex-col w-full gap-2 hidden lg:flex">
-      <button class="btn" @click="toggleTheme">
-        <Icon :name="themeIcon" size="25" />
-        <span>Toggle Theme</span>
-      </button>
-      <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
-        <Icon name="material-symbols:logout" size="25" />
-        <span>Sign Out</span>
-      </button>
-    </nav>
   </div>
 
-  <UserDialog
-    :is-open="isDialogOpen"
-    :slug="user?.slug ?? undefined"
-    :description="user?.description ?? undefined"
-    :image="user?.image ?? undefined"
-    @close="closeDialog"
-  />
+  <UserDialog :is-open="isDialogOpen" :slug="user?.slug ?? undefined" :description="user?.description ?? undefined" :image="user?.image ?? undefined" @close="closeDialog" />
 </template>
 
 <script setup lang="ts">
@@ -81,11 +72,11 @@ import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
 
-const { user } = storeToRefs(useUserStore())
+const { user, isLoading } = storeToRefs(useUserStore())
 
-onMounted(() => {
+onMounted(async () => {
   if (!user.value)
-    useUserStore().getUser()
+    await useUserStore().getUser()
 })
 
 const { toggleTheme, themeIcon } = useTheme()

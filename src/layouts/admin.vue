@@ -6,8 +6,8 @@
       </div>
 
       <main class="flex-1 overflow-y-auto relative min-h-[200px]">
-        <Loading v-if="!isLoaded || !session" />
-        <div :class="{ hidden: !isLoaded }">
+        <Loading v-if="isLoading || !session" />
+        <div :class="{ hidden: isLoading }">
           <slot />
         </div>
       </main>
@@ -20,15 +20,15 @@
 <script setup lang="ts">
 const { data: session } = useAuth()
 
-const isLoaded = ref(false)
+const isLoading = ref(true)
 
 onMounted(() => {
   if (document.readyState === "complete") {
-    isLoaded.value = true
+    isLoading.value = false
   }
   else {
     window.addEventListener("load", () => {
-      isLoaded.value = true
+      isLoading.value = false
     })
   }
 })

@@ -22,10 +22,9 @@
             </a>
 
             <div class="flex flex-row items-center gap-1">
-              <button @click="editLink(link)">
+              <button @click="handleUpdateLink(link)">
                 <Icon name="mdi:circle-edit-outline" size="20" class="scale-md text-accent" />
               </button>
-
               <button @click="handleDeleteLink(link.id!)">
                 <Icon name="mdi:remove-circle-outline" size="20" class="scale-md text-danger-foreground" />
               </button>
@@ -47,7 +46,7 @@
     </div>
   </div>
 
-  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="closeDialog" @save="handleSave" />
+  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="closeDialog" @save="handleSaveLink" />
 </template>
 
 <script setup lang="ts">
@@ -67,25 +66,43 @@ function closeDialog() {
   selectedLink.value = null
 }
 
-onMounted(() => {
-  useLinkStore().getLinks()
+onMounted(async () => {
+  if (!links.value.length)
+    await useLinkStore().getLinks()
 })
 
 async function handleDeleteLink(id: string) {
-  await useLinkStore().deleteLink(id)
+  try {
+    await useLinkStore().deleteLink(id)
+  }
+  catch (error) {
+    console.error("Failed to delete link:", error)
+  }
 }
 
-function editLink(link: LinkType) {
-  selectedLink.value = link
-  isDialogOpen.value = true
+function handleUpdateLink(link: LinkType) {
+  try {
+    selectedLink.value = link
+    isDialogOpen.value = true
+  }
+  catch (error) {
+    console.error("Failed to update link:", error)
+  }
 }
 
-async function handleSave(link: LinkType) {
-  const existing = links.value.find(l => l.id === link.id)
-  if (existing)
-    await useLinkStore().updateLink(link)
-  else await useLinkStore().createLink(link)
-
-  closeDialog()
+async function handleSaveLink(link: LinkType) {
+  try {
+    const existingLink = links.value.find(l => l.id === link.id)
+    if (existingLink) {
+      await useLinkStore().updateLink(link)
+    }
+    else {
+      await useLinkStore().createLink(link)
+    }
+    closeDialog()
+  }
+  catch (error) {
+    console.error("Failed to save link:", error)
+  }
 }
 </script>

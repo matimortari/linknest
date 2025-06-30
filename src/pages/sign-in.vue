@@ -43,17 +43,17 @@ const { signIn } = useAuth()
 useHead({
   title: "Sign In – LinkNest",
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }, { rel: "icon", href: "/favicon.ico" }],
-  meta: [{ name: "description", content: "Sign In to LinkNest." }]
+  meta: [{ name: "description", content: "Sign In to LinkNest." }],
 })
 useSeoMeta({
   title: "Sign In – LinkNest",
-  description: "Sign In to LinkNest."
+  description: "Sign In to LinkNest.",
 })
 
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/admin/profile"
-  }
+    navigateAuthenticatedTo: "/admin/profile",
+  },
 })
 </script>

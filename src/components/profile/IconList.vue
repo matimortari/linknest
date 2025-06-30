@@ -18,6 +18,7 @@
         <a :href="icon.url" target="_blank" rel="noopener">
           <Icon :name="icon.icon" :size="30" />
         </a>
+
         <button class="absolute bottom-0 right-0 p-1" @click="handleDeleteIcon(icon.id!)">
           <Icon name="mdi:remove-circle-outline" size="20" class="scale-md text-danger-foreground" />
         </button>
@@ -32,7 +33,7 @@
     </div>
   </div>
 
-  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleSave" />
+  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleSaveIcon" />
 </template>
 
 <script setup lang="ts">
@@ -45,13 +46,13 @@ const isDialogOpen = ref(false)
 function openDialog() {
   isDialogOpen.value = true
 }
-
 function closeDialog() {
   isDialogOpen.value = false
 }
 
-onMounted(() => {
-  useIconStore().getIcons()
+onMounted(async () => {
+  if (!icons.value.length)
+    await useIconStore().getIcons()
 })
 
 async function handleDeleteIcon(id: string) {
@@ -59,17 +60,17 @@ async function handleDeleteIcon(id: string) {
     await useIconStore().deleteIcon(id)
   }
   catch (error) {
-    console.error("Failed to delete social icon", error)
+    console.error("Failed to delete icon:", error)
   }
 }
 
-async function handleSave(savedIcon: IconType) {
+async function handleSaveIcon(savedIcon: IconType) {
   try {
     await useIconStore().createIcon(savedIcon)
     closeDialog()
   }
   catch (error) {
-    console.error("Failed to add social icon", error)
+    console.error("Failed to save icon:", error)
   }
 }
 </script>

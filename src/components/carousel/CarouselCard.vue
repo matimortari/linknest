@@ -15,13 +15,7 @@
     </div>
 
     <div class="flex flex-col items-center justify-center gap-2 py-6 text-center">
-      <img
-        :src="preset?.image"
-        :alt="preset?.slug"
-        width="80"
-        height="80"
-        :style="profilePictureStyle"
-      >
+      <img :src="preset?.image" :alt="preset?.slug" width="80" height="80" :style="profilePictureStyle">
 
       <p :style="slugStyle">
         @{{ preset?.slug }}
@@ -54,7 +48,7 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  preset: Object
+  preset: Object,
 })
 
 const preferences = computed(() => props.preset?.preferences ?? {})
@@ -62,7 +56,7 @@ const preferences = computed(() => props.preset?.preferences ?? {})
 const backgroundStyle = computed(() => {
   return preferences.value.backgroundType === "GRADIENT"
     ? {
-        background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`
+        background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
       }
     : { backgroundColor: preferences.value.backgroundColor }
 })
@@ -77,7 +71,7 @@ const slugStyle = computed(() => {
   return {
     color: preferences.value.slugTextColor,
     fontWeight: preferences.value.slugTextWeight,
-    fontSize: preferences.value.slugTextSize
+    fontSize: preferences.value.slugTextSize,
   }
 })
 
@@ -85,7 +79,7 @@ const descriptionStyle = computed(() => {
   return {
     color: preferences.value.headerTextColor,
     fontWeight: preferences.value.headerTextWeight,
-    fontSize: preferences.value.headerTextSize
+    fontSize: preferences.value.headerTextSize,
   }
 })
 </script>

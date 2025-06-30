@@ -17,16 +17,14 @@
 
       <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
         <div class="flex flex-col items-start gap-2 text-xs font-semibold">
-          <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleCopy">
+          <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleCopyToClipboard">
             <Icon name="mdi:clipboard-multiple-outline" size="20" />
             <span>Copy Link</span>
           </button>
-
           <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleShareTwitter">
             <Icon name="simple-icons:x" size="20" />
             <span>Share on X</span>
           </button>
-
           <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="openDialog">
             <Icon name="mdi:qrcode" size="20" />
             <span>Get QR Code</span>
@@ -42,9 +40,7 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const userStore = useUserStore()
-
-const user = computed(() => userStore.user)
+const { user } = storeToRefs(useUserStore())
 
 const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
@@ -79,22 +75,14 @@ watch(isDialogOpen, (newVal) => {
   }
 })
 
-onBeforeUnmount(() => {
-  document.removeEventListener("click", handleClickOutside)
-})
-
-function handleCopy() {
-  const pageUrl = `https://linknest-live.vercel.app/${user.value?.slug}`
-  navigator.clipboard.writeText(pageUrl)
+function handleCopyToClipboard() {
+  navigator.clipboard.writeText(`https://linknest-live.vercel.app/${user.value?.slug}`)
   isDropdownOpen.value = false
 }
 
 function handleShareTwitter() {
-  const pageUrl = `https://linknest-live.vercel.app/${user.value?.slug}`
-  const tweetText = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${pageUrl}`
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    tweetText
-  )}`
+  const tweet = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${`https://linknest-live.vercel.app/${user.value?.slug}`}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`
   window.open(twitterUrl, "_blank")
   isDropdownOpen.value = false
 }

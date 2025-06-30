@@ -122,23 +122,18 @@ import { useLinkStore } from "~/lib/stores/link-store"
 import { usePreferencesStore } from "~/lib/stores/preferences-store"
 import { useUserStore } from "~/lib/stores/user-store"
 
-const isVisible = ref(false)
-
-const iconStore = useIconStore()
-const linkStore = useLinkStore()
-const preferencesStore = usePreferencesStore()
-const userStore = useUserStore()
-
-const { icons } = storeToRefs(iconStore)
-const { links } = storeToRefs(linkStore)
-const { preferences } = storeToRefs(preferencesStore)
-const { user } = storeToRefs(userStore)
+const { icons } = storeToRefs(useIconStore())
+const { links } = storeToRefs(useLinkStore())
+const { preferences } = storeToRefs(usePreferencesStore())
+const { user } = storeToRefs(useUserStore())
 
 onMounted(() => {
   if (!preferences.value)
-    preferencesStore.fetchPreferences()
-  userStore.fetchUser()
+    usePreferencesStore().getPreferences()
+  useUserStore().getUser()
 })
+
+const isVisible = ref(false)
 
 const backgroundStyle = computed(() => {
   if (!preferences.value)

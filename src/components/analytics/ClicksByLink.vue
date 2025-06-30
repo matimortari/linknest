@@ -7,7 +7,7 @@
       </p>
     </header>
 
-    <Spinner v-if="isLoading" />
+    <Spinner v-if="isIconsLoading || isLinksLoading" />
 
     <p v-else-if="!links.length && !icons.length" class="text-lead my-2 text-center text-muted-foreground">
       No links or social icons available yet.
@@ -46,15 +46,11 @@
 import { useIconStore } from "~/lib/stores/icon-store"
 import { useLinkStore } from "~/lib/stores/link-store"
 
-const iconStore = useIconStore()
-const linkStore = useLinkStore()
-
-const isLoading = computed(() => iconStore.isLoading || linkStore.isLoading)
-const icons = computed(() => iconStore.icons)
-const links = computed(() => linkStore.links)
+const { icons, isLoading: isIconsLoading } = storeToRefs(useIconStore())
+const { links, isLoading: isLinksLoading } = storeToRefs(useLinkStore())
 
 onMounted(async () => {
-  await Promise.all([iconStore.fetchIcons(), linkStore.fetchLinks()])
+  await Promise.all([useIconStore().getIcons(), useLinkStore().getLinks()])
 })
 
 interface MergedLinkItem {

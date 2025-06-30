@@ -1,4 +1,4 @@
-import { createLink, deleteLink, getLinks, updateLink } from "~/lib/services/links-service"
+import { createLinkService, deleteLinkService, getLinksService, updateLinkService } from "~/lib/services/links-service"
 
 export const useLinkStore = defineStore("link", {
   state: () => ({
@@ -7,34 +7,61 @@ export const useLinkStore = defineStore("link", {
   }),
 
   actions: {
-    async fetchLinks() {
+    async getLinks() {
       this.isLoading = true
       try {
-        this.links = await getLinks()
+        this.links = await getLinksService()
       }
       catch (error) {
-        console.error("Failed to fetch links:", error)
+        console.error("Failed to get links:", error)
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async addLink(link: LinkType) {
-      const newLink = await createLink(link)
-      this.links.push(newLink)
+    async createLink(link: LinkType) {
+      this.isLoading = true
+      try {
+        const newLink = await createLinkService(link)
+        this.links.push(newLink)
+      }
+      catch (error) {
+        console.error("Failed to create link:", error)
+      }
+      finally {
+        this.isLoading = false
+      }
     },
 
     async updateLink(link: LinkType) {
-      const updated = await updateLink(link)
-      const index = this.links.findIndex(l => l.id === updated.id)
-      if (index > -1)
-        this.links[index] = updated
+      this.isLoading = true
+      try {
+        const updated = await updateLinkService(link)
+        const index = this.links.findIndex(l => l.id === updated.id)
+        if (index > -1)
+          this.links[index] = updated
+      }
+      catch (error) {
+        console.error("Failed to update link:", error)
+      }
+      finally {
+        this.isLoading = false
+      }
     },
 
-    async removeLink(id: string) {
-      await deleteLink(id)
-      this.links = this.links.filter(link => link.id !== id)
+    async deleteLink(id: string) {
+      this.isLoading = true
+      try {
+        await deleteLinkService(id)
+        this.links = this.links.filter(link => link.id !== id)
+      }
+      catch (error) {
+        console.error("Failed to delete link:", error)
+      }
+      finally {
+        this.isLoading = false
+      }
     },
   },
 })

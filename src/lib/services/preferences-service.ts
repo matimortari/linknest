@@ -1,4 +1,4 @@
-export async function getPreferences(): Promise<UserPreferencesType> {
+export async function getPreferencesService(): Promise<UserPreferencesType> {
   const response = await fetch("/api/preferences", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -10,7 +10,7 @@ export async function getPreferences(): Promise<UserPreferencesType> {
   return response.json()
 }
 
-export async function updatePreferences(newPreferences: UserPreferencesType) {
+export async function updatePreferencesService(newPreferences: UserPreferencesType) {
   const response = await fetch("/api/preferences", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export async function updatePreferences(newPreferences: UserPreferencesType) {
   return json.preferences
 }
 
-export async function updateSupportBanner(newBanner: string) {
+export async function updateSupportBannerService(newBanner: string) {
   const response = await fetch("/api/preferences", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ export async function updateSupportBanner(newBanner: string) {
   return json.preferences
 }
 
-export async function resetPreferences(): Promise<UserPreferencesType> {
+export async function resetPreferencesService(): Promise<UserPreferencesType> {
   const response = await fetch("/api/preferences", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

@@ -1,4 +1,4 @@
-export async function getLinks(): Promise<LinkType[]> {
+export async function getLinksService(): Promise<LinkType[]> {
   const response = await fetch("/api/links", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -10,7 +10,7 @@ export async function getLinks(): Promise<LinkType[]> {
   return response.json()
 }
 
-export async function createLink(newLink: LinkType): Promise<LinkType> {
+export async function createLinkService(newLink: LinkType): Promise<LinkType> {
   const response = await fetch("/api/links", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export async function createLink(newLink: LinkType): Promise<LinkType> {
   return json.link
 }
 
-export async function updateLink(updatedLink: LinkType): Promise<LinkType> {
+export async function updateLinkService(updatedLink: LinkType): Promise<LinkType> {
   const response = await fetch(`/api/links/${updatedLink.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ export async function updateLink(updatedLink: LinkType): Promise<LinkType> {
   return json.link
 }
 
-export async function deleteLink(id: string): Promise<LinkType> {
+export async function deleteLinkService(id: string): Promise<LinkType> {
   const response = await fetch(`/api/links/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },

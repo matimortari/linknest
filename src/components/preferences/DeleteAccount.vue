@@ -20,16 +20,13 @@
 import { useUserStore } from "~/lib/stores/user-store"
 
 const { signOut } = useAuth()
-
-const userStore = useUserStore()
-
 async function handleDeleteAccount() {
   // eslint-disable-next-line no-alert
   if (!confirm("Are you sure you want to delete your account?"))
     return
 
   try {
-    await userStore.removeUser()
+    await useUserStore().deleteUser()
     await signOut({ callbackUrl: "/" })
   }
   catch (error) {

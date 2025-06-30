@@ -218,12 +218,11 @@ const tabs = [
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
 
-const preferencesStore = usePreferencesStore()
-const { preferences } = storeToRefs(preferencesStore)
+const { preferences } = storeToRefs(usePreferencesStore())
 
 onMounted(() => {
   if (!preferences.value) {
-    preferencesStore.fetchPreferences().catch((error) => {
+    usePreferencesStore().getPreferences().catch((error) => {
       console.error("Failed to load preferences:", error)
     })
   }
@@ -234,12 +233,12 @@ function setActiveTab(tabValue: string) {
 }
 
 function applyTheme(newPreferences: UserPreferencesType) {
-  preferencesStore.preferences = newPreferences
+  usePreferencesStore().preferences = newPreferences
 }
 
 async function handleUpdatePreferences() {
   try {
-    await preferencesStore.savePreferences(preferences.value!)
+    await usePreferencesStore().updatePreferences(preferences.value!)
     status.value = "saved"
   }
   catch (error) {
@@ -249,7 +248,7 @@ async function handleUpdatePreferences() {
 
 async function handleResetPreferences() {
   try {
-    await preferencesStore.defaultPreferences()
+    await usePreferencesStore().resetPreferences()
     status.value = "reset"
   }
   catch (error) {

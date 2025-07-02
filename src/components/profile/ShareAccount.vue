@@ -15,22 +15,24 @@
         <span>Share Now</span>
       </button>
 
-      <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
-        <div class="flex flex-col items-start gap-2 text-xs font-semibold">
-          <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleCopyToClipboard">
-            <Icon name="mdi:clipboard-multiple-outline" size="20" />
-            <span>Copy Link</span>
-          </button>
-          <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleShareTwitter">
-            <Icon name="simple-icons:x" size="20" />
-            <span>Share on X</span>
-          </button>
-          <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="openDialog">
-            <Icon name="mdi:qrcode" size="20" />
-            <span>Get QR Code</span>
-          </button>
+      <transition name="dropdown-fade">
+        <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
+          <div class="flex flex-col items-start gap-2 text-xs font-semibold">
+            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleCopyToClipboard">
+              <Icon name="mdi:clipboard-multiple-outline" size="20" />
+              <span>Copy Link</span>
+            </button>
+            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleShareTwitter">
+              <Icon name="simple-icons:x" size="20" />
+              <span>Share on X</span>
+            </button>
+            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="openDialog">
+              <Icon name="mdi:qrcode" size="20" />
+              <span>Get QR Code</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 
@@ -100,3 +102,22 @@ onBeforeUnmount(() => {
   document.removeEventListener("click", handleClickOutside)
 })
 </script>
+
+<style scoped>
+.dropdown-fade-enter-active,
+.dropdown-fade-leave-active {
+  transition:
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dropdown-fade-enter-from,
+.dropdown-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+}
+.dropdown-fade-enter-to,
+.dropdown-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+</style>

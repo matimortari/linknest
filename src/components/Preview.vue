@@ -16,11 +16,11 @@
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
         <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
 
-        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
+        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 
@@ -72,11 +72,11 @@
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
         <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
 
-        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugTextStyle">
+        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 
@@ -149,13 +149,13 @@ const profilePictureStyle = computed(() => ({
   borderRadius: preferences.value?.profilePictureRadius,
 }))
 
-const slugTextStyle = computed(() => ({
+const slugStyle = computed(() => ({
   color: preferences.value?.slugTextColor,
   fontWeight: preferences.value?.slugTextWeight,
   fontSize: preferences.value?.slugTextSize,
 }))
 
-const headerTextStyle = computed(() => ({
+const descriptionStyle = computed(() => ({
   color: preferences.value?.headerTextColor,
   fontWeight: preferences.value?.headerTextWeight,
   fontSize: preferences.value?.headerTextSize,

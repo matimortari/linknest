@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-64 rounded-xl p-2 opacity-80 md:w-[300px]" :style="backgroundStyle">
+  <div class="relative w-64 rounded-xl p-2 md:w-[300px]" :style="backgroundStyle">
     <div class="rounded-t-xl bg-gradient-to-r from-primary to-secondary p-1">
       <div class="flex flex-row items-center justify-between rounded-t-xl bg-[#111016] p-2">
         <div class="flex flex-row items-center gap-1">
@@ -8,9 +8,9 @@
           <div class="size-2 rounded-full bg-green-500" />
         </div>
 
-        <div class="rounded bg-[#3b3b41] p-1 font-mono text-xs">
+        <span class="rounded bg-[#3b3b41] text-[#ebe8e8] p-1 font-mono text-xs">
           @{{ preset?.slug }}
-        </div>
+        </span>
       </div>
     </div>
 

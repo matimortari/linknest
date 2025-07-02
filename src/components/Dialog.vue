@@ -60,7 +60,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease;
 }
 
 .fade-enter-from,

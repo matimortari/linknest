@@ -8,7 +8,7 @@
 
       <Spinner v-if="isLoading" class="my-4" />
 
-      <div v-else class="flex flex-col lg:gap-8">
+      <div v-else v-motion class="flex flex-col lg:gap-8" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
         <div class="flex items-center gap-4 my-4">
           <div class="relative size-10 sm:w-12 sm:h-12 flex-shrink-0">
             <img v-if="user?.image" :src="user?.image" :alt="user?.slug" class="size-full rounded-full border object-cover">

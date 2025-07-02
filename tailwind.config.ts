@@ -6,6 +6,7 @@ export default {
       lato: ["Lato"],
       bowlby: ["Bowlby One"],
       chau: ["Chau Philomene One"],
+      mono: ["JetBrains Mono"],
     },
     extend: {
       colors: {

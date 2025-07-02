@@ -60,8 +60,9 @@
 
     <!-- Desktop Preview -->
     <div
+      v-motion
       class="preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden rounded-xl p-4 lg:block lg:w-11/12"
-      :style="backgroundStyle"
+      :style="backgroundStyle" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800"
     >
       <div class="absolute left-1/2 right-3 top-2 h-[6px] w-[80px] -translate-x-1/2 rounded-full bg-black" />
       <div class="absolute right-4 top-2 flex flex-row items-center gap-2 text-foreground">

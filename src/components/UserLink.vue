@@ -1,20 +1,19 @@
 <template>
-  <li
-    class="flex w-full min-w-32 max-w-72 flex-row items-center justify-between px-4 text-center"
-    :style="linkStyle"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
-    <a :href="url" target="_blank" rel="noopener noreferrer" class="flex-grow text-center" @click="$emit('click')">
+  <a :href="url" target="_blank" rel="noopener noreferrer" class="w-full min-w-32 max-w-72" @click="$emit('click')">
+    <li
+      class="flex flex-row items-center justify-center flex-grow relative px-4"
+      :style="linkStyle"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+    >
       <span :style="linkInnerStyle">
         {{ title }}
       </span>
-    </a>
-
-    <button v-if="preferences?.showCopyButton" class="ml-2 flex-shrink-0" @click="handleCopy">
-      <Icon name="mdi:content-copy" size="15" :style="{ color: preferences?.linkTextColor }" />
-    </button>
-  </li>
+      <button v-if="preferences?.showCopyButton" class="absolute right-2 flex-shrink-0" @click="handleCopy">
+        <Icon name="mdi:content-copy" size="15" :style="{ color: preferences?.linkTextColor }" />
+      </button>
+    </li>
+  </a>
 </template>
 
 <script setup lang="ts">

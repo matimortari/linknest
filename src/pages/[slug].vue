@@ -20,11 +20,11 @@
 
       <img v-if="user.image" :src="user.image" alt="Profile picture" class="size-20" :style="profilePictureStyle">
 
-      <p :style="slugTextStyle">
+      <p :style="slugStyle">
         {{ `@${user.slug}` }}
       </p>
 
-      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces" :style="headerTextStyle">
+      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
         {{ user.description }}
       </p>
 
@@ -89,13 +89,13 @@ const profilePictureStyle = computed(() => ({
   borderRadius: user.value?.preferences?.profilePictureRadius,
 }))
 
-const slugTextStyle = computed(() => ({
+const slugStyle = computed(() => ({
   color: user.value?.preferences?.slugTextColor,
   fontWeight: user.value?.preferences?.slugTextWeight,
   fontSize: user.value?.preferences?.slugTextSize,
 }))
 
-const headerTextStyle = computed(() => ({
+const descriptionStyle = computed(() => ({
   color: user.value?.preferences?.headerTextColor,
   fontWeight: user.value?.preferences?.headerTextWeight,
   fontSize: user.value?.preferences?.headerTextSize,

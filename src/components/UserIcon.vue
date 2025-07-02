@@ -1,14 +1,14 @@
 <template>
-  <li
-    class="flex flex-row size-10 items-center justify-center rounded-full"
-    :style="iconStyle"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
-    <a :href="url" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center" @click="$emit('click')">
-      <Icon v-if="icon" :name="icon" size="20" :style="iconInnerStyle" />
-    </a>
-  </li>
+  <a :href="url" target="_blank" rel="noopener noreferrer" @click="$emit('click')">
+    <li
+      class="flex flex-row size-10 items-center justify-center rounded-full"
+      :style="iconStyle"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+    >
+      <Icon :name="icon" size="20" :style="iconInnerStyle" />
+    </li>
+  </a>
 </template>
 
 <script setup lang="ts">

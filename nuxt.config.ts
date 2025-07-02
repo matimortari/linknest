@@ -38,6 +38,7 @@ export default defineNuxtConfig({
       "Lato": { wght: [100, 300, 600, 700, 900] },
       "Bowlby One": true,
       "Chau Philomene One": true,
+      "JetBrains Mono": true,
     },
     display: "swap",
     prefetch: true,

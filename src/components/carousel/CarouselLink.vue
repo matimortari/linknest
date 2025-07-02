@@ -1,6 +1,6 @@
 <template>
   <li
-    class="flex w-full min-w-32 max-w-72 flex-row items-center justify-center text-center"
+    class="flex flex-row items-center justify-center w-full min-w-32 max-w-72"
     :style="linkStyle"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"

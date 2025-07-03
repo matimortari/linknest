@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-row items-center justify-between gap-4 rounded-2xl border p-2 text-sm">
+  <div class="flex w-full flex-row items-center justify-between gap-4 rounded-2xl border p-2">
     <label :for="id" class="text-caption">{{ label }}</label>
 
     <div class="scale-sm flex cursor-pointer flex-row items-center gap-2">

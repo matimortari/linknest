@@ -40,7 +40,7 @@ const linkStyle = computed(() => {
       : "none",
     borderRadius: props.preferences?.linkBorderRadius,
     padding: props.preferences?.linkPadding,
-    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
   }
 })
 

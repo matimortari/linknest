@@ -3,17 +3,17 @@
     <form class="flex flex-col gap-4 p-4">
       <div class="form-group">
         <label for="slug" class="text-sm font-medium w-20">Slug</label>
-        <input id="slug" v-model="form.slug" type="text" class="input flex-1" placeholder="Enter your slug" required>
+        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
       </div>
 
       <div class="form-group">
         <label for="description" class="text-sm font-medium w-20">Description</label>
-        <input id="description" v-model="form.description" type="text" class="input flex-1" placeholder="Enter your description">
+        <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>
 
       <div class="form-group">
         <label for="image" class="text-sm font-medium w-20">Image URL</label>
-        <input id="image" v-model="form.image" type="url" class="input flex-1" placeholder="https://example.com/image.jpg">
+        <input id="image" v-model="form.image" type="url" placeholder="https://example.com/image.jpg">
       </div>
     </form>
 
@@ -22,10 +22,7 @@
     </div>
 
     <template #footer>
-      <button class="btn-danger" @click="emit('close')">
-        Cancel
-      </button>
-      <button class="btn-success" @click="handleSave">
+      <button class="btn-primary w-full" @click="handleSave">
         Save
       </button>
     </template>
@@ -78,9 +75,9 @@ async function handleSave() {
   formErrors.value = {}
   const result = userDataSchema.safeParse(form.value)
   if (!result.success) {
-    for (const err of result.error.errors) {
-      formErrors.value[err.path[0]] = err.message
-    }
+    const firstError = result.error.errors[0]
+    formErrors.value[firstError.path[0]] = firstError.message
+
     return
   }
   try {

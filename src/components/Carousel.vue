@@ -1,50 +1,51 @@
 <template>
-  <div class="relative flex max-h-[550px] select-none items-center justify-center overflow-hidden">
+  <div class="relative flex items-center justify-center overflow-hidden select-none py-8">
     <Transition name="carousel-fade" mode="out-in">
-      <div v-if="preset" :key="preset.slug" class="relative w-64 rounded-xl p-2 md:w-[300px]" :style="backgroundStyle">
-        <div class="rounded-t-xl bg-gradient-to-r from-primary to-secondary p-1">
-          <div class="flex flex-row items-center justify-between rounded-t-xl bg-[#111016] p-2">
-            <div class="flex flex-row items-center gap-1">
+      <div
+        v-if="preset" :key="preset.slug"
+        class="flex flex-col items-center justify-center gap-2 py-6 text-center relative border-4 border-black shadow-black shadow-lg rounded-[2.5rem] min-h-[550px] w-[320px]" :style="backgroundStyle"
+      >
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[320px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
+          <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] py-2 px-6">
+            <div class="flex flex-row items-center gap-2">
               <div class="size-2 rounded-full bg-red-500" />
               <div class="size-2 rounded-full bg-yellow-500" />
               <div class="size-2 rounded-full bg-green-500" />
             </div>
 
-            <span class="rounded bg-[#3b3b41] text-[#ebe8e8] p-1 font-mono text-xs">
+            <span class="rounded-xl bg-[#3b3b41] text-[#ebe8e8] p-1 font-mono text-xs">
               @{{ preset.slug }}
             </span>
           </div>
         </div>
 
-        <div class="flex flex-col items-center justify-center gap-2 py-6 text-center">
-          <img :src="preset.image" :alt="preset.slug" width="80" height="80" :style="profilePictureStyle">
+        <img :src="preset.image" :alt="preset.slug" width="80" height="80" :style="profilePictureStyle">
 
-          <p :style="slugStyle">
-            @{{ preset.slug }}
-          </p>
+        <p :style="slugStyle">
+          @{{ preset.slug }}
+        </p>
 
-          <p :style="descriptionStyle">
-            {{ preset.description }}
-          </p>
+        <p :style="descriptionStyle">
+          {{ preset.description }}
+        </p>
 
-          <ul class="my-2 flex flex-row items-center justify-center gap-2">
-            <CarouselIcon
-              v-for="icon in preset.icons"
-              :key="icon.id"
-              :icon="icon.icon"
-              :preferences="preferences"
-            />
-          </ul>
+        <ul class="my-2 flex flex-row items-center justify-center gap-2">
+          <CarouselIcon
+            v-for="icon in preset.icons"
+            :key="icon.id"
+            :icon="icon.icon"
+            :preferences="preferences"
+          />
+        </ul>
 
-          <ul class="flex flex-col items-center space-y-4 overflow-auto">
-            <CarouselLink
-              v-for="link in preset.links"
-              :key="link.id"
-              :title="link.title"
-              :preferences="preferences"
-            />
-          </ul>
-        </div>
+        <ul class="flex flex-col items-center space-y-4 overflow-auto">
+          <CarouselLink
+            v-for="link in preset.links"
+            :key="link.id"
+            :title="link.title"
+            :preferences="preferences"
+          />
+        </ul>
       </div>
     </Transition>
   </div>

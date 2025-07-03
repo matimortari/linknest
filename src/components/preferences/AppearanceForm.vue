@@ -18,11 +18,7 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <button
-          class="btn transition-all duration-500 ease-in-out"
-          :class="status === 'saved' || status === 'reset' ? 'btn-success' : 'btn-primary'"
-          @click="handleUpdatePreferences"
-        >
+        <button class="btn-primary" @click="handleUpdatePreferences">
           <Icon name="mdi:content-save-check" size="20" />
           <span>{{
             status === 'saved'

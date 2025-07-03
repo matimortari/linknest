@@ -2,12 +2,12 @@
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4 p-4">
       <label class="text-sm font-medium">Select Icon</label>
-      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 preview-scrollbar">
+      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 scrollbar">
         <button
           v-for="[label, iconName] in iconEntries"
           :key="label"
           type="button"
-          class="flex flex-col items-center justify-center rounded-lg border p-2 hover:bg-muted active:bg-accent"
+          class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 hover:bg-muted active:bg-accent"
           :class="{ 'bg-accent': form.platform === label }"
           @click="selectIcon(label, iconName)"
         >
@@ -40,10 +40,7 @@
     </div>
 
     <template #footer>
-      <button class="btn-danger" @click="emit('close')">
-        Cancel
-      </button>
-      <button class="btn-success" @click="handleSave">
+      <button class="btn-primary w-full" @click="handleSave">
         Save
       </button>
     </template>
@@ -91,9 +88,9 @@ function handleSave() {
 
   const result = iconSchema.safeParse(form.value)
   if (!result.success) {
-    for (const err of result.error.errors) {
-      formErrors.value[err.path[0]] = err.message
-    }
+    const firstError = result.error.errors[0]
+    formErrors.value[firstError.path[0]] = firstError.message
+
     return
   }
 
@@ -101,3 +98,10 @@ function handleSave() {
   emit("close")
 }
 </script>
+
+<style scoped>
+  .scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--background);
+}
+</style>

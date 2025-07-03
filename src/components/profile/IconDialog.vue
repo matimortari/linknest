@@ -4,9 +4,12 @@
       <label class="text-sm font-medium">Select Icon</label>
       <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 preview-scrollbar">
         <button
-          v-for="[label, iconName] in iconEntries" :key="label" type="button"
+          v-for="[label, iconName] in iconEntries"
+          :key="label"
+          type="button"
           class="flex flex-col items-center justify-center rounded-lg border p-2 hover:bg-muted active:bg-accent"
-          :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
+          :class="{ 'bg-accent': form.platform === label }"
+          @click="selectIcon(label, iconName)"
         >
           <Icon :name="iconName" size="25" />
           <span class="text-xs truncate">{{ label }}</span>
@@ -15,9 +18,26 @@
 
       <div class="form-group">
         <label for="url" class="text-sm font-medium w-12">URL</label>
-        <input id="url" v-model="form.url" type="url" class="input flex-1" placeholder="https://example.com" required>
+        <input
+          id="url"
+          v-model="form.url"
+          type="url"
+          class="input flex-1"
+          placeholder="https://example.com"
+          required
+        >
       </div>
     </form>
+
+    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <span
+        v-for="(msg, key) in formErrors"
+        :key="key"
+        class="text-caption text-danger-foreground"
+      >
+        {{ msg }}
+      </span>
+    </div>
 
     <template #footer>
       <button class="btn-danger" @click="emit('close')">
@@ -32,6 +52,7 @@
 
 <script setup lang="ts">
 import { SOCIAL_ICONS } from "~/lib/config/social-icons"
+import { iconSchema } from "~/lib/schemas"
 
 const props = defineProps<{
   isOpen: boolean
@@ -50,6 +71,9 @@ const form = ref<IconType>({
 
 const iconEntries = computed(() => Object.entries(SOCIAL_ICONS))
 
+const formErrors = ref<{ [key: string]: string }>({})
+const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
+
 function selectIcon(label: string, iconName: string) {
   form.value.platform = label
   form.value.icon = iconName
@@ -57,15 +81,22 @@ function selectIcon(label: string, iconName: string) {
 
 watch(() => props.isOpen, (open) => {
   if (open) {
-    form.value = {
-      platform: "",
-      icon: "",
-      url: "",
-    }
+    form.value = { platform: "", icon: "", url: "" }
+    formErrors.value = {}
   }
-}, { immediate: true })
+})
 
 function handleSave() {
+  formErrors.value = {}
+
+  const result = iconSchema.safeParse(form.value)
+  if (!result.success) {
+    for (const err of result.error.errors) {
+      formErrors.value[err.path[0]] = err.message
+    }
+    return
+  }
+
   emit("save", { ...form.value })
   emit("close")
 }

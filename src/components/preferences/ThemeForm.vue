@@ -5,8 +5,11 @@
       :key="theme.title"
       :title="theme.title"
       tabindex="0"
-      class="flex size-full items-center justify-center rounded-lg border p-8"
-      :class="{ 'opacity-40': selectedTheme === theme.title, 'border-muted': selectedTheme !== theme.title }"
+      class="flex size-full items-center justify-center rounded-lg border-2 p-8"
+      :class="{
+        'border-foreground': selectedTheme === theme.title,
+        'opacity-60 border-dashed': selectedTheme !== theme.title,
+      }"
       :style="getThemeButtonStyle(theme.preferences)"
       @click="handleThemeSelection(theme.title)"
     >

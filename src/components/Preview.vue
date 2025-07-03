@@ -61,11 +61,11 @@
     <!-- Desktop Preview -->
     <div
       v-motion
-      class="preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden rounded-xl p-4 lg:block lg:w-11/12"
+      class="preview-scrollbar relative hidden min-h-[550px] overflow-y-auto overflow-x-hidden rounded-[2.5rem] border-4 border-black p-8 shadow-2xl lg:block lg:w-10/12"
       :style="backgroundStyle" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800"
     >
-      <div class="absolute left-1/2 right-3 top-2 h-[6px] w-[80px] -translate-x-1/2 rounded-full bg-black" />
-      <div class="absolute right-4 top-2 flex flex-row items-center gap-2 text-foreground">
+      <div class="absolute left-1/2 top-2 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
+      <div class="absolute right-6 top-2 flex flex-row items-center gap-2 text-black">
         <Icon name="mdi:signal" size="15" />
         <Icon name="mdi:wifi" size="15" />
       </div>
@@ -77,7 +77,7 @@
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+        <p v-if="user?.description" class="line-clamp-3 leading-4 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 

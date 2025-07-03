@@ -1,18 +1,25 @@
 <template>
   <a :href="url" target="_blank" rel="noopener noreferrer" class="w-full min-w-32 max-w-72" @click="$emit('click')">
     <li
-      class="flex flex-row items-center justify-center flex-grow relative px-4"
+      class="flex flex-row items-center justify-center relative px-4"
       :style="linkStyle"
       @mouseenter="isHovered = true"
       @mouseleave="isHovered = false"
     >
-      <span :style="linkInnerStyle">
-        {{ title }}
-      </span>
-      <button v-if="preferences?.showCopyButton" class="absolute right-2 flex-shrink-0" @click="handleCopy">
+      <div class="w-full text-center">
+        <span :style="linkInnerStyle" class="truncate max-w-[80%] inline-block">
+          {{ title }}
+        </span>
+      </div>
+      <button
+        v-if="preferences?.showCopyButton"
+        class="absolute right-2 top-1/2 -translate-y-1/2 flex-shrink-0"
+        @click.stop="handleCopy"
+      >
         <Icon name="mdi:content-copy" size="15" :style="{ color: preferences?.linkTextColor }" />
       </button>
     </li>
+
   </a>
 </template>
 

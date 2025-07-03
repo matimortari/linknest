@@ -24,6 +24,13 @@
   animation-delay: 0.4s;
 }
 
+.animate-bar {
+  animation: slideBar 2s linear infinite;
+  position: absolute;
+  top: 0;
+  left: -50%;
+}
+
 @keyframes fadeIn {
   0%,
   100% {
@@ -33,7 +40,6 @@
     opacity: 1;
   }
 }
-
 @keyframes slideBar {
   0% {
     left: -50%;
@@ -41,12 +47,5 @@
   100% {
     left: 100%;
   }
-}
-
-.animate-bar {
-  animation: slideBar 2s linear infinite;
-  position: absolute;
-  top: 0;
-  left: -50%;
 }
 </style>

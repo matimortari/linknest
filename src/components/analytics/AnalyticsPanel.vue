@@ -121,7 +121,7 @@ import { useUserStore } from "~/lib/stores/user-store"
 
 const { user, isLoading } = storeToRefs(useUserStore())
 
-const stats = ref<UserStats[]>([])
+const stats = ref<UserStatsType[]>([])
 
 function groupByDate<T extends { date: string | Date }>(items: T[]) {
   const result: Record<string, number> = {}

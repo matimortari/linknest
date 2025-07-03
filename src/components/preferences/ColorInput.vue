@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-row items-center justify-between gap-4 rounded-2xl border p-2 text-sm">
+  <div class="flex w-full flex-row items-center justify-between gap-4 rounded-2xl border p-2">
     <label :for="id" class="text-caption" :class="[disabled ? 'text-muted line-through' : '']">
       {{ label }}
     </label>

@@ -69,12 +69,6 @@ const slug = route.params.slug as string
 
 const { user, isLoading } = storeToRefs(useUserStore())
 
-onMounted(async () => {
-  if (user.value?.id) {
-    useUserStore().trackPageVisit(slug)
-  }
-})
-
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)
     return {}
@@ -112,17 +106,25 @@ async function handleClick(id: string, type: "link" | "icon") {
   }
 }
 
-watch(() => user.value?.slug, (newSlug) => {
-  if (newSlug) {
+watch(() => route.params.slug, async (newSlug) => {
+  if (!newSlug)
+    return
+
+  await useUserStore().getUserBySlug(newSlug as string)
+
+  const user = useUserStore().user
+  if (user?.id) {
+    await useUserStore().trackPageVisit(user.id)
+
     useHead({
-      title: `@${newSlug} – LinkNest`,
-      link: [{ rel: "canonical", href: `https://linknest.app/${newSlug}` }, { rel: "icon", href: "/favicon.ico" }],
-      meta: [{ name: "description", content: `@${newSlug} profile on LinkNest.` }],
+      title: `@${user.slug} – LinkNest`,
+      link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }, { rel: "icon", href: "/favicon.ico" }],
+      meta: [{ name: "description", content: `@${user.slug} profile on LinkNest.` }],
     })
 
     useSeoMeta({
-      title: `@${newSlug} – LinkNest`,
-      description: `@${newSlug} profile on LinkNest.`,
+      title: `@${user.slug} – LinkNest`,
+      description: `@${user.slug} profile on LinkNest.`,
     })
   }
 }, { immediate: true })

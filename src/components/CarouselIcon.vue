@@ -36,7 +36,7 @@ const iconStyle = computed(() => {
     boxShadow: preferences.value?.isIconShadow
       ? shadowMap[preferences.value.iconShadowWeight as ShadowWeight] || "none"
       : "none",
-    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
   }
 })
 

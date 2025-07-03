@@ -17,6 +17,10 @@
       </div>
     </form>
 
+    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }} </span>
+    </div>
+
     <template #footer>
       <button class="btn-danger" @click="emit('close')">
         Cancel
@@ -29,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+import { userDataSchema } from "~/lib/schemas"
 import { useUserStore } from "~/lib/stores/user-store"
 
 const props = defineProps<{
@@ -48,6 +53,10 @@ const form = ref({
   image: "",
 })
 
+const formErrors = ref<{ [key: string]: string }>({})
+
+const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
+
 const { user } = storeToRefs(useUserStore())
 
 watch(() => props.isOpen, (open) => {
@@ -57,23 +66,29 @@ watch(() => props.isOpen, (open) => {
       description: props.description || "",
       image: props.image || "",
     }
+    formErrors.value = {}
   }
   else {
     form.value = { slug: "", description: "", image: "" }
+    formErrors.value = {}
   }
 }, { immediate: true })
 
 async function handleSave() {
+  formErrors.value = {}
+  const result = userDataSchema.safeParse(form.value)
+  if (!result.success) {
+    for (const err of result.error.errors) {
+      formErrors.value[err.path[0]] = err.message
+    }
+    return
+  }
   try {
     await useUserStore().updateUser({
       ...user.value!,
-      slug: form.value.slug,
-      description: form.value.description,
-      image: form.value.image,
+      ...form.value,
     })
-
     user.value = { ...form.value }
-
     emit("close")
   }
   catch (error) {

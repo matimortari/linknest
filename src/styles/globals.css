@@ -121,12 +121,12 @@
   .text-caption {
     font-size: 0.875rem;
     line-height: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
   }
   .text-label {
     font-size: 0.75rem;
     line-height: 1rem;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* UI components */
@@ -237,8 +237,7 @@
   .btn,
   .btn-primary,
   .btn-secondary,
-  .btn-danger,
-  .btn-success {
+  .btn-danger {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -247,7 +246,7 @@
     gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 600;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 5rem;
     white-space: nowrap;
     user-select: none;
@@ -261,8 +260,7 @@
   .btn:hover,
   .btn-primary:hover,
   .btn-secondary:hover,
-  .btn-danger:hover,
-  .btn-success:hover {
+  .btn-danger:hover {
     filter: brightness(0.6);
     transform: scale(1.05);
     box-shadow: 0 0 0 0.5px var(--accent);
@@ -270,8 +268,7 @@
   .btn:disabled,
   .btn-primary:disabled,
   .btn-secondary:disabled,
-  .btn-danger:disabled,
-  .btn-success:disabled {
+  .btn-danger:disabled {
     filter: brightness(0.4);
     cursor: not-allowed;
   }
@@ -292,19 +289,10 @@
     background-color: var(--card);
     color: var(--danger-foreground);
   }
-  .btn-success {
-    background-color: var(--card);
-    color: var(--success-foreground);
-  }
 }
 
 /* Utilities layer for custom utility classes */
 @layer utilities {
-  .preview-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) var(--background);
-  }
-
   .bg-image {
     background-image: url("/topography.png");
   }

@@ -1,5 +1,5 @@
 <template>
-  <Dialog :is-open="isOpen" title="QR Code for Your Page" @update:is-open="emit('close')">
+  <Dialog :is-open="isOpen" title="My QR Code" @update:is-open="emit('close')">
     <div class="flex flex-col items-center gap-4">
       <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted p-2 bg-white" />
       <p class="text-center text-sm text-muted-foreground truncate">
@@ -10,11 +10,8 @@
     </div>
 
     <template #footer>
-      <button class="btn-secondary" @click="handleCopyToClipboard">
+      <button class="btn-primary w-full" @click="handleCopyToClipboard">
         Copy Link
-      </button>
-      <button class="btn-primary" @click="emit('close')">
-        Close
       </button>
     </template>
   </Dialog>

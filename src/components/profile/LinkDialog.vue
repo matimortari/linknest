@@ -1,14 +1,14 @@
 <template>
-  <Dialog :is-open="isOpen" title="Add or Edit Link" @update:is-open="emit('close')">
+  <Dialog :is-open="isOpen" :title="dialogTitle" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4 p-4">
       <div class="form-group">
         <label for="title" class="text-sm font-medium w-12">Title</label>
-        <input id="title" v-model="form.title" type="text" class="input flex-1" placeholder="Enter link title" required>
+        <input id="title" v-model="form.title" type="text" placeholder="Enter link title" required>
       </div>
 
       <div class="form-group">
         <label for="url" class="text-sm font-medium w-12">URL</label>
-        <input id="url" v-model="form.url" type="url" class="input flex-1" placeholder="https://example.com" required>
+        <input id="url" v-model="form.url" type="url" placeholder="https://example.com" required>
       </div>
     </form>
 
@@ -17,10 +17,7 @@
     </div>
 
     <template #footer>
-      <button class="btn-danger" @click="emit('close')">
-        Cancel
-      </button>
-      <button class="btn-success" @click="handleSave">
+      <button class="btn-primary w-full" @click="handleSave">
         Save
       </button>
     </template>
@@ -49,6 +46,10 @@ const formErrors = ref<{ [key: string]: string }>({})
 
 const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
 
+const dialogTitle = computed(() =>
+  props.selectedLink ? "Edit Link" : "Add Link",
+)
+
 watch(() => props.isOpen, (open) => {
   if (open) {
     form.value = props.selectedLink
@@ -62,9 +63,9 @@ function handleSave() {
   formErrors.value = {}
   const result = linkSchema.safeParse(form.value)
   if (!result.success) {
-    for (const err of result.error.errors) {
-      formErrors.value[err.path[0]] = err.message
-    }
+    const firstError = result.error.errors[0]
+    formErrors.value[firstError.path[0]] = firstError.message
+
     return
   }
 

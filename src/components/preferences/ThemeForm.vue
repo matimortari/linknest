@@ -1,12 +1,15 @@
 <template>
-  <div class="preview-scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto lg:grid-cols-3">
+  <div class="scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto lg:grid-cols-3">
     <button
       v-for="theme in THEMES"
       :key="theme.title"
       :title="theme.title"
       tabindex="0"
-      class="flex size-full items-center justify-center rounded-lg border p-8"
-      :class="{ 'opacity-40': selectedTheme === theme.title, 'border-muted': selectedTheme !== theme.title }"
+      class="flex size-full items-center justify-center rounded-lg border-2 p-8"
+      :class="{
+        'border-foreground': selectedTheme === theme.title,
+        'opacity-60 border-dashed': selectedTheme !== theme.title,
+      }"
       :style="getThemeButtonStyle(theme.preferences)"
       @click="handleThemeSelection(theme.title)"
     >
@@ -64,3 +67,10 @@ function getTitleStyle(preferences: any) {
   }
 }
 </script>
+
+<style scoped>
+  .scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--background);
+}
+</style>

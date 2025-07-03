@@ -15,7 +15,7 @@
 
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
-        <div class="mb-2 flex flex-row items-center gap-2">
+        <div class="mb-2 flex flex-row items-center gap-1">
           <Icon
             v-if="item.type === 'icon' && item.icon"
             :name="item.icon"
@@ -29,6 +29,7 @@
             - {{ item.clicks }} clicks
           </span>
         </div>
+
         <div class="flex flex-col gap-1">
           <p class="text-label truncate">
             {{ item.url }}

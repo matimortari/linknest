@@ -1,4 +1,8 @@
 <template>
+  <NuxtLink href="/" class="fixed left-4 top-4 z-50 flex flex-row items-center gap-2 scale-sm">
+    <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="rounded-full">
+  </NuxtLink>
+
   <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
     <Spinner />
   </div>
@@ -18,13 +22,13 @@
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
-      <img v-if="user.image" :src="user.image" alt="Profile picture" class="size-20" :style="profilePictureStyle">
+      <img v-if="user.image" :src="user.image" alt="Profile picture" width="100" height="100" :style="profilePictureStyle">
 
       <p :style="slugStyle">
         {{ `@${user.slug}` }}
       </p>
 
-      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+      <p v-if="user.description" class="max-w-sm leading-4 truncate whitespace-break-spaces" :style="descriptionStyle">
         {{ user.description }}
       </p>
 

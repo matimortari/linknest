@@ -14,7 +14,7 @@
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" width="100" height="100" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
@@ -60,24 +60,23 @@
 
     <!-- Desktop Preview -->
     <div
-      v-motion
-      class="preview-scrollbar relative hidden min-h-[480px] overflow-y-auto overflow-x-hidden rounded-xl p-4 lg:block lg:w-11/12"
-      :style="backgroundStyle" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800"
+      v-motion :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800" :style="backgroundStyle"
+      class="relative border-4 border-black shadow-black shadow-lg hidden hide-scrollbar min-h-[550px] overflow-x-hidden rounded-[2.5rem] lg:block lg:w-10/12"
     >
-      <div class="absolute left-1/2 right-3 top-2 h-[6px] w-[80px] -translate-x-1/2 rounded-full bg-black" />
-      <div class="absolute right-4 top-2 flex flex-row items-center gap-2 text-foreground">
+      <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
+      <div class="sticky top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
         <Icon name="mdi:signal" size="15" />
         <Icon name="mdi:wifi" size="15" />
       </div>
 
-      <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 object-cover" :style="profilePictureStyle">
+      <div class="p-4 overflow-y-auto flex flex-col items-center justify-start gap-4 text-center pt-4">
+        <img :src="user?.image ?? undefined" alt="Profile picture" width="80" height="80" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+        <p v-if="user?.description" class="line-clamp-3 leading-4 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 
@@ -162,3 +161,14 @@ const descriptionStyle = computed(() => ({
   fontSize: preferences.value?.headerTextSize,
 }))
 </script>
+
+<style>
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+</style>

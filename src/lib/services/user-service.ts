@@ -48,7 +48,7 @@ export async function deleteUserService(): Promise<UserType> {
   return response.json()
 }
 
-export async function trackPageVisitService(userId: string) {
+export async function trackPageVisitService(userId: string): Promise<UserType> {
   const response = await fetch("/api/user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -61,7 +61,7 @@ export async function trackPageVisitService(userId: string) {
   return response.json()
 }
 
-export async function trackClickService(id: string, type: "icon" | "link", userId: string) {
+export async function trackClickService(id: string, type: "icon" | "link", userId: string): Promise<UserType> {
   const response = await fetch("/api/user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

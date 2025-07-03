@@ -61,7 +61,10 @@ export default defineEventHandler(async (event) => {
 
     throw createError({ statusCode: 400, statusMessage: "Invalid type provided" })
   }
-  catch (error) {
+  catch (error: any) {
+    if (error.statusCode && error.statusCode < 500) {
+      throw error
+    }
     throw createError({
       statusCode: 500,
       statusMessage: "Failed to update analytics data",

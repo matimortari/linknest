@@ -1,23 +1,28 @@
 <template>
-  <div :class="`${bannerStyle} fixed bottom-0 z-50 flex w-screen items-center justify-between px-8 py-4 text-white`">
-    <div class="flex flex-row items-center gap-4 text-start text-sm">
-      <Icon :name="bannerIcon" size="35" class="text-white" />
+  <transition name="slide-up">
+    <div
+      v-if="showBanner"
+      class="fixed bottom-0 z-50 flex flex-col lg:flex-row w-screen items-center justify-between px-8 py-4 rounded-t-2xl gap-2 text-[#ebe8e8]"
+      :class="bannerStyle"
+    >
+      <div class="flex flex-row lg:flex-col gap-2 items-center lg:items-start">
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-row-reverse lg:flex-row items-start text-center lg:items-center gap-4">
+            <Icon :name="bannerIcon" size="35" class="hidden lg:block text-[#ebe8e8] flex-shrink-0" />
+            <h4>{{ bannerMessage }}</h4>
+          </div>
 
-      <div class="flex flex-col gap-2">
-        <h4>{{ bannerMessage }}</h4>
-
-        <p class="description">
-          {{ bannerDescription }}
-        </p>
+          <p class="leading-4 text-sm">
+            {{ bannerDescription }}
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div>
-      <a :href="bannerLink" class="btn bg-white font-bold text-gray-800" target="_blank" rel="noopener noreferrer">
+      <a :href="bannerLink" target="_blank" rel="noopener noreferrer" class="btn bg-[#ebe8e8] text-[#1f2937]">
         ACT NOW
       </a>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
@@ -34,4 +39,35 @@ const bannerDescription = computed(() => BANNER_DESCRIPTIONS[props.type])
 const bannerStyle = computed(() => BANNER_STYLES[props.type])
 const bannerIcon = computed(() => BANNER_ICONS[props.type])
 const bannerLink = computed(() => BANNER_LINKS[props.type])
+
+const showBanner = ref(true)
+let lastScrollY = window.scrollY
+
+function handleScroll() {
+  const currentScrollY = window.scrollY
+  showBanner.value = currentScrollY < lastScrollY || currentScrollY < 10
+  lastScrollY = currentScrollY
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll)
+})
 </script>
+
+<style scoped>
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition:
+    transform 0.8s,
+    opacity 0.8s;
+}
+.slide-up-enter-from,
+.slide-up-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+</style>

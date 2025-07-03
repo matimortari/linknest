@@ -17,7 +17,7 @@
       <li v-for="link in links" :key="link.id" class="card">
         <div class="flex flex-col gap-2">
           <div class="flex flex-row items-center justify-between">
-            <a :href="link.url" target="_blank" rel="noopener">
+            <a :href="link.url" target="_blank" rel="noopener" class="max-w-[80%]">
               <h5 class="truncate">{{ link.title }}</h5>
             </a>
 

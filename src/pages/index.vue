@@ -3,7 +3,7 @@
     <Navbar />
 
     <!-- Hero Section -->
-    <section id="hero" v-motion class="flex flex-col items-center justify-center min-h-screen p-8 relative" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800">
+    <section id="hero" v-motion class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800">
       <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
       <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
 

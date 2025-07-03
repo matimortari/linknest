@@ -44,7 +44,7 @@ export const iconSchema = z.object({
     .string()
     .url("Invalid URL format")
     .refine(url => url.startsWith("https://"), {
-      message: "Icon URL must start with 'https://'",
+      message: "Social Icon URL must start with 'https://'",
     }),
 })
 

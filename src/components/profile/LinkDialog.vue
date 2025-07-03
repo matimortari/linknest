@@ -12,6 +12,10 @@
       </div>
     </form>
 
+    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }}</span>
+    </div>
+
     <template #footer>
       <button class="btn-danger" @click="emit('close')">
         Cancel
@@ -24,6 +28,8 @@
 </template>
 
 <script setup lang="ts">
+import { linkSchema } from "~/lib/schemas"
+
 const props = defineProps<{
   isOpen: boolean
   selectedLink?: LinkType | null
@@ -39,18 +45,29 @@ const form = ref<LinkType>({
   url: "",
 })
 
+const formErrors = ref<{ [key: string]: string }>({})
+
+const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
+
 watch(() => props.isOpen, (open) => {
   if (open) {
-    if (props.selectedLink) {
-      form.value = { ...props.selectedLink }
-    }
-    else {
-      form.value = { title: "", url: "" }
-    }
+    form.value = props.selectedLink
+      ? { ...props.selectedLink }
+      : { title: "", url: "" }
+    formErrors.value = {}
   }
 }, { immediate: true })
 
 function handleSave() {
+  formErrors.value = {}
+  const result = linkSchema.safeParse(form.value)
+  if (!result.success) {
+    for (const err of result.error.errors) {
+      formErrors.value[err.path[0]] = err.message
+    }
+    return
+  }
+
   emit("save", { ...form.value })
   emit("close")
 }

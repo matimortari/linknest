@@ -36,7 +36,7 @@ interface UserType {
   links?: LinkType[]
 }
 
-interface UserStats {
+interface UserStatsType {
   date: string
   pageViews: number
   linkClicks: number

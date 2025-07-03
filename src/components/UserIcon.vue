@@ -45,7 +45,7 @@ const iconStyle = computed(() => {
   return {
     backgroundColor: bgColor,
     boxShadow,
-    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
   }
 })
 

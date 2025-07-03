@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-image">
+  <div class="bg-image min-h-screen">
     <div class="flex flex-col p-4 gap-4 flex-1 lg:flex-row">
       <div class="lg:w-52">
         <UserMenu />
       </div>
 
-      <main class="flex-1 overflow-y-auto relative min-h-[200px]">
+      <main class="flex-1 overflow-x-hidden relative min-h-[200px]">
         <Loading v-if="isLoading || !session" />
         <div :class="{ hidden: isLoading }">
           <slot />

@@ -1,19 +1,32 @@
 <template>
   <Dialog :is-open="isOpen" title="Edit Profile Info" @update:is-open="emit('close')">
-    <form class="flex flex-col gap-4 p-4">
-      <div class="form-group">
-        <label for="slug" class="text-sm font-medium w-20">Slug</label>
-        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
+    <form class="flex flex-col lg:flex-row gap-12 p-4">
+      <div class="flex flex-col items-center text-center relative gap-4 lg:pr-8 lg:border-r">
+        <div class="relative w-24 h-24">
+          <img v-if="form.image" :src="form.image" alt="Profile preview" class="w-full h-full rounded-full border object-cover">
+          <input
+            id="image"
+            type="file"
+            accept="image/*"
+            class="absolute opacity-0 top-0 left-0 w-full h-full"
+            @change="handleImageChange"
+          >
+          <label class="btn absolute -bottom-2 -left-2" for="image">
+            <Icon name="ph:upload" size="20" />
+          </label>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="description" class="text-sm font-medium w-20">Description</label>
-        <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
-      </div>
+      <div class="flex flex-col gap-4">
+        <div class="form-group">
+          <label for="slug" class="text-sm font-medium w-20">Slug</label>
+          <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
+        </div>
 
-      <div class="form-group">
-        <label for="image" class="text-sm font-medium w-20">Image URL</label>
-        <input id="image" v-model="form.image" type="url" placeholder="https://example.com/image.jpg">
+        <div class="form-group">
+          <label for="description" class="text-sm font-medium w-20">Description</label>
+          <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
+        </div>
       </div>
     </form>
 
@@ -70,6 +83,33 @@ watch(() => props.isOpen, (open) => {
     formErrors.value = {}
   }
 }, { immediate: true })
+
+async function handleImageChange(event: Event) {
+  const file = (event.target as HTMLInputElement)?.files?.[0]
+  if (!file)
+    return
+
+  try {
+    const formData = new FormData()
+    formData.append("file", file)
+
+    const response = await fetch("/api/user/image-upload", {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!response.ok) {
+      throw new Error("Upload failed")
+    }
+
+    const data = await response.json()
+    form.value.image = data.url
+  }
+  catch (err) {
+    console.error("Upload failed", err)
+    formErrors.value.image = "Failed to upload image."
+  }
+}
 
 async function handleSave() {
   formErrors.value = {}

@@ -6,9 +6,8 @@
         @mousedown.self="close"
       >
         <div tabindex="0" class="popover">
-          <header class="flex flex-row3 items-center justify-between gap-4 m-4">
+          <header class="flex flex-row items-center justify-between gap-4">
             <h2>{{ title }}</h2>
-
             <button @mousedown="close">
               <Icon name="ph:x-bold" size="30" class="text-muted-foreground" />
             </button>
@@ -17,10 +16,6 @@
           <section class="m-4">
             <slot />
           </section>
-
-          <footer>
-            <slot name="footer" />
-          </footer>
         </div>
       </div>
     </transition>

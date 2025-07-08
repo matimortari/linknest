@@ -60,22 +60,14 @@ function closeDialog() {
 }
 
 function handleClickOutside(e: MouseEvent) {
-  if (dropdownWrapper.value && !dropdownWrapper.value.contains(e.target as Node)) {
-    if (isDropdownOpen.value)
-      isDropdownOpen.value = false
-    if (isDialogOpen.value)
-      closeDialog()
+  const target = e.target as Node
+
+  const clickedOutsideDropdown = dropdownWrapper.value && !dropdownWrapper.value.contains(target)
+  const clickedInsideQrDialog = isDialogOpen.value
+  if (isDropdownOpen.value && clickedOutsideDropdown && !clickedInsideQrDialog) {
+    isDropdownOpen.value = false
   }
 }
-
-watch(isDialogOpen, (newVal) => {
-  if (newVal) {
-    document.addEventListener("click", handleClickOutside)
-  }
-  else {
-    document.removeEventListener("click", handleClickOutside)
-  }
-})
 
 function handleCopyToClipboard() {
   navigator.clipboard.writeText(`https://linknest-live.vercel.app/${user.value?.slug}`)
@@ -89,8 +81,8 @@ function handleShareTwitter() {
   isDropdownOpen.value = false
 }
 
-watch([isDropdownOpen, isDialogOpen], ([dropdownOpen, dialogOpen]) => {
-  if (dropdownOpen || dialogOpen) {
+watch(isDropdownOpen, (open) => {
+  if (open) {
     document.addEventListener("click", handleClickOutside)
   }
   else {

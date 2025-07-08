@@ -22,7 +22,7 @@
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
-      <img v-if="user.image" :src="user.image" alt="Profile picture" width="100" height="100" :style="profilePictureStyle">
+      <img v-if="user.image" :src="user.image" alt="Profile picture" class="rounded-full size-32 object-cover" :style="profilePictureStyle">
 
       <p :style="slugStyle">
         {{ `@${user.slug}` }}

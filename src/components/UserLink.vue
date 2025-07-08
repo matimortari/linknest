@@ -19,9 +19,13 @@
     <button
       v-if="preferences?.showCopyButton"
       class="absolute right-2 flex-shrink-0 scale-md"
-      @click.stop="handleCopy"
+      @click.stop="handleCopyToClipBoard"
     >
-      <Icon name="mdi:content-copy" size="15" :style="{ color: preferences?.linkTextColor }" />
+      <Icon
+        :name="copied ? 'mdi:check' : 'mdi:content-copy'"
+        size="15"
+        :style="{ color: preferences?.linkTextColor }"
+      />
     </button>
   </li>
 </template>
@@ -36,6 +40,7 @@ const props = defineProps<({
 defineEmits(["click"])
 
 const isHovered = ref(false)
+const copied = ref(false)
 
 const linkStyle = computed(() => {
   const bgColor = isHovered.value
@@ -74,8 +79,12 @@ const linkInnerStyle = computed(() => {
   }
 })
 
-function handleCopy() {
+function handleCopyToClipBoard() {
   navigator.clipboard.writeText(props.url ?? "").then(() => {
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 1000)
   })
 }
 </script>

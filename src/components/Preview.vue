@@ -14,7 +14,7 @@
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" width="100" height="100" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="rounded-full size-28 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
@@ -64,13 +64,13 @@
       class="relative border-4 border-black shadow-black shadow-lg hidden hide-scrollbar min-h-[550px] overflow-x-hidden rounded-[2.5rem] lg:block lg:w-10/12"
     >
       <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
-      <div class="sticky top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
+      <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
         <Icon name="mdi:signal" size="15" />
         <Icon name="mdi:wifi" size="15" />
       </div>
 
       <div class="p-4 overflow-y-auto flex flex-col items-center justify-start gap-4 text-center pt-4">
-        <img :src="user?.image ?? undefined" alt="Profile picture" width="80" height="80" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="rounded-full size-24 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}

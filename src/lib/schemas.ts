@@ -16,10 +16,6 @@ export const userDataSchema = z.object({
     .optional(),
   image: z
     .string()
-    .url("Invalid URL format")
-    .refine(url => url.startsWith("https://"), {
-      message: "Invalid URL format. Image URL must start with 'https://'",
-    })
     .optional(),
 })
 

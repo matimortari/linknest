@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const { slug, description } = parseResult.data
+  const { slug, description, image } = parseResult.data
 
   const user = await db.user.findUnique({
     where: { email: sessionUser.email },
@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
     data: {
       slug,
       description,
+      image,
     },
   })
 

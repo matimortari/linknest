@@ -51,7 +51,9 @@ const { icons, isLoading: isIconsLoading } = storeToRefs(useIconStore())
 const { links, isLoading: isLinksLoading } = storeToRefs(useLinkStore())
 
 onMounted(async () => {
-  await Promise.all([useIconStore().getIcons(), useLinkStore().getLinks()])
+  if (!icons.value || !links.value) {
+    await Promise.all([useIconStore().getIcons(), useLinkStore().getLinks()])
+  }
 })
 
 interface MergedLinkItem {

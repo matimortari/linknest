@@ -1,7 +1,7 @@
 <template>
   <Dialog :is-open="isOpen" title="Edit Profile Info" @update:is-open="emit('close')">
-    <form class="flex flex-col lg:flex-row gap-12 p-4">
-      <div class="flex flex-col items-center text-center relative gap-4 lg:pr-8 lg:border-r">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSave">
+      <div class="flex flex-col items-center border-b pb-4">
         <div class="relative w-24 h-24">
           <img v-if="form.image" :src="form.image" alt="Profile preview" class="w-full h-full rounded-full border object-cover">
           <input
@@ -17,28 +17,26 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <div class="form-group">
-          <label for="slug" class="text-sm font-medium w-20">Slug</label>
-          <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
-        </div>
-
-        <div class="form-group">
-          <label for="description" class="text-sm font-medium w-20">Description</label>
-          <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
-        </div>
+      <div class="form-group">
+        <label for="slug" class="text-sm font-medium w-20">Slug</label>
+        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
       </div>
+
+      <div class="form-group">
+        <label for="description" class="text-sm font-medium w-20">Description</label>
+        <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
+      </div>
+
+      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+        <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }} </span>
+      </div>
+
+      <footer class="flex justify-end">
+        <button class="btn-primary w-32" type="submit" @click="handleSave">
+          Save
+        </button>
+      </footer>
     </form>
-
-    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
-      <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }} </span>
-    </div>
-
-    <template #footer>
-      <button class="btn-primary w-full" @click="handleSave">
-        Save
-      </button>
-    </template>
   </Dialog>
 </template>
 

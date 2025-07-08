@@ -133,7 +133,9 @@ function groupByDate<T extends { date: string | Date }>(items: T[]) {
 }
 
 onMounted(async () => {
-  await useUserStore().getUser()
+  if (!user.value) {
+    await useUserStore().getUser()
+  }
 
   const viewsByDate = groupByDate(user.value?.views ?? [])
 

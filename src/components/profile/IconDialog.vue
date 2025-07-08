@@ -1,6 +1,6 @@
 <template>
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
-    <form class="flex flex-col gap-4 p-4">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSave">
       <label class="text-sm font-medium">Select Icon</label>
       <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 scrollbar">
         <button
@@ -27,23 +27,23 @@
           required
         >
       </div>
+
+      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+        <span
+          v-for="(msg, key) in formErrors"
+          :key="key"
+          class="text-caption text-danger-foreground"
+        >
+          {{ msg }}
+        </span>
+      </div>
+
+      <footer class="flex justify-end">
+        <button class="btn-primary w-32" type="submit" @click="handleSave">
+          Save
+        </button>
+      </footer>
     </form>
-
-    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
-      <span
-        v-for="(msg, key) in formErrors"
-        :key="key"
-        class="text-caption text-danger-foreground"
-      >
-        {{ msg }}
-      </span>
-    </div>
-
-    <template #footer>
-      <button class="btn-primary w-full" @click="handleSave">
-        Save
-      </button>
-    </template>
   </Dialog>
 </template>
 

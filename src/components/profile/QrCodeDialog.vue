@@ -1,16 +1,19 @@
 <template>
   <Dialog :is-open="isOpen" title="My QR Code" @update:is-open="emit('close')">
     <div class="flex flex-col items-center gap-4">
-      <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted p-2 bg-white" />
-      <p class="text-center text-sm text-muted-foreground truncate">
-        <button class="hover:underline" @click="handleCopyToClipboard">
-          {{ props.slug }}
-        </button>
+      <p class="text-sm text-muted-foreground">
+        Scan this QR code to visit your profile:
       </p>
+
+      <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted p-2 bg-white" />
+
+      <button class="hover:underline" @click="handleCopyToClipboard">
+        @{{ props.slug }}
+      </button>
     </div>
 
     <template #footer>
-      <button class="btn-primary w-full" @click="handleCopyToClipboard">
+      <button class="btn-primary w-32" @click="handleCopyToClipboard">
         Copy Link
       </button>
     </template>

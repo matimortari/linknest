@@ -1,6 +1,6 @@
 <template>
   <Dialog :is-open="isOpen" :title="dialogTitle" @update:is-open="emit('close')">
-    <form class="flex flex-col gap-4 p-4">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSave">
       <div class="form-group">
         <label for="title" class="text-sm font-medium w-12">Title</label>
         <input id="title" v-model="form.title" type="text" placeholder="Enter link title" required>
@@ -10,17 +10,23 @@
         <label for="url" class="text-sm font-medium w-12">URL</label>
         <input id="url" v-model="form.url" type="url" placeholder="https://example.com" required>
       </div>
+
+      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+        <span
+          v-for="(msg, key) in formErrors"
+          :key="key"
+          class="text-caption text-danger-foreground"
+        >
+          {{ msg }}
+        </span>
+      </div>
+
+      <footer class="flex justify-end">
+        <button class="btn-primary w-32" type="submit" @click="handleSave">
+          Save
+        </button>
+      </footer>
     </form>
-
-    <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
-      <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }}</span>
-    </div>
-
-    <template #footer>
-      <button class="btn-primary w-full" @click="handleSave">
-        Save
-      </button>
-    </template>
   </Dialog>
 </template>
 
@@ -50,14 +56,18 @@ const dialogTitle = computed(() =>
   props.selectedLink ? "Edit Link" : "Add Link",
 )
 
-watch(() => props.isOpen, (open) => {
-  if (open) {
-    form.value = props.selectedLink
-      ? { ...props.selectedLink }
-      : { title: "", url: "" }
-    formErrors.value = {}
-  }
-}, { immediate: true })
+watch(
+  () => props.isOpen,
+  (open) => {
+    if (open) {
+      form.value = props.selectedLink
+        ? { ...props.selectedLink }
+        : { title: "", url: "" }
+      formErrors.value = {}
+    }
+  },
+  { immediate: true },
+)
 
 function handleSave() {
   formErrors.value = {}

@@ -128,8 +128,9 @@ const { preferences } = storeToRefs(usePreferencesStore())
 const { user } = storeToRefs(useUserStore())
 
 onMounted(async () => {
-  if (!preferences.value)
+  if (!preferences.value || !user.value || !icons.value || !links.value) {
     await Promise.all([usePreferencesStore().getPreferences(), useUserStore().getUser()])
+  }
 })
 
 const isMobilePreviewVisible = ref(false)

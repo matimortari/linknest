@@ -3,11 +3,11 @@
     <Navbar />
 
     <!-- Hero Section -->
-    <section id="hero" v-motion class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800">
+    <section id="hero" v-motion class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8 lg:pt-0" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800">
       <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
       <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
 
-      <div class="container flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div class="container mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12">
         <div v-motion class="flex flex-col max-w-lg items-center text-center lg:items-start lg:text-start gap-4 lg:w-1/2" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
           <h4 class="text-accent font-bold font-lato">
             Your link-in-bio page 🔗🌐
@@ -25,7 +25,7 @@
           </a>
         </div>
 
-        <div v-motion class="pt-20 lg:w-1/2 lg:pt-0" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+        <div v-motion class="lg:w-1/2" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
           <Carousel />
         </div>
       </div>

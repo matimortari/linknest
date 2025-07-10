@@ -3,7 +3,6 @@ import { defineNuxtConfig } from "nuxt/config"
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/color-mode",
-    "@nuxt/eslint",
     "@nuxtjs/google-fonts",
     "@nuxt/icon",
     "@nuxtjs/tailwindcss",

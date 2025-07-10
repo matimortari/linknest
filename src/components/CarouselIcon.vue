@@ -24,16 +24,16 @@ const iconStyle = computed(() => {
 
   const shadowMap: Record<ShadowWeight, string> = {
     none: "none",
-    light: `0 2px 4px ${preferences.value?.iconShadowColor}`,
-    medium: `0 4px 6px ${preferences.value?.iconShadowColor}`,
-    heavy: `0 6px 10px ${preferences.value?.iconShadowColor}`,
+    light: `0 2px 4px ${preferences.value.iconShadowColor}`,
+    medium: `0 4px 6px ${preferences.value.iconShadowColor}`,
+    heavy: `0 6px 10px ${preferences.value.iconShadowColor}`,
   }
 
   return {
     backgroundColor: isHovered.value
-      ? preferences.value?.iconHoverBackgroundColor
-      : preferences.value?.iconBackgroundColor,
-    boxShadow: preferences.value?.isIconShadow
+      ? preferences.value.iconHoverBackgroundColor
+      : preferences.value.iconBackgroundColor,
+    boxShadow: preferences.value.isIconShadow
       ? shadowMap[preferences.value.iconShadowWeight as ShadowWeight] || "none"
       : "none",
     transition: "background-color 0.4s ease, box-shadow 0.4s ease",
@@ -42,7 +42,7 @@ const iconStyle = computed(() => {
 
 const iconInnerStyle = computed(() => {
   return {
-    color: preferences.value?.iconIconColor,
+    color: preferences.value.iconIconColor,
   }
 })
 </script>

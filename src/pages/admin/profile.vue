@@ -25,33 +25,23 @@
       </div>
     </main>
 
-    <aside class="lg:w-1/3 w-full">
-      <Spinner v-if="isLoading" />
-
-      <Preview v-else-if="preferences" :preferences="preferences" />
-    </aside>
+    <div class="lg:w-1/3 w-full">
+      <Preview />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { usePreferencesStore } from "~/lib/stores/preferences-store"
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { data: session } = useAuth()
-
 const { user } = storeToRefs(useUserStore())
-const { preferences, isLoading } = storeToRefs(usePreferencesStore())
-
-onMounted(async () => {
-  if (!session.value?.user) {
-    return navigateTo("/sign-in")
-  }
-  await usePreferencesStore().getPreferences()
-})
 
 useHead({
   title: "Profile – LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [
+    { rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" },
+    { rel: "icon", href: "/favicon.ico" },
+  ],
   meta: [{ name: "description", content: "LinkNest profile page." }],
 })
 

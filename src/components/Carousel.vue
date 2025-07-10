@@ -1,16 +1,16 @@
 <template>
-  <div class="relative flex items-center justify-center overflow-hidden select-none py-8">
-    <Transition name="carousel-fade" mode="out-in">
+  <div class="relative flex items-center justify-center overflow-hidden select-none pb-8">
+    <Transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"
-        class="flex flex-col items-center justify-center gap-2 py-6 text-center relative border-4 border-black shadow-black shadow-lg rounded-[2.5rem] min-h-[550px] w-[320px]" :style="backgroundStyle"
+        class="flex flex-col items-center justify-center gap-2 pt-12 pb-6 text-center relative border-4 border-black shadow-black shadow-lg rounded-[2.5rem] min-h-[560px] w-[320px]" :style="backgroundStyle"
       >
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[320px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
+        <div class="absolute -top-1 z-10 w-[312px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
           <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] py-2 px-6">
             <div class="flex flex-row items-center gap-2">
-              <div class="size-2 rounded-full bg-red-500" />
-              <div class="size-2 rounded-full bg-yellow-500" />
-              <div class="size-2 rounded-full bg-green-500" />
+              <div class="size-2 rounded-full bg-[#3b3b41]" />
+              <div class="size-2 rounded-full bg-[#3b3b41]" />
+              <div class="size-2 rounded-full bg-[#3b3b41]" />
             </div>
 
             <span class="rounded-xl bg-[#3b3b41] text-[#ebe8e8] p-1 font-mono text-xs">
@@ -38,7 +38,7 @@
           />
         </ul>
 
-        <ul class="flex flex-col items-center space-y-4 overflow-auto">
+        <ul class="flex flex-col items-center space-y-4 overflow-auto p-4">
           <CarouselLink
             v-for="link in preset.links"
             :key="link.id"
@@ -63,7 +63,7 @@ function nextCard() {
 let intervalId: number
 
 onMounted(() => {
-  intervalId = window.setInterval(nextCard, 5000)
+  intervalId = window.setInterval(nextCard, 3000)
 })
 
 onUnmounted(() => {
@@ -110,18 +110,29 @@ const descriptionStyle = computed(() => {
 </script>
 
 <style scoped>
-.carousel-fade-enter-active,
-.carousel-fade-leave-active {
+.carousel-3d-enter-active,
+.carousel-3d-leave-active {
   transition:
-    transform 0.5s ease,
-    opacity 0.5s ease;
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  transform-style: preserve-3d;
 }
-.carousel-fade-enter-from {
-  transform: translateX(100%);
+
+.carousel-3d-enter-from {
+  transform: rotateY(90deg) scale(0.95);
   opacity: 0;
 }
-.carousel-fade-leave-to {
-  transform: translateX(-100%);
+.carousel-3d-enter-to {
+  transform: rotateY(0deg) scale(1);
+  opacity: 1;
+}
+
+.carousel-3d-leave-from {
+  transform: rotateY(0deg) scale(1);
+  opacity: 1;
+}
+.carousel-3d-leave-to {
+  transform: rotateY(-90deg) scale(0.95);
   opacity: 0;
 }
 </style>

@@ -22,7 +22,7 @@
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" @click="handleSave">
+        <button class="btn-primary w-32" type="submit" :disabled="hasErrors">
           Save
         </button>
       </footer>

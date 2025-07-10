@@ -18,18 +18,38 @@
 </template>
 
 <script setup lang="ts">
+import { useIconStore } from "~/lib/stores/icon-store"
+import { useLinkStore } from "~/lib/stores/link-store"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
+import { useUserStore } from "~/lib/stores/user-store"
+
 const { data: session } = useAuth()
 
 const isLoading = ref(true)
 
-onMounted(() => {
-  if (document.readyState === "complete") {
+async function fetchGlobalData() {
+  try {
+    await Promise.all([
+      useUserStore().getUser(),
+      usePreferencesStore().getPreferences(),
+      useIconStore().getIcons(),
+      useLinkStore().getLinks(),
+    ])
+  }
+  catch (error) {
+    console.error("Failed to load global data:", error)
+  }
+  finally {
     isLoading.value = false
   }
+}
+
+onMounted(() => {
+  if (document.readyState === "complete") {
+    fetchGlobalData()
+  }
   else {
-    window.addEventListener("load", () => {
-      isLoading.value = false
-    })
+    window.addEventListener("load", fetchGlobalData)
   }
 })
 </script>

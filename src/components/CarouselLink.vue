@@ -26,17 +26,17 @@ const linkStyle = computed(() => {
 
   const shadowMap: Record<ShadowWeight, string> = {
     none: "none",
-    light: `0 2px 4px ${preferences.value?.iconShadowColor}`,
-    medium: `0 4px 6px ${preferences.value?.iconShadowColor}`,
-    heavy: `0 6px 10px ${preferences.value?.iconShadowColor}`,
+    light: `0 2px 4px ${preferences.value?.linkShadowColor}`,
+    medium: `0 4px 6px ${preferences.value?.linkShadowColor}`,
+    heavy: `0 6px 10px ${preferences.value?.linkShadowColor}`,
   }
 
   return {
     backgroundColor: isHovered.value
-      ? preferences.value?.iconHoverBackgroundColor
-      : preferences.value?.iconBackgroundColor,
-    boxShadow: preferences.value?.isIconShadow
-      ? shadowMap[preferences.value.iconShadowWeight as ShadowWeight] || "none"
+      ? preferences.value?.linkHoverBackgroundColor
+      : preferences.value?.linkBackgroundColor,
+    boxShadow: preferences.value?.isLinkShadow
+      ? shadowMap[preferences.value.linkShadowWeight as ShadowWeight] || "none"
       : "none",
     borderRadius: props.preferences?.linkBorderRadius,
     padding: props.preferences?.linkPadding,

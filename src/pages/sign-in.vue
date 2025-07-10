@@ -44,6 +44,7 @@ useHead({
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }, { rel: "icon", href: "/favicon.ico" }],
   meta: [{ name: "description", content: "Sign In to LinkNest." }],
 })
+
 useSeoMeta({
   title: "Sign In – LinkNest",
   description: "Sign In to LinkNest.",

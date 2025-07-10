@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex items-center justify-center overflow-hidden select-none pb-8">
+  <div class="relative flex items-center justify-center overflow-hidden select-none p-8 pt-0">
     <Transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"

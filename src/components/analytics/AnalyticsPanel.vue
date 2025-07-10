@@ -121,8 +121,6 @@ import { useUserStore } from "~/lib/stores/user-store"
 
 const { user, isLoading } = storeToRefs(useUserStore())
 
-const stats = ref<UserStatsType[]>([])
-
 function groupByDate<T extends { date: string | Date }>(items: T[]) {
   const result: Record<string, number> = {}
   for (const item of items) {
@@ -132,17 +130,16 @@ function groupByDate<T extends { date: string | Date }>(items: T[]) {
   return result
 }
 
-onMounted(async () => {
-  if (!user.value) {
-    await useUserStore().getUser()
-  }
+const stats = computed(() => {
+  if (!user.value)
+    return []
 
-  const viewsByDate = groupByDate(user.value?.views ?? [])
+  const viewsByDate = groupByDate(user.value.views ?? [])
 
-  const linkClicks = user.value?.links?.flatMap(link => link.linkClicks ?? []) ?? []
+  const linkClicks = user.value.links?.flatMap(link => link.linkClicks ?? []) ?? []
   const linkClicksByDate = groupByDate(linkClicks)
 
-  const iconClicks = user.value?.icons?.flatMap(icon => icon.iconClicks ?? []) ?? []
+  const iconClicks = user.value.icons?.flatMap(icon => icon.iconClicks ?? []) ?? []
   const iconClicksByDate = groupByDate(iconClicks)
 
   const allDates = new Set([
@@ -151,7 +148,7 @@ onMounted(async () => {
     ...Object.keys(iconClicksByDate),
   ])
 
-  stats.value = [...allDates]
+  return [...allDates]
     .sort()
     .map(date => ({
       date,

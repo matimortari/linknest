@@ -138,5 +138,6 @@ watch(() => route.params.slug, async (newSlug) => {
 
 definePageMeta({
   layout: "user",
+  auth: false,
 })
 </script>

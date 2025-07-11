@@ -1,6 +1,6 @@
 <template>
   <NuxtLink href="/" class="fixed left-4 top-4 z-50 flex flex-row items-center gap-2 scale-sm group">
-    <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="rounded-full">
+    <img src="/logo.png" alt="Logo" width="35" height="35" class="rounded-full">
     <span class="text-2xl font-chau opacity-0 scale-95 translate-x-[10px] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
       LinkNest
     </span>
@@ -16,7 +16,7 @@
     </p>
 
     <NuxtLink href="/" class="flex flex-row items-center gap-2 scale-sm">
-      <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="rounded-full">
+      <img src="/logo.png" alt="Logo" width="35" height="35" class="rounded-full">
       <span class="text-2xl font-chau">LinkNest</span>
     </NuxtLink>
   </div>

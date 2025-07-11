@@ -2,7 +2,7 @@
   <div class="min-h-screen lg:flex">
     <div v-motion class="flex flex-col items-center p-8 lg:w-1/2 lg:justify-center min-h-screen" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
       <div v-motion class="my-8 flex w-full flex-col items-center text-center gap-6" :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }" :duration="600">
-        <img src="/logo.png" alt="LinkNest Logo" width="100" height="100">
+        <img src="/logo.png" alt="Logo" width="100" height="100">
         <h2 v-motion class="font-bowlby" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
           Sign In
         </h2>
@@ -17,13 +17,10 @@
         <div class="flex flex-col items-center gap-4">
           <button class="btn bg-[#db4437] text-[#ebe8e8]" @click="signIn('google', { callbackUrl: '/admin/profile' })">
             <Icon name="simple-icons:google" size="25" />
-
             <span>Sign In with Google</span>
           </button>
-
           <button class="btn bg-[#333333] text-[#ebe8e8]" @click="signIn('github', { callbackUrl: '/admin/profile' })">
             <Icon name="simple-icons:github" size="25" />
-
             <span>Sign In with GitHub</span>
           </button>
         </div>

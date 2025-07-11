@@ -16,7 +16,7 @@
         </button>
       </div>
 
-      <div class="form-group">
+      <div class="input-group">
         <label for="url" class="text-sm font-medium w-12">URL</label>
         <input
           id="url"

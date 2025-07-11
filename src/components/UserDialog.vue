@@ -17,12 +17,12 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="input-group">
         <label for="slug" class="text-sm font-medium w-20">Slug</label>
         <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
       </div>
 
-      <div class="form-group">
+      <div class="input-group">
         <label for="description" class="text-sm font-medium w-20">Description</label>
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>

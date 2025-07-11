@@ -71,15 +71,6 @@ onMounted(async () => {
     await useLinkStore().getLinks()
 })
 
-async function handleDeleteLink(id: string) {
-  try {
-    await useLinkStore().deleteLink(id)
-  }
-  catch (error) {
-    console.error("Failed to delete link:", error)
-  }
-}
-
 function handleUpdateLink(link: LinkType) {
   try {
     selectedLink.value = link
@@ -87,6 +78,15 @@ function handleUpdateLink(link: LinkType) {
   }
   catch (error) {
     console.error("Failed to update link:", error)
+  }
+}
+
+async function handleDeleteLink(id: string) {
+  try {
+    await useLinkStore().deleteLink(id)
+  }
+  catch (error) {
+    console.error("Failed to delete link:", error)
   }
 }
 

@@ -1,26 +1,3 @@
-interface LinkType {
-  id?: string
-  title: string
-  url: string
-  clicks?: number
-  createdAt?: Date
-  updatedAt?: Date
-  linkClicks?: { date: string | Date }[]
-
-}
-
-interface IconType {
-  id?: string
-  platform: string
-  url: string
-  icon: string
-  clicks?: number
-  createdAt?: Date
-  updatedAt?: Date
-  iconClicks?: { date: string | Date }[]
-
-}
-
 interface UserType {
   id?: string
   name?: string
@@ -34,6 +11,27 @@ interface UserType {
   views?: PageViewType[]
   icons?: IconType[]
   links?: LinkType[]
+}
+
+interface LinkType {
+  id?: string
+  title: string
+  url: string
+  clicks?: number
+  createdAt?: Date
+  updatedAt?: Date
+  linkClicks?: { date: string | Date }[]
+}
+
+interface IconType {
+  id?: string
+  platform: string
+  url: string
+  icon: string
+  clicks?: number
+  createdAt?: Date
+  updatedAt?: Date
+  iconClicks?: { date: string | Date }[]
 }
 
 interface UserStatsType {

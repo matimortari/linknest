@@ -2,7 +2,7 @@
   <div v-if="user" class="lg:my-4 lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:w-52">
     <div class="flex flex-col gap-4">
       <NuxtLink to="/admin/profile" class="flex flex-row items-center gap-2 scale-sm">
-        <img src="/logo.png" alt="LinkNest Logo" width="35" height="35" class="icon">
+        <img src="/logo.png" alt="Logo" width="35" height="35" class="icon">
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 

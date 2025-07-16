@@ -6,14 +6,12 @@ Create your own landing page for sharing links to your social media profiles, we
 
 ## 📦 Key Features
 
-- **User Authentication:** Sign in with Google or GitHub.
-- **Admin Page:** Manage your profile and links, and check analytics from your admin page.
-- **Custom User Page:** Create your landing page, personalize it and add as many links as you want. You can change and preview colors, text sizes, borders, and more.
-- **User Links:** Add your important links and customize their colors and layouts.
-- **Social Icons:** Add social icons over your link list for quick access to your social media profiles.
-- **Support Banner:** Support important causes with a profile banner for your landing page.
-- **Analytics Page:** Check metrics such as the number of clicks on your links and the number of visits to your page.
-- **Theme Switch:** Toggle between light and dark themes.
+- **User Authentication:** Sign in with Google or GitHub accounts.
+- **Admin Page:** Manage your links and profile preferences from a dedicated admin page.
+- **Custom User Page:** Create a personalized landing page with your important links and information. You can customize the theming, colors, layout, and more to match your style, or use one of the pre-defined themes.
+- **Link Management:** Add, edit, and delete links to your social media profiles, websites, or any other URLs you want to share. Use social icons for quick access and better visibility for your links.
+- **Analytics Tracking:** Check metrics such as the number of clicks on your links or your profile page views.
+- **Theme Toggle:** Switch between light and dark modes to suit your preference.
 
 ## 🛠️ Stack
 

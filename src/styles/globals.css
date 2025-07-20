@@ -297,17 +297,24 @@
     background-image: url("/topography.png");
   }
 
-  /* Scale animation */
-  .scale-sm,
-  .scale-md {
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .scale-sm:hover {
+  .scale-sm {
     transform: scale(1.05);
   }
-  .scale-md:hover {
+  .scale-md {
     transform: scale(1.2);
+  }
+
+  .scroll-area {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--background);
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   /* Match background and foreground colors */

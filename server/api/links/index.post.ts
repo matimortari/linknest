@@ -15,10 +15,8 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const { title, url } = parseResult.data
-
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -27,10 +25,10 @@ export default defineEventHandler(async (event) => {
   const newLink = await db.userLink.create({
     data: {
       userId: user.id,
-      title,
-      url,
+      title: parseResult.data.title,
+      url: parseResult.data.url,
     },
   })
 
-  return { message: "Link created", link: newLink }
+  return { message: "Link created successfully", newLink }
 })

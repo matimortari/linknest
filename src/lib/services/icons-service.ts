@@ -1,37 +1,35 @@
 export async function getIconsService(): Promise<IconType[]> {
   const response = await fetch("/api/icons", {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
   })
   if (!response.ok) {
-    throw new Error(`Failed to fetch: ${response.statusText}`)
+    throw new Error(`Failed to get social icons: ${response.statusText}`)
   }
 
-  return response.json()
+  return await response.json()
 }
 
-export async function createIconService(newIcon: IconType): Promise<IconType> {
+export async function createIconService(newIcon: IconType): Promise<{ message: string, newIcon: IconType }> {
   const response = await fetch("/api/icons", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newIcon),
   })
   if (!response.ok) {
-    throw new Error(`Failed to fetch: ${response.statusText}`)
+    throw new Error(`Failed to create social icon: ${response.statusText}`)
   }
 
-  const json = await response.json()
-  return json.icon
+  return await response.json()
 }
 
-export async function deleteIconService(id: string): Promise<IconType> {
+export async function deleteIconService(id: string): Promise<{ message: string }> {
   const response = await fetch(`/api/icons/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok) {
-    throw new Error(`Failed to fetch: ${response.statusText}`)
+    throw new Error(`Failed to delete social icon: ${response.statusText}`)
   }
 
-  return response.json()
+  return await response.json()
 }

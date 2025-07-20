@@ -42,8 +42,9 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { user } = storeToRefs(useUserStore())
+const userStore = useUserStore()
 
+const { user } = storeToRefs(userStore)
 const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
 const dropdownWrapper = ref<HTMLElement | null>(null)

@@ -1,11 +1,19 @@
 <template>
   <div class="flex flex-col gap-4 w-full lg:flex-row">
-    <main v-motion class="flex-1 card" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+    <main
+      v-motion class="flex-1 card"
+      :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
+      :duration="800"
+    >
       <header class="space-y-2">
         <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Profile
         </h2>
-        <p v-motion class="text-caption text-muted-foreground" :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
+        <p
+          v-motion class="text-caption text-muted-foreground"
+          :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
+          :duration="800"
+        >
           Welcome back,
           <span class="font-bold text-accent">{{ user?.slug }}</span>!
         </p>
@@ -34,7 +42,9 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { user } = storeToRefs(useUserStore())
+const userStore = useUserStore()
+
+const { user } = storeToRefs(userStore)
 
 useHead({
   title: "Profile – LinkNest",

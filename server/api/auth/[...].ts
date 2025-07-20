@@ -14,7 +14,7 @@ declare module "next-auth" {
       image: string
       email: string
       slug: string
-      preferences?: UserPreferencesType
+      preferences: UserPreferencesType
       links?: LinkType[]
       icons?: IconType[]
     }
@@ -50,16 +50,13 @@ export default NuxtAuthHandler({
         const description = ""
 
         const getProfilePicture = (profile: any, provider: string) => {
-          if (provider === "google") {
+          if (provider === "google")
             return profile.picture ?? ""
-          }
-          else if (provider === "github") {
+          if (provider === "github")
             return profile.avatar_url ?? ""
-          }
           return ""
         }
 
-        // Try to find user by providerAccountId (avoids duplicate users)
         const existingAccount = await db.account.findUnique({
           where: {
             provider_providerAccountId: {
@@ -71,21 +68,14 @@ export default NuxtAuthHandler({
         })
 
         let user = existingAccount?.user
-
         if (!user) {
-          // Fall back to email-based lookup
-          user = (await db.user.findUnique({ where: { email } })) ?? undefined
-        }
-
-        if (!user) {
-          // If user does not exist, create a new user
           user = await db.user.create({
             data: {
               email,
-              description,
-              name: profile.name ?? "",
+              name: profile.name,
               image: getProfilePicture(profile, provider),
-              slug: generateSlug(profile.name ?? email ?? "user"),
+              description,
+              slug: generateSlug(profile.name ?? email),
               preferences: {
                 create: {},
               },
@@ -99,7 +89,6 @@ export default NuxtAuthHandler({
           })
         }
         else {
-          // Ensure the account is linked (if not already)
           const linkedAccount = await db.account.findUnique({
             where: {
               provider_providerAccountId: {
@@ -108,7 +97,6 @@ export default NuxtAuthHandler({
               },
             },
           })
-
           if (!linkedAccount) {
             await db.account.create({
               data: {
@@ -131,12 +119,13 @@ export default NuxtAuthHandler({
         return session
 
       const user = await db.user.findUnique({
-        where: { id: token.userId as string },
+        where: { id: token.userId },
         select: {
-          name: true,
-          description: true,
-          image: true,
+          id: true,
           email: true,
+          name: true,
+          image: true,
+          description: true,
           slug: true,
           preferences: true,
           links: {
@@ -156,21 +145,21 @@ export default NuxtAuthHandler({
           },
         },
       })
-
       if (!user)
         return session
 
       return {
         ...session,
         user: {
-          name: user.name,
-          description: user.description,
-          image: user.image,
+          id: user.id,
           email: user.email,
+          name: user.name,
+          image: user.image,
+          description: user.description,
           slug: user.slug,
-          preferences: user.preferences ?? {},
-          links: user.links ?? [],
-          icons: user.icons ?? [],
+          preferences: user.preferences,
+          links: user.links,
+          icons: user.icons,
         },
       }
     },

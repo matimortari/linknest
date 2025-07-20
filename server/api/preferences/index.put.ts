@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
     include: { preferences: true },
   })
   if (!user) {
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     await db.userPreferences.delete({ where: { userId: user.id } })
     const defaultPreferences = await db.userPreferences.create({ data: { userId: user.id } })
 
-    return { message: "Preferences reset to default", preferences: defaultPreferences }
+    return { message: "User references reset successfully", updatedPreferences: defaultPreferences }
   }
 
   const updatedPreferences = await db.userPreferences.update({
@@ -25,5 +25,5 @@ export default defineEventHandler(async (event) => {
     data: body,
   })
 
-  return { message: "Preferences updated", preferences: updatedPreferences }
+  return { message: "User preferences updated successfully", updatedPreferences }
 })

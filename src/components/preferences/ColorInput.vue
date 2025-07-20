@@ -4,9 +4,13 @@
       {{ label }}
     </label>
 
-    <div class="scale-sm flex cursor-pointer flex-row items-center gap-2">
+    <div class="hover:scale-sm flex cursor-pointer flex-row items-center gap-2">
       <span class="text-label text-muted-foreground">{{ value }}</span>
-      <input :id="id" type="color" :value="value" :disabled="disabled" @input="$emit('update:value', ($event.target as HTMLInputElement)?.value)">
+      <input
+        :id="id" type="color"
+        :value="value" :disabled="disabled"
+        @input="$emit('update:value', ($event.target as HTMLInputElement)?.value)"
+      >
     </div>
   </div>
 </template>

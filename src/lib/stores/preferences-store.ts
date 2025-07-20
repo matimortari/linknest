@@ -4,49 +4,69 @@ export const usePreferencesStore = defineStore("preferences", {
   state: () => ({
     preferences: null as UserPreferencesType | null,
     isLoading: false,
+    error: null as string | null,
   }),
 
   actions: {
     async getPreferences() {
       this.isLoading = true
+      this.error = null
       try {
         this.preferences = await getPreferencesService()
       }
-      catch (error) {
-        console.error("Failed to get preferences", error)
+      catch (error: any) {
+        console.error("Failed to get user preferences", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
       }
     },
 
-    async updatePreferences(newPreferences: UserPreferencesType) {
-      try {
-        const updatedPreferences = await updatePreferencesService(newPreferences)
-        this.preferences = updatedPreferences
+    async updatePreferences(updatedPreferences: UserPreferencesType) {
+      if (!this.preferences) {
+        this.error = "No preferences loaded"
+        return
       }
-      catch (error) {
-        console.error("Failed to update preferences", error)
+      this.isLoading = true
+      this.error = null
+      try {
+        const response = await updatePreferencesService(updatedPreferences)
+        this.preferences = response.updatedPreferences
+      }
+      catch (error: any) {
+        console.error("Failed to update user preferences", error)
+        this.error = error?.message
       }
     },
 
     async updateSupportBanner(newBanner: string) {
-      try {
-        const updatedBanner = await updateSupportBannerService(newBanner)
-        this.preferences = updatedBanner
+      if (!this.preferences) {
+        this.error = "No preferences loaded"
+        return
       }
-      catch (error) {
-        console.error("Failed to update support banner", error)
+      this.isLoading = true
+      this.error = null
+      try {
+        const response = await updateSupportBannerService(newBanner)
+        this.preferences = response.preferences
+      }
+      catch (error: any) {
+        console.error("Failed to update user support banner", error)
+        this.error = error?.message
       }
     },
 
     async resetPreferences() {
+      this.isLoading = true
+      this.error = null
       try {
-        const defaultPreferences = await resetPreferencesService()
-        this.preferences = defaultPreferences
+        const response = await resetPreferencesService()
+        this.preferences = response.preferences
       }
-      catch (error) {
-        console.error("Failed to reset preferences", error)
+      catch (error: any) {
+        console.error("Failed to reset user preferences", error)
+        this.error = null
       }
     },
   },

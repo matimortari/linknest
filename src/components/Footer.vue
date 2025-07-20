@@ -10,10 +10,10 @@
 
     <div class="mx-4 flex flex-row gap-4 text-muted-foreground">
       <NuxtLink href="https://github.com/matimortari">
-        <Icon name="simple-icons:github" size="25" class="scale-md hover:text-accent" />
+        <Icon name="simple-icons:github" size="25" class="hover:scale-md hover:text-accent" />
       </NuxtLink>
       <NuxtLink href="https://www.linkedin.com/in/matheus-mortari-19rt">
-        <Icon name="simple-icons:linkedin" size="25" class="scale-md hover:text-accent" />
+        <Icon name="simple-icons:linkedin" size="25" class="hover:scale-md hover:text-accent" />
       </NuxtLink>
     </div>
   </footer>

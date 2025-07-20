@@ -3,12 +3,20 @@
     <Navbar />
 
     <!-- Hero Section -->
-    <section id="hero" v-motion class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8 lg:pt-0" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800">
+    <section
+      id="hero" v-motion
+      class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8 lg:pt-0" :initial="{ opacity: 0, y: 20 }"
+      :visible="{ opacity: 1, y: 0 }" :duration="800"
+    >
       <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
       <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
 
       <div class="container mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12">
-        <div v-motion class="flex flex-col max-w-lg items-center text-center lg:items-start lg:text-start gap-4 lg:w-1/2" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+        <div
+          v-motion class="flex flex-col max-w-lg items-center text-center lg:items-start lg:text-start gap-4 lg:w-1/2"
+          :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
+          :duration="800"
+        >
           <h4 class="text-accent font-bold font-lato">
             Your link-in-bio page 🔗🌐
           </h4>
@@ -25,7 +33,11 @@
           </a>
         </div>
 
-        <div v-motion class="lg:w-1/2" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+        <div
+          v-motion class="lg:w-1/2"
+          :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
+          :duration="800"
+        >
           <Carousel />
         </div>
       </div>
@@ -34,14 +46,21 @@
     <!-- Features Section -->
     <section id="features" class="relative flex flex-col items-center justify-center gap-12 p-12 text-center">
       <div class="absolute inset-0 -z-10 h-44 w-10/12 rounded-full bg-primary opacity-20 blur-3xl" />
-      <h2 v-motion class="font-bowlby" :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="800">
+      <h2
+        v-motion class="font-bowlby"
+        :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
+        :duration="800"
+      >
         Why Choose LinkNest?
       </h2>
 
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 w-full max-w-6xl">
         <div
-          v-for="feature, index in features" :key="feature.id" v-motion class="card space-y-2 text-start"
-          :description="feature.description" :icon="feature.icon" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="800" :delay="100 * Number(index)"
+          v-for="feature, index in features" :key="feature.id"
+          v-motion class="card space-y-2 text-start"
+          :description="feature.description" :icon="feature.icon"
+          :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
+          :duration="800" :delay="100 * Number(index)"
         >
           <div class="flex flex-row items-center gap-2">
             <span class="flex items-center justify-center size-10 rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
@@ -58,13 +77,15 @@
 
     <!-- CTA Section -->
     <section
-      id="cta" v-motion :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
+      id="cta" v-motion
+      :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
       :duration="800"
       class="relative z-10 flex flex-col items-center justify-center bg-card gap-6 border-y p-12 text-center"
     >
       <div
         v-motion
-        :initial="{ opacity: 0 }" :visible="{ opacity: 1 }" :duration="800"
+        :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
+        :duration="800"
         class="absolute inset-0 -z-10 m-6 opacity-60 bg-[length:60px_60px] bg-center" :style="{
           backgroundImage:
             'linear-gradient(to right, var(--muted) 1px, transparent 1px), linear-gradient(to bottom, var(--muted) 1px, transparent 1px)',
@@ -77,7 +98,11 @@
         Create an account and build your page today!
       </p>
       <a href="/sign-in" class="btn-secondary">Get Started</a>
-      <p v-motion class="text-xs font-semibold italic" :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+      <p
+        v-motion class="text-xs font-semibold italic"
+        :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }"
+        :duration="800"
+      >
         "{{ randomQuote.quote }}" -
         <span class="text-accent">{{ randomQuote.author }}</span>
       </p>

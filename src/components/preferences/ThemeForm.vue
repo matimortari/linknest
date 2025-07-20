@@ -1,5 +1,5 @@
 <template>
-  <div class="scrollbar grid h-64 grid-cols-1 gap-2 overflow-auto lg:grid-cols-3">
+  <div class="scroll-area grid h-64 grid-cols-1 gap-2 overflow-auto lg:grid-cols-3">
     <button
       v-for="theme in THEMES"
       :key="theme.title"
@@ -67,10 +67,3 @@ function getTitleStyle(preferences: any) {
   }
 }
 </script>
-
-<style scoped>
-  .scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) var(--background);
-}
-</style>

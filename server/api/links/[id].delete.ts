@@ -4,13 +4,13 @@ import { getUserFromSession } from "~/lib/utils"
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
 
-  const id = event.context.params?.id
+  const id = getRouterParam(event, "id")
   if (!id) {
     throw createError({ statusCode: 400, statusMessage: "Missing link ID" })
   }
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -25,5 +25,5 @@ export default defineEventHandler(async (event) => {
 
   await db.userLink.delete({ where: { id } })
 
-  return { message: "Link deleted", linkId: id }
+  return { message: "Link deleted successfully", linkId: id }
 })

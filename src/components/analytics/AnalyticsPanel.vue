@@ -119,7 +119,9 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { user, isLoading } = storeToRefs(useUserStore())
+const userStore = useUserStore()
+
+const { user, isLoading } = storeToRefs(userStore)
 
 function groupByDate<T extends { date: string | Date }>(items: T[]) {
   const result: Record<string, number> = {}

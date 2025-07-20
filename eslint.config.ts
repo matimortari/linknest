@@ -17,9 +17,18 @@ export default antfu({
   rules: {
     "no-new": "off",
     "no-undef": "off",
+    "no-alert": "off",
     "no-restricted-globals": "off",
     "regexp/no-obscure-range": "off",
     "node/prefer-global/process": "off",
     "vue/block-order": "off",
+    "vue/max-attributes-per-line": ["warn", {
+      singleline: {
+        max: 4,
+      },
+      multiline: {
+        max: 2,
+      },
+    }],
   },
 })

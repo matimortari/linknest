@@ -47,12 +47,15 @@
 import { useIconStore } from "~/lib/stores/icon-store"
 import { useLinkStore } from "~/lib/stores/link-store"
 
-const { icons, isLoading: isIconsLoading } = storeToRefs(useIconStore())
-const { links, isLoading: isLinksLoading } = storeToRefs(useLinkStore())
+const linkStore = useLinkStore()
+const iconStore = useIconStore()
+
+const { links, isLoading: isLinksLoading } = storeToRefs(linkStore)
+const { icons, isLoading: isIconsLoading } = storeToRefs(iconStore)
 
 onMounted(async () => {
   if (!icons.value || !links.value) {
-    await Promise.all([useIconStore().getIcons(), useLinkStore().getLinks()])
+    await Promise.all([linkStore.getLinks(), iconStore.getIcons()])
   }
 })
 

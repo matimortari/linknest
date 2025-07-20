@@ -1,6 +1,10 @@
 <template>
-  <NuxtLink href="/" class="fixed left-4 top-4 z-50 flex flex-row items-center gap-2 scale-sm group">
-    <img src="/logo.png" alt="Logo" width="35" height="35" class="rounded-full">
+  <NuxtLink href="/" class="fixed left-4 top-4 z-50 flex flex-row items-center gap-2 hover:scale-sm group">
+    <img
+      src="/logo.png" alt="Logo"
+      width="35" height="35"
+      class="rounded-full"
+    >
     <span class="text-2xl font-chau opacity-0 scale-95 translate-x-[10px] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
       LinkNest
     </span>
@@ -15,8 +19,12 @@
       User {{ slug }} not found.
     </p>
 
-    <NuxtLink href="/" class="flex flex-row items-center gap-2 scale-sm">
-      <img src="/logo.png" alt="Logo" width="35" height="35" class="rounded-full">
+    <NuxtLink href="/" class="flex flex-row items-center gap-2 hover:scale-sm">
+      <img
+        src="/logo.png" alt="Logo"
+        width="35" height="35"
+        class="rounded-full"
+      >
       <span class="text-2xl font-chau">LinkNest</span>
     </NuxtLink>
   </div>
@@ -25,7 +33,11 @@
     <div class="flex flex-col items-center justify-center gap-4 text-center">
       <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
-      <img v-if="user.image" :src="user.image" alt="Profile picture" class="rounded-full size-32 object-cover" :style="profilePictureStyle">
+      <img
+        v-if="user.image" :src="user.image"
+        alt="Profile picture" class="rounded-full size-32 object-cover"
+        :style="profilePictureStyle"
+      >
 
       <p :style="slugStyle">
         {{ `@${user.slug}` }}
@@ -71,10 +83,11 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
+const userStore = useUserStore()
 const route = useRoute()
 const slug = route.params.slug as string
 
-const { user, isLoading } = storeToRefs(useUserStore())
+const { user, isLoading } = storeToRefs(userStore)
 
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)
@@ -106,9 +119,9 @@ async function handleClick(id: string, type: "link" | "icon") {
   if (!user.value)
     return
   try {
-    await useUserStore().trackClick(id, type, user.value.id ?? "")
+    await userStore.trackClick(id, type, user.value.id ?? "")
   }
-  catch (error) {
+  catch (error: any) {
     console.error(`Failed to track ${type} click:`, error)
   }
 }
@@ -117,11 +130,11 @@ watch(() => route.params.slug, async (newSlug) => {
   if (!newSlug)
     return
 
-  await useUserStore().getUserBySlug(newSlug as string)
+  await userStore.getUserBySlug(newSlug as string)
 
-  const user = useUserStore().user
+  const user = userStore.user
   if (user?.id) {
-    await useUserStore().trackPageVisit(user.id)
+    await userStore.trackPageVisit(user.id)
 
     useHead({
       title: `@${user.slug} – LinkNest`,

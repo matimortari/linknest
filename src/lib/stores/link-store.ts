@@ -4,16 +4,19 @@ export const useLinkStore = defineStore("link", {
   state: () => ({
     links: [] as LinkType[],
     isLoading: false,
+    error: null as string | null,
   }),
 
   actions: {
     async getLinks() {
       this.isLoading = true
+      this.error = null
       try {
         this.links = await getLinksService()
       }
-      catch (error) {
+      catch (error: any) {
         console.error("Failed to get links:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
@@ -21,13 +24,19 @@ export const useLinkStore = defineStore("link", {
     },
 
     async createLink(link: LinkType) {
-      this.isLoading = true
-      try {
-        const newLink = await createLinkService(link)
-        this.links.push(newLink)
+      if (!link || !link.url || !link.title) {
+        this.error = "Link must have a URL and title"
+        return
       }
-      catch (error) {
+      this.isLoading = true
+      this.error = null
+      try {
+        const response = await createLinkService(link)
+        this.links.push(response.newLink)
+      }
+      catch (error: any) {
         console.error("Failed to create link:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
@@ -35,15 +44,21 @@ export const useLinkStore = defineStore("link", {
     },
 
     async updateLink(link: LinkType) {
-      this.isLoading = true
-      try {
-        const updated = await updateLinkService(link)
-        const index = this.links.findIndex(l => l.id === updated.id)
-        if (index > -1)
-          this.links[index] = updated
+      if (!link || !link.id) {
+        this.error = "Link ID is required to update"
+        return
       }
-      catch (error) {
+      this.isLoading = true
+      this.error = null
+      try {
+        const response = await updateLinkService(link)
+        const index = this.links.findIndex(l => l.id === response.updatedLink.id)
+        if (index > -1)
+          this.links[index] = response.updatedLink
+      }
+      catch (error: any) {
         console.error("Failed to update link:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
@@ -51,13 +66,18 @@ export const useLinkStore = defineStore("link", {
     },
 
     async deleteLink(id: string) {
+      if (!id) {
+        this.error = "Link ID is required to delete"
+        return
+      }
       this.isLoading = true
       try {
         await deleteLinkService(id)
         this.links = this.links.filter(link => link.id !== id)
       }
-      catch (error) {
+      catch (error: any) {
         console.error("Failed to delete link:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false

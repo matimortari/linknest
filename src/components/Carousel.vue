@@ -3,7 +3,7 @@
     <Transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"
-        class="flex flex-col items-center justify-center gap-2 pt-12 pb-6 text-center relative border-4 border-black shadow-black shadow-lg rounded-[2.5rem] min-h-[560px] w-[320px]" :style="backgroundStyle"
+        class="flex flex-col items-center justify-center gap-2 pt-12 pb-6 text-center relative border-4 border-[#000000] shadow-[#000000] shadow-lg rounded-[2.5rem] min-h-[560px] w-[320px]" :style="backgroundStyle"
       >
         <div class="absolute -top-1 z-10 w-[312px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
           <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] py-2 px-6">
@@ -19,7 +19,11 @@
           </div>
         </div>
 
-        <img :src="preset.image" :alt="preset.slug" width="80" height="80" :style="profilePictureStyle">
+        <img
+          :src="preset.image" :alt="preset.slug"
+          width="80" height="80"
+          :style="profilePictureStyle"
+        >
 
         <p :style="slugStyle">
           @{{ preset.slug }}

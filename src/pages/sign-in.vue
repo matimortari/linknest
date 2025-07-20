@@ -1,19 +1,39 @@
 <template>
   <div class="min-h-screen lg:flex">
-    <div v-motion class="flex flex-col items-center p-8 lg:w-1/2 lg:justify-center min-h-screen" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
-      <div v-motion class="my-8 flex w-full flex-col items-center text-center gap-6" :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }" :duration="600">
+    <div
+      v-motion class="flex flex-col items-center p-8 lg:w-1/2 lg:justify-center min-h-screen"
+      :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
+      :duration="600"
+    >
+      <div
+        v-motion class="my-8 flex w-full flex-col items-center text-center gap-6"
+        :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }"
+        :duration="600"
+      >
         <img src="/logo.png" alt="Logo" width="100" height="100">
-        <h2 v-motion class="font-bowlby" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
+        <h2
+          v-motion class="font-bowlby"
+          :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
+          :duration="600"
+        >
           Sign In
         </h2>
-        <p v-motion class="text-muted-foreground" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
+        <p
+          v-motion class="text-muted-foreground"
+          :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
+          :duration="600"
+        >
           Sign in with Google or GitHub to continue.
         </p>
       </div>
 
       <hr class="my-2 w-full">
 
-      <div v-motion class="my-8 flex w-full flex-col items-center gap-4" :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }" :duration="600">
+      <div
+        v-motion class="my-8 flex w-full flex-col items-center gap-4"
+        :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
+        :duration="600"
+      >
         <div class="flex flex-col items-center gap-4">
           <button class="btn bg-[#db4437] text-[#ebe8e8]" @click="signIn('google', { callbackUrl: '/admin/profile' })">
             <Icon name="simple-icons:google" size="25" />
@@ -27,7 +47,11 @@
       </div>
     </div>
 
-    <div v-motion class="relative hidden lg:block lg:w-1/2 min-h-screen" :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="600">
+    <div
+      v-motion class="relative hidden lg:block lg:w-1/2 min-h-screen"
+      :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
+      :duration="600"
+    >
       <img src="/sign-in-image.png" alt="Sign In Visual" class="size-full object-cover border-l rounded-b-xl">
     </div>
   </div>

@@ -1,8 +1,8 @@
 <template>
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
-    <form class="flex flex-col gap-4" @submit.prevent="handleSave">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <label class="text-sm font-medium">Select Icon</label>
-      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 scrollbar">
+      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 scroll-area">
         <button
           v-for="[label, iconName] in iconEntries"
           :key="label"
@@ -83,7 +83,7 @@ watch(() => props.isOpen, (open) => {
   }
 })
 
-function handleSave() {
+function handleSubmit() {
   formErrors.value = {}
 
   const result = iconSchema.safeParse(form.value)
@@ -98,10 +98,3 @@ function handleSave() {
   emit("close")
 }
 </script>
-
-<style scoped>
-  .scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) var(--background);
-}
-</style>

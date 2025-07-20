@@ -4,7 +4,7 @@ import { getServerSession } from "#auth"
 // Find user from session or throw an error if not found
 export async function getUserFromSession(event: H3Event<EventHandlerRequest>) {
   const session = await getServerSession(event)
-  if (!session?.user?.email)
+  if (!session?.user.id)
     throw createError({ statusCode: 401, statusMessage: "Unauthorized" })
 
   return session.user

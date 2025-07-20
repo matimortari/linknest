@@ -1,12 +1,20 @@
 <template>
   <div v-if="user" class="lg:my-4 lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:w-52">
     <div class="flex flex-col gap-4">
-      <NuxtLink to="/admin/profile" class="flex flex-row items-center gap-2 scale-sm">
-        <img src="/logo.png" alt="Logo" width="35" height="35" class="icon">
+      <NuxtLink to="/admin/profile" class="flex flex-row items-center gap-2 hover:scale-sm">
+        <img
+          src="/logo.png" alt="Logo"
+          width="35" height="35"
+          class="icon"
+        >
         <span class="text-2xl font-chau">LinkNest</span>
       </NuxtLink>
 
-      <div v-motion class="flex flex-col lg:gap-12" :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }" :duration="800">
+      <div
+        v-motion class="flex flex-col lg:gap-12"
+        :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
+        :duration="800"
+      >
         <div class="flex flex-row items-center gap-4 my-2">
           <div class="flex flex-row items-center gap-4 w-full lg:w-auto">
             <div class="relative size-14 flex-shrink-0">
@@ -17,7 +25,7 @@
                 class="size-full rounded-full border object-cover"
               >
               <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
-                <Icon name="mdi:square-edit-outline" size="20" class="scale-md" />
+                <Icon name="mdi:square-edit-outline" size="20" class="hover:scale-md" />
               </button>
             </div>
 
@@ -74,17 +82,21 @@
     </div>
   </div>
 
-  <UserDialog :is-open="isDialogOpen" :slug="user?.slug ?? undefined" :description="user?.description ?? undefined" :image="user?.image ?? undefined" @close="closeDialog" />
+  <UserDialog
+    :is-open="isDialogOpen" :slug="user?.slug ?? undefined"
+    :description="user?.description ?? undefined" :image="user?.image ?? undefined"
+    @close="closeDialog"
+  />
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { user } = storeToRefs(useUserStore())
+const userStore = useUserStore()
 const { signOut } = useAuth()
-
 const { toggleTheme, themeIcon } = useTheme()
 
+const { user } = storeToRefs(userStore)
 const isMobileNavOpen = ref(false)
 const isDialogOpen = ref(false)
 

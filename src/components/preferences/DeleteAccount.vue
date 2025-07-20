@@ -19,18 +19,18 @@
 <script setup lang="ts">
 import { useUserStore } from "~/lib/stores/user-store"
 
+const userStore = useUserStore()
 const { signOut } = useAuth()
 
 async function handleDeleteUser() {
-  // eslint-disable-next-line no-alert
   if (!confirm("Are you sure you want to delete your account?"))
     return
 
   try {
-    await useUserStore().deleteUser()
+    await userStore.deleteUser()
     await signOut({ callbackUrl: "/" })
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to delete user:", error)
   }
 }

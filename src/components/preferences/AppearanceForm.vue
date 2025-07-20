@@ -10,7 +10,8 @@
     <div class="flex flex-row items-center flex-wrap justify-between gap-4">
       <div class="flex flex-row items-center flex-wrap gap-1">
         <button
-          v-for="t in tabs" :key="t.value" class="btn" :class="{ 'btn-selected': activeTab === t.value }"
+          v-for="t in tabs" :key="t.value"
+          class="btn" :class="{ 'btn-selected': activeTab === t.value }"
           @click="setActiveTab(t.value)"
         >
           {{ t.label }}
@@ -61,7 +62,8 @@
     <div v-if="activeTab === 'user'" class="grid grid-cols-1 gap-2 lg:grid-cols-2">
       <div class="flex flex-col gap-2">
         <PreferencesSelectInput
-          id="supportBanner" v-model:value="preferences.supportBanner" label="Support Banner"
+          id="supportBanner" v-model:value="preferences.supportBanner"
+          label="Support Banner"
           :options="BANNER_OPTIONS"
         />
         <PreferencesSelectInput
@@ -69,7 +71,8 @@
           label="Profile Picture Radius" :options="RADIUS_SIZES"
         />
         <PreferencesSelectInput
-          id="slugTextSize" v-model:value="preferences.slugTextSize" label="Username Font Size"
+          id="slugTextSize" v-model:value="preferences.slugTextSize"
+          label="Username Font Size"
           :options="FONT_SIZES"
         />
         <PreferencesSelectInput
@@ -106,19 +109,23 @@
         />
         <PreferencesColorInput id="linkTextColor" v-model:value="preferences.linkTextColor" label="Font Color" />
         <PreferencesSelectInput
-          id="linkTextSize" v-model:value="preferences.linkTextSize" label="Font Size"
+          id="linkTextSize" v-model:value="preferences.linkTextSize"
+          label="Font Size"
           :options="LINK_FONT_SIZES"
         />
         <PreferencesSelectInput
-          id="linkTextWeight" v-model:value="preferences.linkTextWeight" label="Font Weight"
+          id="linkTextWeight" v-model:value="preferences.linkTextWeight"
+          label="Font Weight"
           :options="FONT_WEIGHTS"
         />
         <PreferencesSelectInput
-          id="linkBorderRadius" v-model:value="preferences.linkBorderRadius" label="Radius"
+          id="linkBorderRadius" v-model:value="preferences.linkBorderRadius"
+          label="Radius"
           :options="RADIUS_SIZES"
         />
         <PreferencesSelectInput
-          id="linkPadding" v-model:value="preferences.linkPadding" label="Padding"
+          id="linkPadding" v-model:value="preferences.linkPadding"
+          label="Padding"
           :options="LINK_PADDING_SIZES"
         />
       </div>
@@ -130,12 +137,14 @@
         />
         <PreferencesCheckboxInput id="isLinkShadow" v-model:value="preferences.isLinkShadow" label="Enable Shadow" />
         <PreferencesColorInput
-          id="linkShadowColor" v-model:value="preferences.linkShadowColor" label="Shadow Color"
+          id="linkShadowColor" v-model:value="preferences.linkShadowColor"
+          label="Shadow Color"
           :disabled="isLinkShadowDisabled"
         />
         <PreferencesSelectInput
           id="linkShadowWeight" v-model:value="preferences.linkShadowWeight"
-          label="Shadow Weight" :options="SHADOW_WEIGHTS" :disabled="isLinkShadowDisabled"
+          label="Shadow Weight" :options="SHADOW_WEIGHTS"
+          :disabled="isLinkShadowDisabled"
         />
         <PreferencesCheckboxInput
           id="showCopyButton" v-model:value="preferences.showCopyButton"
@@ -160,12 +169,14 @@
       <div class="flex flex-col gap-2">
         <PreferencesCheckboxInput id="isIconShadow" v-model:value="preferences.isIconShadow" label="Enable Shadow" />
         <PreferencesColorInput
-          id="iconShadowColor" v-model:value="preferences.iconShadowColor" label="Shadow Color"
+          id="iconShadowColor" v-model:value="preferences.iconShadowColor"
+          label="Shadow Color"
           :disabled="isIconShadowDisabled"
         />
         <PreferencesSelectInput
           id="iconShadowWeight" v-model:value="preferences.iconShadowWeight"
-          label="Shadow Weight" :options="SHADOW_WEIGHTS" :disabled="isIconShadowDisabled"
+          label="Shadow Weight" :options="SHADOW_WEIGHTS"
+          :disabled="isIconShadowDisabled"
         />
       </div>
     </div>
@@ -189,14 +200,15 @@ const tabs = [
   { label: "Themes", value: "themes" },
 ]
 
+const preferencesStore = usePreferencesStore()
+
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
-
-const { preferences } = storeToRefs(usePreferencesStore())
+const { preferences } = storeToRefs(preferencesStore)
 
 onMounted(async () => {
   if (!preferences.value) {
-    await usePreferencesStore().getPreferences()
+    await preferencesStore.getPreferences()
   }
 })
 
@@ -210,20 +222,20 @@ function handleApplyTheme(newPreferences: UserPreferencesType) {
 
 async function handleUpdatePreferences() {
   try {
-    await usePreferencesStore().updatePreferences(preferences.value!)
+    await preferencesStore.updatePreferences(preferences.value!)
     status.value = "saved"
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to update preferences:", error)
   }
 }
 
 async function handleResetPreferences() {
   try {
-    await usePreferencesStore().resetPreferences()
+    await preferencesStore.resetPreferences()
     status.value = "reset"
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to reset preferences:", error)
   }
 }

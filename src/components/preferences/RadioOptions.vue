@@ -6,7 +6,11 @@
 
     <div class="space-y-2">
       <label v-for="option in options" :key="option.value" class="flex flex-row items-center gap-2">
-        <input type="radio" :name="name" :value="option.value" :checked="value === option.value" class="scale-sm" @change="$emit('update:value', option.value)">
+        <input
+          type="radio" :name="name"
+          :value="option.value" :checked="value === option.value"
+          class="hover:scale-sm" @change="$emit('update:value', option.value)"
+        >
         <span class="text-label">{{ option.label }}</span>
       </label>
     </div>

@@ -4,8 +4,8 @@ import { getUserFromSession } from "~/lib/utils"
 
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
-  const id = getRouterParam(event, "id")
 
+  const id = getRouterParam(event, "id")
   if (!id) {
     throw createError({ statusCode: 400, statusMessage: "Missing link ID" })
   }
@@ -20,10 +20,8 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const { title, url } = parseResult.data
-
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -32,10 +30,10 @@ export default defineEventHandler(async (event) => {
   const updatedLink = await db.userLink.update({
     where: { id },
     data: {
-      title,
-      url,
+      title: parseResult.data.title,
+      url: parseResult.data.url,
     },
   })
 
-  return { message: "Link updated", link: updatedLink }
+  return { message: "Link updated successfully", updatedLink }
 })

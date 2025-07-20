@@ -1,6 +1,6 @@
 <template>
   <Dialog :is-open="isOpen" title="Edit Profile Info" @update:is-open="emit('close')">
-    <form class="flex flex-col gap-4" @submit.prevent="handleSave">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="flex flex-col items-center border-b pb-4">
         <div class="relative w-24 h-24">
           <img v-if="form.image" :src="form.image" alt="Profile preview" class="w-full h-full rounded-full border object-cover">
@@ -19,7 +19,11 @@
 
       <div class="input-group">
         <label for="slug" class="text-sm font-medium w-20">Slug</label>
-        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug" required>
+        <input
+          id="slug" v-model="form.slug"
+          type="text" placeholder="Enter your slug"
+          required
+        >
       </div>
 
       <div class="input-group">
@@ -55,6 +59,8 @@ const emit = defineEmits<{
   (e: "close"): void
 }>()
 
+const userStore = useUserStore()
+
 const form = ref({
   slug: "",
   description: "",
@@ -65,7 +71,7 @@ const formErrors = ref<{ [key: string]: string }>({})
 
 const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
 
-const { user } = storeToRefs(useUserStore())
+const { user } = storeToRefs(userStore)
 
 watch(() => props.isOpen, (open) => {
   if (open) {
@@ -109,7 +115,7 @@ async function handleImageChange(event: Event) {
   }
 }
 
-async function handleSave() {
+async function handleSubmit() {
   formErrors.value = {}
   const result = userDataSchema.safeParse(form.value)
   if (!result.success) {
@@ -119,14 +125,14 @@ async function handleSave() {
     return
   }
   try {
-    await useUserStore().updateUser({
+    await userStore.updateUser({
       ...user.value!,
       ...form.value,
     })
     user.value = { ...form.value }
     emit("close")
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to update user data:", error)
   }
 }

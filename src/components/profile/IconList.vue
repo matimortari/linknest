@@ -20,7 +20,7 @@
         </a>
 
         <button class="absolute bottom-0 right-0 p-1" @click="handleDeleteIcon(icon.id!)">
-          <Icon name="mdi:remove-circle-outline" size="20" class="scale-md text-danger-foreground" />
+          <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground" />
         </button>
       </li>
     </ul>
@@ -33,14 +33,15 @@
     </div>
   </div>
 
-  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleSaveIcon" />
+  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleCreateIcon" />
 </template>
 
 <script setup lang="ts">
 import { useIconStore } from "~/lib/stores/icon-store"
 
-const { icons, isLoading } = storeToRefs(useIconStore())
+const iconStore = useIconStore()
 
+const { icons, isLoading } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
 
 function openDialog() {
@@ -52,24 +53,24 @@ function closeDialog() {
 
 onMounted(async () => {
   if (!icons.value.length)
-    await useIconStore().getIcons()
+    await iconStore.getIcons()
 })
 
 async function handleDeleteIcon(id: string) {
   try {
-    await useIconStore().deleteIcon(id)
+    await iconStore.deleteIcon(id)
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to delete icon:", error)
   }
 }
 
-async function handleSaveIcon(savedIcon: IconType) {
+async function handleCreateIcon(savedIcon: IconType) {
   try {
-    await useIconStore().createIcon(savedIcon)
+    await iconStore.createIcon(savedIcon)
     closeDialog()
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to save icon:", error)
   }
 }

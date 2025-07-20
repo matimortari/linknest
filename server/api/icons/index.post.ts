@@ -20,14 +20,11 @@ export default defineEventHandler(async (event) => {
 
   const icon = SOCIAL_ICONS[platform as keyof typeof SOCIAL_ICONS]
   if (!icon) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: `No social icon found for platform: ${platform}`,
-    })
+    throw createError({ statusCode: 400, statusMessage: `Invalid platform: ${platform}` })
   }
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -42,5 +39,5 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  return { message: "Social icon created", icon: newIcon }
+  return { message: "Social icon created successfully", newIcon }
 })

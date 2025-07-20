@@ -5,7 +5,8 @@
     </label>
 
     <select
-      :id="id" :value="value" :disabled="disabled" class="text-label scale-sm cursor-pointer text-end bg-transparent p-2 text-muted-foreground outline-none disabled:opacity-50"
+      :id="id" :value="value"
+      :disabled="disabled" class="text-label hover:scale-sm cursor-pointer text-end bg-transparent p-2 text-muted-foreground outline-none disabled:opacity-50"
       @change="$emit('update:value', $event.target && ($event.target as HTMLSelectElement).value)"
     >
       <option v-for="option in options" :key="option.value" :value="option.value" class="bg-card">

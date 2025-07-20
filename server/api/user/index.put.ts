@@ -15,23 +15,21 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const { slug, description, image } = parseResult.data
-
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
   }
 
-  const updatedUserData = await db.user.update({
+  const updatedUser = await db.user.update({
     where: { id: user.id },
     data: {
-      slug,
-      description,
-      image,
+      slug: parseResult.data.slug,
+      description: parseResult.data.description,
+      image: parseResult.data.image,
     },
   })
 
-  return { message: "User data updated", userData: updatedUserData }
+  return { message: "User updated successfully", user: updatedUser }
 })

@@ -23,10 +23,10 @@
 
             <div class="flex flex-row items-center gap-1">
               <button @click="handleUpdateLink(link)">
-                <Icon name="mdi:circle-edit-outline" size="20" class="scale-md text-accent" />
+                <Icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent" />
               </button>
               <button @click="handleDeleteLink(link.id!)">
-                <Icon name="mdi:remove-circle-outline" size="20" class="scale-md text-danger-foreground" />
+                <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground" />
               </button>
             </div>
           </div>
@@ -52,8 +52,9 @@
 <script setup lang="ts">
 import { useLinkStore } from "~/lib/stores/link-store"
 
-const { links, isLoading } = storeToRefs(useLinkStore())
+const linkStore = useLinkStore()
 
+const { links, isLoading } = storeToRefs(linkStore)
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
 
@@ -68,7 +69,7 @@ function closeDialog() {
 
 onMounted(async () => {
   if (!links.value.length)
-    await useLinkStore().getLinks()
+    await linkStore.getLinks()
 })
 
 function handleUpdateLink(link: LinkType) {
@@ -76,16 +77,16 @@ function handleUpdateLink(link: LinkType) {
     selectedLink.value = link
     isDialogOpen.value = true
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to update link:", error)
   }
 }
 
 async function handleDeleteLink(id: string) {
   try {
-    await useLinkStore().deleteLink(id)
+    await linkStore.deleteLink(id)
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to delete link:", error)
   }
 }
@@ -94,14 +95,14 @@ async function handleSaveLink(link: LinkType) {
   try {
     const existingLink = links.value.find(l => l.id === link.id)
     if (existingLink) {
-      await useLinkStore().updateLink(link)
+      await linkStore.updateLink(link)
     }
     else {
-      await useLinkStore().createLink(link)
+      await linkStore.createLink(link)
     }
     closeDialog()
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to save link:", error)
   }
 }

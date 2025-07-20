@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
   })
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
@@ -15,5 +15,5 @@ export default defineEventHandler(async (event) => {
     where: { id: user.id },
   })
 
-  return { message: "User deleted", userId: user.id }
+  return { message: "User deleted successfully" }
 })

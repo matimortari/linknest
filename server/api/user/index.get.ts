@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
 
   const user = await db.user.findUnique({
-    where: { email: sessionUser.email },
+    where: { id: sessionUser.id },
     include: {
       links: {
         include: {
@@ -21,7 +21,6 @@ export default defineEventHandler(async (event) => {
       preferences: true,
     },
   })
-
   if (!user) {
     throw createError({ statusCode: 404, statusMessage: "User not found" })
   }

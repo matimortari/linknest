@@ -23,6 +23,10 @@ import { useLinkStore } from "~/lib/stores/link-store"
 import { usePreferencesStore } from "~/lib/stores/preferences-store"
 import { useUserStore } from "~/lib/stores/user-store"
 
+const userStore = useUserStore()
+const preferencesStore = usePreferencesStore()
+const linkStore = useLinkStore()
+const iconStore = useIconStore()
 const { data: session } = useAuth()
 
 const isLoading = ref(true)
@@ -30,13 +34,13 @@ const isLoading = ref(true)
 async function fetchGlobalData() {
   try {
     await Promise.all([
-      useUserStore().getUser(),
-      usePreferencesStore().getPreferences(),
-      useIconStore().getIcons(),
-      useLinkStore().getLinks(),
+      userStore.getUser(),
+      preferencesStore.getPreferences(),
+      linkStore.getLinks(),
+      iconStore.getIcons(),
     ])
   }
-  catch (error) {
+  catch (error: any) {
     console.error("Failed to load global data:", error)
   }
   finally {

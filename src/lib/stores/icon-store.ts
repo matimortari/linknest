@@ -4,16 +4,19 @@ export const useIconStore = defineStore("icon", {
   state: () => ({
     icons: [] as IconType[],
     isLoading: false,
+    error: null as string | null,
   }),
 
   actions: {
     async getIcons() {
       this.isLoading = true
+      this.error = null
       try {
         this.icons = await getIconsService()
       }
-      catch (error) {
+      catch (error: any) {
         console.error("Failed to get social icons:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
@@ -21,13 +24,19 @@ export const useIconStore = defineStore("icon", {
     },
 
     async createIcon(icon: IconType) {
-      this.isLoading = true
-      try {
-        const newIcon = await createIconService(icon)
-        this.icons.push(newIcon)
+      if (!icon || !icon.platform || !icon.url) {
+        this.error = "Social icon must have an URL and platform"
+        return
       }
-      catch (error) {
+      this.isLoading = true
+      this.error = null
+      try {
+        const response = await createIconService(icon)
+        this.icons.push(response.newIcon)
+      }
+      catch (error: any) {
         console.error("Failed to create social icon:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false
@@ -36,12 +45,14 @@ export const useIconStore = defineStore("icon", {
 
     async deleteIcon(id: string) {
       this.isLoading = true
+      this.error = null
       try {
         await deleteIconService(id)
         this.icons = this.icons.filter(icon => icon.id !== id)
       }
-      catch (error) {
+      catch (error: any) {
         console.error("Failed to delete social icon:", error)
+        this.error = error?.message
       }
       finally {
         this.isLoading = false

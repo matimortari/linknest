@@ -60,11 +60,13 @@
 
     <!-- Desktop Preview -->
     <div
-      v-motion :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }" :duration="800" :style="backgroundStyle"
-      class="relative border-4 border-black shadow-black shadow-lg hidden hide-scrollbar min-h-[550px] overflow-x-hidden rounded-[2.5rem] lg:block lg:w-10/12"
+      v-motion :initial="{ opacity: 0, x: 20 }"
+      :visible="{ opacity: 1, x: 0 }" :duration="800"
+      :style="backgroundStyle"
+      class="relative border-4 border-[#000000] shadow-[#000000] shadow-lg hidden hide-scrollbar min-h-[550px] overflow-x-hidden rounded-[2.5rem] lg:block lg:w-10/12"
     >
-      <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
-      <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
+      <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-[#000000]" />
+      <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-[#000000]">
         <Icon name="mdi:signal" size="15" />
         <Icon name="mdi:wifi" size="15" />
       </div>
@@ -122,14 +124,19 @@ import { useLinkStore } from "~/lib/stores/link-store"
 import { usePreferencesStore } from "~/lib/stores/preferences-store"
 import { useUserStore } from "~/lib/stores/user-store"
 
-const { icons } = storeToRefs(useIconStore())
-const { links } = storeToRefs(useLinkStore())
-const { preferences } = storeToRefs(usePreferencesStore())
-const { user } = storeToRefs(useUserStore())
+const linkStore = useLinkStore()
+const iconStore = useIconStore()
+const preferencesStore = usePreferencesStore()
+const userStore = useUserStore()
+
+const { links } = storeToRefs(linkStore)
+const { icons } = storeToRefs(iconStore)
+const { preferences } = storeToRefs(preferencesStore)
+const { user } = storeToRefs(userStore)
 
 onMounted(async () => {
   if (!preferences.value || !user.value || !icons.value || !links.value) {
-    await Promise.all([usePreferencesStore().getPreferences(), useUserStore().getUser()])
+    await Promise.all([preferencesStore.getPreferences(), userStore.getUser()])
   }
 })
 
@@ -162,14 +169,3 @@ const descriptionStyle = computed(() => ({
   fontSize: preferences.value?.headerTextSize,
 }))
 </script>
-
-<style>
-.hide-scrollbar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
-</style>

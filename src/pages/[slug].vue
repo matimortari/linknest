@@ -1,11 +1,11 @@
 <template>
-  <NuxtLink href="/" class="fixed left-4 top-4 z-50 flex flex-row items-center gap-2 hover:scale-sm group">
+  <NuxtLink href="/" class="hover:scale-sm group fixed left-4 top-4 z-50 flex flex-row items-center gap-2">
     <img
       src="/logo.png" alt="Logo"
       width="35" height="35"
       class="rounded-full"
     >
-    <span class="text-2xl font-chau opacity-0 scale-95 translate-x-[10px] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 transition-all duration-500 ease-out">
+    <span class="translate-x-[10px] scale-95 font-chau text-2xl opacity-0 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100">
       LinkNest
     </span>
   </NuxtLink>
@@ -19,13 +19,13 @@
       User {{ slug }} not found.
     </p>
 
-    <NuxtLink href="/" class="flex flex-row items-center gap-2 hover:scale-sm">
+    <NuxtLink href="/" class="hover:scale-sm flex flex-row items-center gap-2">
       <img
         src="/logo.png" alt="Logo"
         width="35" height="35"
         class="rounded-full"
       >
-      <span class="text-2xl font-chau">LinkNest</span>
+      <span class="font-chau text-2xl">LinkNest</span>
     </NuxtLink>
   </div>
 
@@ -35,7 +35,7 @@
 
       <img
         v-if="user.image" :src="user.image"
-        alt="Profile picture" class="rounded-full size-32 object-cover"
+        alt="Profile picture" class="size-32 rounded-full object-cover"
         :style="profilePictureStyle"
       >
 
@@ -43,7 +43,7 @@
         {{ `@${user.slug}` }}
       </p>
 
-      <p v-if="user.description" class="max-w-sm leading-4 truncate whitespace-break-spaces" :style="descriptionStyle">
+      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces leading-4" :style="descriptionStyle">
         {{ user.description }}
       </p>
 

@@ -8,7 +8,7 @@
       class="flex size-full items-center justify-center rounded-lg border-2 p-8"
       :class="{
         'border-foreground': selectedTheme === theme.title,
-        'opacity-60 border-dashed': selectedTheme !== theme.title,
+        'border-dashed opacity-60': selectedTheme !== theme.title,
       }"
       :style="getThemeButtonStyle(theme.preferences)"
       @click="handleThemeSelection(theme.title)"

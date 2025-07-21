@@ -1,6 +1,6 @@
 <template>
   <li
-    class="flex flex-row items-center justify-center relative w-full min-w-32 max-w-80"
+    class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center"
     :style="linkStyle"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
@@ -9,16 +9,16 @@
       :href="url"
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center justify-center size-full"
+      class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
-      <span class="truncate inline-block text-center px-4 mx-2" :style="linkInnerStyle">
+      <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">
         {{ title }}
       </span>
     </a>
     <button
       v-if="preferences?.showCopyButton"
-      class="absolute right-2 flex-shrink-0 hover:scale-md"
+      class="hover:scale-md absolute right-2 flex-shrink-0"
       @click.stop="handleCopyToClipBoard"
     >
       <Icon

@@ -1,6 +1,8 @@
 import antfu from "@antfu/eslint-config"
+import pluginTailwindCSS from "eslint-plugin-tailwindcss"
 
 export default antfu({
+  plugins: { tailwindcss: pluginTailwindCSS },
   vue: true,
   typescript: true,
   jsonc: true,
@@ -30,5 +32,9 @@ export default antfu({
         max: 2,
       },
     }],
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/enforces-shorthand": "warn",
+    "tailwindcss/no-unnecessary-arbitrary-value": "warn",
+    "tailwindcss/no-custom-classname": "off",
   },
 })

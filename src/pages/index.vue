@@ -5,26 +5,26 @@
     <!-- Hero Section -->
     <section
       id="hero" v-motion
-      class="relative flex flex-col items-center justify-center lg:justify-start min-h-screen p-8 lg:pt-0" :initial="{ opacity: 0, y: 20 }"
+      class="relative flex min-h-screen flex-col items-center justify-center p-8 lg:justify-start lg:pt-0" :initial="{ opacity: 0, y: 20 }"
       :visible="{ opacity: 1, y: 0 }" :duration="800"
     >
       <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
       <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
 
-      <div class="container mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div class="container mx-auto flex min-h-screen flex-col items-center justify-between gap-12 lg:flex-row">
         <div
-          v-motion class="flex flex-col max-w-lg items-center text-center lg:items-start lg:text-start gap-4 lg:w-1/2"
+          v-motion class="flex max-w-lg flex-col items-center gap-4 text-center lg:w-1/2 lg:items-start lg:text-start"
           :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
           :duration="800"
         >
-          <h4 class="text-accent font-bold font-lato">
+          <h4 class="font-lato font-bold text-accent">
             Your link-in-bio page 🔗🌐
           </h4>
-          <h1 class="text-5xl font-bowlby">
+          <h1 class="font-bowlby text-5xl">
             Keep all your stuff together!
           </h1>
-          <p class="text-muted-foreground font-semibold font-lato">
-            Welcome to <span class="text-accent font-bold">LinkNest</span>! Your links, profiles, contact info, and more
+          <p class="font-lato font-semibold text-muted-foreground">
+            Welcome to <span class="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info, and more
             in one place. Create and customize your page and share it with your audience.
           </p>
           <a href="/sign-in" class="btn-primary">
@@ -54,7 +54,7 @@
         Why Choose LinkNest?
       </h2>
 
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 w-full max-w-6xl">
+      <div class="grid w-full max-w-6xl grid-cols-1 gap-4 lg:grid-cols-4">
         <div
           v-for="feature, index in features" :key="feature.id"
           v-motion class="card space-y-2 text-start"
@@ -63,7 +63,7 @@
           :duration="800" :delay="100 * Number(index)"
         >
           <div class="flex flex-row items-center gap-2">
-            <span class="flex items-center justify-center size-10 rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
+            <span class="flex size-10 items-center justify-center rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
               <Icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
             </span>
             <h5>{{ feature.title }}</h5>
@@ -80,13 +80,13 @@
       id="cta" v-motion
       :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
       :duration="800"
-      class="relative z-10 flex flex-col items-center justify-center bg-card gap-6 border-y p-12 text-center"
+      class="relative z-10 flex flex-col items-center justify-center gap-6 border-y bg-card p-12 text-center"
     >
       <div
         v-motion
         :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
         :duration="800"
-        class="absolute inset-0 -z-10 m-6 opacity-60 bg-[length:60px_60px] bg-center" :style="{
+        class="absolute inset-0 -z-10 m-6 bg-[length:60px_60px] bg-center opacity-60" :style="{
           backgroundImage:
             'linear-gradient(to right, var(--muted) 1px, transparent 1px), linear-gradient(to bottom, var(--muted) 1px, transparent 1px)',
         }"

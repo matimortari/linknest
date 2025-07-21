@@ -2,17 +2,17 @@
   <transition name="slide-up">
     <div
       v-if="showBanner"
-      class="fixed bottom-0 z-50 flex flex-col lg:flex-row w-screen items-center justify-between px-8 py-4 rounded-t-2xl gap-2 text-[#ebe8e8]"
+      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-2 rounded-t-2xl px-8 py-4 text-[#ebe8e8] lg:flex-row"
       :class="bannerStyle"
     >
-      <div class="flex flex-row lg:flex-col gap-2 items-center lg:items-start">
+      <div class="flex flex-row items-center gap-2 lg:flex-col lg:items-start">
         <div class="flex flex-col gap-4">
-          <div class="flex flex-row-reverse lg:flex-row items-start text-center lg:items-center gap-4">
-            <Icon :name="bannerIcon" size="35" class="hidden lg:block text-[#ebe8e8] flex-shrink-0" />
+          <div class="flex flex-row-reverse items-start gap-4 text-center lg:flex-row lg:items-center">
+            <Icon :name="bannerIcon" size="35" class="hidden flex-shrink-0 text-[#ebe8e8] lg:block" />
             <h4>{{ bannerMessage }}</h4>
           </div>
 
-          <p class="leading-4 text-sm">
+          <p class="text-sm leading-4">
             {{ bannerDescription }}
           </p>
         </div>

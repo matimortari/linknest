@@ -1,6 +1,6 @@
 <template>
   <li
-    class="flex flex-row size-10 items-center justify-center rounded-full"
+    class="flex size-10 flex-row items-center justify-center rounded-full"
     :style="iconStyle"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"

@@ -5,7 +5,7 @@
         Scan this QR code to visit your profile:
       </p>
 
-      <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted p-2 bg-white" />
+      <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted bg-white p-2" />
 
       <button class="hover:underline" @click="handleCopyToClipboard">
         @{{ props.slug }}

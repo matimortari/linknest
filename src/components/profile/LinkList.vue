@@ -31,7 +31,7 @@
             </div>
           </div>
 
-          <p class="text-label text-muted-foreground truncate">
+          <p class="text-label truncate text-muted-foreground">
             {{ link.url }}
           </p>
         </div>

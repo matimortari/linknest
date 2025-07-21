@@ -2,7 +2,7 @@
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <label class="text-sm font-medium">Select Icon</label>
-      <div class="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:grid-cols-5 pr-2 scroll-area">
+      <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
         <button
           v-for="[label, iconName] in iconEntries"
           :key="label"
@@ -12,12 +12,12 @@
           @click="selectIcon(label, iconName)"
         >
           <Icon :name="iconName" size="25" />
-          <span class="text-xs truncate">{{ label }}</span>
+          <span class="truncate text-xs">{{ label }}</span>
         </button>
       </div>
 
       <div class="input-group">
-        <label for="url" class="text-sm font-medium w-12">URL</label>
+        <label for="url" class="w-12 text-sm font-medium">URL</label>
         <input
           id="url"
           v-model="form.url"
@@ -28,7 +28,7 @@
         >
       </div>
 
-      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
         <span
           v-for="(msg, key) in formErrors"
           :key="key"

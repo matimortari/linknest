@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="min-h-screen bg-image">
+    <main class="bg-image min-h-screen">
       <slot />
     </main>
 

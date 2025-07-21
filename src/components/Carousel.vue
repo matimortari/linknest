@@ -1,19 +1,19 @@
 <template>
-  <div class="relative flex items-center justify-center overflow-hidden select-none p-8 pt-0">
+  <div class="relative flex select-none items-center justify-center overflow-hidden p-8 pt-0">
     <Transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"
-        class="flex flex-col items-center justify-center gap-2 pt-12 pb-6 text-center relative border-4 border-[#000000] shadow-[#000000] shadow-lg rounded-[2.5rem] min-h-[560px] w-[320px]" :style="backgroundStyle"
+        class="relative flex min-h-[560px] w-[320px] flex-col items-center justify-center gap-2 rounded-[2.5rem] border-4 border-[#000000] pb-6 pt-12 text-center shadow-lg shadow-[#000000]" :style="backgroundStyle"
       >
         <div class="absolute -top-1 z-10 w-[312px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
-          <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] py-2 px-6">
+          <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] px-6 py-2">
             <div class="flex flex-row items-center gap-2">
               <div class="size-2 rounded-full bg-[#3b3b41]" />
               <div class="size-2 rounded-full bg-[#3b3b41]" />
               <div class="size-2 rounded-full bg-[#3b3b41]" />
             </div>
 
-            <span class="rounded-xl bg-[#3b3b41] text-[#ebe8e8] p-1 font-mono text-xs">
+            <span class="rounded-xl bg-[#3b3b41] p-1 font-mono text-xs text-[#ebe8e8]">
               @{{ preset.slug }}
             </span>
           </div>

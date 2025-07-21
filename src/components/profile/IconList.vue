@@ -14,7 +14,7 @@
     </div>
 
     <ul v-else class="flex flex-row gap-2">
-      <li v-for="icon in icons" :key="icon.id" class="card relative size-20 flex items-center justify-center">
+      <li v-for="icon in icons" :key="icon.id" class="card relative flex size-20 items-center justify-center">
         <a :href="icon.url" target="_blank" rel="noopener">
           <Icon :name="icon.icon" :size="30" />
         </a>

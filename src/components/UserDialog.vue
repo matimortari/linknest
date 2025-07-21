@@ -2,13 +2,13 @@
   <Dialog :is-open="isOpen" title="Edit Profile Info" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="flex flex-col items-center border-b pb-4">
-        <div class="relative w-24 h-24">
-          <img v-if="form.image" :src="form.image" alt="Profile preview" class="w-full h-full rounded-full border object-cover">
+        <div class="relative size-24">
+          <img v-if="form.image" :src="form.image" alt="Profile preview" class="size-full rounded-full border object-cover">
           <input
             id="image"
             type="file"
             accept="image/*"
-            class="absolute opacity-0 top-0 left-0 w-full h-full"
+            class="absolute left-0 top-0 size-full opacity-0"
             @change="handleImageChange"
           >
           <label class="btn absolute -bottom-2 -left-2" for="image">
@@ -18,7 +18,7 @@
       </div>
 
       <div class="input-group">
-        <label for="slug" class="text-sm font-medium w-20">Slug</label>
+        <label for="slug" class="w-20 text-sm font-medium">Slug</label>
         <input
           id="slug" v-model="form.slug"
           type="text" placeholder="Enter your slug"
@@ -27,11 +27,11 @@
       </div>
 
       <div class="input-group">
-        <label for="description" class="text-sm font-medium w-20">Description</label>
+        <label for="description" class="w-20 text-sm font-medium">Description</label>
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>
 
-      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
         <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }} </span>
       </div>
 

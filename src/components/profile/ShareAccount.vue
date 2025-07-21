@@ -18,15 +18,15 @@
       <transition name="dropdown-fade">
         <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
-            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleCopyToClipboard">
+            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="handleCopyToClipboard">
               <Icon name="mdi:clipboard-multiple-outline" size="20" />
               <span>Copy Link</span>
             </button>
-            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="handleShareTwitter">
+            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="handleShareTwitter">
               <Icon name="simple-icons:x" size="20" />
               <span>Share on X</span>
             </button>
-            <button class="flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap hover:bg-muted" @click="openDialog">
+            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="openDialog">
               <Icon name="mdi:qrcode" size="20" />
               <span>Get QR Code</span>
             </button>

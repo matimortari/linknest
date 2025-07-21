@@ -1,6 +1,6 @@
 <template>
   <li
-    class="flex flex-row items-center justify-center rounded-full size-10"
+    class="flex size-10 flex-row items-center justify-center rounded-full"
     :style="iconStyle"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
@@ -9,7 +9,7 @@
       :href="url"
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center justify-center size-full"
+      class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
       <Icon :name="icon" size="20" :style="iconInnerStyle" />

@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen flex-col items-center justify-center gap-4">
     <div class="relative h-1 w-1/2 overflow-hidden rounded-full bg-muted">
-      <div class="absolute h-full w-1/2 animate-bar bg-gradient-to-r from-primary to-secondary rounded-full" />
+      <div class="animate-bar absolute h-full w-1/2 rounded-full bg-gradient-to-r from-primary to-secondary" />
     </div>
     <p class="text-caption text-muted-foreground">
       Loading<span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span>

@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen lg:flex">
     <div
-      v-motion class="flex flex-col items-center p-8 lg:w-1/2 lg:justify-center min-h-screen"
+      v-motion class="flex min-h-screen flex-col items-center p-8 lg:w-1/2 lg:justify-center"
       :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
       :duration="600"
     >
       <div
-        v-motion class="my-8 flex w-full flex-col items-center text-center gap-6"
+        v-motion class="my-8 flex w-full flex-col items-center gap-6 text-center"
         :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }"
         :duration="600"
       >
@@ -48,11 +48,11 @@
     </div>
 
     <div
-      v-motion class="relative hidden lg:block lg:w-1/2 min-h-screen"
+      v-motion class="relative hidden min-h-screen lg:block lg:w-1/2"
       :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="600"
     >
-      <img src="/sign-in-image.png" alt="Sign In Visual" class="size-full object-cover border-l rounded-b-xl">
+      <img src="/sign-in-image.png" alt="Sign In Visual" class="size-full rounded-b-xl border-l object-cover">
     </div>
   </div>
 </template>

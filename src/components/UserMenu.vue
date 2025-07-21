@@ -1,13 +1,13 @@
 <template>
-  <div v-if="user" class="lg:my-4 lg:fixed lg:inset-y-0 lg:flex lg:flex-col lg:w-52">
+  <div v-if="user" class="lg:fixed lg:inset-y-0 lg:my-4 lg:flex lg:w-52 lg:flex-col">
     <div class="flex flex-col gap-4">
-      <NuxtLink to="/admin/profile" class="flex flex-row items-center gap-2 hover:scale-sm">
+      <NuxtLink to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2">
         <img
           src="/logo.png" alt="Logo"
           width="35" height="35"
           class="icon"
         >
-        <span class="text-2xl font-chau">LinkNest</span>
+        <span class="font-chau text-2xl">LinkNest</span>
       </NuxtLink>
 
       <div
@@ -15,8 +15,8 @@
         :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
         :duration="800"
       >
-        <div class="flex flex-row items-center gap-4 my-2">
-          <div class="flex flex-row items-center gap-4 w-full lg:w-auto">
+        <div class="my-2 flex flex-row items-center gap-4">
+          <div class="flex w-full flex-row items-center gap-4 lg:w-auto">
             <div class="relative size-14 flex-shrink-0">
               <img
                 v-if="user.image"
@@ -24,12 +24,12 @@
                 :alt="user.slug"
                 class="size-full rounded-full border object-cover"
               >
-              <button title="Edit Profile Information" class="absolute -bottom-2 -right-2 btn-primary p-1" @click="openDialog">
+              <button title="Edit Profile Information" class="btn-primary absolute -bottom-2 -right-2 p-1" @click="openDialog">
                 <Icon name="mdi:square-edit-outline" size="20" class="hover:scale-md" />
               </button>
             </div>
 
-            <div class="flex w-full flex-col gap-1 overflow-x-hidden min-w-0">
+            <div class="flex w-full min-w-0 flex-col gap-1 overflow-x-hidden">
               <NuxtLink
                 :to="`/${user.slug}`"
                 :title="`linknest-live.vercel.app/${user.slug}`"
@@ -37,7 +37,7 @@
               >
                 @{{ user.slug }}
               </NuxtLink>
-              <p class="text-label break-words text-muted-foreground max-w-full">
+              <p class="text-label max-w-full break-words text-muted-foreground">
                 {{ user.description }}
               </p>
             </div>
@@ -57,7 +57,7 @@
         </div>
 
         <nav
-          class="w-full gap-2 lg:items-start lg:justify-start lg:flex-col lg:flex"
+          class="w-full gap-2 lg:flex lg:flex-col lg:items-start lg:justify-start"
           :class="[isMobileNavOpen ? 'flex flex-row items-center justify-center' : 'hidden']"
         >
           <NuxtLink v-for="link in navLinks" :key="link.href" :to="link.href" class="btn lg:w-full">
@@ -68,7 +68,7 @@
 
         <div class="lg:flex-1" />
 
-        <nav class="flex-col w-full gap-2 hidden lg:flex">
+        <nav class="hidden w-full flex-col gap-2 lg:flex">
           <button class="btn" @click="toggleTheme">
             <Icon :name="themeIcon" size="25" />
             <span>Toggle Theme</span>

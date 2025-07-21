@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-4 w-full lg:flex-row">
+  <div class="flex w-full flex-col gap-4 lg:flex-row">
     <main
-      v-motion class="flex-1 card"
+      v-motion class="card flex-1"
       :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >

@@ -7,8 +7,8 @@
       </p>
     </header>
 
-    <div class="flex flex-row items-center flex-wrap justify-between gap-4">
-      <div class="flex flex-row items-center flex-wrap gap-1">
+    <div class="flex flex-row flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-row flex-wrap items-center gap-1">
         <button
           v-for="t in tabs" :key="t.value"
           class="btn" :class="{ 'btn-selected': activeTab === t.value }"

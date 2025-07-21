@@ -14,7 +14,7 @@
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center lg:my-6">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="rounded-full size-28 object-cover" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-28 rounded-full object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
@@ -63,22 +63,22 @@
       v-motion :initial="{ opacity: 0, x: 20 }"
       :visible="{ opacity: 1, x: 0 }" :duration="800"
       :style="backgroundStyle"
-      class="relative border-4 border-[#000000] shadow-[#000000] shadow-lg hidden hide-scrollbar min-h-[550px] overflow-x-hidden rounded-[2.5rem] lg:block lg:w-10/12"
+      class="hide-scrollbar relative hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 border-[#000000] shadow-lg shadow-[#000000] lg:block lg:w-10/12"
     >
-      <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-[#000000]" />
-      <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-[#000000]">
+      <div class="sticky left-1/2 top-2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-[#000000]" />
+      <div class="absolute right-6 top-2 z-10 flex flex-row items-center justify-end gap-2 text-[#000000]">
         <Icon name="mdi:signal" size="15" />
         <Icon name="mdi:wifi" size="15" />
       </div>
 
-      <div class="p-4 overflow-y-auto flex flex-col items-center justify-start gap-4 text-center pt-4">
-        <img :src="user?.image ?? undefined" alt="Profile picture" class="rounded-full size-24 object-cover" :style="profilePictureStyle">
+      <div class="flex flex-col items-center justify-start gap-4 overflow-y-auto p-4 text-center">
+        <img :src="user?.image ?? undefined" alt="Profile picture" class="size-24 rounded-full object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 leading-4 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces leading-4" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 

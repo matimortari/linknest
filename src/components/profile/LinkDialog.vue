@@ -2,7 +2,7 @@
   <Dialog :is-open="isOpen" :title="dialogTitle" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="input-group">
-        <label for="title" class="text-sm font-medium w-12">Title</label>
+        <label for="title" class="w-12 text-sm font-medium">Title</label>
         <input
           id="title" v-model="form.title"
           type="text" placeholder="Enter link title"
@@ -11,7 +11,7 @@
       </div>
 
       <div class="input-group">
-        <label for="url" class="text-sm font-medium w-12">URL</label>
+        <label for="url" class="w-12 text-sm font-medium">URL</label>
         <input
           id="url" v-model="form.url"
           type="url" placeholder="https://example.com"
@@ -19,7 +19,7 @@
         >
       </div>
 
-      <div v-if="hasErrors" class="flex flex-col gap-2 text-center max-w-sm">
+      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
         <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">
           {{ msg }}
         </span>

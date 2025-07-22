@@ -5,7 +5,7 @@
       :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >
-      <header class="space-y-2">
+      <header class="space-y-2 border-b py-2">
         <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Preferences
         </h2>
@@ -18,9 +18,7 @@
         </p>
       </header>
 
-      <hr class="my-4">
-
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4 py-2">
         <section class="section-container">
           <PreferencesAppearanceForm />
         </section>

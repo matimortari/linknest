@@ -1,7 +1,7 @@
 <template>
   <Dialog :is-open="isOpen" :title="dialogTitle" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
-      <div class="input-group">
+      <div class="navigation-group">
         <label for="title" class="w-12 text-sm font-medium">Title</label>
         <input
           id="title" v-model="form.title"
@@ -10,7 +10,7 @@
         >
       </div>
 
-      <div class="input-group">
+      <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
         <input
           id="url" v-model="form.url"

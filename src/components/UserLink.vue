@@ -18,7 +18,7 @@
     </a>
     <button
       v-if="preferences?.showCopyButton"
-      class="hover:scale-md absolute right-2 flex-shrink-0"
+      class="hover:scale-md absolute right-2 flex-shrink-0 transition-all"
       @click.stop="handleCopyToClipBoard"
     >
       <Icon

@@ -1,7 +1,7 @@
 <template>
   <div v-if="user" class="lg:fixed lg:inset-y-0 lg:my-4 lg:flex lg:w-52 lg:flex-col">
     <div class="flex flex-col gap-4">
-      <NuxtLink to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2">
+      <NuxtLink to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
         <img
           src="/logo.png" alt="Logo"
           width="35" height="35"
@@ -15,8 +15,8 @@
         :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
         :duration="800"
       >
-        <div class="my-2 flex flex-row items-center gap-4">
-          <div class="flex w-full flex-row items-center gap-4 lg:w-auto">
+        <div class="navigation-group my-2">
+          <div class="navigation-group w-full lg:w-auto">
             <div class="relative size-14 flex-shrink-0">
               <img
                 v-if="user.image"
@@ -25,7 +25,7 @@
                 class="size-full rounded-full border object-cover"
               >
               <button title="Edit Profile Information" class="btn-primary absolute -bottom-2 -right-2 p-1" @click="openDialog">
-                <Icon name="mdi:square-edit-outline" size="20" class="hover:scale-md" />
+                <Icon name="mdi:square-edit-outline" size="20" class="hover:scale-md transition-all" />
               </button>
             </div>
 
@@ -33,11 +33,11 @@
               <NuxtLink
                 :to="`/${user.slug}`"
                 :title="`linknest-live.vercel.app/${user.slug}`"
-                class="text-caption truncate hover:underline"
+                class="text-caption break-words hover:underline"
               >
                 @{{ user.slug }}
               </NuxtLink>
-              <p class="text-label max-w-full break-words text-muted-foreground">
+              <p class="text-label line-clamp-3 max-w-full break-words text-muted-foreground">
                 {{ user.description }}
               </p>
             </div>

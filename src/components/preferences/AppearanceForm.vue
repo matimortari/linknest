@@ -7,7 +7,7 @@
       </p>
     </header>
 
-    <div class="flex flex-row flex-wrap items-center justify-between gap-4">
+    <div class="navigation-group flex-wrap justify-between border-b py-2">
       <div class="flex flex-row flex-wrap items-center gap-1">
         <button
           v-for="t in tabs" :key="t.value"
@@ -18,7 +18,7 @@
         </button>
       </div>
 
-      <div class="flex flex-row items-center gap-2">
+      <div class="flex flex-row items-center gap-1">
         <button class="btn-primary" @click="handleUpdatePreferences">
           <Icon name="mdi:content-save-check" size="20" />
           <span>{{
@@ -36,9 +36,7 @@
       </div>
     </div>
 
-    <hr class="my-2">
-
-    <div v-if="activeTab === 'background'" class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+    <div v-if="activeTab === 'background'" class="grid grid-cols-1 gap-2 py-2 lg:grid-cols-2">
       <PreferencesRadioOptions
         v-model:value="preferences.backgroundType" name="backgroundType"
         label="Background Type" :options="BACKGROUND_TYPES"
@@ -59,7 +57,7 @@
       </div>
     </div>
 
-    <div v-if="activeTab === 'user'" class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+    <div v-if="activeTab === 'user'" class="grid grid-cols-1 gap-2 py-2 lg:grid-cols-2">
       <div class="flex flex-col gap-2">
         <PreferencesSelectInput
           id="supportBanner" v-model:value="preferences.supportBanner"
@@ -101,7 +99,7 @@
       </div>
     </div>
 
-    <div v-if="activeTab === 'links'" class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+    <div v-if="activeTab === 'links'" class="grid grid-cols-1 gap-2 py-2 lg:grid-cols-2">
       <div class="flex flex-col gap-2">
         <PreferencesColorInput
           id="linkBackgroundColor" v-model:value="preferences.linkBackgroundColor"
@@ -153,7 +151,7 @@
       </div>
     </div>
 
-    <div v-if="activeTab === 'icons'" class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+    <div v-if="activeTab === 'icons'" class="grid grid-cols-1 gap-2 py-2 lg:grid-cols-2">
       <div class="flex flex-col gap-2">
         <PreferencesColorInput
           id="iconBackgroundColor" v-model:value="preferences.iconBackgroundColor"

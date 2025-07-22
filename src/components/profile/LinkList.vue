@@ -23,10 +23,10 @@
 
             <div class="flex flex-row items-center gap-1">
               <button @click="handleUpdateLink(link)">
-                <Icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent" />
+                <Icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent transition-all" />
               </button>
               <button @click="handleDeleteLink(link.id!)">
-                <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground" />
+                <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
           </div>
@@ -38,7 +38,7 @@
       </li>
     </ul>
 
-    <div class="input-group justify-end">
+    <div class="navigation-group justify-end">
       <button class="btn-primary" @click="openDialog">
         <Icon name="mdi:link-add" size="25" />
         <span>Add Link</span>

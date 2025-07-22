@@ -1,6 +1,6 @@
 <template>
   <div class="bg-image min-h-screen">
-    <div class="flex flex-1 flex-col gap-2 p-4 lg:flex-row lg:gap-4">
+    <div class="lg:navigation-group flex flex-1 flex-col gap-2 p-4">
       <div class="lg:w-52">
         <UserMenu />
       </div>

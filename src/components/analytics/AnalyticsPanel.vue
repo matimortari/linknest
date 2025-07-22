@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <hr class="my-2 w-full">
+    <span class="my-2 w-full border-b" />
 
     <header class="my-2 flex flex-col gap-2">
       <h3>Profile Views</h3>
@@ -76,7 +76,7 @@
 
     <AnalyticsBarChart v-else :chart-data="pageViewsChartData" />
 
-    <hr class="my-2 w-full">
+    <span class="my-2 w-full border-b" />
 
     <div class="my-2 flex flex-col justify-between gap-2 md:flex-row">
       <div class="flex w-full flex-col gap-2">

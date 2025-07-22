@@ -226,7 +226,7 @@
     align-items: center;
     gap: 0.25rem;
   }
-  .input-group {
+  .navigation-group {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -251,7 +251,9 @@
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
   }
   .btn-selected {
     filter: brightness(0.6);

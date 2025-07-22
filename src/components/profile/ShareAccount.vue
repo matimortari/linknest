@@ -9,7 +9,7 @@
       </NuxtLink>
     </div>
 
-    <div ref="dropdownWrapper" class="input-group relative">
+    <div ref="dropdownWrapper" class="navigation-group relative">
       <button title="See sharing options" class="btn-secondary" @click="toggleDropdown">
         <Icon name="mdi:share-variant" size="20" />
         <span>Share Now</span>

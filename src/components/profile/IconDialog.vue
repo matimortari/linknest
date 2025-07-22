@@ -7,7 +7,7 @@
           v-for="[label, iconName] in iconEntries"
           :key="label"
           type="button"
-          class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 hover:bg-muted active:bg-accent"
+          class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all hover:bg-muted active:bg-accent"
           :class="{ 'bg-accent': form.platform === label }"
           @click="selectIcon(label, iconName)"
         >
@@ -16,7 +16,7 @@
         </button>
       </div>
 
-      <div class="input-group">
+      <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
         <input
           id="url"

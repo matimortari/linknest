@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="input-group">
+      <div class="navigation-group">
         <label for="slug" class="w-20 text-sm font-medium">Slug</label>
         <input
           id="slug" v-model="form.slug"
@@ -26,7 +26,7 @@
         >
       </div>
 
-      <div class="input-group">
+      <div class="navigation-group">
         <label for="description" class="w-20 text-sm font-medium">Description</label>
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>

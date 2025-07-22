@@ -1,13 +1,10 @@
 <template>
-  <NuxtLink href="/" class="hover:scale-sm group fixed left-4 top-4 z-50 flex flex-row items-center gap-2">
+  <NuxtLink href="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
     <img
       src="/logo.png" alt="Logo"
       width="35" height="35"
       class="rounded-full"
     >
-    <span class="translate-x-[10px] scale-95 font-chau text-2xl opacity-0 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100">
-      LinkNest
-    </span>
   </NuxtLink>
 
   <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
@@ -19,7 +16,7 @@
       User {{ slug }} not found.
     </p>
 
-    <NuxtLink href="/" class="hover:scale-sm flex flex-row items-center gap-2">
+    <NuxtLink href="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
       <img
         src="/logo.png" alt="Logo"
         width="35" height="35"

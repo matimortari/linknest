@@ -20,12 +20,12 @@
         </a>
 
         <button class="absolute bottom-0 right-0 p-1" @click="handleDeleteIcon(icon.id!)">
-          <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground" />
+          <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>
     </ul>
 
-    <div class="input-group justify-end">
+    <div class="navigation-group justify-end">
       <button class="btn-primary" @click="openDialog">
         <Icon name="mdi:favorite-add" size="25" />
         <span>Add Social Icon</span>

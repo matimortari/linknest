@@ -33,10 +33,12 @@ export const useIconStore = defineStore("icon", {
       try {
         const response = await createIconService(icon)
         this.icons.push(response.newIcon)
+        return response
       }
       catch (error: any) {
         console.error("Failed to create social icon:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false
@@ -47,12 +49,14 @@ export const useIconStore = defineStore("icon", {
       this.isLoading = true
       this.error = null
       try {
-        await deleteIconService(id)
+        const response = await deleteIconService(id)
         this.icons = this.icons.filter(icon => icon.id !== id)
+        return response
       }
       catch (error: any) {
         console.error("Failed to delete social icon:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false

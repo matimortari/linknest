@@ -33,10 +33,12 @@ export const useLinkStore = defineStore("link", {
       try {
         const response = await createLinkService(link)
         this.links.push(response.newLink)
+        return response
       }
       catch (error: any) {
         console.error("Failed to create link:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false
@@ -55,10 +57,12 @@ export const useLinkStore = defineStore("link", {
         const index = this.links.findIndex(l => l.id === response.updatedLink.id)
         if (index > -1)
           this.links[index] = response.updatedLink
+        return response
       }
       catch (error: any) {
         console.error("Failed to update link:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false
@@ -72,12 +76,14 @@ export const useLinkStore = defineStore("link", {
       }
       this.isLoading = true
       try {
-        await deleteLinkService(id)
+        const response = await deleteLinkService(id)
         this.links = this.links.filter(link => link.id !== id)
+        return response
       }
       catch (error: any) {
         console.error("Failed to delete link:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false

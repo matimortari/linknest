@@ -33,10 +33,12 @@ export const usePreferencesStore = defineStore("preferences", {
       try {
         const response = await updatePreferencesService(updatedPreferences)
         this.preferences = response.updatedPreferences
+        return response
       }
       catch (error: any) {
         console.error("Failed to update user preferences", error)
         this.error = error?.message
+        throw error
       }
     },
 
@@ -50,10 +52,12 @@ export const usePreferencesStore = defineStore("preferences", {
       try {
         const response = await updateSupportBannerService(newBanner)
         this.preferences = response.preferences
+        return response
       }
       catch (error: any) {
         console.error("Failed to update user support banner", error)
         this.error = error?.message
+        throw error
       }
     },
 
@@ -63,10 +67,12 @@ export const usePreferencesStore = defineStore("preferences", {
       try {
         const response = await resetPreferencesService()
         this.preferences = response.preferences
+        return response
       }
       catch (error: any) {
         console.error("Failed to reset user preferences", error)
         this.error = null
+        throw error
       }
     },
   },

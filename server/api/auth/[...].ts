@@ -2,8 +2,8 @@ import type { DefaultSession } from "next-auth"
 import { NuxtAuthHandler } from "#auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-import db from "~/lib/db"
-import { generateSlug } from "~/lib/utils"
+import db from "~~/server/lib/db"
+import { generateSlug } from "~~/server/lib/utils"
 
 declare module "next-auth" {
   interface Session extends DefaultSession {

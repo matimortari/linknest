@@ -11,11 +11,11 @@ export const useIconStore = defineStore("icon", {
     async getIcons() {
       this.isLoading = true
       this.error = null
+
       try {
         this.icons = await getIconsService()
       }
       catch (error: any) {
-        console.error("Failed to get social icons:", error)
         this.error = error?.message
       }
       finally {
@@ -23,20 +23,21 @@ export const useIconStore = defineStore("icon", {
       }
     },
 
-    async createIcon(icon: IconType) {
-      if (!icon || !icon.platform || !icon.url) {
-        this.error = "Social icon must have an URL and platform"
-        return
+    async createIcon(payload: CreateIconPayload) {
+      if (!payload || !payload.platform || !payload.url) {
+        this.error = "Social icon must have a URL and platform"
+        throw new Error(this.error)
       }
+
       this.isLoading = true
       this.error = null
+
       try {
-        const response = await createIconService(icon)
+        const response = await createIconService(payload)
         this.icons.push(response.newIcon)
         return response
       }
       catch (error: any) {
-        console.error("Failed to create social icon:", error)
         this.error = error?.message
         throw error
       }
@@ -48,13 +49,13 @@ export const useIconStore = defineStore("icon", {
     async deleteIcon(id: string) {
       this.isLoading = true
       this.error = null
+
       try {
         const response = await deleteIconService(id)
         this.icons = this.icons.filter(icon => icon.id !== id)
         return response
       }
       catch (error: any) {
-        console.error("Failed to delete social icon:", error)
         this.error = error?.message
         throw error
       }

@@ -12,7 +12,6 @@ export async function getUserService(): Promise<UserType> {
 export async function getUserBySlugService(slug: string): Promise<UserType> {
   const response = await fetch(`/api/user/${slug}`, {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
   })
   if (!response.ok) {
     throw new Error(`Failed to get user by slug: ${response.statusText}`)
@@ -21,11 +20,11 @@ export async function getUserBySlugService(slug: string): Promise<UserType> {
   return await response.json()
 }
 
-export async function updateUserService(updatedUser: UserType): Promise<{ message: string, updatedUser: UserType }> {
+export async function updateUserService(data: UpdateUserPayload): Promise<{ message: string, user: UserType }> {
   const response = await fetch("/api/user", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedUser),
+    body: JSON.stringify(data),
   })
   if (!response.ok) {
     throw new Error(`Failed to update user: ${response.statusText}`)

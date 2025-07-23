@@ -11,11 +11,11 @@ export const useLinkStore = defineStore("link", {
     async getLinks() {
       this.isLoading = true
       this.error = null
+
       try {
         this.links = await getLinksService()
       }
       catch (error: any) {
-        console.error("Failed to get links:", error)
         this.error = error?.message
       }
       finally {
@@ -23,20 +23,21 @@ export const useLinkStore = defineStore("link", {
       }
     },
 
-    async createLink(link: LinkType) {
-      if (!link || !link.url || !link.title) {
+    async createLink(payload: CreateLinkPayload) {
+      if (!payload || !payload.url || !payload.title) {
         this.error = "Link must have a URL and title"
-        return
+        throw new Error(this.error)
       }
+
       this.isLoading = true
       this.error = null
+
       try {
-        const response = await createLinkService(link)
+        const response = await createLinkService(payload)
         this.links.push(response.newLink)
         return response
       }
       catch (error: any) {
-        console.error("Failed to create link:", error)
         this.error = error?.message
         throw error
       }
@@ -45,22 +46,23 @@ export const useLinkStore = defineStore("link", {
       }
     },
 
-    async updateLink(link: LinkType) {
-      if (!link || !link.id) {
+    async updateLink(payload: UpdateLinkPayload) {
+      if (!payload || !payload.id) {
         this.error = "Link ID is required to update"
-        return
+        throw new Error(this.error)
       }
+
       this.isLoading = true
       this.error = null
+
       try {
-        const response = await updateLinkService(link)
+        const response = await updateLinkService(payload)
         const index = this.links.findIndex(l => l.id === response.updatedLink.id)
         if (index > -1)
           this.links[index] = response.updatedLink
         return response
       }
       catch (error: any) {
-        console.error("Failed to update link:", error)
         this.error = error?.message
         throw error
       }
@@ -72,16 +74,18 @@ export const useLinkStore = defineStore("link", {
     async deleteLink(id: string) {
       if (!id) {
         this.error = "Link ID is required to delete"
-        return
+        throw new Error(this.error)
       }
+
       this.isLoading = true
+      this.error = null
+
       try {
         const response = await deleteLinkService(id)
         this.links = this.links.filter(link => link.id !== id)
         return response
       }
       catch (error: any) {
-        console.error("Failed to delete link:", error)
         this.error = error?.message
         throw error
       }

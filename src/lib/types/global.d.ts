@@ -72,3 +72,62 @@ interface UserPreferencesType {
   showCopyButton?: boolean
   supportBanner?: "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
 }
+
+interface UpdateUserPayload {
+  name?: string
+  slug?: string
+  description?: string | null
+  image?: string | null
+}
+
+interface CreateLinkPayload {
+  title: string
+  url: string
+}
+
+interface UpdateLinkPayload {
+  id: string
+  title?: string
+  url?: string
+}
+
+interface CreateIconPayload {
+  platform: string
+  url: string
+  icon: string
+}
+
+interface UpdatePreferencesPayload {
+  backgroundType?: "FLAT" | "GRADIENT"
+  backgroundColor?: string
+  backgroundGradientStart?: string
+  backgroundGradientEnd?: string
+  profilePictureRadius?: string
+  slugTextColor?: string
+  slugTextWeight?: string
+  slugTextSize?: string
+  headerTextColor?: string
+  headerTextWeight?: string
+  headerTextSize?: string
+  linkBackgroundColor?: string
+  linkTextColor?: string
+  linkTextWeight?: string
+  linkTextSize?: string
+  isLinkShadow?: boolean
+  linkShadowColor?: string
+  linkShadowWeight?: string
+  linkHoverBackgroundColor?: string
+  linkBorderRadius?: string
+  linkPadding?: string
+  iconBackgroundColor?: string
+  isIconShadow?: boolean
+  iconShadowColor?: string
+  iconShadowWeight?: string
+  iconIconColor?: string
+  iconHoverBackgroundColor?: string
+  showCopyButton?: boolean
+}
+
+interface UpdateSupportBannerPayload {
+  supportBanner: "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
+}

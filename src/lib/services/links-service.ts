@@ -9,11 +9,11 @@ export async function getLinksService(): Promise<LinkType[]> {
   return await response.json()
 }
 
-export async function createLinkService(newLink: LinkType): Promise<{ message: string, newLink: LinkType }> {
+export async function createLinkService(data: CreateLinkPayload): Promise<{ message: string, newLink: LinkType }> {
   const response = await fetch("/api/links", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newLink),
+    body: JSON.stringify(data),
   })
   if (!response.ok) {
     throw new Error(`Failed to create link: ${response.statusText}`)
@@ -22,11 +22,11 @@ export async function createLinkService(newLink: LinkType): Promise<{ message: s
   return await response.json()
 }
 
-export async function updateLinkService(updatedLink: LinkType): Promise<{ message: string, updatedLink: LinkType }> {
-  const response = await fetch(`/api/links/${updatedLink.id}`, {
+export async function updateLinkService(data: UpdateLinkPayload): Promise<{ message: string, updatedLink: LinkType }> {
+  const response = await fetch(`/api/links/${data.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedLink),
+    body: JSON.stringify(data),
   })
   if (!response.ok) {
     throw new Error(`Failed to update link: ${response.statusText}`)

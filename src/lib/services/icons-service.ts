@@ -9,11 +9,11 @@ export async function getIconsService(): Promise<IconType[]> {
   return await response.json()
 }
 
-export async function createIconService(newIcon: IconType): Promise<{ message: string, newIcon: IconType }> {
+export async function createIconService(data: CreateIconPayload): Promise<{ message: string, newIcon: IconType }> {
   const response = await fetch("/api/icons", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newIcon),
+    body: JSON.stringify(data),
   })
   if (!response.ok) {
     throw new Error(`Failed to create social icon: ${response.statusText}`)

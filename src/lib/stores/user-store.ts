@@ -48,17 +48,19 @@ export const useUserStore = defineStore("user", {
     async updateUser(updatedUser: UserType) {
       if (!this.user) {
         this.error = "No user loaded"
-        return
+        throw new Error(this.error)
       }
       this.isLoading = true
       this.error = null
       try {
         const response = await updateUserService(updatedUser)
         this.user = response.updatedUser
+        return response
       }
       catch (error: any) {
         console.error("failed to update user data:", error)
-        this.error = error?.message
+        this.error = error?.message || "Failed to update user"
+        throw error
       }
       finally {
         this.isLoading = false
@@ -69,12 +71,14 @@ export const useUserStore = defineStore("user", {
       this.isLoading = true
       this.error = null
       try {
-        await deleteUserService()
+        const response = await deleteUserService()
         this.user = null
+        return response
       }
       catch (error: any) {
         console.error("failed to delete user:", error)
         this.error = error?.message
+        throw error
       }
       finally {
         this.isLoading = false
@@ -86,7 +90,6 @@ export const useUserStore = defineStore("user", {
         console.warn("No user ID provided for tracking page visit")
         return
       }
-
       this.error = null
       try {
         await trackPageVisitService(userId)
@@ -102,12 +105,10 @@ export const useUserStore = defineStore("user", {
         console.warn("No user ID provided for tracking click")
         return
       }
-
       if (!id) {
         console.warn("No ID provided for tracking click")
         return
       }
-
       this.error = null
       try {
         await trackClickService(id, type, userId)

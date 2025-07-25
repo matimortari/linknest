@@ -4,6 +4,7 @@ import {
   getUserService,
   trackClickService,
   trackPageVisitService,
+  updateUserImageService,
   updateUserService,
 } from "~/lib/services/user-service"
 
@@ -58,6 +59,29 @@ export const useUserStore = defineStore("user", {
       try {
         const response = await updateUserService(payload)
         this.user = response.user
+        return response
+      }
+      catch (error: any) {
+        this.error = error?.message
+        throw error
+      }
+      finally {
+        this.isLoading = false
+      }
+    },
+
+    async updateUserImage(formData: FormData) {
+      if (!this.user) {
+        this.error = "No user loaded"
+        throw new Error(this.error)
+      }
+
+      this.isLoading = true
+      this.error = null
+
+      try {
+        const response = await updateUserImageService(formData)
+        this.user.image = response.imageUrl
         return response
       }
       catch (error: any) {

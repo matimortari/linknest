@@ -89,29 +89,24 @@ watch(() => props.isOpen, (open) => {
 }, { immediate: true })
 
 async function handleImageChange(event: Event) {
-  const file = (event.target as HTMLInputElement)?.files?.[0]
-  if (!file)
+  const input = event.target as HTMLInputElement
+  if (!input.files || input.files.length === 0)
     return
 
+  const file = input.files[0]
+  const formData = new FormData()
+  formData.append("file", file)
+  formData.append("type", "avatar")
+
   try {
-    const formData = new FormData()
-    formData.append("file", file)
-
-    const response = await fetch("/api/user/image-upload", {
-      method: "POST",
-      body: formData,
-    })
-
-    if (!response.ok) {
-      throw new Error("Upload failed")
+    const response = await userStore.updateUserImage(formData)
+    form.value.image = response.imageUrl
+    if (user.value) {
+      user.value.image = response.imageUrl
     }
-
-    const data = await response.json()
-    form.value.image = data.url
   }
-  catch (err) {
-    console.error("Upload failed", err)
-    formErrors.value.image = "Failed to upload image."
+  catch (error: any) {
+    console.error("Image upload failed:", error)
   }
 }
 

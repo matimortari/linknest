@@ -61,7 +61,7 @@
     <!-- Desktop Preview -->
     <div
       v-motion :initial="{ opacity: 0, x: 20 }"
-      :visible="{ opacity: 1, x: 0 }" :duration="800"
+      :visible="{ opacity: 1, x: 0 }" :transition="{ duration: 800 }"
       :style="backgroundStyle"
       class="hide-scrollbar relative hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 border-[#000000] shadow-lg shadow-[#000000] lg:block lg:w-10/12"
     >

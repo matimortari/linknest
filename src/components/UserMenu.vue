@@ -13,7 +13,7 @@
       <div
         v-motion class="flex flex-col lg:gap-12"
         :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
-        :duration="800"
+        :transition="{ duration: 800 }"
       >
         <div class="navigation-group my-2">
           <div class="navigation-group w-full lg:w-auto">

@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import auth from "~/lib/middleware/auth"
+
 useHead({
   title: "Analytics – LinkNest",
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.ico" }],
@@ -44,9 +46,6 @@ useSeoMeta({
 
 definePageMeta({
   layout: "admin",
-  auth: {
-    unauthenticatedOnly: false,
-    navigateUnauthenticatedTo: "/sign-in",
-  },
+  middleware: auth,
 })
 </script>

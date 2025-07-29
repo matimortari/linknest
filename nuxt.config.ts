@@ -7,22 +7,26 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
-    "@sidebase/nuxt-auth",
     "@vueuse/motion/nuxt",
+    "nuxt-auth-utils",
   ],
   srcDir: "src",
   serverDir: "server",
-  auth: {
-    baseURL: `${process.env.BASE_URL}/api/auth`,
-    originEnvKey: process.env.BASE_URL,
-    provider: {
-      type: "authjs",
-      defaultProvider: "github",
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
     },
-    globalAppMiddleware: true,
-    sessionRefresh: {
-      enablePeriodically: 20000,
-      enableOnWindowFocus: true,
+    oauth: {
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/github`,
+      },
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/google`,
+      },
     },
   },
   colorMode: {

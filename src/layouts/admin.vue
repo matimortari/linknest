@@ -27,7 +27,7 @@ const userStore = useUserStore()
 const preferencesStore = usePreferencesStore()
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
-const { data: session } = useAuth()
+const { session } = useUserSession()
 
 const isLoading = ref(true)
 

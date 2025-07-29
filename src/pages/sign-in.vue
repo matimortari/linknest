@@ -33,13 +33,9 @@
         :transition="{ duration: 800 }"
       >
         <div class="flex flex-col items-center gap-4">
-          <button class="btn bg-[#db4437] text-[#ebe8e8]" @click="signIn('google', { callbackUrl: '/admin/profile' })">
-            <Icon name="simple-icons:google" size="25" />
-            <span>Sign In with Google</span>
-          </button>
-          <button class="btn bg-[#333333] text-[#ebe8e8]" @click="signIn('github', { callbackUrl: '/admin/profile' })">
-            <Icon name="simple-icons:github" size="25" />
-            <span>Sign In with GitHub</span>
+          <button v-for="provider in providers" :key="provider.label" class="btn" @click="provider.click">
+            <Icon :name="provider.icon" size="25" />
+            <span>{{ provider.label }}</span>
           </button>
         </div>
       </div>
@@ -56,7 +52,22 @@
 </template>
 
 <script setup lang="ts">
-const { signIn } = useAuth()
+const providers = [
+  {
+    label: "GitHub",
+    icon: "simple-icons:github",
+    click: async () => {
+      await navigateTo("/api/auth/github", { external: true })
+    },
+  },
+  {
+    label: "Google",
+    icon: "logos:google-icon",
+    click: async () => {
+      await navigateTo("/api/auth/google", { external: true })
+    },
+  },
+]
 
 useHead({
   title: "Sign In – LinkNest",
@@ -67,12 +78,5 @@ useHead({
 useSeoMeta({
   title: "Sign In – LinkNest",
   description: "Sign In to LinkNest.",
-})
-
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/admin/profile",
-  },
 })
 </script>

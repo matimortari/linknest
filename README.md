@@ -16,7 +16,7 @@ Create your own landing page for sharing links to your social media profiles, we
 ## 🛠️ Stack
 
 - **Nuxt.js** with composition API.
-- **Nuxt/Auth** for authentication with Google & GitHub.
+- **OAuth** authentication with Google & GitHub.
 - **Prisma** for database management.
 - **Pinia** for global state management.
 - **Zod** for API and form validation.

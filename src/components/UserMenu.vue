@@ -50,7 +50,7 @@
             <button class="btn" @click="() => (isMobileNavOpen = !isMobileNavOpen)">
               <Icon name="material-symbols:menu" size="25" />
             </button>
-            <button class="btn" @click="() => signOut({ callbackUrl: '/' })">
+            <button class="btn" @click="clear">
               <Icon name="material-symbols:logout" size="25" class="text-danger-foreground" />
             </button>
           </nav>
@@ -73,7 +73,7 @@
             <Icon :name="themeIcon" size="25" />
             <span>Toggle Theme</span>
           </button>
-          <button class="btn-danger" @click="() => signOut({ callbackUrl: '/' })">
+          <button class="btn-danger" @click="signOut">
             <Icon name="material-symbols:logout" size="25" />
             <span>Sign Out</span>
           </button>
@@ -93,7 +93,7 @@
 import { useUserStore } from "~/lib/stores/user-store"
 
 const userStore = useUserStore()
-const { signOut } = useAuth()
+const { clear } = useUserSession()
 const { toggleTheme, themeIcon } = useTheme()
 
 const { user } = storeToRefs(userStore)
@@ -105,6 +105,11 @@ function openDialog() {
 }
 function closeDialog() {
   isDialogOpen.value = false
+}
+
+function signOut() {
+  clear()
+  window.location.href = "/"
 }
 
 const navLinks = [

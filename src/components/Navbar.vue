@@ -1,6 +1,6 @@
 <template>
   <nav class="flex w-full items-center justify-between px-4 pt-4">
-    <NuxtLink href="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
+    <NuxtLink to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
       <img
         src="/logo.png" alt="Logo"
         width="35" height="35"
@@ -13,7 +13,7 @@
       <button class="btn" @click="toggleTheme">
         <Icon :name="themeIcon" size="25" />
       </button>
-      <NuxtLink href="/sign-in" title="Sign In" class="btn">
+      <NuxtLink to="/sign-in" title="Sign In" class="btn">
         <Icon name="material-symbols:login" size="25" />
       </NuxtLink>
     </div>

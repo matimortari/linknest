@@ -41,6 +41,12 @@ interface UserStatsType {
   iconClicks: number
 }
 
+interface PageViewType {
+  id: string
+  userId: string
+  date: Date
+}
+
 interface UserPreferencesType {
   backgroundType: "FLAT" | "GRADIENT"
   backgroundColor: string

@@ -35,6 +35,8 @@
 </template>
 
 <script setup lang="ts">
+import auth from "~/lib/middleware/auth"
+
 useHead({
   title: "Preferences – LinkNest",
   link: [
@@ -51,9 +53,6 @@ useSeoMeta({
 
 definePageMeta({
   layout: "admin",
-  auth: {
-    unauthenticatedOnly: false,
-    navigateUnauthenticatedTo: "/",
-  },
+  middleware: auth,
 })
 </script>

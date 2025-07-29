@@ -20,6 +20,7 @@ export default antfu({
     "no-new": "off",
     "no-undef": "off",
     "no-alert": "off",
+    "no-console": "off",
     "no-restricted-globals": "off",
     "regexp/no-obscure-range": "off",
     "node/prefer-global/process": "off",

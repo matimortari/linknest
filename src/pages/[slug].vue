@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink href="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
+  <NuxtLink to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
     <img
       src="/logo.png" alt="Logo"
       width="35" height="35"
@@ -16,7 +16,7 @@
       User {{ slug }} not found.
     </p>
 
-    <NuxtLink href="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
+    <NuxtLink to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
       <img
         src="/logo.png" alt="Logo"
         width="35" height="35"
@@ -148,6 +148,5 @@ watch(() => route.params.slug, async (newSlug) => {
 
 definePageMeta({
   layout: "user",
-  auth: false,
 })
 </script>

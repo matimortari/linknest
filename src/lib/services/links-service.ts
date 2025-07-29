@@ -1,48 +1,46 @@
+import { getBaseUrl } from "~/lib/utils"
+
 export async function getLinksService(): Promise<LinkType[]> {
-  const response = await fetch("/api/links", {
+  const baseUrl = getBaseUrl()
+  const response = await fetch(`${baseUrl}/api/links`, {
     method: "GET",
   })
-  if (!response.ok) {
-    throw new Error(`Failed to get links: ${response.statusText}`)
-  }
-
+  if (!response.ok)
+    throw new Error(`${response.statusText}`)
   return await response.json()
 }
 
 export async function createLinkService(data: CreateLinkPayload): Promise<{ message: string, newLink: LinkType }> {
-  const response = await fetch("/api/links", {
+  const baseUrl = getBaseUrl()
+  const response = await fetch(`${baseUrl}/api/links`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   })
-  if (!response.ok) {
-    throw new Error(`Failed to create link: ${response.statusText}`)
-  }
-
+  if (!response.ok)
+    throw new Error(`${response.statusText}`)
   return await response.json()
 }
 
 export async function updateLinkService(data: UpdateLinkPayload): Promise<{ message: string, updatedLink: LinkType }> {
-  const response = await fetch(`/api/links/${data.id}`, {
+  const baseUrl = getBaseUrl()
+  const response = await fetch(`${baseUrl}/api/links/${data.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   })
-  if (!response.ok) {
-    throw new Error(`Failed to update link: ${response.statusText}`)
-  }
-
+  if (!response.ok)
+    throw new Error(`x${response.statusText}`)
   return await response.json()
 }
 
 export async function deleteLinkService(id: string): Promise<{ message: string }> {
-  const response = await fetch(`/api/links/${id}`, {
+  const baseUrl = getBaseUrl()
+  const response = await fetch(`${baseUrl}/api/links/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   })
-  if (!response.ok) {
-    throw new Error(`Failed to delete link: ${response.statusText}`)
-  }
-
+  if (!response.ok)
+    throw new Error(`${response.statusText}`)
   return await response.json()
 }

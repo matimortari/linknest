@@ -1,32 +1,41 @@
 import type { EventHandlerRequest, H3Event } from "h3"
-import { getServerSession } from "#auth"
+import db from "~~/server/lib/db"
 
-// Find user from session or throw an error if not found
 export async function getUserFromSession(event: H3Event<EventHandlerRequest>) {
-  const session = await getServerSession(event)
-  if (!session?.user.id)
+  const session = await getUserSession(event)
+  if (session?.user?.id) {
+    return session.user
+  }
+
+  const authHeader = event.node.req.headers.authorization
+  if (!authHeader) {
     throw createError({ statusCode: 401, statusMessage: "Unauthorized" })
+  }
 
   return session.user
 }
 
-// Generate a random slug based on a base string
-export function generateSlug(base: string = "") {
-  const randomString = Math.random().toString(36).substring(2, 10)
-
-  return `${base
+export async function generateSlug(base: string = ""): Promise<string> {
+  const cleanedBase = base
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036F]/g, "")
     .toLowerCase()
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")}-${randomString}`
-}
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "") || "user"
 
-// Format a date string to a more readable format
-export function formatDate(dateString: Date) {
-  const formattedDate = new Date(dateString).toLocaleDateString("en-US", {
-    year: "2-digit",
-    month: "short",
-    day: "numeric",
-  })
+  let slug: string
+  let exists = true
+  let attempt = 0
 
-  return formattedDate.charAt(0).toLowerCase() + formattedDate.slice(1)
+  while (exists && attempt < 5) {
+    const randomString = Math.random().toString(36).slice(2, 8)
+    slug = `${cleanedBase}-${randomString}`
+    const existingUser = await db.user.findUnique({ where: { slug } })
+    exists = !!existingUser
+    attempt++
+  }
+
+  return slug!
 }

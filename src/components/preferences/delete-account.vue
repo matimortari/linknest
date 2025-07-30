@@ -7,7 +7,7 @@
       </p>
     </header>
 
-    <div class="navigation-group justify-end lg:justify-start">
+    <div class="navigation-group justify-end md:justify-start">
       <button title="Delete Account" class="btn-danger" @click="handleDeleteUser">
         <Icon name="mdi:user-remove" size="20" />
         <span>Delete Account</span>

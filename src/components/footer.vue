@@ -1,5 +1,5 @@
 <template>
-  <footer class="flex flex-col items-center justify-between gap-2 p-8 lg:flex-row">
+  <footer class="flex flex-col items-center justify-between gap-2 p-8 md:flex-row">
     <span class="my-2 w-full border-b" />
 
     <div class="mx-4 whitespace-nowrap font-light text-muted-foreground">

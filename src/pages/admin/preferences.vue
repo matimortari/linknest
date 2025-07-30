@@ -1,18 +1,18 @@
 <template>
-  <div class="flex w-full flex-col gap-4 lg:flex-row">
+  <div class="flex w-full flex-col gap-4 md:flex-row">
     <main
       v-motion class="card flex-1"
       :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
-      :transition="{ duration: 800 }"
+      :duration="800"
     >
       <header class="space-y-2 border-b py-2">
-        <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :transition="{ duration: 800 }">
+        <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Preferences
         </h2>
         <p
           v-motion class="text-caption text-muted-foreground"
           :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
-          :transition="{ duration: 800 }"
+          :duration="800"
         >
           Manage your profile.
         </p>
@@ -28,7 +28,7 @@
       </div>
     </main>
 
-    <div class="w-full lg:w-1/3">
+    <div class="w-full md:w-1/3">
       <Preview />
     </div>
   </div>

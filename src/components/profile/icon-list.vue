@@ -26,14 +26,14 @@
     </ul>
 
     <div class="navigation-group justify-end">
-      <button class="btn-primary" @click="openDialog">
+      <button class="btn-primary" @click="isDialogOpen = true">
         <Icon name="mdi:favorite-add" size="25" />
         <span>Add Social Icon</span>
       </button>
     </div>
   </div>
 
-  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleCreateIcon" />
+  <ProfileIconDialog :is-open="isDialogOpen" @close="isDialogOpen = false" @save="handleCreateIcon" />
 </template>
 
 <script setup lang="ts">
@@ -43,18 +43,6 @@ const iconStore = useIconStore()
 
 const { icons, isLoading } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
-
-function openDialog() {
-  isDialogOpen.value = true
-}
-function closeDialog() {
-  isDialogOpen.value = false
-}
-
-onMounted(async () => {
-  if (!icons.value.length)
-    await iconStore.getIcons()
-})
 
 async function handleDeleteIcon(id: string) {
   try {
@@ -74,4 +62,9 @@ async function handleCreateIcon(savedIcon: IconType) {
     console.error("Failed to save icon:", error)
   }
 }
+
+onMounted(async () => {
+  if (!icons.value.length)
+    await iconStore.getIcons()
+})
 </script>

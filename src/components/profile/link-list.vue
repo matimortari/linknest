@@ -39,14 +39,14 @@
     </ul>
 
     <div class="navigation-group justify-end">
-      <button class="btn-primary" @click="openDialog">
+      <button class="btn-primary" @click="isDialogOpen = true">
         <Icon name="mdi:link-add" size="25" />
         <span>Add Link</span>
       </button>
     </div>
   </div>
 
-  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="closeDialog" @save="handleSaveLink" />
+  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="isDialogOpen = false" @save="handleSaveLink" />
 </template>
 
 <script setup lang="ts">
@@ -57,20 +57,6 @@ const linkStore = useLinkStore()
 const { links, isLoading } = storeToRefs(linkStore)
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
-
-function openDialog() {
-  selectedLink.value = null
-  isDialogOpen.value = true
-}
-function closeDialog() {
-  isDialogOpen.value = false
-  selectedLink.value = null
-}
-
-onMounted(async () => {
-  if (!links.value.length)
-    await linkStore.getLinks()
-})
 
 function handleUpdateLink(link: LinkType) {
   try {
@@ -106,4 +92,9 @@ async function handleSaveLink(link: LinkType) {
     console.error("Failed to save link:", error)
   }
 }
+
+onMounted(async () => {
+  if (!links.value.length)
+    await linkStore.getLinks()
+})
 </script>

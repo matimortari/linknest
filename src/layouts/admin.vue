@@ -1,7 +1,7 @@
 <template>
   <div class="bg-image min-h-screen">
-    <div class="lg:navigation-group flex flex-1 flex-col gap-2 p-4">
-      <div class="lg:w-52">
+    <div class="md:navigation-group flex flex-1 flex-col gap-2 p-4">
+      <div class="md:w-52">
         <UserMenu />
       </div>
 

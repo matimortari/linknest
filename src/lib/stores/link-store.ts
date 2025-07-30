@@ -1,97 +1,108 @@
-import { createLinkService, deleteLinkService, getLinksService, updateLinkService } from "~/lib/services/links-service"
+import {
+  createLinkService,
+  deleteLinkService,
+  getLinksService,
+  updateLinkService,
+} from "~/lib/services/links-service"
 
-export const useLinkStore = defineStore("link", {
-  state: () => ({
-    links: [] as LinkType[],
-    isLoading: false,
-    error: null as string | null,
-  }),
+export const useLinkStore = defineStore("link", () => {
+  const links = ref<LinkType[]>([])
+  const isLoading = ref(false)
+  const error = ref<string | null>(null)
 
-  actions: {
-    async getLinks() {
-      this.isLoading = true
-      this.error = null
+  async function getLinks() {
+    isLoading.value = true
+    error.value = null
 
-      try {
-        this.links = await getLinksService()
-      }
-      catch (error: any) {
-        this.error = error?.message
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      links.value = await getLinksService()
+    }
+    catch (err: any) {
+      error.value = err?.message
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async createLink(payload: CreateLinkPayload) {
-      if (!payload || !payload.url || !payload.title) {
-        this.error = "Link must have a URL and title"
-        throw new Error(this.error)
-      }
+  async function createLink(payload: CreateLinkPayload) {
+    if (!payload || !payload.url || !payload.title) {
+      error.value = "Link must have a URL and title"
+      throw new Error(error.value)
+    }
 
-      this.isLoading = true
-      this.error = null
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await createLinkService(payload)
-        this.links.push(response.newLink)
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      const response = await createLinkService(payload)
+      links.value.push(response.newLink)
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async updateLink(payload: UpdateLinkPayload) {
-      if (!payload || !payload.id) {
-        this.error = "Link ID is required to update"
-        throw new Error(this.error)
-      }
+  async function updateLink(payload: UpdateLinkPayload) {
+    if (!payload || !payload.id) {
+      error.value = "Link ID is required to update"
+      throw new Error(error.value)
+    }
 
-      this.isLoading = true
-      this.error = null
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await updateLinkService(payload)
-        const index = this.links.findIndex(l => l.id === response.updatedLink.id)
-        if (index > -1)
-          this.links[index] = response.updatedLink
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      const response = await updateLinkService(payload)
+      const index = links.value.findIndex(l => l.id === response.updatedLink.id)
+      if (index > -1)
+        links.value[index] = response.updatedLink
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async deleteLink(id: string) {
-      if (!id) {
-        this.error = "Link ID is required to delete"
-        throw new Error(this.error)
-      }
+  async function deleteLink(id: string) {
+    if (!id) {
+      error.value = "Link ID is required to delete"
+      throw new Error(error.value)
+    }
 
-      this.isLoading = true
-      this.error = null
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await deleteLinkService(id)
-        this.links = this.links.filter(link => link.id !== id)
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
-  },
+    try {
+      const response = await deleteLinkService(id)
+      links.value = links.value.filter(link => link.id !== id)
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
+
+  return {
+    links,
+    isLoading,
+    error,
+    getLinks,
+    createLink,
+    updateLink,
+    deleteLink,
+  }
 })

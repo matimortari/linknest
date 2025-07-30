@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <Analytics />
+    <Analytics :debug="false" />
     <NuxtPage />
   </NuxtLayout>
 </template>

@@ -2,13 +2,13 @@
   <transition name="slide-up">
     <div
       v-if="showBanner"
-      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-2 rounded-t-2xl px-8 py-4 text-[#ebe8e8] lg:flex-row"
+      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-2 rounded-t-2xl px-8 py-4 text-[#ebe8e8] md:flex-row"
       :class="bannerStyle"
     >
-      <div class="flex flex-row items-center gap-2 lg:flex-col lg:items-start">
+      <div class="flex flex-row items-center gap-2 md:flex-col md:items-start">
         <div class="flex flex-col gap-4">
-          <div class="flex flex-row-reverse items-start gap-4 text-center lg:flex-row lg:items-center">
-            <Icon :name="bannerIcon" size="35" class="hidden flex-shrink-0 text-[#ebe8e8] lg:block" />
+          <div class="flex flex-row-reverse items-start gap-4 text-center md:flex-row md:items-center">
+            <Icon :name="bannerIcon" size="35" class="hidden flex-shrink-0 text-[#ebe8e8] md:block" />
             <h4>{{ bannerMessage }}</h4>
           </div>
 
@@ -59,6 +59,20 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Support banner styling */
+.banner.lgbtq-rights {
+  background-color: #5c3963;
+}
+.banner.anti-racism {
+  background-color: #1a1919;
+}
+.banner.mental-health {
+  background-color: #285274;
+}
+.banner.climate-action {
+  background-color: #287445;
+}
+
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition:

@@ -18,7 +18,7 @@
       <transition name="dropdown-fade">
         <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
-            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="handleCopyToClipboard">
+            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="() => { copyToClipboard(`https://linknest-live.vercel.app/${user?.slug}`); isDropdownOpen = false }">
               <Icon name="mdi:clipboard-multiple-outline" size="20" />
               <span>Copy Link</span>
             </button>
@@ -26,7 +26,7 @@
               <Icon name="simple-icons:x" size="20" />
               <span>Share on X</span>
             </button>
-            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="openDialog">
+            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="isDialogOpen = true">
               <Icon name="mdi:qrcode" size="20" />
               <span>Get QR Code</span>
             </button>
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="closeDialog" />
+  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="isDialogOpen = false" />
 </template>
 
 <script setup lang="ts">
@@ -53,13 +53,6 @@ function toggleDropdown() {
   isDropdownOpen.value = !isDropdownOpen.value
 }
 
-function openDialog() {
-  isDialogOpen.value = true
-}
-function closeDialog() {
-  isDialogOpen.value = false
-}
-
 function handleClickOutside(e: MouseEvent) {
   const target = e.target as Node
 
@@ -68,11 +61,6 @@ function handleClickOutside(e: MouseEvent) {
   if (isDropdownOpen.value && clickedOutsideDropdown && !clickedInsideQrDialog) {
     isDropdownOpen.value = false
   }
-}
-
-function handleCopyToClipboard() {
-  navigator.clipboard.writeText(`https://linknest-live.vercel.app/${user.value?.slug}`)
-  isDropdownOpen.value = false
 }
 
 function handleShareTwitter() {

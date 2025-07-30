@@ -19,7 +19,7 @@
     <button
       v-if="preferences?.showCopyButton"
       class="hover:scale-md absolute right-2 flex-shrink-0 transition-all"
-      @click.stop="handleCopyToClipBoard"
+      @click.stop="copyToClipboard(props.url)"
     >
       <Icon
         :name="copied ? 'mdi:check' : 'mdi:content-copy'"
@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import { copyToClipboard } from "~/lib/utils"
+
 const props = defineProps<({
   url: string
   title: string
@@ -78,13 +80,4 @@ const linkInnerStyle = computed(() => {
     fontSize: props.preferences?.linkTextSize,
   }
 })
-
-function handleCopyToClipBoard() {
-  navigator.clipboard.writeText(props.url ?? "").then(() => {
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 1000)
-  })
-}
 </script>

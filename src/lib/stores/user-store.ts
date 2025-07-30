@@ -8,136 +8,141 @@ import {
   updateUserService,
 } from "~/lib/services/user-service"
 
-export const useUserStore = defineStore("user", {
-  state: () => ({
-    user: null as UserType | null,
-    isLoading: false,
-    error: null as string | null,
-  }),
+export const useUserStore = defineStore("user", () => {
+  const user = ref<UserType | null>(null)
+  const isLoading = ref(false)
+  const error = ref<string | null>(null)
 
-  actions: {
-    async getUser() {
-      this.isLoading = true
-      this.error = null
+  async function getUser() {
+    isLoading.value = true
+    error.value = null
 
-      try {
-        this.user = await getUserService()
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      user.value = await getUserService()
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async getUserBySlug(slug: string) {
-      this.isLoading = true
-      this.error = null
+  async function getUserBySlug(slug: string) {
+    isLoading.value = true
+    error.value = null
 
-      try {
-        this.user = await getUserBySlugService(slug)
-      }
-      catch (error: any) {
-        this.error = error?.message
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      user.value = await getUserBySlugService(slug)
+    }
+    catch (err: any) {
+      error.value = err?.message
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async updateUser(payload: UpdateUserPayload) {
-      if (!this.user) {
-        this.error = "No user loaded"
-        throw new Error(this.error)
-      }
+  async function updateUser(payload: UpdateUserPayload) {
+    if (!user.value) {
+      error.value = "No user loaded"
+      throw new Error(error.value)
+    }
 
-      this.isLoading = true
-      this.error = null
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await updateUserService(payload)
-        this.user = response.user
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      const response = await updateUserService(payload)
+      user.value = response.user
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async updateUserImage(formData: FormData) {
-      if (!this.user) {
-        this.error = "No user loaded"
-        throw new Error(this.error)
-      }
+  async function updateUserImage(formData: FormData) {
+    if (!user.value) {
+      error.value = "No user loaded"
+      throw new Error(error.value)
+    }
 
-      this.isLoading = true
-      this.error = null
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await updateUserImageService(formData)
-        this.user.image = response.imageUrl
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      const response = await updateUserImageService(formData)
+      if (user.value)
+        user.value.image = response.imageUrl
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async deleteUser() {
-      this.isLoading = true
-      this.error = null
+  async function deleteUser() {
+    isLoading.value = true
+    error.value = null
 
-      try {
-        const response = await deleteUserService()
-        this.user = null
-        return response
-      }
-      catch (error: any) {
-        this.error = error?.message
-        throw error
-      }
-      finally {
-        this.isLoading = false
-      }
-    },
+    try {
+      const response = await deleteUserService()
+      user.value = null
+      return response
+    }
+    catch (err: any) {
+      error.value = err?.message
+      throw err
+    }
+    finally {
+      isLoading.value = false
+    }
+  }
 
-    async trackPageVisit(userId: string) {
-      if (!userId) {
-        return
-      }
+  async function trackPageVisit(userId: string) {
+    if (!userId)
+      return
 
-      try {
-        await trackPageVisitService(userId)
-      }
-      catch (error: any) {
-        console.warn("Failed to track page visit:", error)
-      }
-    },
+    try {
+      await trackPageVisitService(userId)
+    }
+    catch (err: any) {
+      console.warn("Failed to track page visit:", err)
+    }
+  }
 
-    async trackClick(id: string, type: "icon" | "link", userId: string) {
-      if (!userId) {
-        return
-      }
-      if (!id) {
-        return
-      }
+  async function trackClick(id: string, type: "icon" | "link", userId: string) {
+    if (!userId || !id)
+      return
 
-      try {
-        await trackClickService(id, type, userId)
-      }
-      catch (error: any) {
-        console.warn("Failed to track click:", error)
-      }
-    },
-  },
+    try {
+      await trackClickService(id, type, userId)
+    }
+    catch (err: any) {
+      console.warn("Failed to track click:", err)
+    }
+  }
+
+  return {
+    user,
+    isLoading,
+    error,
+    getUser,
+    getUserBySlug,
+    updateUser,
+    updateUserImage,
+    deleteUser,
+    trackPageVisit,
+    trackClick,
+  }
 })

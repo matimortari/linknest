@@ -10,8 +10,6 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
     "nuxt-auth-utils",
   ],
-  srcDir: "src",
-  serverDir: "server",
   runtimeConfig: {
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL,

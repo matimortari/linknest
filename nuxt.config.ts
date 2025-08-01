@@ -10,8 +10,6 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
     "nuxt-auth-utils",
   ],
-  srcDir: "src",
-  serverDir: "server",
   runtimeConfig: {
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
@@ -36,6 +34,9 @@ export default defineNuxtConfig({
     storageKey: "nuxt-color-mode",
   },
   googleFonts: {
+    display: "swap",
+    prefetch: true,
+    preconnect: true,
     families: {
       "Inter": true,
       "Lato": { wght: [100, 300, 600, 700, 900] },
@@ -43,12 +44,9 @@ export default defineNuxtConfig({
       "Chau Philomene One": true,
       "JetBrains Mono": true,
     },
-    display: "swap",
-    prefetch: true,
-    preconnect: true,
   },
   tailwindcss: {
-    cssPath: "~/styles/globals.css",
+    cssPath: "~/assets/styles.css",
   },
   compatibilityDate: "2025-05-24",
 })

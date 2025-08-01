@@ -9,12 +9,12 @@ export default defineOAuthGitHubEventHandler({
     if (!user || typeof user !== "object") {
       throw createError({ statusCode: 400, statusMessage: "Invalid user data received from GitHub" })
     }
-    
+
     const githubId = user.id?.toString()
     const email = user.email
     const name = user.name
     const picture = user.avatar_url
-    
+
     console.log("Received tokens from GitHub:", JSON.stringify(tokens, null, 2))
     console.log("Extracted user data from GitHub:", { githubId, email, name, picture })
     if (!githubId || !email) {
@@ -29,12 +29,12 @@ export default defineOAuthGitHubEventHandler({
       provider: "github",
     })
   },
-  onError(error: any, event?: H3Event) {
+  async onError(event: H3Event, error: any) {
     console.error("GitHub OAuth error:", error)
     if (!event || !event.node?.res) {
-      return { statusCode: 500, body: "OAuth error occurred and response stream was unavailable." }
+      throw createError({ statusCode: 500, statusMessage: "Internal server error" })
     }
 
-    return sendRedirect(event, "/login?error=github_oauth_failed")
+    await sendRedirect(event, "/login?error=github_oauth_failed")
   },
 })

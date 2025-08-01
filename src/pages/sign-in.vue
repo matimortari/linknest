@@ -10,7 +10,7 @@
         :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }"
         :duration="800"
       >
-        <img src="/logo.png" alt="Logo" width="100" height="100">
+        <img src="../public/logo.png" alt="Logo" width="100" height="100">
         <h2
           v-motion class="font-bowlby"
           :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
@@ -33,7 +33,7 @@
         :duration="800"
       >
         <div class="flex flex-col items-center gap-4">
-      <button v-for="provider in providers" :key="provider.name" class="btn" @click="provider.click">
+          <button v-for="provider in providers" :key="provider.name" class="btn" @click="provider.click">
             <Icon :name="provider.icon" size="25" />
             <span>{{ provider.label }}</span>
           </button>
@@ -46,7 +46,7 @@
       :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >
-      <img src="/sign-in-image.png" alt="Sign In Visual" class="size-full rounded-b-xl border-l object-cover">
+      <img src="../public/sign-in-image.png" alt="Sign In Visual" class="size-full rounded-b-xl border-l object-cover">
     </div>
   </div>
 </template>

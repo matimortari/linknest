@@ -1,4 +1,4 @@
-# LinkNest 🔗🌐
+# LinkNest 🔗🪺
 
 Create your own landing page for sharing links to your social media profiles, websites, and more! LinkNest is a link aggregator website, inspired by [Linktree](https://linktr.ee), that makes it very easy for users or businesses to quickly set up a customizable and convenient page for all their links and share it with others.
 
@@ -15,15 +15,17 @@ Create your own landing page for sharing links to your social media profiles, we
 
 ## 🛠️ Stack
 
-- **Nuxt.js** with composition API.
-- **OAuth** authentication with Google & GitHub.
-- **Prisma** for database management.
-- **Pinia** for global state management.
-- **Zod** for API and form validation.
+- **Nuxt.js** with **Vue** composition API and **Nitro** server engine.
+- **OAuth** authentication with Google and GitHub via **nuxt-auth-utils**.
+- **Prisma** for **PostgreSQL** database management.
+- **Pinia** for state management.
+- **Zod** for schema validation.
 - **Chart.js** for analytics charts.
 - **TypeScript**.
+- **ESLint**.
 - **Tailwind CSS**.
-- **Framer Motion**.
+- **Framer Motion** via **@vueuse/motion**.
+- **Vercel** for deployment, analytics, and blob storage.
 
 ## 📬 Contact
 

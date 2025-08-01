@@ -94,8 +94,11 @@ async function handleImageChange(event: Event) {
     return
 
   const file = input.files[0]
+  if (!file)
+    return
+
   const formData = new FormData()
-  formData.append("file", file)
+  formData.append("file", file, file.name)
   formData.append("type", "avatar")
 
   try {

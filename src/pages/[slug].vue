@@ -1,7 +1,7 @@
 <template>
   <NuxtLink to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
     <img
-      src="/logo.png" alt="Logo"
+      src="../public/logo.png" alt="Logo"
       width="35" height="35"
       class="rounded-full"
     >
@@ -18,7 +18,7 @@
 
     <NuxtLink to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
       <img
-        src="/logo.png" alt="Logo"
+        src="../public/logo.png" alt="Logo"
         width="35" height="35"
         class="rounded-full"
       >

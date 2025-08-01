@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <NuxtLink to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
         <img
-          src="/logo.png" alt="Logo"
+          src="../public/logo.png" alt="Logo"
           width="35" height="35"
           class="icon"
         >

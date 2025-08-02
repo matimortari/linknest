@@ -4,7 +4,7 @@
       <label class="text-sm font-medium">Select Icon</label>
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
         <button
-          v-for="[label, iconName] in iconEntries"
+          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)"
           :key="label"
           type="button"
           class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all hover:bg-muted active:bg-accent"
@@ -48,8 +48,8 @@
 </template>
 
 <script setup lang="ts">
-import { SOCIAL_ICONS } from "~~/app/lib/config/social-icons"
-import { iconSchema } from "~~/app/lib/schemas"
+import { iconSchema } from "~~/shared/lib/schemas"
+import { SOCIAL_ICONS } from "~~/shared/lib/social-icons"
 
 const props = defineProps<{
   isOpen: boolean
@@ -66,22 +66,14 @@ const form = ref<IconType>({
   url: "",
 })
 
-const iconEntries = computed(() => Object.entries(SOCIAL_ICONS))
-
 const formErrors = ref<{ [key: string]: string }>({})
+
 const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
 
 function selectIcon(label: string, iconName: string) {
   form.value.platform = label
   form.value.icon = iconName
 }
-
-watch(() => props.isOpen, (open) => {
-  if (open) {
-    form.value = { platform: "", icon: "", url: "" }
-    formErrors.value = {}
-  }
-})
 
 function handleSubmit() {
   formErrors.value = {}
@@ -97,4 +89,11 @@ function handleSubmit() {
   emit("save", { ...form.value })
   emit("close")
 }
+
+watch(() => props.isOpen, (open) => {
+  if (open) {
+    form.value = { platform: "", icon: "", url: "" }
+    formErrors.value = {}
+  }
+})
 </script>

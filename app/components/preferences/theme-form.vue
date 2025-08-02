@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { THEMES } from "~~/app/lib/config/themes"
+import { THEMES } from "~/lib/config/themes"
 
 const props = defineProps<{
   setTheme: (preferences: any) => void
@@ -30,10 +30,9 @@ const props = defineProps<{
 const selectedTheme = ref("")
 
 function handleThemeSelection(title: string) {
-  const selected = THEMES.find(theme => theme.title === title)
-  if (selected) {
+  if (THEMES.find(theme => theme.title === title)) {
     selectedTheme.value = title
-    props.setTheme(selected.preferences)
+    props.setTheme(THEMES.find(theme => theme.title === title)?.preferences || {})
   }
 }
 

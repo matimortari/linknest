@@ -45,8 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import { userDataSchema } from "~~/app/lib/schemas"
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useUserStore } from "~/lib/stores/user-store"
+import { userDataSchema } from "~~/shared/lib/schemas"
 
 const props = defineProps<{
   isOpen: boolean
@@ -61,17 +61,16 @@ const emit = defineEmits<{
 
 const userStore = useUserStore()
 
+const { user } = storeToRefs(userStore)
+const formErrors = ref<{ [key: string]: string }>({})
+
 const form = ref({
   slug: "",
   description: "",
   image: "",
 })
 
-const formErrors = ref<{ [key: string]: string }>({})
-
 const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
-
-const { user } = storeToRefs(userStore)
 
 watch(() => props.isOpen, (open) => {
   if (open) {

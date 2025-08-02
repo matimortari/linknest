@@ -18,12 +18,8 @@
         <div class="navigation-group my-2">
           <div class="navigation-group w-full md:w-auto">
             <div class="relative size-14 flex-shrink-0">
-              <img
-                v-if="user.image"
-                :src="user.image"
-                :alt="user.slug"
-                class="size-full rounded-full border object-cover"
-              >
+              <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover">
+
               <button title="Edit Profile Information" class="btn-primary absolute -bottom-2 -right-2 p-1" @click="isDialogOpen = true">
                 <Icon name="mdi:square-edit-outline" size="20" class="hover:scale-md transition-all" />
               </button>
@@ -90,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const { toggleTheme, themeIcon } = useTheme()
 const userStore = useUserStore()

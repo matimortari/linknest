@@ -3,7 +3,7 @@ import {
   resetPreferencesService,
   updatePreferencesService,
   updateSupportBannerService,
-} from "~~/app/lib/services/preferences-service"
+} from "~/lib/services/preferences-service"
 
 export const usePreferencesStore = defineStore("preferences", () => {
   const preferences = ref<UserPreferencesType | null>(null)

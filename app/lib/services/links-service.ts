@@ -1,4 +1,4 @@
-import { getBaseUrl } from "~~/app/lib/utils"
+import { getBaseUrl } from "~/lib/utils"
 
 export async function getLinksService(): Promise<LinkType[]> {
   const baseUrl = getBaseUrl()

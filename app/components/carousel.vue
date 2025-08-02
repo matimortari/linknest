@@ -57,35 +57,17 @@
 </template>
 
 <script setup lang="ts">
-import { CAROUSEL_PRESETS } from "~~/app/lib/config/carousel-presets"
+import { CAROUSEL_PRESETS } from "~/lib/config/carousel-presets"
 
 const currentIndex = ref(0)
 
-function nextCard() {
-  currentIndex.value = (currentIndex.value + 1) % CAROUSEL_PRESETS.length
-}
-
 let intervalId: number
-
-onMounted(() => {
-  intervalId = window.setInterval(nextCard, 3000)
-})
-
-onUnmounted(() => {
-  if (intervalId !== undefined) {
-    clearInterval(intervalId)
-  }
-})
 
 const preset = computed(() => {
   return CAROUSEL_PRESETS[currentIndex.value]
 })
 
-function getPresetImage(filename: string) {
-  return new URL(`../assets/presets/${filename}`, import.meta.url).href
-}
-
-const preferences = computed(() => (preset.value.preferences) as unknown as UserPreferencesType)
+const preferences = computed(() => (preset.value?.preferences ?? {}) as unknown as UserPreferencesType)
 
 const backgroundStyle = computed(() => {
   return preferences.value.backgroundType === "GRADIENT"
@@ -114,6 +96,22 @@ const descriptionStyle = computed(() => {
     color: preferences.value.headerTextColor,
     fontWeight: preferences.value.headerTextWeight,
     fontSize: preferences.value.headerTextSize,
+  }
+})
+
+function getPresetImage(filename: string) {
+  return new URL(`../assets/presets/${filename}`, import.meta.url).href
+}
+
+onMounted(() => {
+  intervalId = window.setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % CAROUSEL_PRESETS.length
+  }, 3000)
+})
+
+onUnmounted(() => {
+  if (intervalId !== undefined) {
+    clearInterval(intervalId)
   }
 })
 </script>

@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { useLinkStore } from "~~/app/lib/stores/link-store"
+import { useLinkStore } from "~/lib/stores/link-store"
 
 const linkStore = useLinkStore()
 
@@ -81,12 +81,12 @@ async function handleSaveLink(link: LinkType) {
   try {
     const existingLink = links.value.find(l => l.id === link.id)
     if (existingLink) {
-      await linkStore.updateLink(link)
+      await linkStore.updateLink({ ...link, id: link.id! })
     }
     else {
       await linkStore.createLink(link)
     }
-    closeDialog()
+    isDialogOpen.value = false
   }
   catch (error: any) {
     console.error("Failed to save link:", error)

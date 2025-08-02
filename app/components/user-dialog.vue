@@ -45,8 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import { userDataSchema } from "~~/app/lib/schemas"
 import { useUserStore } from "~~/app/lib/stores/user-store"
+import { userDataSchema } from "~~/shared/lib/schemas"
 
 const props = defineProps<{
   isOpen: boolean

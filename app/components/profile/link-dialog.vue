@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { linkSchema } from "~~/app/lib/schemas"
+import { linkSchema } from "~~/shared/lib/schemas"
 
 const props = defineProps<{
   isOpen: boolean

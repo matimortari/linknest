@@ -35,6 +35,6 @@ export default defineOAuthGitHubEventHandler({
       throw createError({ statusCode: 500, statusMessage: "Internal server error" })
     }
 
-    await sendRedirect(event, "/login?error=github_oauth_failed")
+    return sendRedirect(event, "/sign-in?error=github_oauth_failed")
   },
 })

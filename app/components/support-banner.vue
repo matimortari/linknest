@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { BANNER_DESCRIPTIONS, BANNER_ICONS, BANNER_LINKS, BANNER_MESSAGES, BANNER_STYLES } from "~~/app/lib/config/banner-config"
+import { BANNER_DESCRIPTIONS, BANNER_ICONS, BANNER_LINKS, BANNER_MESSAGES, BANNER_STYLES } from "~/lib/config/banner-config"
 
 const props = defineProps<{
   type: BannerType

@@ -38,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import auth from "~~/app/lib/middleware/auth"
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import auth from "~/lib/middleware/auth"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const userStore = useUserStore()
 

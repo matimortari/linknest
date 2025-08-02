@@ -40,7 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useUserStore } from "~/lib/stores/user-store"
+import { copyToClipboard } from "~/lib/utils"
 
 const userStore = useUserStore()
 

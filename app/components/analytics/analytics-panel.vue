@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const userStore = useUserStore()
 
@@ -126,8 +126,11 @@ const { user, isLoading } = storeToRefs(userStore)
 function groupByDate<T extends { date: string | Date }>(items: T[]) {
   const result: Record<string, number> = {}
   for (const item of items) {
-    const date = new Date(item.date).toISOString().split("T")[0]
-    result[date] = (result[date] || 0) + 1
+    const dateObj = new Date(item.date)
+    const dateStr = Number.isNaN(dateObj.getTime()) ? "" : dateObj.toISOString().split("T")[0]
+    if (dateStr) {
+      result[dateStr] = (result[dateStr] || 0) + 1
+    }
   }
   return result
 }

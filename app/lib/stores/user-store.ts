@@ -6,7 +6,7 @@ import {
   trackPageVisitService,
   updateUserImageService,
   updateUserService,
-} from "~~/app/lib/services/user-service"
+} from "~/lib/services/user-service"
 
 export const useUserStore = defineStore("user", () => {
   const user = ref<UserType | null>(null)

@@ -31,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { copyToClipboard } from "~~/app/lib/utils"
+import { copyToClipboard } from "~/lib/utils"
+import { useLinkStore } from "~/lib/stores/link-store"
 
 const props = defineProps<({
   url: string
@@ -41,43 +42,16 @@ const props = defineProps<({
 
 defineEmits(["click"])
 
+const linkStore = useLinkStore()
+
 const isHovered = ref(false)
 const copied = ref(false)
 
 const linkStyle = computed(() => {
-  const bgColor = isHovered.value
-    ? props.preferences?.linkHoverBackgroundColor
-    : props.preferences?.linkBackgroundColor
-
-  let boxShadow = "none"
-  if (props.preferences?.isLinkShadow) {
-    const weight = props.preferences.linkShadowWeight
-    const color = props.preferences.linkShadowColor
-
-    boxShadow
-      = weight === "none"
-        ? "none"
-        : weight === "light"
-          ? `0px 1px 2px ${color}`
-          : weight === "medium"
-            ? `0 2px 6px ${color}`
-            : `1px 3px 10px ${color}`
-  }
-
-  return {
-    backgroundColor: bgColor,
-    boxShadow,
-    borderRadius: props.preferences?.linkBorderRadius,
-    padding: props.preferences?.linkPadding,
-    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-  }
+  return linkStore.getLinkStyle(props.preferences, isHovered.value)
 })
 
 const linkInnerStyle = computed(() => {
-  return {
-    color: props.preferences?.linkTextColor,
-    fontWeight: props.preferences?.linkTextWeight,
-    fontSize: props.preferences?.linkTextSize,
-  }
+  return linkStore.getLinkInnerStyle(props.preferences)
 })
 </script>

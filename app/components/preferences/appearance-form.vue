@@ -12,7 +12,7 @@
         <button
           v-for="t in tabs" :key="t.value"
           class="btn" :class="{ 'btn-selected': activeTab === t.value }"
-          @click="setActiveTab(t.value)"
+          @click="activeTab = t.value"
         >
           {{ t.label }}
         </button>
@@ -186,9 +186,9 @@
 </template>
 
 <script setup lang="ts">
-import { BACKGROUND_TYPES, FONT_SIZES, FONT_WEIGHTS, LINK_FONT_SIZES, LINK_PADDING_SIZES, RADIUS_SIZES, SHADOW_WEIGHTS } from "~~/app/lib/config/appearance-config"
-import { BANNER_OPTIONS } from "~~/app/lib/config/banner-config"
-import { usePreferencesStore } from "~~/app/lib/stores/preferences-store"
+import { BACKGROUND_TYPES, FONT_SIZES, FONT_WEIGHTS, LINK_FONT_SIZES, LINK_PADDING_SIZES, RADIUS_SIZES, SHADOW_WEIGHTS } from "~/lib/config/appearance-config"
+import { BANNER_OPTIONS } from "~/lib/config/banner-config"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
 
 const tabs = [
   { label: "Background", value: "background" },
@@ -200,19 +200,14 @@ const tabs = [
 
 const preferencesStore = usePreferencesStore()
 
+const { preferences } = storeToRefs(preferencesStore)
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
-const { preferences } = storeToRefs(preferencesStore)
 
-onMounted(async () => {
-  if (!preferences.value) {
-    await preferencesStore.getPreferences()
-  }
-})
-
-function setActiveTab(tabValue: string) {
-  activeTab.value = tabValue
-}
+const isBackgroundFlat = computed(() => preferences.value?.backgroundType === "FLAT")
+const isBackgroundGradient = computed(() => preferences.value?.backgroundType === "GRADIENT")
+const isLinkShadowDisabled = computed(() => !preferences.value?.isLinkShadow)
+const isIconShadowDisabled = computed(() => !preferences.value?.isIconShadow)
 
 function handleApplyTheme(newPreferences: UserPreferencesType) {
   preferences.value = newPreferences
@@ -238,6 +233,12 @@ async function handleResetPreferences() {
   }
 }
 
+onMounted(async () => {
+  if (!preferences.value) {
+    await preferencesStore.getPreferences()
+  }
+})
+
 watch(status, (newStatus, _, onInvalidate) => {
   if (newStatus !== "idle") {
     const timer = setTimeout(() => {
@@ -246,9 +247,4 @@ watch(status, (newStatus, _, onInvalidate) => {
     onInvalidate(() => clearTimeout(timer))
   }
 })
-
-const isBackgroundFlat = computed(() => preferences.value?.backgroundType === "FLAT")
-const isBackgroundGradient = computed(() => preferences.value?.backgroundType === "GRADIENT")
-const isLinkShadowDisabled = computed(() => !preferences.value?.isLinkShadow)
-const isIconShadowDisabled = computed(() => !preferences.value?.isIconShadow)
 </script>

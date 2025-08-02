@@ -2,7 +2,7 @@ import {
   createIconService,
   deleteIconService,
   getIconsService,
-} from "~~/app/lib/services/icons-service"
+} from "~/lib/services/icons-service"
 
 export const useIconStore = defineStore("icon", () => {
   const icons = ref<IconType[]>([])
@@ -65,6 +65,41 @@ export const useIconStore = defineStore("icon", () => {
     }
   }
 
+  type ShadowWeight = "none" | "light" | "medium" | "heavy"
+
+  function getIconStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
+    if (!preferences) {
+      return {}
+    }
+
+    const shadowMap: Record<ShadowWeight, string> = {
+      none: "none",
+      light: `0 2px 4px ${preferences.iconShadowColor || "rgba(0,0,0,0.1)"}`,
+      medium: `0 4px 6px ${preferences.iconShadowColor || "rgba(0,0,0,0.2)"}`,
+      heavy: `0 6px 10px ${preferences.iconShadowColor || "rgba(0,0,0,0.3)"}`,
+    }
+
+    return {
+      backgroundColor: isHovered
+        ? preferences.iconHoverBackgroundColor || "transparent"
+        : preferences.iconBackgroundColor || "transparent",
+      boxShadow: preferences.isIconShadow
+        ? shadowMap[preferences.iconShadowWeight as ShadowWeight] || "none"
+        : "none",
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+    }
+  }
+
+  function getIconInnerStyle(preferences: UserPreferencesType | null | undefined) {
+    if (!preferences) {
+      return {}
+    }
+
+    return {
+      color: preferences.iconIconColor || "inherit",
+    }
+  }
+
   return {
     icons,
     isLoading,
@@ -72,5 +107,7 @@ export const useIconStore = defineStore("icon", () => {
     getIcons,
     createIcon,
     deleteIcon,
+    getIconStyle,
+    getIconInnerStyle,
   }
 })

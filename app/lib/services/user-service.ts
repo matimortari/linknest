@@ -1,4 +1,4 @@
-import { getBaseUrl } from "~~/app/lib/utils"
+import { getBaseUrl } from "~/lib/utils"
 
 export async function getUserService(): Promise<UserType> {
   const baseUrl = getBaseUrl()

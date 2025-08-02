@@ -119,10 +119,10 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~~/app/lib/stores/icon-store"
-import { useLinkStore } from "~~/app/lib/stores/link-store"
-import { usePreferencesStore } from "~~/app/lib/stores/preferences-store"
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useIconStore } from "~/lib/stores/icon-store"
+import { useLinkStore } from "~/lib/stores/link-store"
+import { usePreferencesStore } from "~/lib/stores/preferences-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
@@ -133,13 +133,6 @@ const { links } = storeToRefs(linkStore)
 const { icons } = storeToRefs(iconStore)
 const { preferences } = storeToRefs(preferencesStore)
 const { user } = storeToRefs(userStore)
-
-onMounted(async () => {
-  if (!preferences.value || !user.value || !icons.value || !links.value) {
-    await Promise.all([preferencesStore.getPreferences(), userStore.getUser()])
-  }
-})
-
 const isMobilePreviewVisible = ref(false)
 
 const backgroundStyle = computed(() => {
@@ -168,4 +161,10 @@ const descriptionStyle = computed(() => ({
   fontWeight: preferences.value?.headerTextWeight,
   fontSize: preferences.value?.headerTextSize,
 }))
+
+onMounted(async () => {
+  if (!preferences.value || !user.value || !icons.value || !links.value) {
+    await Promise.all([preferencesStore.getPreferences(), userStore.getUser()])
+  }
+})
 </script>

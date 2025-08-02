@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import auth from "~~/app/lib/middleware/auth"
+import auth from "~/lib/middleware/auth"
 
 useHead({
   title: "Analytics – LinkNest",

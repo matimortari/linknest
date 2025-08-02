@@ -27,11 +27,11 @@ export default defineOAuthGoogleEventHandler({
     })
   },
   async onError(event: H3Event, error: any) {
-    console.error("GitHub OAuth error:", error)
+    console.error("Google OAuth error:", error)
     if (!event || !event.node?.res) {
       throw createError({ statusCode: 500, statusMessage: "Internal server error" })
     }
 
-    return sendRedirect(event, "/login?error=google_oauth_failed")
+    return sendRedirect(event, "/sign-in?error=google_oauth_failed")
   },
 })

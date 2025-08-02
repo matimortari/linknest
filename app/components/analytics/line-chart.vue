@@ -18,7 +18,7 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScal
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: true,
-  aspectRatio: 2, // width / height
+  aspectRatio: 2,
   plugins: {
     legend: { display: false },
   },

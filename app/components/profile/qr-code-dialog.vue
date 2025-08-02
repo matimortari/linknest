@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import QrcodeVue from "qrcode.vue"
-import { copyToClipboard } from "~~/app/lib/utils"
+import { copyToClipboard } from "~/lib/utils"
 
 const props = defineProps({
   isOpen: Boolean,

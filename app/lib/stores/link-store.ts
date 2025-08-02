@@ -3,7 +3,7 @@ import {
   deleteLinkService,
   getLinksService,
   updateLinkService,
-} from "~~/app/lib/services/links-service"
+} from "~/lib/services/links-service"
 
 export const useLinkStore = defineStore("link", () => {
   const links = ref<LinkType[]>([])
@@ -96,6 +96,45 @@ export const useLinkStore = defineStore("link", () => {
     }
   }
 
+  type ShadowWeight = "none" | "light" | "medium" | "heavy"
+
+  function getLinkStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
+    if (!preferences) {
+      return {}
+    }
+
+    const shadowMap: Record<ShadowWeight, string> = {
+      none: "none",
+      light: `0 2px 4px ${preferences.linkShadowColor || "rgba(0,0,0,0.1)"}`,
+      medium: `0 4px 6px ${preferences.linkShadowColor || "rgba(0,0,0,0.2)"}`,
+      heavy: `0 6px 10px ${preferences.linkShadowColor || "rgba(0,0,0,0.3)"}`,
+    }
+
+    return {
+      backgroundColor: isHovered
+        ? preferences.linkHoverBackgroundColor || "transparent"
+        : preferences.linkBackgroundColor || "transparent",
+      boxShadow: preferences.isLinkShadow
+        ? shadowMap[preferences.linkShadowWeight as ShadowWeight] || "none"
+        : "none",
+      borderRadius: preferences.linkBorderRadius || "0px",
+      padding: preferences.linkPadding || "0px",
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+    }
+  }
+
+  function getLinkInnerStyle(preferences: UserPreferencesType | null | undefined) {
+    if (!preferences) {
+      return {}
+    }
+
+    return {
+      color: preferences.linkTextColor || "inherit",
+      fontWeight: preferences.linkTextWeight || "normal",
+      fontSize: preferences.linkTextSize || "inherit",
+    }
+  }
+
   return {
     links,
     isLoading,
@@ -104,5 +143,7 @@ export const useLinkStore = defineStore("link", () => {
     createLink,
     updateLink,
     deleteLink,
+    getLinkStyle,
+    getLinkInnerStyle,
   }
 })

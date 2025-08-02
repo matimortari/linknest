@@ -106,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { QUOTES } from "~~/app/lib/config/quotes.js"
+import { QUOTES } from "~/lib/config/quotes.js"
 
 const randomQuote = ref(QUOTES[0])
 

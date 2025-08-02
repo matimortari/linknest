@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~~/app/lib/stores/user-store"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const userStore = useUserStore()
 const { clear } = useUserSession()

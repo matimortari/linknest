@@ -37,12 +37,22 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~~/app/lib/stores/icon-store"
+import { useIconStore } from "~/lib/stores/icon-store"
 
 const iconStore = useIconStore()
 
 const { icons, isLoading } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
+
+async function handleCreateIcon(icon: IconType) {
+  try {
+    await iconStore.createIcon(icon)
+    isDialogOpen.value = false
+  }
+  catch (error: any) {
+    console.error("Failed to save icon:", error)
+  }
+}
 
 async function handleDeleteIcon(id: string) {
   try {
@@ -50,16 +60,6 @@ async function handleDeleteIcon(id: string) {
   }
   catch (error: any) {
     console.error("Failed to delete icon:", error)
-  }
-}
-
-async function handleCreateIcon(savedIcon: IconType) {
-  try {
-    await iconStore.createIcon(savedIcon)
-    closeDialog()
-  }
-  catch (error: any) {
-    console.error("Failed to save icon:", error)
   }
 }
 

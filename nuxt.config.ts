@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from "nuxt/config"
-
 export default defineNuxtConfig({
   modules: [
     "@nuxt/icon",
@@ -16,13 +14,13 @@ export default defineNuxtConfig({
     },
     oauth: {
       github: {
-        clientId: process.env.GITHUB_CLIENT_ID,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        clientId: process.env.NUXT_OAUTH_GITHUB_CLIENT_ID,
+        clientSecret: process.env.NUXT_OAUTH_GITHUB_CLIENT_SECRET,
         redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/github`,
       },
       google: {
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
+        clientSecret: process.env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET,
         redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/google`,
       },
     },

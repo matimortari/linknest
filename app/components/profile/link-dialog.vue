@@ -1,5 +1,5 @@
 <template>
-  <Dialog :is-open="isOpen" :title="dialogTitle" @update:is-open="emit('close')">
+  <Dialog :is-open="isOpen" :title="props.selectedLink ? 'Edit Link' : 'Add Link'" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="navigation-group">
         <label for="title" class="w-12 text-sm font-medium">Title</label>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { linkSchema } from "~~/app/lib/schemas"
+import { linkSchema } from "~~/shared/lib/schemas"
 
 const props = defineProps<{
   isOpen: boolean
@@ -55,19 +55,6 @@ const form = ref<LinkType>({
 const formErrors = ref<{ [key: string]: string }>({})
 const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
 
-const dialogTitle = computed(() =>
-  props.selectedLink ? "Edit Link" : "Add Link",
-)
-
-watch(() => props.isOpen, (open) => {
-  if (open) {
-    form.value = props.selectedLink
-      ? { ...props.selectedLink }
-      : { title: "", url: "" }
-    formErrors.value = {}
-  }
-}, { immediate: true })
-
 function handleSubmit() {
   formErrors.value = {}
 
@@ -82,4 +69,13 @@ function handleSubmit() {
   emit("save", { ...form.value })
   emit("close")
 }
+
+watch(() => props.isOpen, (open) => {
+  if (open) {
+    form.value = props.selectedLink
+      ? { ...props.selectedLink }
+      : { title: "", url: "" }
+    formErrors.value = {}
+  }
+}, { immediate: true })
 </script>

@@ -18,28 +18,15 @@
 
       <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
-        <input
-          id="url"
-          v-model="form.url"
-          type="url"
-          class="input flex-1"
-          placeholder="https://example.com"
-          required
-        >
+        <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
-        <span
-          v-for="(msg, key) in formErrors"
-          :key="key"
-          class="text-caption text-danger-foreground"
-        >
-          {{ msg }}
-        </span>
+      <div v-if="iconStore.error" class="text-caption text-center text-danger-foreground">
+        {{ iconStore.error }}
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" :disabled="hasErrors">
+        <button class="btn-primary w-32" type="submit">
           Save
         </button>
       </footer>
@@ -50,6 +37,7 @@
 <script setup lang="ts">
 import { iconSchema } from "~~/shared/lib/schemas"
 import { SOCIAL_ICONS } from "~~/shared/lib/social-icons"
+import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<{
   isOpen: boolean
@@ -60,40 +48,41 @@ const emit = defineEmits<{
   (e: "save", payload: IconType): void
 }>()
 
+const iconStore = useIconStore()
+
 const form = ref<IconType>({
   platform: "",
   icon: "",
   url: "",
 })
 
-const formErrors = ref<{ [key: string]: string }>({})
-
-const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
-
 function selectIcon(label: string, iconName: string) {
   form.value.platform = label
   form.value.icon = iconName
+  iconStore.error = ""
 }
 
 function handleSubmit() {
-  formErrors.value = {}
+  iconStore.error = ""
 
-  const result = iconSchema.safeParse(form.value)
-  if (!result.success) {
-    const firstError = result.error.errors[0]
-    formErrors.value[firstError.path[0]] = firstError.message
-
-    return
+  try {
+    const result = iconSchema.safeParse(form.value)
+    if (!result.success) {
+      return
+    }
+    emit("save", { ...form.value })
+    emit("close")
   }
-
-  emit("save", { ...form.value })
-  emit("close")
+  catch (error: any) {
+    console.error("Failed to save social icon:", error)
+    iconStore.error = error?.message || "Failed to save social icon."
+  }
 }
 
 watch(() => props.isOpen, (open) => {
   if (open) {
     form.value = { platform: "", icon: "", url: "" }
-    formErrors.value = {}
+    iconStore.error = ""
   }
 })
 </script>

@@ -25,7 +25,6 @@ export const linkSchema = z.object({
     .min(1, "Title is required")
     .max(32, "Title must not exceed 32 characters"),
   url: z
-    .string()
     .url("Invalid URL format")
     .refine(url => url.startsWith("https://"), {
       message: "Invalid URL format. Link URL must start with 'https://'",
@@ -37,11 +36,11 @@ export const iconSchema = z.object({
     message: "Invalid platform selected",
   }),
   url: z
-    .string()
     .url("Invalid URL format")
     .refine(url => url.startsWith("https://"), {
       message: "Social Icon URL must start with 'https://'",
     }),
+  icon: z.string().min(1, "Icon is required"),
 })
 
 export type UserDataSchemaType = z.infer<typeof userDataSchema>

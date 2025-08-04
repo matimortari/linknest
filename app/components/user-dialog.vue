@@ -19,11 +19,7 @@
 
       <div class="navigation-group">
         <label for="slug" class="w-20 text-sm font-medium">Slug</label>
-        <input
-          id="slug" v-model="form.slug"
-          type="text" placeholder="Enter your slug"
-          required
-        >
+        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug">
       </div>
 
       <div class="navigation-group">
@@ -31,12 +27,12 @@
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>
 
-      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
-        <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">{{ msg }} </span>
+      <div v-if="userStore.error" class="text-caption text-center text-danger-foreground">
+        {{ userStore.error }}
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" :disabled="hasErrors">
+        <button class="btn-primary w-32" type="submit">
           Save
         </button>
       </footer>
@@ -45,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import { userDataSchema } from "~~/shared/lib/schemas"
 import { useUserStore } from "~/lib/stores/user-store"
 
 const props = defineProps<{
@@ -58,17 +53,13 @@ const props = defineProps<{
 const emit = defineEmits<(e: "close") => void>()
 
 const userStore = useUserStore()
-
 const { user } = storeToRefs(userStore)
-const formErrors = ref<{ [key: string]: string }>({})
 
 const form = ref({
   slug: "",
   description: "",
   image: "",
 })
-
-const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
 
 watch(() => props.isOpen, (open) => {
   if (open) {
@@ -77,15 +68,15 @@ watch(() => props.isOpen, (open) => {
       description: props.description || "",
       image: props.image || "",
     }
-    formErrors.value = {}
   }
   else {
     form.value = { slug: "", description: "", image: "" }
-    formErrors.value = {}
   }
 }, { immediate: true })
 
 async function handleImageChange(event: Event) {
+  userStore.error = ""
+
   const input = event.target as HTMLInputElement
   if (!input.files || input.files.length === 0)
     return
@@ -101,34 +92,24 @@ async function handleImageChange(event: Event) {
   try {
     const response = await userStore.updateUserImage(formData)
     form.value.image = response.imageUrl
-    if (user.value) {
-      user.value.image = response.imageUrl
-    }
   }
   catch (error: any) {
-    console.error("Image upload failed:", error)
+    console.error("Failed to upload image:", error)
+    userStore.error = error?.message || "Failed to upload image."
   }
 }
 
 async function handleSubmit() {
-  formErrors.value = {}
-  const result = userDataSchema.safeParse(form.value)
-  if (!result.success) {
-    const firstError = result.error.errors[0]
-    formErrors.value[firstError.path[0]] = firstError.message
-
-    return
-  }
   try {
     await userStore.updateUser({
       ...user.value!,
       ...form.value,
     })
-    user.value = { ...form.value }
     emit("close")
   }
   catch (error: any) {
-    console.error("Failed to update user data:", error)
+    console.error("Failed to update user:", error)
+    userStore.error = error?.message || "Failed to update user."
   }
 }
 </script>

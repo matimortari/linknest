@@ -3,30 +3,20 @@
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="navigation-group">
         <label for="title" class="w-12 text-sm font-medium">Title</label>
-        <input
-          id="title" v-model="form.title"
-          type="text" placeholder="Enter link title"
-          required
-        >
+        <input id="title" v-model="form.title" type="text" placeholder="Enter link title">
       </div>
 
       <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
-        <input
-          id="url" v-model="form.url"
-          type="url" placeholder="https://example.com"
-          required
-        >
+        <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <div v-if="hasErrors" class="flex max-w-sm flex-col gap-2 text-center">
-        <span v-for="(msg, key) in formErrors" :key="key" class="text-caption text-danger-foreground">
-          {{ msg }}
-        </span>
+      <div v-if="linkStore.error" class="flex max-w-sm flex-col gap-2 text-center">
+        <span class="text-caption text-danger-foreground">{{ linkStore.error }}</span>
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" :disabled="hasErrors">
+        <button class="btn-primary w-32" type="submit">
           Save
         </button>
       </footer>
@@ -36,6 +26,7 @@
 
 <script setup lang="ts">
 import { linkSchema } from "~~/shared/lib/schemas"
+import { useLinkStore } from "~/lib/stores/link-store"
 
 const props = defineProps<{
   isOpen: boolean
@@ -47,27 +38,29 @@ const emit = defineEmits<{
   (e: "save", payload: LinkType): void
 }>()
 
+const linkStore = useLinkStore()
+
 const form = ref<LinkType>({
   title: "",
   url: "",
 })
 
-const formErrors = ref<{ [key: string]: string }>({})
-const hasErrors = computed(() => Object.keys(formErrors.value).length > 0)
-
 function handleSubmit() {
-  formErrors.value = {}
+  linkStore.error = ""
 
-  const result = linkSchema.safeParse(form.value)
-  if (!result.success) {
-    const firstError = result.error.errors[0]
-    formErrors.value[firstError.path[0]] = firstError.message
+  try {
+    const result = linkSchema.safeParse(form.value)
+    if (!result.success) {
+      return
+    }
 
-    return
+    emit("save", { ...form.value })
+    emit("close")
   }
-
-  emit("save", { ...form.value })
-  emit("close")
+  catch (error: any) {
+    console.error("Failed to save link:", error)
+    linkStore.error = error?.message || "Failed to save link."
+  }
 }
 
 watch(() => props.isOpen, (open) => {
@@ -75,7 +68,7 @@ watch(() => props.isOpen, (open) => {
     form.value = props.selectedLink
       ? { ...props.selectedLink }
       : { title: "", url: "" }
-    formErrors.value = {}
+    linkStore.error = ""
   }
 }, { immediate: true })
 </script>

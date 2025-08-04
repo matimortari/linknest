@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col gap-4">
     <header class="my-2 flex flex-col gap-2">
-      <h3>Delete Account</h3>
+      <h3>
+        Delete Account
+      </h3>
       <p class="text-caption text-danger-foreground">
         This action is irreversible. All data will be lost.
       </p>

@@ -16,23 +16,15 @@
         {{ title }}
       </span>
     </a>
-    <button
-      v-if="preferences?.showCopyButton"
-      class="hover:scale-md absolute right-2 flex-shrink-0 transition-all"
-      @click.stop="copyToClipboard(props.url)"
-    >
-      <Icon
-        :name="copied ? 'mdi:check' : 'mdi:content-copy'"
-        size="15"
-        :style="{ color: preferences?.linkTextColor }"
-      />
+    <button v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 flex-shrink-0 transition-all" @click.stop="copyToClipboard(props.url)">
+      <Icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
     </button>
   </li>
 </template>
 
 <script setup lang="ts">
-import { copyToClipboard } from "~/lib/utils"
 import { useLinkStore } from "~/lib/stores/link-store"
+import { copyToClipboard } from "~/lib/utils"
 
 const props = defineProps<({
   url: string

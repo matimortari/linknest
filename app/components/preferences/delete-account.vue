@@ -26,7 +26,7 @@ const { clear } = useUserSession()
 const router = useRouter()
 
 async function handleDeleteUser() {
-  userStore.error = null
+  userStore.error = ""
   if (!confirm("Are you sure you want to delete your account?"))
     return
 

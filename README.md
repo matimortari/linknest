@@ -25,7 +25,7 @@ Create your own landing page for sharing links to your social media profiles, we
 - **ESLint**.
 - **Tailwind CSS**.
 - **Framer Motion** via **@vueuse/motion**.
-- **Vercel** for deployment, blob storage and analytics.
+- **Vercel** for deployment, blob storage and website analytics.
 
 ## 📬 Contact
 

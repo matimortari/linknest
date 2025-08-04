@@ -1,3 +1,4 @@
+import { linkSchema } from "~~/shared/lib/schemas"
 import {
   createLinkService,
   deleteLinkService,
@@ -17,8 +18,9 @@ export const useLinkStore = defineStore("link", () => {
     try {
       links.value = await getLinksService()
     }
-    catch (err: any) {
-      error.value = err?.message
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -26,22 +28,30 @@ export const useLinkStore = defineStore("link", () => {
   }
 
   async function createLink(payload: CreateLinkPayload) {
-    if (!payload || !payload.url || !payload.title) {
-      error.value = "Link must have a URL and title"
-      throw new Error(error.value)
-    }
-
     isLoading.value = true
     error.value = null
 
+    const result = linkSchema.safeParse(payload)
+    if (!result.success) {
+      const firstError = result.error.issues[0]
+      if (firstError && firstError.message) {
+        error.value = firstError.message
+        throw new Error(firstError.message)
+      }
+      else {
+        error.value = "Validation error"
+        throw new Error("Validation error")
+      }
+    }
+
     try {
-      const response = await createLinkService(payload)
+      const response = await createLinkService(result.data)
       links.value.push(response.newLink)
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -49,7 +59,7 @@ export const useLinkStore = defineStore("link", () => {
   }
 
   async function updateLink(payload: UpdateLinkPayload) {
-    if (!payload || !payload.id) {
+    if (!payload?.id) {
       error.value = "Link ID is required to update"
       throw new Error(error.value)
     }
@@ -57,16 +67,29 @@ export const useLinkStore = defineStore("link", () => {
     isLoading.value = true
     error.value = null
 
+    const result = linkSchema.safeParse(payload)
+    if (!result.success) {
+      const firstError = result.error.issues[0]
+      if (firstError && firstError.message) {
+        error.value = firstError.message
+        throw new Error(firstError.message)
+      }
+      else {
+        error.value = "Validation error"
+        throw new Error("Validation error")
+      }
+    }
+
     try {
-      const response = await updateLinkService(payload)
+      const response = await updateLinkService({ ...result.data, id: payload.id })
       const index = links.value.findIndex(l => l.id === response.updatedLink.id)
       if (index > -1)
         links.value[index] = response.updatedLink
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -87,9 +110,9 @@ export const useLinkStore = defineStore("link", () => {
       links.value = links.value.filter(link => link.id !== id)
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false

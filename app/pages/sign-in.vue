@@ -52,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import guest from '~/lib/middleware/guest'
+
 const providers = [
   {
     name: "github",
@@ -80,5 +82,9 @@ useHead({
 useSeoMeta({
   title: "Sign In – LinkNest",
   description: "Sign In to LinkNest.",
+})
+
+definePageMeta({
+  middleware: guest,
 })
 </script>

@@ -1,3 +1,4 @@
+import { userDataSchema } from "~~/shared/lib/schemas"
 import {
   deleteUserService,
   getUserBySlugService,
@@ -20,9 +21,9 @@ export const useUserStore = defineStore("user", () => {
     try {
       user.value = await getUserService()
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -36,8 +37,8 @@ export const useUserStore = defineStore("user", () => {
     try {
       user.value = await getUserBySlugService(slug)
     }
-    catch (err: any) {
-      error.value = err?.message
+    catch (error: any) {
+      error.value = error?.message
     }
     finally {
       isLoading.value = false
@@ -53,14 +54,27 @@ export const useUserStore = defineStore("user", () => {
     isLoading.value = true
     error.value = null
 
+    const result = userDataSchema.safeParse(payload)
+    if (!result.success) {
+      const firstError = result.error.issues[0]
+      if (firstError && firstError.message) {
+        error.value = firstError.message
+        throw new Error(firstError.message)
+      }
+      else {
+        error.value = "Validation error"
+        throw new Error("Validation error")
+      }
+    }
+
     try {
-      const response = await updateUserService(payload)
+      const response = await updateUserService(result.data)
       user.value = response.user
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -82,9 +96,9 @@ export const useUserStore = defineStore("user", () => {
         user.value.image = response.imageUrl
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -100,9 +114,9 @@ export const useUserStore = defineStore("user", () => {
       user.value = null
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -116,8 +130,8 @@ export const useUserStore = defineStore("user", () => {
     try {
       await trackPageVisitService(userId)
     }
-    catch (err: any) {
-      console.warn("Failed to track page visit:", err)
+    catch (error: any) {
+      console.warn("Failed to track page visit:", error)
     }
   }
 
@@ -128,8 +142,8 @@ export const useUserStore = defineStore("user", () => {
     try {
       await trackClickService(id, type, userId)
     }
-    catch (err: any) {
-      console.warn("Failed to track click:", err)
+    catch (error: any) {
+      console.warn("Failed to track click:", error)
     }
   }
 

@@ -17,8 +17,8 @@ export const usePreferencesStore = defineStore("preferences", () => {
     try {
       preferences.value = await getPreferencesService()
     }
-    catch (err: any) {
-      error.value = err?.message
+    catch (error: any) {
+      error.value = error?.message
     }
     finally {
       isLoading.value = false
@@ -39,9 +39,9 @@ export const usePreferencesStore = defineStore("preferences", () => {
       preferences.value = response.updatedPreferences
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -62,9 +62,9 @@ export const usePreferencesStore = defineStore("preferences", () => {
       preferences.value = response.preferences
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -85,9 +85,9 @@ export const usePreferencesStore = defineStore("preferences", () => {
       preferences.value = response.preferences
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false

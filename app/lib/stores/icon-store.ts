@@ -1,3 +1,4 @@
+import { iconSchema } from "~~/shared/lib/schemas"
 import {
   createIconService,
   deleteIconService,
@@ -16,8 +17,9 @@ export const useIconStore = defineStore("icon", () => {
     try {
       icons.value = await getIconsService()
     }
-    catch (err: any) {
-      error.value = err?.message
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -25,22 +27,30 @@ export const useIconStore = defineStore("icon", () => {
   }
 
   async function createIcon(payload: CreateIconPayload) {
-    if (!payload || !payload.platform || !payload.url) {
-      error.value = "Social icon must have a URL and platform"
-      throw new Error(error.value)
-    }
-
     isLoading.value = true
     error.value = null
 
+    const result = iconSchema.safeParse(payload)
+    if (!result.success) {
+      const firstError = result.error.issues[0]
+      if (firstError && firstError.message) {
+        error.value = firstError.message
+        throw new Error(firstError.message)
+      }
+      else {
+        error.value = "Validation error"
+        throw new Error("Validation error")
+      }
+    }
+
     try {
-      const response = await createIconService(payload)
+      const response = await createIconService(result.data)
       icons.value.push(response.newIcon)
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false
@@ -48,6 +58,11 @@ export const useIconStore = defineStore("icon", () => {
   }
 
   async function deleteIcon(id: string) {
+    if (!id) {
+      error.value = "Icon ID is required to delete"
+      throw new Error(error.value)
+    }
+
     isLoading.value = true
     error.value = null
 
@@ -56,9 +71,9 @@ export const useIconStore = defineStore("icon", () => {
       icons.value = icons.value.filter(icon => icon.id !== id)
       return response
     }
-    catch (err: any) {
-      error.value = err?.message
-      throw err
+    catch (error: any) {
+      error.value = error?.message
+      throw error
     }
     finally {
       isLoading.value = false

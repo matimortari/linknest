@@ -20,10 +20,11 @@ export async function generateSlug(base: string = ""): Promise<string> {
     .normalize("NFKD")
     .replace(/[\u0300-\u036F]/g, "")
     .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
-    .replace(/-+/g, "-")
-    .replace(/^-+|-+$/g, "") || "user"
+    .replace(/\s+/g, "-") // One or more whitespace characters to hyphen
+    .replace(/[^a-z0-9-]/g, "") // Any character NOT a-z, 0-9, or hyphen
+    .replace(/(-)+/g, "-") // One or more hyphens
+    .replace(/^(-)+|(-)+$/g, "") // Leading OR trailing hyphens
+    || "user"
 
   let slug: string
   let exists = true

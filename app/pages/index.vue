@@ -99,14 +99,15 @@
       :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >
-      "{{ randomQuote.quote }}" -
-      <span class="text-accent">{{ randomQuote.author }}</span>
+      "{{ randomQuote?.quote }}" -
+      <span class="text-accent">{{ randomQuote?.author }}</span>
     </p>
   </section>
 </template>
 
 <script setup lang="ts">
 import { QUOTES } from "~/lib/config/quotes.js"
+import guest from "~/lib/middleware/guest"
 
 const randomQuote = ref(QUOTES[0])
 
@@ -163,5 +164,9 @@ useSeoMeta({
   ogDescription: "Create your own landing page for sharing links to your social media profiles, websites, and more!",
   ogImage: "https://linknest-live.vercel.app/og-image.png",
   ogUrl: "https://linknest-live.vercel.app",
+})
+
+definePageMeta({
+  middleware: guest,
 })
 </script>

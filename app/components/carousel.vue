@@ -35,21 +35,11 @@
         </p>
 
         <ul class="my-2 flex flex-row items-center justify-center gap-2">
-          <CarouselIcon
-            v-for="icon in preset.icons"
-            :key="icon.id"
-            :icon="icon.icon"
-            :preferences="preferences"
-          />
+          <CarouselIcon v-for="icon in preset.icons" :key="icon.id" :icon="icon.icon" :preferences="preferences" />
         </ul>
 
         <ul class="flex flex-col items-center space-y-4 overflow-auto p-4">
-          <CarouselLink
-            v-for="link in preset.links"
-            :key="link.id"
-            :title="link.title"
-            :preferences="preferences"
-          />
+          <CarouselLink v-for="link in preset.links" :key="link.id" :title="link.title" :preferences="preferences" />
         </ul>
       </div>
     </Transition>

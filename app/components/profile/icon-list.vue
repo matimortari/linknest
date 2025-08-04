@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col gap-2">
     <header class="my-2 flex flex-col gap-2">
-      <h3>My Social Icons</h3>
+      <h3>
+        My Social Icons
+      </h3>
       <p class="text-caption text-muted-foreground">
         Manage your social icons.
       </p>

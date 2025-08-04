@@ -65,7 +65,7 @@ function handleClickOutside(e: MouseEvent) {
 }
 
 function handleShareTwitter() {
-  const tweet = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 ${`https://linknest-live.vercel.app/${user.value?.slug}`}`
+  const tweet = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 https://linknest-live.vercel.app/${user.value?.slug}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`
   window.open(twitterUrl, "_blank")
   isDropdownOpen.value = false

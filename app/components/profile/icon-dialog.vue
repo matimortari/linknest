@@ -1,7 +1,7 @@
 <template>
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
-      <label class="text-sm font-medium">Select Icon</label>
+      <span class="text-sm font-medium">Select Icon</span>
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
         <button
           v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)"

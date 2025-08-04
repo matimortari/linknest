@@ -9,7 +9,9 @@
         <div class="flex flex-col gap-4">
           <div class="flex flex-row-reverse items-start gap-4 text-center md:flex-row md:items-center">
             <Icon :name="bannerIcon" size="35" class="hidden flex-shrink-0 text-[#ebe8e8] md:block" />
-            <h4>{{ bannerMessage }}</h4>
+            <h4>
+              {{ bannerMessage }}
+            </h4>
           </div>
 
           <p class="text-sm leading-4">

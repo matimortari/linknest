@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import guest from '~/lib/middleware/guest'
+import guest from "~/lib/middleware/guest"
 
 const providers = [
   {

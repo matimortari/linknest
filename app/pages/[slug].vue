@@ -32,7 +32,7 @@
 
       <img
         v-if="user.image" :src="user.image"
-        alt="Profile picture" class="size-32 rounded-full object-cover"
+        alt="Avatar" class="size-32 rounded-full object-cover"
         :style="profilePictureStyle"
       >
 

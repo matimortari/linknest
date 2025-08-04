@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col gap-2">
     <header class="my-2 flex flex-col gap-2">
-      <h3>My Links</h3>
+      <h3>
+        My Links
+      </h3>
       <p class="text-caption text-muted-foreground">
         Manage your links.
       </p>
@@ -18,7 +20,9 @@
         <div class="flex flex-col gap-2">
           <div class="flex flex-row items-center justify-between">
             <a :href="link.url" target="_blank" rel="noopener" class="max-w-[80%]">
-              <h5 class="truncate">{{ link.title }}</h5>
+              <h5 class="truncate">
+                {{ link.title }}
+              </h5>
             </a>
 
             <div class="flex flex-row items-center gap-1">

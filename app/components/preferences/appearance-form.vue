@@ -1,7 +1,9 @@
 <template>
   <div v-if="preferences">
     <header class="my-2 flex flex-col gap-2">
-      <h3>Appearance</h3>
+      <h3>
+        Appearance
+      </h3>
       <p class="text-caption text-muted-foreground">
         Customize the appearance for your page.
       </p>

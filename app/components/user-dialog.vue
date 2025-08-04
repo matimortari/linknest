@@ -45,8 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/user-store"
 import { userDataSchema } from "~~/shared/lib/schemas"
+import { useUserStore } from "~/lib/stores/user-store"
 
 const props = defineProps<{
   isOpen: boolean
@@ -55,9 +55,7 @@ const props = defineProps<{
   image?: string
 }>()
 
-const emit = defineEmits<{
-  (e: "close"): void
-}>()
+const emit = defineEmits<(e: "close") => void>()
 
 const userStore = useUserStore()
 

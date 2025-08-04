@@ -63,7 +63,9 @@
           <span class="flex size-10 items-center justify-center rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
             <Icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
           </span>
-          <h5>{{ feature.title }}</h5>
+          <h5>
+            {{ feature.title }}
+          </h5>
         </div>
         <p class="text-sm text-muted-foreground">
           {{ feature.description }}

@@ -38,6 +38,16 @@
             <span>{{ provider.label }}</span>
           </button>
         </div>
+
+        <p class="my-4 text-center text-sm text-muted-foreground">
+          By signing in, you agree to our
+          <NuxtLink to="/legal/privacy" class="text-primary hover:underline">
+            Privacy Policy
+          </NuxtLink> and
+          <NuxtLink to="/legal/terms" class="text-primary hover:underline">
+            Terms of Service
+          </NuxtLink>.
+        </p>
       </div>
     </div>
 

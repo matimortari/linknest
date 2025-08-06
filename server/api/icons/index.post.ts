@@ -1,5 +1,5 @@
-import db from "~~/server/lib/db"
-import { getUserFromSession } from "~~/server/lib/utils"
+import db from "#server/lib/db"
+import { getUserFromSession } from "#server/lib/utils"
 import { iconSchema } from "~~/shared/lib/schemas"
 import { SOCIAL_ICONS } from "~~/shared/lib/social-icons"
 

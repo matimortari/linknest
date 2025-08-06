@@ -1,5 +1,5 @@
-import db from "~~/server/lib/db"
-import { getUserFromSession } from "~~/server/lib/utils"
+import db from "#server/lib/db"
+import { getUserFromSession } from "#server/lib/utils"
 import { linkSchema } from "~~/shared/lib/schemas"
 
 export default defineEventHandler(async (event) => {

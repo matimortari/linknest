@@ -1,6 +1,6 @@
 import type { H3Event } from "h3"
-import db from "~~/server/lib/db"
-import { generateSlug } from "~~/server/lib/utils"
+import db from "#server/lib/db"
+import { generateSlug } from "#server/lib/utils"
 
 export async function handleOAuthUser(event: H3Event, userData: {
   id: string

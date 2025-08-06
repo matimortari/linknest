@@ -1,5 +1,5 @@
 import type { H3Event } from "h3"
-import { handleOAuthUser } from "~~/server/lib/auth"
+import { handleOAuthUser } from "#server/lib/auth"
 
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event: any, { user, tokens }: any) {

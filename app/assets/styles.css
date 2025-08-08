@@ -10,8 +10,8 @@
     --card: #eeeded;
     --card-foreground: #131212;
 
-    --popover: #eeeded;
-    --popover-foreground: #131212;
+    --overlay: #eeeded;
+    --overlay-foreground: #131212;
 
     --primary: #45698a;
     --primary-foreground: #ebe8e8;
@@ -40,8 +40,8 @@
     --card: #111016;
     --card-foreground: #ebe8e8;
 
-    --popover: #111016;
-    --popover-foreground: #ebe8e8;
+    --overlay: #111016;
+    --overlay-foreground: #ebe8e8;
 
     --primary: #222d42;
     --primary-foreground: #ebe8e8;
@@ -138,9 +138,9 @@
     padding: 1rem;
   }
 
-  .popover {
-    background-color: var(--popover);
-    color: var(--popover-foreground);
+  .overlay {
+    background-color: var(--overlay);
+    color: var(--overlay-foreground);
     border: 1px solid var(--border);
     border-radius: 1rem;
     padding: 1rem;

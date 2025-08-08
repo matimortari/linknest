@@ -13,7 +13,7 @@
 
     <div v-else class="my-2 grid grid-cols-2 gap-4 md:grid-cols-4 md:place-items-center">
       <div class="flex flex-row items-center gap-2">
-        <Icon name="material-symbols:table-eye" size="25" class="text-accent" />
+        <icon name="material-symbols:table-eye" size="25" class="text-accent" />
         <div class="flex flex-col items-start">
           <p class="text-caption text-muted-foreground">
             Total Page Views
@@ -25,7 +25,7 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <Icon name="material-symbols:ads-click" size="25" class="text-accent" />
+        <icon name="material-symbols:ads-click" size="25" class="text-accent" />
         <div class="flex flex-col items-start">
           <p class="text-caption text-muted-foreground">
             Total Link Clicks
@@ -37,7 +37,7 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <Icon name="material-symbols:percent" size="25" class="text-accent" />
+        <icon name="material-symbols:percent" size="25" class="text-accent" />
         <div class="flex flex-col items-start">
           <p class="text-caption text-muted-foreground">
             Click Rate
@@ -49,7 +49,7 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <Icon name="material-symbols:calendar-month" size="25" class="text-accent" />
+        <icon name="material-symbols:calendar-month" size="25" class="text-accent" />
         <div class="flex flex-col items-start">
           <p class="text-caption text-muted-foreground">
             Joined On

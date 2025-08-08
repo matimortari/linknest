@@ -18,7 +18,7 @@
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
         <div class="mb-2 flex flex-row items-center gap-1">
-          <Icon
+          <icon
             v-if="item.type === 'icon' && item.icon"
             :name="item.icon"
             size="20"

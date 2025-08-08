@@ -21,8 +21,8 @@
       </div>
 
       <div class="flex flex-row items-center gap-1">
-        <button class="btn-primary" @click="handleUpdatePreferences">
-          <Icon name="mdi:content-save-check" size="20" />
+        <button class="btn-primary" aria-label="Save Preferences" @click="handleUpdatePreferences">
+          <icon name="mdi:content-save-check" size="20" />
           <span>{{
             status === 'saved'
               ? 'Saved!'
@@ -32,8 +32,8 @@
           }}</span>
         </button>
 
-        <button title="Reset Preferences" class="btn-danger" @click="handleResetPreferences()">
-          <Icon name="mdi:close" size="20" />
+        <button title="Reset Preferences" class="btn-danger" aria-label="Reset Preferences" @click="handleResetPreferences()">
+          <icon name="mdi:close" size="20" />
         </button>
       </div>
     </div>

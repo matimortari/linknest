@@ -31,22 +31,22 @@
         <div class="flex flex-col items-center gap-4">
           <button
             v-for="provider in providers" :key="provider.name"
-            class="btn"
+            class="btn" aria-label="Sign In with Provider"
             @click="navigateTo(`/api/auth/${provider.name}`, { external: true })"
           >
-            <Icon :name="provider.icon" size="25" />
+            <icon :name="provider.icon" size="25" />
             <span>{{ provider.label }}</span>
           </button>
         </div>
 
         <p class="p-4 text-muted-foreground">
           By continuing, you agree to our
-          <NuxtLink to="/legal/privacy" class="text-primary hover:underline">
+          <nuxt-link to="/legal/privacy" class="text-primary hover:underline">
             Privacy Policy
-          </NuxtLink> and
-          <NuxtLink to="/legal/terms" class="text-primary hover:underline">
+          </nuxt-link> and
+          <nuxt-link to="/legal/terms" class="text-primary hover:underline">
             Terms of Service
-          </NuxtLink>.
+          </nuxt-link>.
         </p>
       </div>
     </div>

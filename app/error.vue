@@ -8,9 +8,9 @@
       {{ error?.statusMessage || "Unknown error" }}
     </p>
 
-    <NuxtLink to="/">
+    <nuxt-link to="/">
       Go back home
-    </NuxtLink>
+    </nuxt-link>
   </div>
 </template>
 

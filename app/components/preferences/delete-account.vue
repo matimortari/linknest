@@ -10,8 +10,8 @@
     </header>
 
     <div class="navigation-group justify-end md:justify-start">
-      <button title="Delete Account" class="btn-danger" @click="handleDeleteUser">
-        <Icon name="mdi:user-remove" size="20" />
+      <button title="Delete Account" class="btn-danger" aria-label="Delete Account" @click="handleDeleteUser">
+        <icon name="mdi:user-remove" size="20" />
         <span>Delete Account</span>
       </button>
     </div>

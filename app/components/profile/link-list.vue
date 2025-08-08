@@ -26,11 +26,11 @@
             </a>
 
             <div class="flex flex-row items-center gap-1">
-              <button @click="handleUpdateLink(link)">
-                <Icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent transition-all" />
+              <button aria-label="Update Link" @click="handleUpdateLink(link)">
+                <icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent transition-all" />
               </button>
-              <button @click="handleDeleteLink(link.id!)">
-                <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
+              <button aria-label="Delete Link" @click="handleDeleteLink(link.id!)">
+                <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
           </div>
@@ -43,8 +43,8 @@
     </ul>
 
     <div class="navigation-group justify-end">
-      <button class="btn-primary" @click="isDialogOpen = true">
-        <Icon name="mdi:link-add" size="25" />
+      <button class="btn-primary" aria-label="Add Link" @click="isDialogOpen = true">
+        <icon name="mdi:link-add" size="25" />
         <span>Add Link</span>
       </button>
     </div>

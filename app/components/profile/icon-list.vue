@@ -18,18 +18,18 @@
     <ul v-else class="flex flex-row gap-2">
       <li v-for="icon in icons" :key="icon.id" class="card relative flex size-20 items-center justify-center">
         <a :href="icon.url" target="_blank" rel="noopener">
-          <Icon :name="icon.icon" :size="30" />
+          <icon :name="icon.icon" :size="30" />
         </a>
 
-        <button class="absolute bottom-0 right-0 p-1" @click="handleDeleteIcon(icon.id!)">
-          <Icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
+        <button class="absolute bottom-0 right-0 p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
+          <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>
     </ul>
 
     <div class="navigation-group justify-end">
-      <button class="btn-primary" @click="isDialogOpen = true">
-        <Icon name="mdi:favorite-add" size="25" />
+      <button class="btn-primary" aria-label="Add Social Icon" @click="isDialogOpen = true">
+        <icon name="mdi:favorite-add" size="25" />
         <span>Add Social Icon</span>
       </button>
     </div>

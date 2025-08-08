@@ -94,13 +94,5 @@ export const usePreferencesStore = defineStore("preferences", () => {
     }
   }
 
-  return {
-    preferences,
-    isLoading,
-    error,
-    getPreferences,
-    updatePreferences,
-    updateSupportBanner,
-    resetPreferences,
-  }
+  return { preferences, isLoading, error, getPreferences, updatePreferences, updateSupportBanner, resetPreferences }
 })

@@ -1,8 +1,11 @@
 <template>
   <div class="my-6 flex max-h-[560px] select-none flex-col items-center justify-center">
     <!-- Mobile Preview Toggle -->
-    <button class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 md:hidden" @click="isMobilePreviewVisible = !isMobilePreviewVisible">
-      <Icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
+    <button
+      class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 md:hidden"
+      aria-label="Toggle Mobile Preview" @click="isMobilePreviewVisible = !isMobilePreviewVisible"
+    >
+      <icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
       <span>{{ isMobilePreviewVisible ? 'Close Preview' : 'Preview' }}</span>
     </button>
 
@@ -67,8 +70,8 @@
     >
       <div class="sticky left-1/2 top-2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-[#000000]" />
       <div class="absolute right-6 top-2 z-10 flex flex-row items-center justify-end gap-2 text-[#000000]">
-        <Icon name="mdi:signal" size="15" />
-        <Icon name="mdi:wifi" size="15" />
+        <icon name="mdi:signal" size="15" />
+        <icon name="mdi:wifi" size="15" />
       </div>
 
       <div class="flex flex-col items-center justify-start gap-4 overflow-y-auto p-4 text-center">

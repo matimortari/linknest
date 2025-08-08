@@ -1,17 +1,14 @@
 <template>
   <div class="scroll-area grid h-64 grid-cols-1 gap-2 overflow-auto py-2 md:grid-cols-3">
     <button
-      v-for="theme in THEMES"
-      :key="theme.title"
-      :title="theme.title"
-      tabindex="0"
-      class="flex size-full items-center justify-center rounded-lg border-2 p-8"
+      v-for="theme in THEMES" :key="theme.title"
+      :title="theme.title" aria-label="Select Theme"
+      tabindex="0" class="flex size-full items-center justify-center rounded-lg border-2 p-8"
       :class="{
         'border-foreground': selectedTheme === theme.title,
         'border-dashed opacity-60': selectedTheme !== theme.title,
       }"
-      :style="getThemeButtonStyle(theme.preferences)"
-      @click="handleThemeSelection(theme.title)"
+      :style="getThemeButtonStyle(theme.preferences)" @click="handleThemeSelection(theme.title)"
     >
       <div class="line-clamp-1 truncate p-2 text-center text-sm" :style="getTitleStyle(theme.preferences)">
         {{ theme.title }}

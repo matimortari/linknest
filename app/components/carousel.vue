@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex select-none items-center justify-center overflow-hidden p-8 pt-0">
-    <Transition name="carousel-3d" mode="out-in">
+    <transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"
         class="relative flex min-h-[560px] w-[320px] flex-col items-center justify-center gap-2 rounded-[2.5rem] border-4 border-[#000000] pb-6 pt-12 text-center shadow-lg shadow-[#000000]" :style="backgroundStyle"
@@ -42,7 +42,7 @@
           <CarouselLink v-for="link in preset.links" :key="link.id" :title="link.title" :preferences="preferences" />
         </ul>
       </div>
-    </Transition>
+    </transition>
   </div>
 </template>
 

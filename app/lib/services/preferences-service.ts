@@ -10,24 +10,24 @@ export async function getPreferencesService(): Promise<UserPreferencesType> {
   return await response.json()
 }
 
-export async function updatePreferencesService(data: UpdatePreferencesPayload): Promise<{ message: string, updatedPreferences: UserPreferencesType }> {
+export async function updatePreferencesService(payload: UpdatePreferencesPayload): Promise<{ message: string, updatedPreferences: UserPreferencesType }> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/preferences`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   })
   if (!response.ok)
     throw new Error(`${response.statusText}`)
   return await response.json()
 }
 
-export async function updateSupportBannerService(data: UpdateSupportBannerPayload): Promise<{ message: string, preferences: UserPreferencesType }> {
+export async function updateSupportBannerService(payload: UpdateSupportBannerPayload): Promise<{ message: string, preferences: UserPreferencesType }> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/preferences`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   })
   if (!response.ok)
     throw new Error(`${response.statusText}`)

@@ -1,11 +1,11 @@
 <template>
-  <NuxtLink to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
+  <nuxt-link to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
     <img
       src="/assets/logo.png" alt="Logo"
       width="35" height="35"
       class="rounded-full"
     >
-  </NuxtLink>
+  </nuxt-link>
 
   <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
     <Spinner />
@@ -16,14 +16,14 @@
       User {{ slug }} not found.
     </p>
 
-    <NuxtLink to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
+    <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
       <img
         src="/assets/logo.png" alt="Logo"
         width="35" height="35"
         class="rounded-full"
       >
       <span class="font-chau text-2xl">LinkNest</span>
-    </NuxtLink>
+    </nuxt-link>
   </div>
 
   <div v-else class="min-h-screen p-12 pb-28" :style="backgroundStyle">

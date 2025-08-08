@@ -4,14 +4,12 @@
       <span class="text-sm font-medium">Select Icon</span>
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
         <button
-          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)"
-          :key="label"
-          type="button"
+          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
+          type="button" aria-label="Select Social Icon"
           class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all hover:bg-muted active:bg-accent"
-          :class="{ 'bg-accent': form.platform === label }"
-          @click="selectIcon(label, iconName)"
+          :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
         >
-          <Icon :name="iconName" size="25" />
+          <icon :name="iconName" size="25" />
           <span class="truncate text-xs">{{ label }}</span>
         </button>
       </div>
@@ -26,7 +24,7 @@
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit">
+        <button class="btn-primary w-32" type="submit" aria-label="Save Social Icon">
           Save
         </button>
       </footer>

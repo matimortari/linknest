@@ -1,4 +1,4 @@
-import { iconSchema } from "~~/shared/lib/schemas"
+import { iconSchema } from "#shared/schemas/schemas"
 import {
   createIconService,
   deleteIconService,

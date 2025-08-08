@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { CAROUSEL_PRESETS } from "~/lib/config/carousel-presets"
+import { CAROUSEL_PRESETS } from "~/lib/carousel-presets"
 
 const currentIndex = ref(0)
 

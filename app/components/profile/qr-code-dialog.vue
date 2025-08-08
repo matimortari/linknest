@@ -7,16 +7,16 @@
 
       <QrcodeVue :value="props.slug" :size="150" level="M" class="rounded-lg border border-muted bg-white p-2" />
 
-      <button class="hover:underline" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
+      <button class="hover:underline" aria-label="Copy Profile Link" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
         @{{ props.slug }}
       </button>
     </div>
 
-    <template #footer>
-      <button class="btn-primary w-32" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
+    <footer class="flex justify-end">
+      <button class="btn-primary w-32" aria-label="Copy Profile Link" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
         Copy Link
       </button>
-    </template>
+    </footer>
   </Dialog>
 </template>
 

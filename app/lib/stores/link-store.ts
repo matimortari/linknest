@@ -96,8 +96,8 @@ export const useLinkStore = defineStore("link", () => {
     }
   }
 
-  async function deleteLink(id: string) {
-    if (!id) {
+  async function deleteLink(linkId: string) {
+    if (!linkId) {
       error.value = "Link ID is required to delete"
       throw new Error(error.value)
     }
@@ -106,8 +106,8 @@ export const useLinkStore = defineStore("link", () => {
     error.value = null
 
     try {
-      const response = await deleteLinkService(id)
-      links.value = links.value.filter(link => link.id !== id)
+      const response = await deleteLinkService(linkId)
+      links.value = links.value.filter(link => link.id !== linkId)
       return response
     }
     catch (error: any) {
@@ -158,15 +158,5 @@ export const useLinkStore = defineStore("link", () => {
     }
   }
 
-  return {
-    links,
-    isLoading,
-    error,
-    getLinks,
-    createLink,
-    updateLink,
-    deleteLink,
-    getLinkStyle,
-    getLinkInnerStyle,
-  }
+  return { links, isLoading, error, getLinks, createLink, updateLink, deleteLink, getLinkStyle, getLinkInnerStyle }
 })

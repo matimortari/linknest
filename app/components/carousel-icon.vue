@@ -1,11 +1,6 @@
 <template>
-  <li
-    class="flex size-10 flex-row items-center justify-center rounded-full"
-    :style="iconStyle"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
-    <Icon :name="icon" size="20" :style="iconInnerStyle" />
+  <li class="flex size-10 flex-row items-center justify-center rounded-full" :style="iconStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+    <icon :name="icon" size="20" :style="iconInnerStyle" />
   </li>
 </template>
 
@@ -24,7 +19,6 @@ const isHovered = ref(false)
 const iconStyle = computed(() =>
   iconStore.getIconStyle(props.preferences, isHovered.value),
 )
-
 const iconInnerStyle = computed(() =>
   iconStore.getIconInnerStyle(props.preferences),
 )

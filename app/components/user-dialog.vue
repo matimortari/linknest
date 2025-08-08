@@ -12,7 +12,7 @@
             @change="handleImageChange"
           >
           <label class="btn absolute -bottom-2 -left-2" for="image">
-            <Icon name="ph:upload" size="20" />
+            <icon name="ph:upload" size="20" />
           </label>
         </div>
       </div>
@@ -32,7 +32,7 @@
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit">
+        <button class="btn-primary w-32" type="submit" aria-label="Save Profile Info">
           Save
         </button>
       </footer>

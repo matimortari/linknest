@@ -27,7 +27,7 @@
         </p>
         <a href="/sign-in" class="btn-primary">
           <span>Get Started Now!</span>
-          <Icon name="ri:arrow-right-line" size="20" />
+          <icon name="ri:arrow-right-line" size="20" />
         </a>
       </div>
 
@@ -61,7 +61,7 @@
       >
         <div class="flex flex-row items-center gap-2">
           <span class="flex size-10 items-center justify-center rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
-            <Icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
+            <icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
           </span>
           <h5>
             {{ feature.title }}

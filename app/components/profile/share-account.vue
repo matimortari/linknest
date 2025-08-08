@@ -4,30 +4,41 @@
       <h5 class="text-foreground">
         Share your Page:
       </h5>
-      <NuxtLink :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-label truncate hover:underline">
+      <nuxt-link :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-label truncate hover:underline">
         linknest-live.vercel.app/{{ user?.slug }}
-      </NuxtLink>
+      </nuxt-link>
     </div>
 
     <div ref="dropdownWrapper" class="navigation-group relative">
-      <button title="See sharing options" class="btn-secondary" @click="toggleDropdown">
-        <Icon name="mdi:share-variant" size="20" />
+      <button title="See sharing options" class="btn-secondary" aria-label="Share Profile" @click="toggleDropdown">
+        <icon name="mdi:share-variant" size="20" />
         <span>Share Now</span>
       </button>
 
       <transition name="dropdown-fade">
-        <div v-if="isDropdownOpen" class="popover absolute right-0 top-full">
+        <div v-if="isDropdownOpen" class="overlay absolute right-0 top-full" role="menu">
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
-            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="() => { copyToClipboard(`https://linknest-live.vercel.app/${user?.slug}`); isDropdownOpen = false }">
-              <Icon name="mdi:clipboard-multiple-outline" size="20" />
+            <button
+              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              aria-label="Copy Profile Link" @click="() => { copyToClipboard(`https://linknest-live.vercel.app/${user?.slug}`); isDropdownOpen = false }"
+            >
+              <icon name="mdi:clipboard-multiple-outline" size="20" />
               <span>Copy Link</span>
             </button>
-            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="handleShareTwitter">
-              <Icon name="simple-icons:x" size="20" />
+
+            <button
+              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              aria-label="Share on X" @click="handleShareTwitter; isDropdownOpen = false"
+            >
+              <icon name="simple-icons:x" size="20" />
               <span>Share on X</span>
             </button>
-            <button class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" @click="isDialogOpen = true">
-              <Icon name="mdi:qrcode" size="20" />
+
+            <button
+              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              aria-label="Get QR Code" @click="isDialogOpen = true; isDropdownOpen = false"
+            >
+              <icon name="mdi:qrcode" size="20" />
               <span>Get QR Code</span>
             </button>
           </div>

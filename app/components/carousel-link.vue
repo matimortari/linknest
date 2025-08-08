@@ -1,13 +1,6 @@
 <template>
-  <li
-    class="flex w-full min-w-32 max-w-72 flex-row items-center justify-center"
-    :style="linkStyle"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
-    <span :style="linkInnerStyle">
-      {{ title }}
-    </span>
+  <li class="flex w-full min-w-32 max-w-72 flex-row items-center justify-center" :style="linkStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+    <span :style="linkInnerStyle">{{ title }}</span>
   </li>
 </template>
 
@@ -19,13 +12,13 @@ const props = defineProps<{
   preferences: UserPreferencesType
 }>()
 
-const isHovered = ref(false)
 const linkStore = useLinkStore()
+
+const isHovered = ref(false)
 
 const linkStyle = computed(() =>
   linkStore.getLinkStyle(props.preferences, isHovered.value),
 )
-
 const linkInnerStyle = computed(() =>
   linkStore.getLinkInnerStyle(props.preferences),
 )

@@ -10,9 +10,9 @@ export async function getUserService(): Promise<UserType> {
   return await response.json()
 }
 
-export async function getUserBySlugService(slug: string): Promise<UserType> {
+export async function getUserBySlugService(userSlug: string): Promise<UserType> {
   const baseUrl = getBaseUrl()
-  const response = await fetch(`${baseUrl}/api/user/${slug}`, {
+  const response = await fetch(`${baseUrl}/api/user/${userSlug}`, {
     method: "GET",
   })
   if (!response.ok)
@@ -20,12 +20,12 @@ export async function getUserBySlugService(slug: string): Promise<UserType> {
   return await response.json()
 }
 
-export async function updateUserService(data: UpdateUserPayload): Promise<{ message: string, user: UserType }> {
+export async function updateUserService(payload: UpdateUserPayload): Promise<{ message: string, user: UserType }> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/user`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   })
   if (!response.ok)
     throw new Error(`${response.statusText}`)
@@ -66,12 +66,12 @@ export async function trackPageVisitService(userId: string): Promise<{ message: 
   return await response.json()
 }
 
-export async function trackClickService(id: string, type: "icon" | "link", userId: string): Promise<{ message: string }> {
+export async function trackClickService(eventId: string, type: "icon" | "link", userId: string): Promise<{ message: string }> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/user/analytics`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, type, userId }),
+    body: JSON.stringify({ eventId, type, userId }),
   })
   if (!response.ok)
     throw new Error(`${response.statusText}`)

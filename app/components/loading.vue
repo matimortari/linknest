@@ -1,10 +1,14 @@
 <template>
   <div class="flex min-h-screen flex-col items-center justify-center gap-4">
-    <div class="relative h-1 w-1/2 overflow-hidden rounded-full bg-muted">
-      <div class="animate-bar absolute h-full w-1/2 rounded-full bg-gradient-to-r from-primary to-secondary" />
+    <div class="relative w-1/4 rounded-full bg-muted">
+      <div class="progress-bar h-full w-1/4 rounded-full bg-gradient-to-r from-primary to-secondary" />
     </div>
+
     <p class="text-caption text-muted-foreground">
-      Loading<span class="dot one">.</span><span class="dot two">.</span><span class="dot three">.</span>
+      Loading
+      <span class="dot one">.</span>
+      <span class="dot two">.</span>
+      <span class="dot three">.</span>
     </p>
   </div>
 </template>
@@ -14,21 +18,14 @@
   opacity: 0;
   animation: fadeIn 1.2s infinite;
 }
-.dot.one {
+.dot .one {
   animation-delay: 0s;
 }
-.dot.two {
+.dot .two {
   animation-delay: 0.2s;
 }
-.dot.three {
+.dot .three {
   animation-delay: 0.4s;
-}
-
-.animate-bar {
-  animation: slideBar 2s linear infinite;
-  position: absolute;
-  top: 0;
-  left: -50%;
 }
 
 @keyframes fadeIn {
@@ -40,12 +37,27 @@
     opacity: 1;
   }
 }
-@keyframes slideBar {
+
+.progress-bar {
+  height: 4px;
+  animation: progress 2s ease infinite;
+}
+
+@keyframes progress {
   0% {
-    left: -50%;
+    width: 0%;
+  }
+  10% {
+    width: 10%;
+  }
+  50% {
+    width: 40%;
+  }
+  60% {
+    width: 60%;
   }
   100% {
-    left: 100%;
+    width: 100%;
   }
 }
 </style>

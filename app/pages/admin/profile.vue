@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:flex-row">
-    <main
+    <div
       v-motion class="card flex-1"
       :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
@@ -14,22 +14,17 @@
           :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
           :duration="800"
         >
-          Welcome back,
-          <span class="font-bold text-accent">{{ user?.slug }}</span>!
+          Welcome back, <span class="font-bold text-accent">{{ user?.slug }}</span>!
         </p>
       </header>
 
       <ProfileShareAccount />
 
       <div class="flex flex-col gap-4 py-4">
-        <section class="section-container">
-          <ProfileLinkList />
-        </section>
-        <section class="section-container">
-          <ProfileIconList />
-        </section>
+        <ProfileLinkList />
+        <ProfileIconList />
       </div>
-    </main>
+    </div>
 
     <div class="w-full md:w-1/3">
       <Preview />

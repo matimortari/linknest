@@ -10,7 +10,7 @@
   </header>
 
   <div
-    v-motion class="mx-auto flex min-h-screen max-w-3xl flex-col items-center p-6"
+    v-motion class="mx-auto flex max-w-3xl flex-col items-center p-6"
     :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
     :duration="800"
   >

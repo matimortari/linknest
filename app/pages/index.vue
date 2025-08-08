@@ -108,8 +108,8 @@
 </template>
 
 <script setup lang="ts">
-import { QUOTES } from "~/lib/config/quotes.js"
 import guest from "~/lib/middleware/guest"
+import { QUOTES } from "~/lib/quotes.js"
 
 const randomQuote = ref(QUOTES[0])
 

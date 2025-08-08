@@ -1,10 +1,5 @@
 <template>
-  <li
-    class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center"
-    :style="linkStyle"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
-  >
+  <li class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center" :style="linkStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
     <a
       :href="url"
       target="_blank"
@@ -12,12 +7,13 @@
       class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
-      <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">
-        {{ title }}
-      </span>
+      <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">{{ title }}</span>
     </a>
-    <button v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 flex-shrink-0 transition-all" @click.stop="copyToClipboard(props.url)">
-      <Icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
+    <button
+      v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 flex-shrink-0 transition-all"
+      aria-label="Copy Link" @click.stop="copyToClipboard(props.url)"
+    >
+      <icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
     </button>
   </li>
 </template>
@@ -42,7 +38,6 @@ const copied = ref(false)
 const linkStyle = computed(() => {
   return linkStore.getLinkStyle(props.preferences, isHovered.value)
 })
-
 const linkInnerStyle = computed(() => {
   return linkStore.getLinkInnerStyle(props.preferences)
 })

@@ -115,14 +115,5 @@ export const useIconStore = defineStore("icon", () => {
     }
   }
 
-  return {
-    icons,
-    isLoading,
-    error,
-    getIcons,
-    createIcon,
-    deleteIcon,
-    getIconStyle,
-    getIconInnerStyle,
-  }
+  return { icons, isLoading, error, getIcons, createIcon, deleteIcon, getIconStyle, getIconInnerStyle }
 })

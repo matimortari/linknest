@@ -30,12 +30,12 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  async function getUserBySlug(slug: string) {
+  async function getUserBySlug(userSlug: string) {
     isLoading.value = true
     error.value = null
 
     try {
-      user.value = await getUserBySlugService(slug)
+      user.value = await getUserBySlugService(userSlug)
     }
     catch (error: any) {
       error.value = error?.message
@@ -135,28 +135,17 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  async function trackClick(id: string, type: "icon" | "link", userId: string) {
-    if (!userId || !id)
+  async function trackClick(eventId: string, type: "icon" | "link", userId: string) {
+    if (!userId || !eventId)
       return
 
     try {
-      await trackClickService(id, type, userId)
+      await trackClickService(eventId, type, userId)
     }
     catch (error: any) {
       console.warn("Failed to track click:", error)
     }
   }
 
-  return {
-    user,
-    isLoading,
-    error,
-    getUser,
-    getUserBySlug,
-    updateUser,
-    updateUserImage,
-    deleteUser,
-    trackPageVisit,
-    trackClick,
-  }
+  return { user, isLoading, error, getUser, getUserBySlug, updateUser, updateUserImage, deleteUser, trackPageVisit, trackClick }
 })

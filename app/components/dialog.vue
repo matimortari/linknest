@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="body">
+  <teleport to="body">
     <transition name="fade">
       <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#000000] bg-opacity-50" @mousedown.self="closeDialog">
         <div class="popover min-w-[400px]">
@@ -8,8 +8,8 @@
               {{ title }}
             </h2>
 
-            <button @mousedown="closeDialog">
-              <Icon name="ph:x-bold" size="30" class="text-muted-foreground" />
+            <button aria-label="Close Dialog" @mousedown="closeDialog">
+              <icon name="ph:x-bold" size="30" class="text-muted-foreground" />
             </button>
           </header>
 
@@ -19,7 +19,7 @@
         </div>
       </div>
     </transition>
-  </Teleport>
+  </teleport>
 </template>
 
 <script setup lang="ts">

@@ -16,7 +16,7 @@
       </div>
 
       <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit">
+        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
           Save
         </button>
       </footer>

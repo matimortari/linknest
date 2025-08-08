@@ -1,4 +1,4 @@
-import { userDataSchema } from "~~/shared/lib/schemas"
+import { userDataSchema } from "#shared/schemas/schemas"
 import {
   deleteUserService,
   getUserBySlugService,

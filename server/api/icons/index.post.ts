@@ -1,7 +1,7 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
-import { iconSchema } from "~~/shared/lib/schemas"
-import { SOCIAL_ICONS } from "~~/shared/lib/social-icons"
+import { iconSchema } from "#shared/schemas/schemas"
+import { SOCIAL_ICONS } from "~~/shared/config/social-icons"
 
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)

@@ -1,31 +1,27 @@
 <template>
-  <div class="min-h-screen md:flex">
+  <div class="md:flex">
     <div
-      v-motion class="flex min-h-screen flex-col items-center p-4 md:w-1/2 md:justify-center"
+      v-motion class="flex flex-col items-center p-4 md:w-1/2 md:justify-center"
       :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
       :duration="800"
     >
-      <div
-        v-motion class="my-8 flex w-full flex-col items-center gap-4 border-b py-4 text-center"
+      <header
+        v-motion class="my-8 flex w-full flex-col items-center gap-8 border-b py-4 text-center"
         :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }"
         :duration="800"
       >
-        <img src="/assets/logo.png" alt="Logo" width="100" height="100">
-        <h2
-          v-motion class="font-bowlby"
-          :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
-          :duration="800"
-        >
+        <img src="/assets/logo.png" alt="Logo" width="120" height="120">
+        <h1 class="font-bowlby">
           Sign In
-        </h2>
+        </h1>
         <p
           v-motion class="text-muted-foreground"
           :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
           :duration="800"
         >
-          Sign in with Google or GitHub to continue.
+          Choose your preferred sign-in method.
         </p>
-      </div>
+      </header>
 
       <div
         v-motion class="flex w-full flex-col items-center gap-4"
@@ -33,14 +29,18 @@
         :duration="800"
       >
         <div class="flex flex-col items-center gap-4">
-          <button v-for="provider in providers" :key="provider.name" class="btn" @click="provider.click">
+          <button
+            v-for="provider in providers" :key="provider.name"
+            class="btn"
+            @click="navigateTo(`/api/auth/${provider.name}`, { external: true })"
+          >
             <Icon :name="provider.icon" size="25" />
             <span>{{ provider.label }}</span>
           </button>
         </div>
 
-        <p class="my-4 text-center text-sm text-muted-foreground">
-          By signing in, you agree to our
+        <p class="p-4 text-muted-foreground">
+          By continuing, you agree to our
           <NuxtLink to="/legal/privacy" class="text-primary hover:underline">
             Privacy Policy
           </NuxtLink> and
@@ -52,7 +52,7 @@
     </div>
 
     <div
-      v-motion class="relative hidden min-h-screen md:block md:w-1/2"
+      v-motion class="relative hidden md:block md:min-h-screen md:w-1/2"
       :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >
@@ -69,17 +69,11 @@ const providers = [
     name: "github",
     label: "Sign In With GitHub",
     icon: "simple-icons:github",
-    click: async () => {
-      await navigateTo("/api/auth/github", { external: true })
-    },
   },
   {
     name: "google",
     label: "Sign In With Google",
     icon: "simple-icons:google",
-    click: async () => {
-      await navigateTo("/api/auth/google", { external: true })
-    },
   },
 ]
 

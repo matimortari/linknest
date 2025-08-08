@@ -29,7 +29,7 @@
               <NuxtLink
                 :to="`/${user.slug}`"
                 :title="`linknest-live.vercel.app/${user.slug}`"
-                class="text-caption break-words hover:underline"
+                class="break-words text-xs hover:underline"
               >
                 @{{ user.slug }}
               </NuxtLink>

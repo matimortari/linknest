@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { iconSchema } from "~~/shared/lib/schemas"
-import { SOCIAL_ICONS } from "~~/shared/lib/social-icons"
+import { iconSchema } from "#shared/schemas/schemas"
+import { SOCIAL_ICONS } from "~~/shared/config/social-icons"
 import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<{

@@ -1,4 +1,4 @@
-import { linkSchema } from "~~/shared/lib/schemas"
+import { linkSchema } from "#shared/schemas/schemas"
 import {
   createLinkService,
   deleteLinkService,

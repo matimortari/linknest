@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full flex-col gap-4 md:flex-row">
-    <main
+    <div
       v-motion class="card flex-1"
       :initial="{ opacity: 0, x: -20 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
@@ -19,14 +19,10 @@
       </header>
 
       <div class="flex flex-col gap-4 py-2">
-        <section class="section-container">
-          <PreferencesAppearanceForm />
-        </section>
-        <section class="section-container">
-          <PreferencesDeleteAccount />
-        </section>
+        <PreferencesAppearanceForm />
+        <PreferencesDeleteAccount />
       </div>
-    </main>
+    </div>
 
     <div class="w-full md:w-1/3">
       <Preview />

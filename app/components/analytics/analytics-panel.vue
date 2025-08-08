@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="section-container flex flex-col gap-4">
     <header class="my-2 flex flex-col gap-2">
       <h3>
         Analytics Summary

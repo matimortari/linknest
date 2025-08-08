@@ -1,12 +1,13 @@
 <template>
-  <div class="bg-image min-h-screen">
+  <Loading v-if="isLoading" />
+
+  <div v-show="!isLoading" class="bg-image min-h-screen">
     <div class="md:navigation-group flex flex-1 flex-col gap-2 p-4">
       <div class="md:w-52">
         <UserMenu />
       </div>
 
       <main class="relative min-h-[200px] flex-1 overflow-x-hidden">
-        <Loading v-if="isLoading || !session" />
         <div :class="{ hidden: isLoading }">
           <slot />
         </div>
@@ -39,6 +40,8 @@ async function fetchGlobalData() {
       linkStore.getLinks(),
       iconStore.getIcons(),
     ])
+
+    await session.getSession()
   }
   catch (error: any) {
     console.error("Failed to load global data:", error)

@@ -17,16 +17,11 @@
 </template>
 
 <script setup lang="ts">
-interface Option {
-  value: string
-  label: string
-}
-
 defineProps<{
   id: string
   label: string
   value: string | undefined
-  options: Option[]
+  options: InputOptionType[]
   disabled?: boolean
 }>()
 

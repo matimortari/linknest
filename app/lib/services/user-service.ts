@@ -6,7 +6,7 @@ export async function getUserService(): Promise<UserType> {
     method: "GET",
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -28,18 +28,18 @@ export async function updateUserService(payload: UpdateUserPayload): Promise<{ m
     body: JSON.stringify(payload),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
-export async function updateUserImageService(formData: FormData): Promise<{ imageUrl: string }> {
+export async function updateUserImageService(image: FormData): Promise<{ imageUrl: string }> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/user/image-upload`, {
     method: "POST",
-    body: formData,
+    body: image,
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -50,7 +50,7 @@ export async function deleteUserService(): Promise<{ message: string }> {
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -62,7 +62,7 @@ export async function trackPageVisitService(userId: string): Promise<{ message: 
     body: JSON.stringify({ type: "pageView", userId }),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -74,6 +74,6 @@ export async function trackClickService(eventId: string, type: "icon" | "link", 
     body: JSON.stringify({ eventId, type, userId }),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }

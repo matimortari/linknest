@@ -6,7 +6,7 @@ export async function getLinksService(): Promise<LinkType[]> {
     method: "GET",
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -18,7 +18,7 @@ export async function createLinkService(payload: CreateLinkPayload): Promise<{ m
     body: JSON.stringify(payload),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -41,6 +41,6 @@ export async function deleteLinkService(linkId: string): Promise<{ message: stri
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }

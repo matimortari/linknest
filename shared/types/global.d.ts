@@ -41,6 +41,8 @@ interface UserStatsType {
   iconClicks: number
 }
 
+type ShadowWeightType = "none" | "light" | "medium" | "heavy"
+
 interface PageViewType {
   id: string
   userId: string
@@ -83,7 +85,6 @@ interface UpdateUserPayload {
   name?: string
   slug?: string
   description?: string | null
-  image?: string | null
 }
 
 interface CreateLinkPayload {
@@ -136,4 +137,9 @@ interface UpdatePreferencesPayload {
 
 interface UpdateSupportBannerPayload {
   supportBanner: "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
+}
+
+interface InputOptionType {
+  value: string
+  label: string
 }

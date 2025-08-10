@@ -53,7 +53,6 @@ const props = defineProps<{
 const emit = defineEmits<(e: "close") => void>()
 
 const userStore = useUserStore()
-const { user } = storeToRefs(userStore)
 
 const form = ref({
   slug: "",
@@ -75,7 +74,7 @@ watch(() => props.isOpen, (open) => {
 }, { immediate: true })
 
 async function handleImageChange(event: Event) {
-  userStore.error = ""
+  userStore.error = null
 
   const input = event.target as HTMLInputElement
   if (!input.files || input.files.length === 0)
@@ -95,21 +94,31 @@ async function handleImageChange(event: Event) {
   }
   catch (error: any) {
     console.error("Failed to upload image:", error)
-    userStore.error = error?.message || "Failed to upload image."
+    userStore.error = error?.message
   }
 }
 
 async function handleSubmit() {
+  userStore.error = null
+  if (!userStore.user?.id)
+    return
+  if (!userStore.user?.name) {
+    userStore.error = "User name cannot be empty."
+    return
+  }
+
   try {
     await userStore.updateUser({
-      ...user.value!,
-      ...form.value,
+      name: userStore.user.name,
+      slug: form.value.slug,
+      description: form.value.description,
     })
+    await userStore.getUser()
     emit("close")
   }
   catch (error: any) {
-    console.error("Failed to update user:", error)
-    userStore.error = error?.message || "Failed to update user."
+    console.error("Failed to update user data:", error)
+    userStore.error = error?.message
   }
 }
 </script>

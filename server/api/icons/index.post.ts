@@ -1,7 +1,8 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
+import { SOCIAL_ICONS } from "#shared/config/social-icons"
 import { iconSchema } from "#shared/schemas/schemas"
-import { SOCIAL_ICONS } from "~~/shared/config/social-icons"
+import z from "zod"
 
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
@@ -9,11 +10,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const parseResult = iconSchema.safeParse(body)
   if (!parseResult.success) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: "Invalid input",
-      data: parseResult.error.flatten(),
-    })
+    throw createError({ statusCode: 400, statusMessage: "Invalid input", data: z.treeifyError(parseResult.error) })
   }
 
   const { platform, url } = parseResult.data

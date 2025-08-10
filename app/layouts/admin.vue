@@ -28,11 +28,10 @@ const userStore = useUserStore()
 const preferencesStore = usePreferencesStore()
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
-const { session } = useUserSession()
 
 const isLoading = ref(true)
 
-async function fetchGlobalData() {
+async function getGlobalData() {
   try {
     await Promise.all([
       userStore.getUser(),
@@ -40,8 +39,6 @@ async function fetchGlobalData() {
       linkStore.getLinks(),
       iconStore.getIcons(),
     ])
-
-    await session.getSession()
   }
   catch (error: any) {
     console.error("Failed to load global data:", error)
@@ -53,10 +50,10 @@ async function fetchGlobalData() {
 
 onMounted(() => {
   if (document.readyState === "complete") {
-    fetchGlobalData()
+    getGlobalData()
   }
   else {
-    window.addEventListener("load", fetchGlobalData)
+    window.addEventListener("load", getGlobalData)
   }
 })
 </script>

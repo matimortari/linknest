@@ -26,8 +26,8 @@ const { clear } = useUserSession()
 const router = useRouter()
 
 async function handleDeleteUser() {
-  userStore.error = ""
-  if (!confirm("Are you sure you want to delete your account?"))
+  userStore.error = null
+  if (!confirm("Are you sure you want to delete your account? This action cannot be undone."))
     return
 
   try {
@@ -36,8 +36,8 @@ async function handleDeleteUser() {
     await router.push("/")
   }
   catch (error: any) {
-    console.error("Failed to delete user:", error)
-    userStore.error = error?.message || "Failed to delete account."
+    console.error("Failed to delete account:", error)
+    userStore.error = error?.message
   }
 }
 </script>

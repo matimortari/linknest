@@ -18,13 +18,8 @@
 </template>
 
 <script setup lang="ts">
-interface Option {
-  value: string
-  label: string
-}
-
 defineProps<{
-  options: Option[]
+  options: InputOptionType[]
   name?: string
   value?: string
   label?: string

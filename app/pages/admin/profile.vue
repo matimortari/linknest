@@ -41,7 +41,7 @@ const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
 
 useHead({
-  title: "Profile – LinkNest",
+  title: "Profile - LinkNest",
   link: [
     { rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" },
     { rel: "icon", href: "/favicon.ico" },
@@ -50,7 +50,7 @@ useHead({
 })
 
 useSeoMeta({
-  title: "Profile – LinkNest",
+  title: "Profile - LinkNest",
   description: "LinkNest profile page.",
 })
 

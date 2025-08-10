@@ -10,7 +10,6 @@
     </header>
 
     <Spinner v-if="isLoading" />
-
     <div v-else-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
       <p>No social icons yet. Add your first social icon!</p>
     </div>

@@ -189,7 +189,7 @@
 
 <script setup lang="ts">
 import { BACKGROUND_TYPES, FONT_SIZES, FONT_WEIGHTS, LINK_FONT_SIZES, LINK_PADDING_SIZES, RADIUS_SIZES, SHADOW_WEIGHTS } from "#shared/config/appearance-options"
-import { BANNER_OPTIONS } from "~~/shared/config/banner-options"
+import { BANNER_OPTIONS } from "#shared/config/banner-options"
 import { usePreferencesStore } from "~/lib/stores/preferences-store"
 
 const tabs = [

@@ -30,13 +30,13 @@
 import auth from "~/lib/middleware/auth"
 
 useHead({
-  title: "Analytics – LinkNest",
+  title: "Analytics - LinkNest",
   link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.ico" }],
   meta: [{ name: "description", content: "LinkNest analytics page." }],
 })
 
 useSeoMeta({
-  title: "Analytics – LinkNest",
+  title: "Analytics - LinkNest",
   description: "LinkNest analytics page.",
 })
 

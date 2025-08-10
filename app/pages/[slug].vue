@@ -134,13 +134,13 @@ watch(() => route.params.slug, async (newSlug) => {
     await userStore.trackPageVisit(user.id)
 
     useHead({
-      title: `@${user.slug} – LinkNest`,
+      title: `@${user.slug} - LinkNest`,
       link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }, { rel: "icon", href: "/favicon.ico" }],
       meta: [{ name: "description", content: `@${user.slug} profile on LinkNest.` }],
     })
 
     useSeoMeta({
-      title: `@${user.slug} – LinkNest`,
+      title: `@${user.slug} - LinkNest`,
       description: `@${user.slug} profile on LinkNest.`,
     })
   }

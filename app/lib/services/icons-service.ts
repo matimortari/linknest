@@ -6,7 +6,7 @@ export async function getIconsService(): Promise<IconType[]> {
     method: "GET",
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -18,7 +18,7 @@ export async function createIconService(payload: CreateIconPayload): Promise<{ m
     body: JSON.stringify(payload),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -29,6 +29,6 @@ export async function deleteIconService(iconId: string): Promise<{ message: stri
     headers: { "Content-Type": "application/json" },
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }

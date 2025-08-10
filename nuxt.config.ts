@@ -17,18 +17,6 @@ export default defineNuxtConfig({
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
     },
-    oauth: {
-      github: {
-        clientId: process.env.NUXT_OAUTH_GITHUB_CLIENT_ID,
-        clientSecret: process.env.NUXT_OAUTH_GITHUB_CLIENT_SECRET,
-        redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/github`,
-      },
-      google: {
-        clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
-        clientSecret: process.env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET,
-        redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/google`,
-      },
-    },
   },
   colorMode: {
     classSuffix: "",

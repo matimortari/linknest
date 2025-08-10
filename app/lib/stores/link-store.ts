@@ -11,6 +11,43 @@ export const useLinkStore = defineStore("link", () => {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
+  function getLinkStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
+    if (!preferences) {
+      return {}
+    }
+
+    const shadowMap: Record<ShadowWeightType, string> = {
+      none: "none",
+      light: `0 2px 4px ${preferences.linkShadowColor}`,
+      medium: `0 4px 6px ${preferences.linkShadowColor}`,
+      heavy: `0 6px 10px ${preferences.linkShadowColor}`,
+    }
+
+    return {
+      backgroundColor: isHovered
+        ? preferences.linkHoverBackgroundColor
+        : preferences.linkBackgroundColor,
+      boxShadow: preferences.isLinkShadow
+        ? shadowMap[preferences.linkShadowWeight as ShadowWeightType]
+        : "none",
+      borderRadius: preferences.linkBorderRadius,
+      padding: preferences.linkPadding,
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+    }
+  }
+
+  function getLinkInnerStyle(preferences: UserPreferencesType | null | undefined) {
+    if (!preferences) {
+      return {}
+    }
+
+    return {
+      color: preferences.linkTextColor,
+      fontWeight: preferences.linkTextWeight,
+      fontSize: preferences.linkTextSize,
+    }
+  }
+
   async function getLinks() {
     isLoading.value = true
     error.value = null
@@ -19,7 +56,7 @@ export const useLinkStore = defineStore("link", () => {
       links.value = await getLinksService()
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to get links"
       throw error
     }
     finally {
@@ -50,7 +87,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to create link"
       throw error
     }
     finally {
@@ -88,7 +125,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to update link"
       throw error
     }
     finally {
@@ -111,7 +148,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to delete link"
       throw error
     }
     finally {
@@ -119,44 +156,15 @@ export const useLinkStore = defineStore("link", () => {
     }
   }
 
-  type ShadowWeight = "none" | "light" | "medium" | "heavy"
-
-  function getLinkStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
-    if (!preferences) {
-      return {}
-    }
-
-    const shadowMap: Record<ShadowWeight, string> = {
-      none: "none",
-      light: `0 2px 4px ${preferences.linkShadowColor || "rgba(0,0,0,0.1)"}`,
-      medium: `0 4px 6px ${preferences.linkShadowColor || "rgba(0,0,0,0.2)"}`,
-      heavy: `0 6px 10px ${preferences.linkShadowColor || "rgba(0,0,0,0.3)"}`,
-    }
-
-    return {
-      backgroundColor: isHovered
-        ? preferences.linkHoverBackgroundColor || "transparent"
-        : preferences.linkBackgroundColor || "transparent",
-      boxShadow: preferences.isLinkShadow
-        ? shadowMap[preferences.linkShadowWeight as ShadowWeight] || "none"
-        : "none",
-      borderRadius: preferences.linkBorderRadius || "0px",
-      padding: preferences.linkPadding || "0px",
-      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-    }
+  return {
+    links,
+    isLoading,
+    error,
+    getLinks,
+    createLink,
+    updateLink,
+    deleteLink,
+    getLinkStyle,
+    getLinkInnerStyle,
   }
-
-  function getLinkInnerStyle(preferences: UserPreferencesType | null | undefined) {
-    if (!preferences) {
-      return {}
-    }
-
-    return {
-      color: preferences.linkTextColor || "inherit",
-      fontWeight: preferences.linkTextWeight || "normal",
-      fontSize: preferences.linkTextSize || "inherit",
-    }
-  }
-
-  return { links, isLoading, error, getLinks, createLink, updateLink, deleteLink, getLinkStyle, getLinkInnerStyle }
 })

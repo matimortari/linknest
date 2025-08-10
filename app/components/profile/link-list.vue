@@ -10,7 +10,6 @@
     </header>
 
     <Spinner v-if="isLoading" />
-
     <div v-else-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
       <p>No links yet. Add your first link!</p>
     </div>

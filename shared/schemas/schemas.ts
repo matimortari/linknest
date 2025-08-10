@@ -1,5 +1,5 @@
+import { SOCIAL_ICONS } from "#shared/config/social-icons"
 import { z } from "zod"
-import { SOCIAL_ICONS } from "~~/shared/config/social-icons"
 
 export const userDataSchema = z.object({
   slug: z

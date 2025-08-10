@@ -18,7 +18,8 @@ export const usePreferencesStore = defineStore("preferences", () => {
       preferences.value = await getPreferencesService()
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to get user preferences"
+      throw error
     }
     finally {
       isLoading.value = false
@@ -40,7 +41,7 @@ export const usePreferencesStore = defineStore("preferences", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to update user preferences"
       throw error
     }
     finally {
@@ -63,7 +64,7 @@ export const usePreferencesStore = defineStore("preferences", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to update user support banner"
       throw error
     }
     finally {
@@ -86,7 +87,7 @@ export const usePreferencesStore = defineStore("preferences", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to reset user preferences"
       throw error
     }
     finally {
@@ -94,5 +95,13 @@ export const usePreferencesStore = defineStore("preferences", () => {
     }
   }
 
-  return { preferences, isLoading, error, getPreferences, updatePreferences, updateSupportBanner, resetPreferences }
+  return {
+    preferences,
+    isLoading,
+    error,
+    getPreferences,
+    updatePreferences,
+    updateSupportBanner,
+    resetPreferences,
+  }
 })

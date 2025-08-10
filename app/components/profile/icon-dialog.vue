@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
+import { SOCIAL_ICONS } from "#shared/config/social-icons"
 import { iconSchema } from "#shared/schemas/schemas"
-import { SOCIAL_ICONS } from "~~/shared/config/social-icons"
 import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<{
@@ -57,11 +57,11 @@ const form = ref<IconType>({
 function selectIcon(label: string, iconName: string) {
   form.value.platform = label
   form.value.icon = iconName
-  iconStore.error = ""
+  iconStore.error = null
 }
 
 function handleSubmit() {
-  iconStore.error = ""
+  iconStore.error = null
 
   try {
     const result = iconSchema.safeParse(form.value)
@@ -73,14 +73,14 @@ function handleSubmit() {
   }
   catch (error: any) {
     console.error("Failed to save social icon:", error)
-    iconStore.error = error?.message || "Failed to save social icon."
+    iconStore.error = error?.message
   }
 }
 
 watch(() => props.isOpen, (open) => {
   if (open) {
     form.value = { platform: "", icon: "", url: "" }
-    iconStore.error = ""
+    iconStore.error = null
   }
-})
+}, { immediate: true })
 </script>

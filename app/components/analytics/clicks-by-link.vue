@@ -10,7 +10,6 @@
     </header>
 
     <Spinner v-if="isIconsLoading || isLinksLoading" />
-
     <p v-else-if="!links.length && !icons.length" class="text-lead my-2 text-center text-muted-foreground">
       No links or social icons available yet.
     </p>
@@ -18,12 +17,7 @@
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
         <div class="mb-2 flex flex-row items-center gap-1">
-          <icon
-            v-if="item.type === 'icon' && item.icon"
-            :name="item.icon"
-            size="20"
-            class="text-muted-foreground"
-          />
+          <icon v-if="item.type === 'icon' && item.icon" :name="item.icon" size="20" class="text-muted-foreground" />
           <h5 class="truncate text-muted-foreground">
             {{ item.type === 'link' ? item.title : item.platform }}
           </h5>

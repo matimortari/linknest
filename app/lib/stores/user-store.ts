@@ -20,9 +20,10 @@ export const useUserStore = defineStore("user", () => {
 
     try {
       user.value = await getUserService()
+      return user.value
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to get user"
       throw error
     }
     finally {
@@ -38,7 +39,7 @@ export const useUserStore = defineStore("user", () => {
       user.value = await getUserBySlugService(userSlug)
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to get user by slug"
     }
     finally {
       isLoading.value = false
@@ -73,7 +74,7 @@ export const useUserStore = defineStore("user", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to update user data"
       throw error
     }
     finally {
@@ -81,7 +82,7 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  async function updateUserImage(formData: FormData) {
+  async function updateUserImage(image: FormData) {
     if (!user.value) {
       error.value = "No user loaded"
       throw new Error(error.value)
@@ -91,13 +92,13 @@ export const useUserStore = defineStore("user", () => {
     error.value = null
 
     try {
-      const response = await updateUserImageService(formData)
+      const response = await updateUserImageService(image)
       if (user.value)
         user.value.image = response.imageUrl
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to update user image"
       throw error
     }
     finally {
@@ -115,7 +116,7 @@ export const useUserStore = defineStore("user", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to delete user"
       throw error
     }
     finally {
@@ -131,7 +132,8 @@ export const useUserStore = defineStore("user", () => {
       await trackPageVisitService(userId)
     }
     catch (error: any) {
-      console.warn("Failed to track page visit:", error)
+      error.value = error?.message || "Failed to track page visit"
+      throw error
     }
   }
 
@@ -143,9 +145,21 @@ export const useUserStore = defineStore("user", () => {
       await trackClickService(eventId, type, userId)
     }
     catch (error: any) {
-      console.warn("Failed to track click:", error)
+      error.value = error?.message || "Failed to track click event"
+      throw error
     }
   }
 
-  return { user, isLoading, error, getUser, getUserBySlug, updateUser, updateUserImage, deleteUser, trackPageVisit, trackClick }
+  return {
+    user,
+    isLoading,
+    error,
+    getUser,
+    getUserBySlug,
+    updateUser,
+    updateUserImage,
+    deleteUser,
+    trackPageVisit,
+    trackClick,
+  }
 })

@@ -6,7 +6,7 @@ export async function getPreferencesService(): Promise<UserPreferencesType> {
     method: "GET",
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -18,7 +18,7 @@ export async function updatePreferencesService(payload: UpdatePreferencesPayload
     body: JSON.stringify(payload),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -30,7 +30,7 @@ export async function updateSupportBannerService(payload: UpdateSupportBannerPay
     body: JSON.stringify(payload),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }
 
@@ -42,6 +42,6 @@ export async function resetPreferencesService(): Promise<{ message: string, pref
     body: JSON.stringify({ reset: true }),
   })
   if (!response.ok)
-    throw new Error(`${response.statusText}`)
+    throw new Error(response.statusText)
   return await response.json()
 }

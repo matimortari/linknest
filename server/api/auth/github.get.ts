@@ -4,7 +4,11 @@ import { handleOAuthUser } from "#server/lib/auth"
 export default defineOAuthGitHubEventHandler({
   config: {
     emailRequired: true,
+    clientId: process.env.NUXT_OAUTH_GITHUB_CLIENT_ID,
+    clientSecret: process.env.NUXT_OAUTH_GITHUB_CLIENT_SECRET,
+    redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/github`,
   },
+
   async onSuccess(event: any, { user, tokens }: any) {
     if (!user || typeof user !== "object") {
       throw createError({ statusCode: 400, statusMessage: "Invalid user data received from GitHub" })

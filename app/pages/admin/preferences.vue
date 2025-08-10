@@ -34,7 +34,7 @@
 import auth from "~/lib/middleware/auth"
 
 useHead({
-  title: "Preferences – LinkNest",
+  title: "Preferences - LinkNest",
   link: [
     { rel: "canonical", href: "https://linknest-live.vercel.app/admin/preferences" },
     { rel: "icon", href: "/favicon.ico" },
@@ -43,7 +43,7 @@ useHead({
 })
 
 useSeoMeta({
-  title: "Preferences – LinkNest",
+  title: "Preferences - LinkNest",
   description: "LinkNest preferences page.",
 })
 

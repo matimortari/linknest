@@ -10,6 +10,39 @@ export const useIconStore = defineStore("icon", () => {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
+  function getIconStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
+    if (!preferences) {
+      return {}
+    }
+
+    const shadowMap: Record<ShadowWeightType, string> = {
+      none: "none",
+      light: `0 2px 4px ${preferences.linkShadowColor}`,
+      medium: `0 4px 6px ${preferences.linkShadowColor}`,
+      heavy: `0 6px 10px ${preferences.linkShadowColor}`,
+    }
+
+    return {
+      backgroundColor: isHovered
+        ? preferences.iconHoverBackgroundColor
+        : preferences.iconBackgroundColor,
+      boxShadow: preferences.isIconShadow
+        ? shadowMap[preferences.iconShadowWeight as ShadowWeightType]
+        : "none",
+      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+    }
+  }
+
+  function getIconInnerStyle(preferences: UserPreferencesType | null | undefined) {
+    if (!preferences) {
+      return {}
+    }
+
+    return {
+      color: preferences.iconIconColor,
+    }
+  }
+
   async function getIcons() {
     isLoading.value = true
     error.value = null
@@ -18,7 +51,7 @@ export const useIconStore = defineStore("icon", () => {
       icons.value = await getIconsService()
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to get social icons"
       throw error
     }
     finally {
@@ -49,7 +82,7 @@ export const useIconStore = defineStore("icon", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to create social icon"
       throw error
     }
     finally {
@@ -57,8 +90,8 @@ export const useIconStore = defineStore("icon", () => {
     }
   }
 
-  async function deleteIcon(id: string) {
-    if (!id) {
+  async function deleteIcon(iconId: string) {
+    if (!iconId) {
       error.value = "Icon ID is required to delete"
       throw new Error(error.value)
     }
@@ -67,12 +100,12 @@ export const useIconStore = defineStore("icon", () => {
     error.value = null
 
     try {
-      const response = await deleteIconService(id)
-      icons.value = icons.value.filter(icon => icon.id !== id)
+      const response = await deleteIconService(iconId)
+      icons.value = icons.value.filter(icon => icon.id !== iconId)
       return response
     }
     catch (error: any) {
-      error.value = error?.message
+      error.value = error?.message || "Failed to delete social icon"
       throw error
     }
     finally {
@@ -80,40 +113,14 @@ export const useIconStore = defineStore("icon", () => {
     }
   }
 
-  type ShadowWeight = "none" | "light" | "medium" | "heavy"
-
-  function getIconStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
-    if (!preferences) {
-      return {}
-    }
-
-    const shadowMap: Record<ShadowWeight, string> = {
-      none: "none",
-      light: `0 2px 4px ${preferences.iconShadowColor || "rgba(0,0,0,0.1)"}`,
-      medium: `0 4px 6px ${preferences.iconShadowColor || "rgba(0,0,0,0.2)"}`,
-      heavy: `0 6px 10px ${preferences.iconShadowColor || "rgba(0,0,0,0.3)"}`,
-    }
-
-    return {
-      backgroundColor: isHovered
-        ? preferences.iconHoverBackgroundColor || "transparent"
-        : preferences.iconBackgroundColor || "transparent",
-      boxShadow: preferences.isIconShadow
-        ? shadowMap[preferences.iconShadowWeight as ShadowWeight] || "none"
-        : "none",
-      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-    }
+  return {
+    icons,
+    isLoading,
+    error,
+    getIcons,
+    createIcon,
+    deleteIcon,
+    getIconStyle,
+    getIconInnerStyle,
   }
-
-  function getIconInnerStyle(preferences: UserPreferencesType | null | undefined) {
-    if (!preferences) {
-      return {}
-    }
-
-    return {
-      color: preferences.iconIconColor || "inherit",
-    }
-  }
-
-  return { icons, isLoading, error, getIcons, createIcon, deleteIcon, getIconStyle, getIconInnerStyle }
 })

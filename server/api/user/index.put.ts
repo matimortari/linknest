@@ -1,6 +1,7 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
 import { userDataSchema } from "#shared/schemas/schemas"
+import z from "zod"
 
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)
@@ -8,11 +9,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const parseResult = userDataSchema.safeParse(body)
   if (!parseResult.success) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: "Invalid input",
-      data: parseResult.error.flatten(),
-    })
+    throw createError({ statusCode: 400, statusMessage: "Invalid input", data: z.treeifyError(parseResult.error) })
   }
 
   const user = await db.user.findUnique({
@@ -27,7 +24,6 @@ export default defineEventHandler(async (event) => {
     data: {
       slug: parseResult.data.slug,
       description: parseResult.data.description,
-      image: parseResult.data.image,
     },
   })
 

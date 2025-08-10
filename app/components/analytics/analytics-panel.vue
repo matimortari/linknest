@@ -73,7 +73,6 @@
     </header>
 
     <Spinner v-if="isLoading" />
-
     <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
       <p>Not enough data yet.</p>
     </div>
@@ -94,7 +93,6 @@
         </header>
 
         <Spinner v-if="isLoading" />
-
         <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
           <p>Not enough data yet.</p>
         </div>
@@ -113,7 +111,6 @@
         </header>
 
         <Spinner v-if="isLoading" />
-
         <div v-else-if="stats.length <= 1" class="text-lead my-2 text-center text-muted-foreground">
           <p>Not enough data yet.</p>
         </div>

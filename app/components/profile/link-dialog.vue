@@ -46,7 +46,7 @@ const form = ref<LinkType>({
 })
 
 function handleSubmit() {
-  linkStore.error = ""
+  linkStore.error = null
 
   try {
     const result = linkSchema.safeParse(form.value)
@@ -59,7 +59,7 @@ function handleSubmit() {
   }
   catch (error: any) {
     console.error("Failed to save link:", error)
-    linkStore.error = error?.message || "Failed to save link."
+    linkStore.error = error?.message
   }
 }
 
@@ -68,7 +68,7 @@ watch(() => props.isOpen, (open) => {
     form.value = props.selectedLink
       ? { ...props.selectedLink }
       : { title: "", url: "" }
-    linkStore.error = ""
+    linkStore.error = null
   }
 }, { immediate: true })
 </script>

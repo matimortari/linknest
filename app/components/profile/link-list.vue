@@ -62,25 +62,32 @@ const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
 
 function handleUpdateLink(link: LinkType) {
+  linkStore.error = null
+
   try {
     selectedLink.value = link
     isDialogOpen.value = true
   }
   catch (error: any) {
     console.error("Failed to update link:", error)
+    linkStore.error = error?.message
   }
 }
 
 async function handleDeleteLink(id: string) {
+  linkStore.error = null
   try {
     await linkStore.deleteLink(id)
   }
   catch (error: any) {
     console.error("Failed to delete link:", error)
+    linkStore.error = error?.message
   }
 }
 
 async function handleSaveLink(link: LinkType) {
+  linkStore.error = null
+
   try {
     const existingLink = links.value.find(l => l.id === link.id)
     if (existingLink) {
@@ -93,11 +100,7 @@ async function handleSaveLink(link: LinkType) {
   }
   catch (error: any) {
     console.error("Failed to save link:", error)
+    linkStore.error = error?.message
   }
 }
-
-onMounted(async () => {
-  if (!links.value.length)
-    await linkStore.getLinks()
-})
 </script>

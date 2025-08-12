@@ -46,26 +46,27 @@ const { icons, isLoading } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
 
 async function handleCreateIcon(icon: IconType) {
+  iconStore.error = null
+
   try {
     await iconStore.createIcon(icon)
     isDialogOpen.value = false
   }
   catch (error: any) {
-    console.error("Failed to save icon:", error)
+    console.error("Failed to save social icon:", error)
+    iconStore.error = error?.message
   }
 }
 
 async function handleDeleteIcon(id: string) {
+  iconStore.error = null
+
   try {
     await iconStore.deleteIcon(id)
   }
   catch (error: any) {
-    console.error("Failed to delete icon:", error)
+    console.error("Failed to delete social icon:", error)
+    iconStore.error = error?.message
   }
 }
-
-onMounted(async () => {
-  if (!icons.value.length)
-    await iconStore.getIcons()
-})
 </script>

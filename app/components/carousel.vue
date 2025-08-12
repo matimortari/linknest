@@ -60,16 +60,19 @@ const preset = computed(() => {
 const preferences = computed(() => (preset.value?.preferences ?? {}) as unknown as UserPreferencesType)
 
 const backgroundStyle = computed(() => {
-  return preferences.value.backgroundType === "GRADIENT"
-    ? {
-        background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
-      }
-    : { backgroundColor: preferences.value.backgroundColor }
+  if (preferences.value.backgroundType === "GRADIENT") {
+    return {
+      background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
+    }
+  }
+  return { backgroundColor: preferences.value.backgroundColor }
 })
 
 const profilePictureStyle = computed(() => {
   return {
     borderRadius: preferences.value.profilePictureRadius,
+    borderColor: preferences.value.profilePictureBorderColor,
+    borderWidth: preferences.value.profilePictureBorderWidth,
   }
 })
 
@@ -78,6 +81,7 @@ const slugStyle = computed(() => {
     color: preferences.value.slugTextColor,
     fontWeight: preferences.value.slugTextWeight,
     fontSize: preferences.value.slugTextSize,
+    fontFamily: preferences.value.slugFontFamily,
   }
 })
 
@@ -86,6 +90,7 @@ const descriptionStyle = computed(() => {
     color: preferences.value.headerTextColor,
     fontWeight: preferences.value.headerTextWeight,
     fontSize: preferences.value.headerTextSize,
+    fontFamily: preferences.value.headerFontFamily,
   }
 })
 

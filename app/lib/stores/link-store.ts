@@ -44,6 +44,7 @@ export const useLinkStore = defineStore("link", () => {
     return {
       color: preferences.linkTextColor,
       fontWeight: preferences.linkTextWeight,
+      fontFamily: preferences.linkFontFamily,
       fontSize: preferences.linkTextSize,
     }
   }

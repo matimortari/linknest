@@ -42,6 +42,8 @@ interface UserStatsType {
 }
 
 type ShadowWeightType = "none" | "light" | "medium" | "heavy"
+type BackgroundType = "FLAT" | "GRADIENT"
+type SupportBannerType = "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
 
 interface PageViewType {
   id: string
@@ -50,21 +52,26 @@ interface PageViewType {
 }
 
 interface UserPreferencesType {
-  backgroundType: "FLAT" | "GRADIENT"
+  backgroundType: BackgroundType
   backgroundColor: string
   backgroundGradientStart: string
   backgroundGradientEnd: string
   profilePictureRadius: string
+  profilePictureBorderColor: string
+  profilePictureBorderWidth: string
   slugTextColor: string
   slugTextWeight: string
   slugTextSize: string
+  slugFontFamily: string
   headerTextColor: string
   headerTextWeight: string
   headerTextSize: string
+  headerFontFamily: string
   linkBackgroundColor: string
   linkTextColor: string
   linkTextWeight: string
   linkTextSize: string
+  linkFontFamily: string
   isLinkShadow: boolean
   linkShadowColor: string
   linkShadowWeight: string
@@ -78,7 +85,7 @@ interface UserPreferencesType {
   iconIconColor: string
   iconHoverBackgroundColor: string
   showCopyButton?: boolean
-  supportBanner?: "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
+  supportBanner?: SupportBannerType
 }
 
 interface UpdateUserPayload {
@@ -105,21 +112,26 @@ interface CreateIconPayload {
 }
 
 interface UpdatePreferencesPayload {
-  backgroundType?: "FLAT" | "GRADIENT"
+  backgroundType?: BackgroundType
   backgroundColor?: string
   backgroundGradientStart?: string
   backgroundGradientEnd?: string
   profilePictureRadius?: string
+  profilePictureBorderColor?: string
+  profilePictureBorderWidth?: string
   slugTextColor?: string
   slugTextWeight?: string
   slugTextSize?: string
+  slugFontFamily?: string
   headerTextColor?: string
   headerTextWeight?: string
   headerTextSize?: string
+  headerFontFamily?: string
   linkBackgroundColor?: string
   linkTextColor?: string
   linkTextWeight?: string
   linkTextSize?: string
+  linkFontFamily?: string
   isLinkShadow?: boolean
   linkShadowColor?: string
   linkShadowWeight?: string
@@ -136,7 +148,7 @@ interface UpdatePreferencesPayload {
 }
 
 interface UpdateSupportBannerPayload {
-  supportBanner: "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
+  supportBanner: SupportBannerType
 }
 
 interface InputOptionType {

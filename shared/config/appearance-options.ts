@@ -10,6 +10,21 @@ export const RADIUS_SIZES = [
   { label: "Large", value: "5rem" },
 ]
 
+export const BORDER_WIDTHS = [
+  { label: "None", value: "0" },
+  { label: "Thin", value: "1px" },
+  { label: "Medium", value: "2px" },
+  { label: "Thick", value: "4px" },
+]
+
+export const FONT_FAMILIES = [
+  { label: "Inter", value: "Inter, sans-serif" },
+  { label: "Roboto", value: "Roboto, sans-serif" },
+  { label: "Montserrat", value: "Montserrat, sans-serif" },
+  { label: "Open Sans", value: "Open Sans, sans-serif" },
+  { label: "Arial", value: "Arial, sans-serif" },
+]
+
 export const FONT_SIZES = [
   { label: "Small", value: "1rem" },
   { label: "Medium", value: "1.1rem" },

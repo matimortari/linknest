@@ -139,30 +139,32 @@ const { user } = storeToRefs(userStore)
 const isMobilePreviewVisible = ref(false)
 
 const backgroundStyle = computed(() => {
-  if (!preferences.value)
-    return {}
-  if (preferences.value.backgroundType === "GRADIENT") {
+  if (preferences.value?.backgroundType === "GRADIENT") {
     return {
       background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
     }
   }
-  return { backgroundColor: preferences.value.backgroundColor }
+  return { backgroundColor: preferences.value?.backgroundColor }
 })
 
 const profilePictureStyle = computed(() => ({
   borderRadius: preferences.value?.profilePictureRadius,
+  borderColor: preferences.value?.profilePictureBorderColor,
+  borderWidth: preferences.value?.profilePictureBorderWidth,
 }))
 
 const slugStyle = computed(() => ({
   color: preferences.value?.slugTextColor,
   fontWeight: preferences.value?.slugTextWeight,
   fontSize: preferences.value?.slugTextSize,
+  fontFamily: preferences.value?.slugFontFamily,
 }))
 
 const descriptionStyle = computed(() => ({
   color: preferences.value?.headerTextColor,
   fontWeight: preferences.value?.headerTextWeight,
   fontSize: preferences.value?.headerTextSize,
+  fontFamily: preferences.value?.headerFontFamily,
 }))
 
 onMounted(async () => {

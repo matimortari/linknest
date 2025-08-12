@@ -98,18 +98,22 @@ const backgroundStyle = computed(() => {
 
 const profilePictureStyle = computed(() => ({
   borderRadius: user.value?.preferences?.profilePictureRadius,
+  borderColor: user.value?.preferences?.profilePictureBorderColor,
+  borderWidth: user.value?.preferences?.profilePictureBorderWidth,
 }))
 
 const slugStyle = computed(() => ({
   color: user.value?.preferences?.slugTextColor,
   fontWeight: user.value?.preferences?.slugTextWeight,
   fontSize: user.value?.preferences?.slugTextSize,
+  fontFamily: user.value?.preferences?.slugFontFamily,
 }))
 
 const descriptionStyle = computed(() => ({
   color: user.value?.preferences?.headerTextColor,
   fontWeight: user.value?.preferences?.headerTextWeight,
   fontSize: user.value?.preferences?.headerTextSize,
+  fontFamily: user.value?.preferences?.headerFontFamily,
 }))
 
 async function handleClick(id: string, type: "link" | "icon") {

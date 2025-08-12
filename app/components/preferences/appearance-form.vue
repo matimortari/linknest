@@ -144,30 +144,30 @@ function handleApplyTheme(newPreferences: UserPreferencesType) {
 }
 
 async function handleUpdatePreferences() {
+  preferencesStore.error = null
+
   try {
     await preferencesStore.updatePreferences(preferences.value!)
     status.value = "saved"
   }
   catch (error: any) {
     console.error("Failed to update preferences:", error)
+    preferencesStore.error = error?.message
   }
 }
 
 async function handleResetPreferences() {
+  preferencesStore.error = null
+
   try {
     await preferencesStore.resetPreferences()
     status.value = "reset"
   }
   catch (error: any) {
     console.error("Failed to reset preferences:", error)
+    preferencesStore.error = error?.message
   }
 }
-
-onMounted(async () => {
-  if (!preferences.value) {
-    await preferencesStore.getPreferences()
-  }
-})
 
 watch(status, (newStatus, _, onInvalidate) => {
   if (newStatus !== "idle") {

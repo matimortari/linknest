@@ -49,12 +49,6 @@ const iconStore = useIconStore()
 const { links, isLoading: isLinksLoading } = storeToRefs(linkStore)
 const { icons, isLoading: isIconsLoading } = storeToRefs(iconStore)
 
-onMounted(async () => {
-  if (!icons.value || !links.value) {
-    await Promise.all([linkStore.getLinks(), iconStore.getIcons()])
-  }
-})
-
 interface MergedLinkItem {
   type: "link"
   formattedDate: string

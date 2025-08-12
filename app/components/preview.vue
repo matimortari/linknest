@@ -166,10 +166,4 @@ const descriptionStyle = computed(() => ({
   fontSize: preferences.value?.headerTextSize,
   fontFamily: preferences.value?.headerFontFamily,
 }))
-
-onMounted(async () => {
-  if (!preferences.value || !user.value || !icons.value || !links.value) {
-    await Promise.all([preferencesStore.getPreferences(), userStore.getUser()])
-  }
-})
 </script>

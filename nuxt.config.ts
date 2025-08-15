@@ -36,6 +36,11 @@ export default defineNuxtConfig({
       "JetBrains Mono": true,
     },
   },
+  icon: {
+    clientBundle: {
+      scan: true,
+    },
+  },
   tailwindcss: {
     cssPath: "~/assets/styles.css",
   },

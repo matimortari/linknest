@@ -49,7 +49,7 @@
           v-for="icon in user.icons"
           :key="icon.id"
           :url="icon.url"
-          :icon="icon.icon"
+          :logo="icon.logo"
           :preferences="user.preferences"
           :icon-id="icon.id"
           :user-id="user.id"

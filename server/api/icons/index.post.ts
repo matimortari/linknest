@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
 
   const { platform, url } = parseResult.data
 
-  const icon = SOCIAL_ICONS[platform as keyof typeof SOCIAL_ICONS]
-  if (!icon) {
+  const logo = SOCIAL_ICONS[platform as keyof typeof SOCIAL_ICONS]
+  if (!logo) {
     throw createError({ statusCode: 400, statusMessage: `Invalid platform: ${platform}` })
   }
 
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
       userId: user.id,
       platform,
       url,
-      icon,
+      logo,
     },
   })
 

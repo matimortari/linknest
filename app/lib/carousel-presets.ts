@@ -4,9 +4,9 @@ export const CAROUSEL_PRESETS = [
     description: "Your neighborhood coffee shop ☕🍩",
     image: "preset-1.png",
     icons: [
-      { id: 1, icon: "simple-icons:instagram" },
-      { id: 2, icon: "simple-icons:facebook" },
-      { id: 3, icon: "simple-icons:gmail" },
+      { id: 1, logo: "simple-icons:instagram" },
+      { id: 2, logo: "simple-icons:facebook" },
+      { id: 3, logo: "simple-icons:gmail" },
     ],
     links: [
       { id: 1, title: "Online Menu & Ordering" },
@@ -48,9 +48,9 @@ export const CAROUSEL_PRESETS = [
     description: "Travel Blogger & Adventurer ✈️",
     image: "preset-2.png",
     icons: [
-      { id: 1, icon: "simple-icons:instagram" },
-      { id: 2, icon: "simple-icons:pinterest" },
-      { id: 3, icon: "simple-icons:youtube" },
+      { id: 1, logo: "simple-icons:instagram" },
+      { id: 2, logo: "simple-icons:pinterest" },
+      { id: 3, logo: "simple-icons:youtube" },
     ],
     links: [
       { id: 1, title: "Latest Travel Blog" },
@@ -97,10 +97,10 @@ export const CAROUSEL_PRESETS = [
       "Experience high-tech innovation with Blitz Corp, where the future is now.",
     image: "preset-3.png",
     icons: [
-      { id: 1, icon: "simple-icons:linkedin" },
-      { id: 2, icon: "simple-icons:x" },
-      { id: 3, icon: "simple-icons:youtube" },
-      { id: 4, icon: "simple-icons:github" },
+      { id: 1, logo: "simple-icons:linkedin" },
+      { id: 2, logo: "simple-icons:x" },
+      { id: 3, logo: "simple-icons:youtube" },
+      { id: 4, logo: "simple-icons:github" },
     ],
     links: [
       { id: 1, title: "Innovative Solutions" },
@@ -143,9 +143,9 @@ export const CAROUSEL_PRESETS = [
     description: "Elevated essentials. Modern uniform.",
     image: "preset-4.png",
     icons: [
-      { id: 1, icon: "simple-icons:shopify" },
-      { id: 2, icon: "simple-icons:instagram" },
-      { id: 3, icon: "simple-icons:tiktok" },
+      { id: 1, logo: "simple-icons:shopify" },
+      { id: 2, logo: "simple-icons:instagram" },
+      { id: 3, logo: "simple-icons:tiktok" },
     ],
     links: [
       { id: 1, title: "Shop New Arrivals" },
@@ -186,9 +186,9 @@ export const CAROUSEL_PRESETS = [
     description: "I'm a full-stack dev :)",
     image: "preset-5.png",
     icons: [
-      { id: 1, icon: "simple-icons:github" },
-      { id: 2, icon: "simple-icons:linkedin" },
-      { id: 3, icon: "simple-icons:gmail" },
+      { id: 1, logo: "simple-icons:github" },
+      { id: 2, logo: "simple-icons:linkedin" },
+      { id: 3, logo: "simple-icons:gmail" },
     ],
     links: [
       { id: 1, title: "Coding Playlist! 🎵" },
@@ -233,10 +233,10 @@ export const CAROUSEL_PRESETS = [
     description: "CI/CD, IaC & container chaos. 🛠️🐳",
     image: "preset-6.png",
     icons: [
-      { id: 1, icon: "simple-icons:github" },
-      { id: 2, icon: "simple-icons:bluesky" },
-      { id: 3, icon: "simple-icons:linkedin" },
-      { id: 4, icon: "simple-icons:spotify" },
+      { id: 1, logo: "simple-icons:github" },
+      { id: 2, logo: "simple-icons:bluesky" },
+      { id: 3, logo: "simple-icons:linkedin" },
+      { id: 4, logo: "simple-icons:spotify" },
     ],
     links: [
       { id: 1, title: "Infra Templates (IaC)" },
@@ -280,9 +280,9 @@ export const CAROUSEL_PRESETS = [
     description: "Chill beats for studying & relaxing 🎵",
     image: "preset-7.png",
     icons: [
-      { id: 1, icon: "simple-icons:spotify" },
-      { id: 2, icon: "simple-icons:soundcloud" },
-      { id: 3, icon: "simple-icons:youtube" },
+      { id: 1, logo: "simple-icons:spotify" },
+      { id: 2, logo: "simple-icons:soundcloud" },
+      { id: 3, logo: "simple-icons:youtube" },
     ],
     links: [
       { id: 1, title: "Listen on Spotify" },
@@ -328,8 +328,8 @@ export const CAROUSEL_PRESETS = [
     description: "Traditional Irezumi & Neo-Japanese Ink🗾",
     image: "preset-8.png",
     icons: [
-      { id: 1, icon: "simple-icons:instagram" },
-      { id: 3, icon: "simple-icons:tiktok" },
+      { id: 1, logo: "simple-icons:instagram" },
+      { id: 3, logo: "simple-icons:tiktok" },
     ],
     links: [
       { id: 1, title: "Book a Session" },

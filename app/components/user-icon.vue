@@ -7,7 +7,7 @@
       class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
-      <icon :name="icon" size="20" :style="iconInnerStyle" />
+      <icon :name="logo" size="20" :style="iconInnerStyle" />
     </a>
   </li>
 </template>
@@ -17,7 +17,7 @@ import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<({
   url: string
-  icon: string
+  logo: string
   preferences: UserPreferencesType
 })>()
 

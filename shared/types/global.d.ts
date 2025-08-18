@@ -27,7 +27,7 @@ interface IconType {
   id?: string
   platform: string
   url: string
-  icon: string
+  logo: string
   clicks?: number
   createdAt?: Date
   updatedAt?: Date
@@ -107,8 +107,8 @@ interface UpdateLinkPayload {
 
 interface CreateIconPayload {
   platform: string
+  logo: string
   url: string
-  icon: string
 }
 
 interface UpdatePreferencesPayload {

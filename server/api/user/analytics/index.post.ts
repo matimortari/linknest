@@ -2,12 +2,11 @@ import db from "#server/lib/db"
 
 export default defineEventHandler(async (event) => {
   const { type, id, userId } = await readBody(event)
+  if (!userId) {
+    throw createError({ statusCode: 400, statusMessage: "User ID is required" })
+  }
 
   if (type === "pageView") {
-    if (!userId) {
-      throw createError({ statusCode: 400, statusMessage: "Missing userId for page view" })
-    }
-
     await db.pageView.create({
       data: {
         userId,
@@ -20,7 +19,14 @@ export default defineEventHandler(async (event) => {
 
   if (type === "link") {
     if (!id) {
-      throw createError({ statusCode: 400, statusMessage: "Missing id for link click" })
+      throw createError({ statusCode: 400, statusMessage: "Missing ID for link click" })
+    }
+
+    const link = await db.userLink.findUnique({ where: { id } })
+    if (!link)
+      throw createError({ statusCode: 404, statusMessage: "Link not found" })
+    if (link.userId === userId) {
+      return { message: "Self-click ignored" }
     }
 
     const linkClick = await db.linkClick.create({
@@ -40,7 +46,14 @@ export default defineEventHandler(async (event) => {
 
   if (type === "icon") {
     if (!id) {
-      throw createError({ statusCode: 400, statusMessage: "Missing id for icon click" })
+      throw createError({ statusCode: 400, statusMessage: "Missing ID for social icon click" })
+    }
+
+    const icon = await db.userIcon.findUnique({ where: { id } })
+    if (!icon)
+      throw createError({ statusCode: 404, statusMessage: "Social icon not found" })
+    if (icon.userId === userId) {
+      return { message: "Self-click ignored" }
     }
 
     const iconClick = await db.iconClick.create({

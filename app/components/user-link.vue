@@ -1,10 +1,11 @@
 <template>
-  <li class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center" :style="linkStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+  <li
+    class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center" :style="linkStyle"
+    @mouseenter="isHovered = true" @mouseleave="isHovered = false"
+  >
     <a
-      :href="url"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex size-full items-center justify-center"
+      :href="url" target="_blank"
+      rel="noopener noreferrer" class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
       <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">{{ title }}</span>

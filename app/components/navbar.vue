@@ -1,11 +1,7 @@
 <template>
   <nav class="flex w-full items-center justify-between px-4 pt-4">
     <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
-      <img
-        src="/assets/logo.png" alt="Logo"
-        width="35" height="35"
-        class="rounded-full"
-      >
+      <img src="/assets/logo.png" alt="Logo" width="35" height="35">
       <span class="font-chau text-2xl">LinkNest</span>
     </nuxt-link>
 

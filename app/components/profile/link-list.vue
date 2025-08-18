@@ -10,18 +10,16 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <div v-else-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
-      <p>No links yet. Add your first link!</p>
-    </div>
+    <p v-else-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
+      No links yet. Add your first link!
+    </p>
 
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-2">
       <li v-for="link in links" :key="link.id" class="card">
         <div class="flex flex-col gap-2">
           <div class="flex flex-row items-center justify-between">
-            <a :href="link.url" target="_blank" rel="noopener" class="max-w-[80%]">
-              <h5 class="truncate">
-                {{ link.title }}
-              </h5>
+            <a :href="link.url" target="_blank" rel="noopener" class="max-w-[80%] truncate">
+              {{ link.title }}
             </a>
 
             <div class="flex flex-row items-center gap-1">
@@ -41,12 +39,10 @@
       </li>
     </ul>
 
-    <div class="navigation-group justify-end">
-      <button class="btn-primary" aria-label="Add Link" @click="isDialogOpen = true">
-        <icon name="mdi:link-add" size="25" />
-        <span>Add Link</span>
-      </button>
-    </div>
+    <button class="btn-primary self-end" aria-label="Add Link" @click="isDialogOpen = true">
+      <icon name="mdi:link-add" size="25" />
+      <span>Add Link</span>
+    </button>
   </div>
 
   <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="isDialogOpen = false" @save="handleSaveLink" />

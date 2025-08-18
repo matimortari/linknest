@@ -2,6 +2,7 @@
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <span class="text-sm font-medium">Select Icon</span>
+
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
         <button
           v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
@@ -19,15 +20,13 @@
         <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <div v-if="iconStore.error" class="text-caption text-center text-danger-foreground">
+      <p v-if="iconStore.error" class="text-caption text-center text-danger-foreground">
         {{ iconStore.error }}
-      </div>
+      </p>
 
-      <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Social Icon">
-          Save
-        </button>
-      </footer>
+      <button class="btn-primary w-32 self-end" type="submit" aria-label="Save Social Icon">
+        Save
+      </button>
     </form>
   </Dialog>
 </template>

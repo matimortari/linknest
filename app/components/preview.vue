@@ -17,7 +17,7 @@
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
-        <img :src="user?.image ?? undefined" alt="Avatar" class="size-28 rounded-full object-cover" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}
@@ -30,12 +30,9 @@
         <div class="my-2 w-full">
           <ul v-if="icons.length" class="flex flex-row items-center justify-center gap-2">
             <UserIcon
-              v-for="icon in icons"
-              :key="icon.id"
-              :url="icon.url"
-              :logo="icon.logo"
-              :preferences="preferences!"
-              :icon-id="icon.id"
+              v-for="icon in icons" :key="icon.id"
+              :url="icon.url" :logo="icon.logo"
+              :preferences="preferences!" :icon-id="icon.id"
               :user-id="user?.id"
             />
           </ul>
@@ -44,12 +41,9 @@
         <div class="w-full">
           <ul v-if="links?.length" class="flex flex-col items-center gap-4">
             <UserLink
-              v-for="link in links"
-              :key="link.id"
-              :url="link.url"
-              :title="link.title"
-              :preferences="preferences!"
-              :link-id="link.id"
+              v-for="link in links" :key="link.id"
+              :url="link.url" :title="link.title"
+              :preferences="preferences!" :link-id="link.id"
               :user-id="user?.id"
             />
           </ul>
@@ -75,7 +69,7 @@
       </div>
 
       <div class="flex flex-col items-center justify-start gap-4 overflow-y-auto p-4 text-center">
-        <img :src="user?.image ?? undefined" alt="Avatar" class="size-24 rounded-full object-cover" :style="profilePictureStyle">
+        <img :src="user?.image ?? undefined" alt="Avatar" class="size-24 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user?.slug }}

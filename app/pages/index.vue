@@ -21,14 +21,16 @@
         <h1 class="font-bowlby text-5xl">
           Keep all your stuff together!
         </h1>
+
         <p class="font-lato font-semibold text-muted-foreground">
           Welcome to <span class="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info, and more
           in one place. Create and customize your page and share it with your audience.
         </p>
-        <a href="/sign-in" class="btn-primary">
+
+        <nuxt-link to="/sign-in" class="btn-primary">
           <span>Get Started Now!</span>
           <icon name="ri:arrow-right-line" size="20" />
-        </a>
+        </nuxt-link>
       </div>
 
       <div
@@ -92,10 +94,13 @@
     <h2 class="font-bowlby">
       Ready to Try?
     </h2>
+
     <p class="text-lg">
       Create an account and build your page today!
     </p>
-    <a href="/sign-in" class="btn-secondary">Get Started</a>
+    <nuxt-link to="/sign-in" class="btn-secondary">
+      Get Started
+    </nuxt-link>
     <p
       v-motion class="text-xs font-semibold italic"
       :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }"

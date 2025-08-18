@@ -1,10 +1,11 @@
 <template>
-  <li class="flex size-10 flex-row items-center justify-center rounded-full" :style="iconStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+  <li
+    class="flex size-10 items-center justify-center rounded-full" :style="iconStyle"
+    @mouseenter="isHovered = true" @mouseleave="isHovered = false"
+  >
     <a
-      :href="url"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="flex size-full items-center justify-center"
+      :href="url" target="_blank"
+      rel="noopener noreferrer" class="flex size-full items-center justify-center"
       @click="$emit('click')"
     >
       <icon :name="logo" size="20" :style="iconInnerStyle" />

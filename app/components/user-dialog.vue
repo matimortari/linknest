@@ -27,15 +27,13 @@
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>
 
-      <div v-if="userStore.error" class="text-caption text-center text-danger-foreground">
+      <p v-if="userStore.error" class="text-caption text-center text-danger-foreground">
         {{ userStore.error }}
-      </div>
+      </p>
 
-      <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Profile Info">
-          Save
-        </button>
-      </footer>
+      <button class="btn-primary w-32 self-end" type="submit" aria-label="Save Profile Info">
+        Save
+      </button>
     </form>
   </Dialog>
 </template>

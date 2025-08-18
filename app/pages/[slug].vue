@@ -1,10 +1,6 @@
 <template>
   <nuxt-link to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
-    <img
-      src="/assets/logo.png" alt="Logo"
-      width="35" height="35"
-      class="rounded-full"
-    >
+    <img src="/assets/logo.png" alt="Logo" width="35" height="35">
   </nuxt-link>
 
   <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
@@ -17,11 +13,7 @@
     </p>
 
     <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
-      <img
-        src="/assets/logo.png" alt="Logo"
-        width="35" height="35"
-        class="rounded-full"
-      >
+      <img src="/assets/logo.png" alt="Logo" width="35" height="35">
       <span class="font-chau text-2xl">LinkNest</span>
     </nuxt-link>
   </div>
@@ -32,7 +24,7 @@
 
       <img
         v-if="user.image" :src="user.image"
-        alt="Avatar" class="size-32 rounded-full object-cover"
+        alt="Avatar" class="size-32 object-cover"
         :style="profilePictureStyle"
       >
 
@@ -46,27 +38,19 @@
 
       <ul v-if="user.icons?.length && user.preferences" class="my-2 flex flex-row items-center justify-center gap-2">
         <UserIcon
-          v-for="icon in user.icons"
-          :key="icon.id"
-          :url="icon.url"
-          :logo="icon.logo"
-          :preferences="user.preferences"
-          :icon-id="icon.id"
-          :user-id="user.id"
-          @click="handleClick(icon.id ?? '', 'icon')"
+          v-for="icon in user.icons" :key="icon.id"
+          :url="icon.url" :logo="icon.logo"
+          :preferences="user.preferences" :icon-id="icon.id"
+          :user-id="user.id" @click="handleClick(icon.id ?? '', 'icon')"
         />
       </ul>
 
       <ul v-if="user.links?.length && user.preferences" class="flex flex-col items-center gap-4">
         <UserLink
-          v-for="link in user.links"
-          :key="link.id"
-          :url="link.url"
-          :title="link.title"
-          :preferences="user.preferences"
-          :link-id="link.id"
-          :user-id="user.id"
-          @click="handleClick(link.id ?? '', 'link')"
+          v-for="link in user.links" :key="link.id"
+          :url="link.url" :title="link.title"
+          :preferences="user.preferences" :link-id="link.id"
+          :user-id="user.id" @click="handleClick(link.id ?? '', 'link')"
         />
       </ul>
 
@@ -119,6 +103,7 @@ const descriptionStyle = computed(() => ({
 async function handleClick(id: string, type: "link" | "icon") {
   if (!user.value)
     return
+
   try {
     await userStore.trackClick(id, type, user.value.id ?? "")
   }

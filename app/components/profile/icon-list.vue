@@ -10,9 +10,9 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <div v-else-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
-      <p>No social icons yet. Add your first social icon!</p>
-    </div>
+    <p v-else-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
+      No social icons yet. Add your first social icon!
+    </p>
 
     <ul v-else class="flex flex-row gap-2">
       <li v-for="icon in icons" :key="icon.id" class="card relative flex size-20 items-center justify-center">
@@ -26,12 +26,10 @@
       </li>
     </ul>
 
-    <div class="navigation-group justify-end">
-      <button class="btn-primary" aria-label="Add Social Icon" @click="isDialogOpen = true">
-        <icon name="mdi:favorite-add" size="25" />
-        <span>Add Social Icon</span>
-      </button>
-    </div>
+    <button class="btn-primary self-end" aria-label="Add Social Icon" @click="isDialogOpen = true">
+      <icon name="mdi:favorite-add" size="25" />
+      <span>Add Social Icon</span>
+    </button>
   </div>
 
   <ProfileIconDialog :is-open="isDialogOpen" @close="isDialogOpen = false" @save="handleCreateIcon" />

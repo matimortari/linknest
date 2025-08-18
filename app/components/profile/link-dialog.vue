@@ -11,15 +11,13 @@
         <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <div v-if="linkStore.error" class="flex max-w-sm flex-col gap-2 text-center">
-        <span class="text-caption text-danger-foreground">{{ linkStore.error }}</span>
-      </div>
+      <p v-if="linkStore.error" class="text-caption text-center text-danger-foreground">
+        {{ linkStore.error }}
+      </p>
 
-      <footer class="flex justify-end">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
-          Save
-        </button>
-      </footer>
+      <button class="btn-primary w-32 self-end" type="submit" aria-label="Save Link">
+        Save
+      </button>
     </form>
   </Dialog>
 </template>

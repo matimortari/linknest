@@ -1,6 +1,6 @@
 <template>
   <li class="flex size-10 flex-row items-center justify-center rounded-full" :style="iconStyle" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
-    <icon :name="icon" size="20" :style="iconInnerStyle" />
+    <icon :name="logo" size="20" :style="iconInnerStyle" />
   </li>
 </template>
 
@@ -8,7 +8,7 @@
 import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<{
-  icon: string
+  logo: string
   preferences: UserPreferencesType
 }>()
 

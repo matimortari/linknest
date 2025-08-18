@@ -105,7 +105,7 @@ model UserIcon {
   userId     String
   url        String
   platform   String
-  icon       String
+  logo       String
   clicks     Int         @default(0)
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt

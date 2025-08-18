@@ -50,13 +50,13 @@ const iconStore = useIconStore()
 
 const form = ref<IconType>({
   platform: "",
-  icon: "",
+  logo: "",
   url: "",
 })
 
 function selectIcon(label: string, iconName: string) {
   form.value.platform = label
-  form.value.icon = iconName
+  form.value.logo = iconName
   iconStore.error = null
 }
 
@@ -79,7 +79,7 @@ function handleSubmit() {
 
 watch(() => props.isOpen, (open) => {
   if (open) {
-    form.value = { platform: "", icon: "", url: "" }
+    form.value = { platform: "", logo: "", url: "" }
     iconStore.error = null
   }
 }, { immediate: true })

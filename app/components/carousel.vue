@@ -20,7 +20,7 @@
         </div>
 
         <img
-          :src="getPresetImage(preset.image)"
+          :src="getPresetImage(preset.image) as string"
           :alt="preset.slug"
           width="80" height="80"
           :style="profilePictureStyle"
@@ -35,7 +35,7 @@
         </p>
 
         <ul class="my-2 flex flex-row items-center justify-center gap-2">
-          <CarouselIcon v-for="icon in preset.icons" :key="icon.id" :icon="icon.icon" :preferences="preferences" />
+          <CarouselIcon v-for="icon in preset.icons" :key="icon.id" :logo="icon.logo" :preferences="preferences" />
         </ul>
 
         <ul class="flex flex-col items-center space-y-4 overflow-auto p-4">
@@ -94,8 +94,9 @@ const descriptionStyle = computed(() => {
   }
 })
 
+const images = import.meta.glob("~/assets/presets/*", { eager: true, import: "default" })
 function getPresetImage(filename: string) {
-  return new URL(`../assets/presets/${filename}`, import.meta.url).href
+  return images[`/assets/presets/${filename}`]
 }
 
 onMounted(() => {

@@ -17,7 +17,7 @@
     <ul v-else class="flex flex-row gap-2">
       <li v-for="icon in icons" :key="icon.id" class="card relative flex size-20 items-center justify-center">
         <a :href="icon.url" target="_blank" rel="noopener">
-          <icon :name="icon.icon" :size="30" />
+          <icon :name="icon.logo" :size="30" />
         </a>
 
         <button class="absolute bottom-0 right-0 p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">

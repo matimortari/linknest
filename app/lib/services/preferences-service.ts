@@ -1,5 +1,3 @@
-import { getBaseUrl } from "~/lib/utils"
-
 export async function getPreferencesService(): Promise<UserPreferencesType> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/preferences`, {

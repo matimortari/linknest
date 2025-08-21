@@ -122,8 +122,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/user-store"
-
 const userStore = useUserStore()
 
 const { user, isLoading } = storeToRefs(userStore)

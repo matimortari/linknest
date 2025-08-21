@@ -20,9 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { useLinkStore } from "~/lib/stores/link-store"
-import { copyToClipboard } from "~/lib/utils"
-
 const props = defineProps<({
   url: string
   title: string

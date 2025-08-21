@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/icon-store"
-
 const props = defineProps<({
   url: string
   logo: string

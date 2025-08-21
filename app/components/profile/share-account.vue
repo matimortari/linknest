@@ -51,9 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/user-store"
-import { copyToClipboard } from "~/lib/utils"
-
 const userStore = useUserStore()
 
 const { user } = storeToRefs(userStore)

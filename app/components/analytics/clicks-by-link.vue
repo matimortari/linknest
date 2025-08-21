@@ -40,9 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/icon-store"
-import { useLinkStore } from "~/lib/stores/link-store"
-
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
 
@@ -87,6 +84,7 @@ const mergedItems = computed<MergedItem[]>(() => {
   const typedIcons: MergedIconItem[] = icons.value.map(icon => ({
     ...icon,
     type: "icon",
+    icon: icon.logo,
     clicks: icon.clicks ?? 0,
     formattedDate: new Date(icon.createdAt ?? 0).toLocaleDateString("en-US", {
       year: "numeric",

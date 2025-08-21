@@ -113,9 +113,6 @@
 </template>
 
 <script setup lang="ts">
-import guest from "~/lib/middleware/guest"
-import { QUOTES } from "~/lib/quotes.js"
-
 const randomQuote = ref(QUOTES[0])
 
 onMounted(() => {

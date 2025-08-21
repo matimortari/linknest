@@ -39,8 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/user-store"
-
 const props = defineProps<{
   isOpen: boolean
   slug?: string

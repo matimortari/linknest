@@ -62,8 +62,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "~/lib/stores/user-store"
-
 const userStore = useUserStore()
 const route = useRoute()
 const slug = route.params.slug as string

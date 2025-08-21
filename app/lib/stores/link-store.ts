@@ -1,10 +1,4 @@
 import { linkSchema } from "#shared/schemas/schemas"
-import {
-  createLinkService,
-  deleteLinkService,
-  getLinksService,
-  updateLinkService,
-} from "~/lib/services/links-service"
 
 export const useLinkStore = defineStore("link", () => {
   const links = ref<LinkType[]>([])

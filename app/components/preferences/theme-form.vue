@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { THEMES } from "~/lib/themes"
-
 const props = defineProps<{
   setTheme: (preferences: any) => void
 }>()

@@ -1,13 +1,4 @@
 import { userDataSchema } from "#shared/schemas/schemas"
-import {
-  deleteUserService,
-  getUserBySlugService,
-  getUserService,
-  trackClickService,
-  trackPageVisitService,
-  updateUserImageService,
-  updateUserService,
-} from "~/lib/services/user-service"
 
 export const useUserStore = defineStore("user", () => {
   const user = ref<UserType | null>(null)

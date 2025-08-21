@@ -19,11 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { useIconStore } from "~/lib/stores/icon-store"
-import { useLinkStore } from "~/lib/stores/link-store"
-import { usePreferencesStore } from "~/lib/stores/preferences-store"
-import { useUserStore } from "~/lib/stores/user-store"
-
 const userStore = useUserStore()
 const preferencesStore = usePreferencesStore()
 const linkStore = useLinkStore()

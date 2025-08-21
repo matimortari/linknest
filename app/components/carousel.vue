@@ -56,10 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import { CAROUSEL_PRESETS } from "~/lib/carousel-presets"
-import { useIconStore } from "~/lib/stores/icon-store"
-import { useLinkStore } from "~/lib/stores/link-store"
-
 const iconStore = useIconStore()
 const linkStore = useLinkStore()
 const { currentIndex } = useCarousel(CAROUSEL_PRESETS.length, 3000)

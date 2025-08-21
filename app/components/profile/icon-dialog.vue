@@ -34,7 +34,6 @@
 <script setup lang="ts">
 import { SOCIAL_ICONS } from "#shared/config/social-icons"
 import { iconSchema } from "#shared/schemas/schemas"
-import { useIconStore } from "~/lib/stores/icon-store"
 
 const props = defineProps<{
   isOpen: boolean

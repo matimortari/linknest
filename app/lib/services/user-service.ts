@@ -1,5 +1,3 @@
-import { getBaseUrl } from "~/lib/utils"
-
 export async function getUserService(): Promise<UserType> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/user`, {

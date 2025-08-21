@@ -1,5 +1,3 @@
-import { getBaseUrl } from "~/lib/utils"
-
 export async function getLinksService(): Promise<LinkType[]> {
   const baseUrl = getBaseUrl()
   const response = await fetch(`${baseUrl}/api/links`, {

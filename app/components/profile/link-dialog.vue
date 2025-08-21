@@ -24,7 +24,6 @@
 
 <script setup lang="ts">
 import { linkSchema } from "#shared/schemas/schemas"
-import { useLinkStore } from "~/lib/stores/link-store"
 
 const props = defineProps<{
   isOpen: boolean

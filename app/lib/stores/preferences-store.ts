@@ -1,10 +1,3 @@
-import {
-  getPreferencesService,
-  resetPreferencesService,
-  updatePreferencesService,
-  updateSupportBannerService,
-} from "~/lib/services/preferences-service"
-
 export const usePreferencesStore = defineStore("preferences", () => {
   const preferences = ref<UserPreferencesType | null>(null)
   const isLoading = ref(false)

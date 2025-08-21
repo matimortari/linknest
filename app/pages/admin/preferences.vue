@@ -31,8 +31,6 @@
 </template>
 
 <script setup lang="ts">
-import auth from "~/lib/middleware/auth"
-
 useHead({
   title: "Preferences - LinkNest",
   link: [

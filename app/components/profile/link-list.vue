@@ -49,8 +49,6 @@
 </template>
 
 <script setup lang="ts">
-import { useLinkStore } from "~/lib/stores/link-store"
-
 const linkStore = useLinkStore()
 
 const { links, isLoading } = storeToRefs(linkStore)

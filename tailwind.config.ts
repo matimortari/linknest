@@ -1,4 +1,6 @@
-export default {
+import type { Config } from "tailwindcss"
+
+export default <Partial<Config>>{
   darkMode: "class",
   theme: {
     fontFamily: {
@@ -16,9 +18,9 @@ export default {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-        overlay: {
-          DEFAULT: "var(--overlay)",
-          foreground: "var(--overlay-foreground)",
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
         },
         primary: {
           DEFAULT: "var(--primary)",

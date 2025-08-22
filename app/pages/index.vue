@@ -9,7 +9,7 @@
     <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
     <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
 
-    <div class="container mx-auto flex min-h-screen flex-col items-center justify-between gap-12 md:flex-row">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-12 md:flex-row md:px-12">
       <div
         v-motion class="flex max-w-lg flex-col items-center gap-4 text-center md:w-1/2 md:items-start md:text-start"
         :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
@@ -91,6 +91,8 @@
           'linear-gradient(to right, var(--muted) 1px, transparent 1px), linear-gradient(to bottom, var(--muted) 1px, transparent 1px)',
       }"
     />
+    <div class="cta-vignette" />
+
     <h2 class="font-bowlby">
       Ready to Try?
     </h2>

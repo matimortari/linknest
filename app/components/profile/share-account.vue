@@ -16,7 +16,7 @@
       </button>
 
       <transition name="dropdown-fade">
-        <div v-if="isDropdownOpen" class="overlay absolute right-0 top-full" role="menu">
+        <div v-if="isDropdownOpen" class="popover absolute right-0 top-full" role="menu">
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
             <button
               class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"

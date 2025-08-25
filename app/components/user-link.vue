@@ -1,6 +1,6 @@
 <template>
   <li
-    class="relative flex w-full min-w-32 max-w-80 flex-row items-center justify-center" :style="linkStyle"
+    class="relative flex w-full max-w-80 min-w-32 flex-row items-center justify-center" :style="linkStyle"
     @mouseenter="isHovered = true" @mouseleave="isHovered = false"
   >
     <a
@@ -11,7 +11,7 @@
       <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">{{ title }}</span>
     </a>
     <button
-      v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 flex-shrink-0 transition-all"
+      v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 shrink-0 transition-all"
       aria-label="Copy Link" @click.stop="copyToClipboard(props.url)"
     >
       <icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />

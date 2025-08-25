@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/" class="hover:scale-sm fixed left-4 top-4 z-50 flex flex-row items-center gap-2 transition-all">
+  <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all">
     <img src="/assets/logo.png" alt="Logo" width="35" height="35">
   </nuxt-link>
 
@@ -8,7 +8,7 @@
   </div>
 
   <div v-else-if="!user || !user.id" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-    <p class="text-lead text-center text-muted-foreground">
+    <p class="text-lead text-muted-foreground text-center">
       User {{ slug }} not found.
     </p>
 
@@ -32,7 +32,7 @@
         {{ `@${user.slug}` }}
       </p>
 
-      <p v-if="user.description" class="max-w-sm truncate whitespace-break-spaces leading-4" :style="descriptionStyle">
+      <p v-if="user.description" class="max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
         {{ user.description }}
       </p>
 

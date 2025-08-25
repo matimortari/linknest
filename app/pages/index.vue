@@ -6,8 +6,8 @@
     class="relative flex min-h-screen flex-col items-center justify-center p-8 md:justify-start md:pt-0" :initial="{ opacity: 0, y: 20 }"
     :visible="{ opacity: 1, y: 0 }" :duration="800"
   >
-    <div class="absolute left-1/4 top-20 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
-    <div class="absolute bottom-20 right-1/4 -z-10 size-64 rounded-full bg-primary opacity-20 blur-3xl" />
+    <div class="bg-primary absolute top-20 left-1/4 -z-10 size-64 rounded-full opacity-20 blur-3xl" />
+    <div class="bg-primary absolute right-1/4 bottom-20 -z-10 size-64 rounded-full opacity-20 blur-3xl" />
 
     <div class="container mx-auto flex flex-col items-center justify-between gap-12 md:flex-row md:px-12">
       <div
@@ -15,15 +15,15 @@
         :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
         :duration="800"
       >
-        <h4 class="font-lato font-bold text-accent">
+        <h4 class="font-lato text-accent font-bold">
           Your link-in-bio page 🔗🪺
         </h4>
         <h1 class="font-bowlby text-5xl">
           Keep all your stuff together!
         </h1>
 
-        <p class="font-lato font-semibold text-muted-foreground">
-          Welcome to <span class="font-bold text-accent">LinkNest</span>! Your links, profiles, contact info, and more
+        <p class="font-lato text-muted-foreground font-semibold">
+          Welcome to <span class="text-accent font-bold">LinkNest</span>! Your links, profiles, contact info, and more
           in one place. Create and customize your page and share it with your audience.
         </p>
 
@@ -44,7 +44,7 @@
   </section>
 
   <section id="features" class="relative flex flex-col items-center justify-center gap-12 p-12 text-center">
-    <div class="absolute inset-0 -z-10 h-44 w-10/12 rounded-full bg-primary opacity-20 blur-3xl" />
+    <div class="bg-primary absolute inset-0 -z-10 h-44 w-10/12 rounded-full opacity-20 blur-3xl" />
     <h2
       v-motion class="font-bowlby"
       :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
@@ -62,14 +62,14 @@
         :duration="800" :delay="100 * index"
       >
         <div class="flex flex-row items-center gap-2">
-          <span class="flex size-10 items-center justify-center rounded-full bg-accent bg-gradient-to-bl from-primary to-secondary p-2">
+          <span class="bg-accent from-primary to-secondary flex size-10 items-center justify-center rounded-full bg-gradient-to-bl p-2">
             <icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
           </span>
           <h5>
             {{ feature.title }}
           </h5>
         </div>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-muted-foreground text-sm">
           {{ feature.description }}
         </p>
       </div>
@@ -80,7 +80,7 @@
     id="cta" v-motion
     :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
     :duration="800"
-    class="relative z-10 flex flex-col items-center justify-center gap-6 border-y bg-card p-12 text-center"
+    class="bg-card relative z-10 flex flex-col items-center justify-center gap-6 border-y p-12 text-center"
   >
     <div
       v-motion

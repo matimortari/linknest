@@ -14,7 +14,7 @@
           :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
           :duration="800"
         >
-          Welcome back, <span class="font-bold text-accent">{{ user?.slug }}</span>!
+          Welcome back, <span class="text-accent font-bold">{{ user?.slug }}</span>!
         </p>
       </header>
 

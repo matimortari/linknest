@@ -11,7 +11,7 @@
         <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <p v-if="linkStore.error" class="text-caption text-center text-danger-foreground">
+      <p v-if="linkStore.error" class="text-caption text-danger-foreground text-center">
         {{ linkStore.error }}
       </p>
 

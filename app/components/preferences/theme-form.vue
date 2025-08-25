@@ -5,8 +5,8 @@
       :title="theme.title" aria-label="Select Theme"
       tabindex="0" class="flex size-full items-center justify-center rounded-lg border-2 p-8"
       :class="{
-        'border-foreground': selectedTheme === theme.title,
-        'border-dashed opacity-60': selectedTheme !== theme.title,
+        '!border-foreground': selectedTheme === theme.title,
+        '!border-dashed opacity-60': selectedTheme !== theme.title,
       }"
       :style="getThemeButtonStyle(theme.preferences)" @click="handleThemeSelection(theme.title)"
     >

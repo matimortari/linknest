@@ -8,7 +8,7 @@
             id="image"
             type="file"
             accept="image/*"
-            class="absolute left-0 top-0 size-full opacity-0"
+            class="absolute top-0 left-0 size-full opacity-0"
             @change="handleImageChange"
           >
           <label class="btn absolute -bottom-2 -left-2" for="image">
@@ -27,7 +27,7 @@
         <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
       </div>
 
-      <p v-if="userStore.error" class="text-caption text-center text-danger-foreground">
+      <p v-if="userStore.error" class="text-caption text-danger-foreground text-center">
         {{ userStore.error }}
       </p>
 

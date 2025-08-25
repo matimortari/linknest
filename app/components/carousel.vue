@@ -1,11 +1,11 @@
 <template>
-  <div class="relative flex select-none items-center justify-center overflow-hidden p-8 pt-0">
+  <div class="relative flex items-center justify-center overflow-hidden p-8 pt-0 select-none">
     <transition name="carousel-3d" mode="out-in">
       <div
         v-if="preset" :key="preset.slug"
-        class="relative flex min-h-[560px] w-[320px] flex-col items-center justify-center gap-2 rounded-[2.5rem] border-4 border-[#000000] pb-6 pt-12 text-center shadow-lg shadow-[#000000]" :style="backgroundStyle"
+        class="relative flex min-h-[560px] w-[320px] flex-col items-center justify-center gap-2 rounded-[2.5rem] border-4 !border-black pt-12 pb-6 text-center shadow-lg shadow-black" :style="backgroundStyle"
       >
-        <div class="absolute -top-1 z-10 w-[312px] rounded-t-[2.5rem] bg-gradient-to-r from-primary to-secondary pb-1">
+        <div class="from-primary to-secondary absolute -top-1 z-10 w-[312px] rounded-t-[2.5rem] bg-gradient-to-r pb-1">
           <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] px-6 py-2">
             <div class="flex flex-row items-center gap-2">
               <div class="size-2 rounded-full bg-[#3b3b41]" />
@@ -44,7 +44,7 @@
         <ul class="flex flex-col items-center space-y-4 overflow-auto p-4">
           <li
             v-for="link in preset.links" :key="link.id"
-            class="flex w-full min-w-32 max-w-72 justify-center" :style="linkStore.getLinkStyle(preferences, linkHover[link.id] ?? false)"
+            class="flex w-full max-w-72 min-w-32 justify-center" :style="linkStore.getLinkStyle(preferences, linkHover[link.id] ?? false)"
             @mouseenter="linkHover[link.id] = true" @mouseleave="linkHover[link.id] = false"
           >
             <span :style="linkStore.getLinkInnerStyle(preferences)">{{ link.title }}</span>

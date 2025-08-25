@@ -17,11 +17,11 @@
       >
         <div class="navigation-group my-2">
           <div class="navigation-group w-full md:w-auto">
-            <div class="relative size-14 flex-shrink-0">
+            <div class="relative size-14 shrink-0">
               <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover">
 
               <button
-                title="Edit Profile Information" class="btn-primary absolute -bottom-2 -right-2 p-1"
+                title="Edit Profile Information" class="btn-primary absolute -right-2 -bottom-2 !p-1"
                 aria-label="Edit Profile Information" @click="isDialogOpen = true"
               >
                 <icon name="mdi:square-edit-outline" size="20" class="hover:scale-md transition-all" />
@@ -32,11 +32,11 @@
               <nuxt-link
                 :to="`/${user.slug}`"
                 :title="`linknest-live.vercel.app/${user.slug}`"
-                class="break-words text-xs hover:underline"
+                class="text-xs break-words hover:underline"
               >
                 @{{ user.slug }}
               </nuxt-link>
-              <p class="text-label line-clamp-3 max-w-full break-words text-muted-foreground">
+              <p class="text-label text-muted-foreground line-clamp-3 max-w-full break-words">
                 {{ user.description }}
               </p>
             </div>

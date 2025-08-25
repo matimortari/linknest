@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!icons.length" class="text-lead my-2 text-center text-muted-foreground">
+    <p v-else-if="!icons.length" class="text-lead text-muted-foreground my-2 text-center">
       No social icons yet. Add your first social icon!
     </p>
 
@@ -20,7 +20,7 @@
           <icon :name="icon.logo" :size="30" />
         </a>
 
-        <button class="absolute bottom-0 right-0 p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
+        <button class="absolute right-0 bottom-0 flex cursor-pointer items-center p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
           <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>

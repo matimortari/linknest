@@ -7,7 +7,7 @@
         <button
           v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
           type="button" aria-label="Select Social Icon"
-          class="flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all hover:bg-muted active:bg-accent"
+          class="hover:bg-muted active:bg-accent flex cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all"
           :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
         >
           <icon :name="iconName" size="25" />
@@ -20,7 +20,7 @@
         <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
       </div>
 
-      <p v-if="iconStore.error" class="text-caption text-center text-danger-foreground">
+      <p v-if="iconStore.error" class="text-caption text-danger-foreground text-center">
         {{ iconStore.error }}
       </p>
 

@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!links.length" class="text-lead my-2 text-center text-muted-foreground">
+    <p v-else-if="!links.length" class="text-lead text-muted-foreground my-2 text-center">
       No links yet. Add your first link!
     </p>
 
@@ -23,16 +23,16 @@
             </a>
 
             <div class="flex flex-row items-center gap-1">
-              <button aria-label="Update Link" @click="handleUpdateLink(link)">
+              <button aria-label="Update Link" class="flex cursor-pointer items-center" @click="handleUpdateLink(link)">
                 <icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent transition-all" />
               </button>
-              <button aria-label="Delete Link" @click="handleDeleteLink(link.id!)">
+              <button aria-label="Delete Link" class="flex cursor-pointer items-center" @click="handleDeleteLink(link.id!)">
                 <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
           </div>
 
-          <p class="text-label truncate text-muted-foreground">
+          <p class="text-label text-muted-foreground truncate">
             {{ link.url }}
           </p>
         </div>

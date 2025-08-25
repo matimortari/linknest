@@ -1,8 +1,8 @@
 <template>
-  <div class="my-6 flex max-h-[560px] select-none flex-col items-center justify-center">
+  <div class="my-6 flex max-h-[560px] flex-col items-center justify-center select-none">
     <!-- Mobile Preview Toggle -->
     <button
-      class="btn fixed bottom-8 z-20 p-2 sm:bottom-36 md:bottom-12 md:hidden"
+      class="btn fixed bottom-8 z-20 sm:bottom-36 md:!hidden"
       aria-label="Toggle Mobile Preview" @click="isMobilePreviewVisible = !isMobilePreviewVisible"
     >
       <icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
@@ -13,7 +13,7 @@
     <div
       v-show="isMobilePreviewVisible"
       id="mobile-preview"
-      class="fixed left-0 top-0 z-10 size-full overflow-y-auto bg-background p-12 md:hidden"
+      class="fixed top-0 left-0 z-10 size-full overflow-y-auto p-12 md:hidden"
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
@@ -48,7 +48,7 @@
             />
           </ul>
 
-          <p v-else class="text-center text-muted-foreground">
+          <p v-else class="text-muted-foreground text-center">
             No links yet.
           </p>
         </div>
@@ -60,10 +60,10 @@
       v-motion :initial="{ opacity: 0, x: 20 }"
       :visible="{ opacity: 1, x: 0 }" :duration="800"
       :style="backgroundStyle"
-      class="hide-scrollbar relative hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 border-[#000000] shadow-lg shadow-[#000000] md:block md:w-10/12"
+      class="hide-scrollbar relative hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block md:w-10/12"
     >
-      <div class="sticky left-1/2 top-2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-[#000000]" />
-      <div class="absolute right-6 top-2 z-10 flex flex-row items-center justify-end gap-2 text-[#000000]">
+      <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
+      <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
         <icon name="mdi:signal" size="15" />
         <icon name="mdi:wifi" size="15" />
       </div>
@@ -75,7 +75,7 @@
           @{{ user?.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces leading-4" :style="descriptionStyle">
+        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
           {{ user?.description }}
         </p>
 
@@ -106,7 +106,7 @@
             />
           </ul>
 
-          <p v-else class="text-center text-muted-foreground">
+          <p v-else class="text-muted-foreground text-center">
             No links yet.
           </p>
         </div>

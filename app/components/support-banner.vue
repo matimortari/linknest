@@ -8,7 +8,7 @@
       <div class="flex flex-row items-center gap-2 md:flex-col md:items-start">
         <div class="flex flex-col gap-4">
           <div class="flex flex-row-reverse items-start gap-4 text-center md:flex-row md:items-center">
-            <icon :name="bannerIcon" size="35" class="hidden flex-shrink-0 text-[#ebe8e8] md:block" />
+            <icon :name="bannerIcon" size="35" class="hidden shrink-0 text-[#ebe8e8] md:block" />
             <h4>
               {{ bannerMessage }}
             </h4>

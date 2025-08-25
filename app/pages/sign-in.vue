@@ -39,7 +39,7 @@
           </button>
         </div>
 
-        <p class="p-4 text-muted-foreground">
+        <p class="text-muted-foreground p-4">
           By continuing, you agree to our
           <nuxt-link to="/legal/privacy" class="text-primary hover:underline">
             Privacy Policy

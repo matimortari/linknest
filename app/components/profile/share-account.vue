@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
+  <div class="bg-muted relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border p-2">
     <div class="flex w-full flex-col gap-1 overflow-x-hidden">
       <h5 class="text-foreground">
         Share your Page:
@@ -16,10 +16,10 @@
       </button>
 
       <transition name="dropdown-fade">
-        <div v-if="isDropdownOpen" class="popover absolute right-0 top-full" role="menu">
+        <div v-if="isDropdownOpen" class="popover absolute top-full right-0" role="menu">
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
             <button
-              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              class="hover:bg-muted flex cursor-pointer flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
               aria-label="Copy Profile Link" @click="() => { copyToClipboard(`https://linknest-live.vercel.app/${user?.slug}`); isDropdownOpen = false }"
             >
               <icon name="mdi:clipboard-multiple-outline" size="20" />
@@ -27,7 +27,7 @@
             </button>
 
             <button
-              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              class="hover:bg-muted flex cursor-pointer flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
               aria-label="Share on X" @click="handleShareTwitter; isDropdownOpen = false"
             >
               <icon name="simple-icons:x" size="20" />
@@ -35,7 +35,7 @@
             </button>
 
             <button
-              class="flex flex-row items-center gap-2 whitespace-nowrap rounded-2xl p-2 hover:bg-muted" role="menuitem"
+              class="hover:bg-muted flex cursor-pointer flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
               aria-label="Get QR Code" @click="isDialogOpen = true; isDropdownOpen = false"
             >
               <icon name="mdi:qrcode" size="20" />

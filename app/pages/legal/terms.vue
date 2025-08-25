@@ -4,7 +4,7 @@
     <h2 class="font-bowlby">
       Terms of Service
     </h2>
-    <p class="text-center text-muted-foreground">
+    <p class="text-muted-foreground text-center">
       Please read these terms carefully before using LinkNest.
     </p>
   </header>
@@ -20,7 +20,7 @@
       </h3>
 
       <p v-html="section.description" />
-      <ul v-if="section.list" class="list-inside list-disc space-y-1 text-muted-foreground">
+      <ul v-if="section.list" class="text-muted-foreground list-inside list-disc space-y-1">
         <li v-for="item in section.list" :key="item" v-html="item" />
       </ul>
     </section>

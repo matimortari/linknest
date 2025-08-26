@@ -18,11 +18,17 @@ export const BORDER_WIDTHS = [
 ]
 
 export const FONT_FAMILIES = [
-  { label: "Inter", value: "Inter, sans-serif" },
   { label: "Roboto", value: "Roboto, sans-serif" },
+  { label: "Noto Sans", value: "Noto Sans, sans-serif" },
   { label: "Montserrat", value: "Montserrat, sans-serif" },
-  { label: "Open Sans", value: "Open Sans, sans-serif" },
-  { label: "Arial", value: "Arial, sans-serif" },
+  { label: "Playfair Display", value: "Playfair Display, serif" },
+  { label: "Lora", value: "Lora, serif" },
+  { label: "Amarante", value: "Amarante, serif" },
+  { label: "Righteous", value: "Righteous, serif" },
+  { label: "Ribeye", value: "Ribeye, serif" },
+  { label: "Ribeye Marrow", value: "Ribeye Marrow, serif" },
+  { label: "Audiowide", value: "Audiowide, sans-serif" },
+  { label: "Ubuntu Mono", value: "Ubuntu Mono, sans-serif" },
 ]
 
 export const FONT_SIZES = [

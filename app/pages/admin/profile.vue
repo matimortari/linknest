@@ -10,7 +10,7 @@
           Profile
         </h2>
         <p
-          v-motion class="text-caption text-muted-foreground"
+          v-motion class="text-caption"
           :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
           :duration="800"
         >
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="w-full md:w-1/3">
+    <div class="hidden w-full md:block md:w-1/3">
       <Preview />
     </div>
   </div>
@@ -41,7 +41,7 @@ useHead({
   title: "Profile - LinkNest",
   link: [
     { rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" },
-    { rel: "icon", href: "/favicon.ico" },
+    { rel: "icon", href: "/favicon.svg" },
   ],
   meta: [{ name: "description", content: "LinkNest profile page." }],
 })

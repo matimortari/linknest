@@ -1,16 +1,16 @@
 <template>
   <div class="section-container flex flex-col gap-4">
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         Clicks By Link
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Your most visited links & social icons.
       </p>
     </header>
 
     <Spinner v-if="isIconsLoading || isLinksLoading" />
-    <p v-else-if="!links.length && !icons.length" class="text-lead text-muted-foreground my-2 text-center">
+    <p v-else-if="!links.length && !icons.length" class="text-lead my-2 text-center">
       No links or social icons available yet.
     </p>
 
@@ -21,16 +21,16 @@
           <h5 class="text-muted-foreground truncate">
             {{ item.type === 'link' ? item.title : item.platform }}
           </h5>
-          <span class="text-label whitespace-nowrap">
+          <span class="text-caption whitespace-nowrap">
             - {{ item.clicks }} clicks
           </span>
         </div>
 
         <div class="flex flex-col gap-1">
-          <p class="text-label truncate">
+          <p class="text-caption truncate">
             {{ item.url }}
           </p>
-          <p class="text-label text-muted-foreground">
+          <p class="text-caption text-muted-foreground">
             Created at {{ item.formattedDate }}
           </p>
         </div>

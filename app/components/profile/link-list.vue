@@ -1,38 +1,38 @@
 <template>
   <div class="section-container flex flex-col gap-2">
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         My Links
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Manage your links.
       </p>
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!links.length" class="text-lead text-muted-foreground my-2 text-center">
+    <p v-else-if="!links.length" class="text-lead my-2 text-center">
       No links yet. Add your first link!
     </p>
 
-    <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-2">
+    <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-2 2xl:grid-cols-3">
       <li v-for="link in links" :key="link.id" class="card">
         <div class="flex flex-col gap-2">
           <div class="flex flex-row items-center justify-between">
-            <a :href="link.url" target="_blank" rel="noopener" class="max-w-[80%] truncate">
+            <nuxt-link :href="link.url" class="max-w-[80%] truncate font-semibold">
               {{ link.title }}
-            </a>
+            </nuxt-link>
 
             <div class="flex flex-row items-center gap-1">
-              <button aria-label="Update Link" class="flex cursor-pointer items-center" @click="handleUpdateLink(link)">
-                <icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-accent transition-all" />
+              <button aria-label="Update Link" class="flex items-center" @click="handleUpdateLink(link)">
+                <icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-primary transition-all" />
               </button>
-              <button aria-label="Delete Link" class="flex cursor-pointer items-center" @click="handleDeleteLink(link.id!)">
+              <button aria-label="Delete Link" class="flex items-center" @click="handleDeleteLink(link.id!)">
                 <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
           </div>
 
-          <p class="text-label text-muted-foreground truncate">
+          <p class="text-caption truncate">
             {{ link.url }}
           </p>
         </div>

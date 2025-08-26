@@ -1,26 +1,26 @@
 <template>
   <div class="section-container flex flex-col gap-2">
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         My Social Icons
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Manage your social icons.
       </p>
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!icons.length" class="text-lead text-muted-foreground my-2 text-center">
+    <p v-else-if="!icons.length" class="text-lead my-2 text-center">
       No social icons yet. Add your first social icon!
     </p>
 
     <ul v-else class="flex flex-row gap-2">
       <li v-for="icon in icons" :key="icon.id" class="card relative flex size-20 items-center justify-center">
-        <a :href="icon.url" target="_blank" rel="noopener">
+        <nuxt-link :to="icon.url">
           <icon :name="icon.logo" :size="30" />
-        </a>
+        </nuxt-link>
 
-        <button class="absolute right-0 bottom-0 flex cursor-pointer items-center p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
+        <button class="absolute right-0 bottom-0 flex items-center p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
           <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>

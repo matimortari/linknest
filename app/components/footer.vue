@@ -13,7 +13,7 @@
       <nuxt-link to="/legal/terms" class="hover:text-accent underline">
         Terms of Service
       </nuxt-link>
-      <nuxt-link to="https://github.com/matimortari/linknest" target="_blank" rel="noopener noreferrer">
+      <nuxt-link to="https://github.com/matimortari/linknest">
         <icon name="simple-icons:github" size="25" class="hover:scale-md hover:text-accent transition-all" />
       </nuxt-link>
     </div>

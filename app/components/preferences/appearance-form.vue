@@ -1,10 +1,10 @@
 <template>
   <div v-if="preferences" class="section-container flex flex-col gap-4">
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         Appearance
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Customize the appearance for your page.
       </p>
     </header>
@@ -23,13 +23,7 @@
       <div class="flex flex-row items-center gap-1">
         <button class="btn-primary" aria-label="Save Preferences" @click="handleUpdatePreferences">
           <icon name="mdi:content-save-check" size="20" />
-          <span>{{
-            status === 'saved'
-              ? 'Saved!'
-              : status === 'reset'
-                ? 'Reset!'
-                : 'Save Changes'
-          }}</span>
+          <span>{{ status === 'saved' ? 'Saved!' : status === 'reset' ? 'Reset!' : 'Save' }}</span>
         </button>
 
         <button title="Reset Preferences" class="btn-danger" aria-label="Reset Preferences" @click="handleResetPreferences()">

@@ -1,68 +1,45 @@
 <template>
   <Navbar />
 
-  <section
-    id="hero" v-motion
-    class="relative flex min-h-screen flex-col items-center justify-center p-8 md:justify-start md:pt-0" :initial="{ opacity: 0, y: 20 }"
-    :visible="{ opacity: 1, y: 0 }" :duration="800"
-  >
-    <div class="bg-primary absolute top-20 left-1/4 -z-10 size-64 rounded-full opacity-20 blur-3xl" />
-    <div class="bg-primary absolute right-1/4 bottom-20 -z-10 size-64 rounded-full opacity-20 blur-3xl" />
-
-    <div class="container mx-auto flex flex-col items-center justify-between gap-12 md:flex-row md:px-12">
-      <div
-        v-motion class="flex max-w-lg flex-col items-center gap-4 text-center md:w-1/2 md:items-start md:text-start"
-        :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
-        :duration="800"
-      >
-        <h4 class="font-lato text-accent font-bold">
-          Your link-in-bio page 🔗🪺
-        </h4>
-        <h1 class="font-bowlby text-5xl">
-          Keep all your stuff together!
-        </h1>
-
-        <p class="font-lato text-muted-foreground font-semibold">
-          Welcome to <span class="text-accent font-bold">LinkNest</span>! Your links, profiles, contact info, and more
-          in one place. Create and customize your page and share it with your audience.
-        </p>
-
-        <nuxt-link to="/sign-in" class="btn-primary">
-          <span>Get Started Now!</span>
-          <icon name="ri:arrow-right-line" size="20" />
-        </nuxt-link>
-      </div>
-
-      <div
-        v-motion class="md:w-1/2"
-        :initial="{ opacity: 0, x: 20 }" :visible="{ opacity: 1, x: 0 }"
-        :duration="800"
-      >
-        <Carousel />
-      </div>
+  <section id="hero" class="my-12 flex flex-col items-center justify-center overflow-hidden border-b-2 px-8 md:flex-row md:gap-0 md:px-24">
+    <div
+      v-motion :initial="{ opacity: 0, y: -40 }"
+      :visible="{ opacity: 1, y: 0 }" :duration="800"
+      class="flex flex-col items-center gap-6 text-center md:items-start md:text-start"
+    >
+      <h5 class="text-accent font-bold">
+        Your link-in-bio page 🔗🪺
+      </h5>
+      <h1 class="max-w-md">
+        Keep all your stuff together!
+      </h1>
+      <p class="text-muted-foreground max-w-lg font-semibold">
+        Welcome to <span class="text-accent font-bold">LinkNest</span>! Your links, profiles, contact info, and more
+        in one place. Create and customize your page and share it with your audience.
+      </p>
+      <nuxt-link to="/sign-in" class="btn-primary">
+        <span>Get Started Now!</span>
+        <icon name="ri:arrow-right-line" size="20" />
+      </nuxt-link>
     </div>
+
+    <Carousel />
   </section>
 
-  <section id="features" class="relative flex flex-col items-center justify-center gap-12 p-12 text-center">
-    <div class="bg-primary absolute inset-0 -z-10 h-44 w-10/12 rounded-full opacity-20 blur-3xl" />
-    <h2
-      v-motion class="font-bowlby"
-      :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
-      :duration="800"
-    >
+  <section id="features" class="relative flex flex-col items-center justify-center gap-12 p-8 pb-24 text-center">
+    <h2 class="!font-display">
       Why Choose LinkNest?
     </h2>
 
     <div class="grid w-full max-w-6xl grid-cols-1 gap-4 md:grid-cols-4">
       <div
-        v-for="feature, index in features" :key="feature.id"
-        v-motion class="card space-y-2 text-start"
-        :description="feature.description" :icon="feature.icon"
-        :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
-        :duration="800" :delay="100 * index"
+        v-for="(feature, index) in features" :key="index"
+        v-motion :initial="{ opacity: 0, y: 20 }"
+        :visible="{ opacity: 1, y: 0 }" :duration="800"
+        :delay="200 * index" class="card flex flex-col gap-2 text-start"
       >
         <div class="flex flex-row items-center gap-2">
-          <span class="bg-accent from-primary to-secondary flex size-10 items-center justify-center rounded-full bg-gradient-to-bl p-2">
+          <span class="from-primary to-accent flex size-10 items-center justify-center rounded-full bg-gradient-to-br p-2">
             <icon :name="feature.icon" size="25" class="text-[#ebe8e8]" />
           </span>
           <h5>
@@ -79,70 +56,65 @@
   <section
     id="cta" v-motion
     :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
-    :duration="800"
-    class="bg-card relative z-10 flex flex-col items-center justify-center gap-6 border-y p-12 text-center"
+    :duration="800" class="bg-card relative z-10 flex flex-col items-center justify-center gap-12 border-y p-12 text-center"
   >
+    <div class="cta-grid" />
     <div
-      v-motion
-      :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
-      :duration="800"
-      class="absolute inset-0 -z-10 m-6 bg-[length:60px_60px] bg-center opacity-60" :style="{
-        backgroundImage:
-          'linear-gradient(to right, var(--muted) 1px, transparent 1px), linear-gradient(to bottom, var(--muted) 1px, transparent 1px)',
-      }"
+      v-motion :initial="{ opacity: 0 }"
+      :visible="{ opacity: 1 }" :duration="800"
+      class="cta-vignette"
     />
-    <div class="cta-vignette" />
 
-    <h2 class="font-bowlby">
-      Ready to Try?
-    </h2>
+    <div class="flex flex-col items-center gap-4">
+      <h2 class="!font-display">
+        Ready to Try?
+      </h2>
+      <p class="text-lg font-semibold">
+        Create an account and build your page today!
+      </p>
+      <nuxt-link to="/sign-in" class="btn-secondary">
+        <span>Get Started</span>
+        <icon name="ri:arrow-right-line" size="20" />
+      </nuxt-link>
+    </div>
 
-    <p class="text-lg">
-      Create an account and build your page today!
-    </p>
-    <nuxt-link to="/sign-in" class="btn-secondary">
-      Get Started
-    </nuxt-link>
     <p
-      v-motion class="text-xs font-semibold italic"
+      v-motion class="text-xs italic"
       :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }"
       :duration="800"
     >
-      "{{ randomQuote?.quote }}" -
-      <span class="text-accent">{{ randomQuote?.author }}</span>
+      "{{ randomQuote?.quote }}" - <span class="text-primary font-semibold">{{ randomQuote?.author }}</span>
     </p>
   </section>
 </template>
 
 <script setup lang="ts">
-const randomQuote = ref(QUOTES[0])
+const randomQuote = ref<{
+  quote: string
+  author: string
+}>()
 
 onMounted(() => {
-  const index = Math.floor(Math.random() * QUOTES.length)
-  randomQuote.value = QUOTES[index]
+  randomQuote.value = QUOTES[Math.floor(Math.random() * QUOTES.length)]
 })
 
 const features = [
   {
-    id: 1,
     title: "Unlimited Links",
     description: "Add as many links or social buttons as you want to your page.",
     icon: "ri:infinity-fill",
   },
   {
-    id: 2,
     title: "Fully Customizable",
     description: "Customize the colors, layouts and more for your page.",
     icon: "ri:paint-brush-fill",
   },
   {
-    id: 3,
     title: "Detailed Analytics",
     description: "Track your page views, clicks, and more with analytics.",
     icon: "ri:line-chart-fill",
   },
   {
-    id: 4,
     title: "Free to Use!",
     description: "Linknest is completely free to use, with no hidden fees.",
     icon: "ri:price-tag-3-fill",
@@ -151,7 +123,7 @@ const features = [
 
 useHead({
   title: "LinkNest - Your Link-in-Bio Page!",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app" }, { rel: "icon", href: "/favicon.svg" }],
   meta: [
     { name: "description", content: "Create your own landing page for sharing links to your social media profiles, websites, and more!" },
     { property: "og:title", content: "LinkNest - Your Link-in-Bio Page!" },

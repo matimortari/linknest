@@ -1,7 +1,7 @@
 <template>
   <header class="flex flex-col items-center gap-4 border-b p-8 text-center">
     <img src="/assets/logo.png" alt="Logo" width="100" height="100">
-    <h2 class="font-bowlby">
+    <h2>
       Privacy Policy
     </h2>
     <p class="text-muted-foreground text-center">
@@ -71,7 +71,7 @@ const privacyContent = [
 
 useHead({
   title: "Privacy Policy - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/privacy" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/privacy" }, { rel: "icon", href: "/favicon.svg" }],
   meta: [{ name: "description", content: "Learn how LinkNest collects and protects your data." }],
 })
 

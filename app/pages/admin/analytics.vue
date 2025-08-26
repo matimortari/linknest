@@ -10,7 +10,7 @@
           Analytics
         </h2>
         <p
-          v-motion class="text-caption text-muted-foreground"
+          v-motion class="text-caption"
           :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
           :duration="800"
         >
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 useHead({
   title: "Analytics - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.svg" }],
   meta: [{ name: "description", content: "LinkNest analytics page." }],
 })
 

@@ -17,16 +17,22 @@
 
       <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
-        <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
+        <input
+          id="url" v-model="form.url"
+          type="url" class="flex-1"
+          placeholder="https://example.com"
+        >
       </div>
 
-      <p v-if="iconStore.error" class="text-caption text-danger-foreground text-center">
-        {{ iconStore.error }}
-      </p>
+      <footer class="flex flex-row items-center justify-between">
+        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
+          Save
+        </button>
 
-      <button class="btn-primary w-32 self-end" type="submit" aria-label="Save Social Icon">
-        Save
-      </button>
+        <p v-if="iconStore.error" class="text-warning">
+          {{ iconStore.error }}
+        </p>
+      </footer>
     </form>
   </Dialog>
 </template>

@@ -36,6 +36,19 @@ export default defineNuxtConfig({
       "Bowlby One": true,
       "Chau Philomene One": true,
       "JetBrains Mono": true,
+
+      // Dynamic user fonts
+      "Roboto": true,
+      "Noto Sans": true,
+      "Montserrat": true,
+      "Playfair Display": true,
+      "Lora": true,
+      "Amarante": true,
+      "Righteous": true,
+      "Ribeye": true,
+      "Ribeye Marrow": true,
+      "Ubuntu Mono": true,
+      "Audiowide": true,
     },
   },
   icon: {

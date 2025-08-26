@@ -1,7 +1,7 @@
 <template>
   <div v-if="user" class="md:fixed md:inset-y-0 md:my-4 md:flex md:w-52 md:flex-col">
     <div class="flex flex-col gap-4">
-      <nuxt-link to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
+      <nuxt-link to="/admin/profile" class="hover:scale-sm flex flex-row items-center gap-2 transition-all select-none">
         <img
           src="/assets/logo.png" alt="Logo"
           width="35" height="35"
@@ -18,7 +18,7 @@
         <div class="navigation-group my-2">
           <div class="navigation-group w-full md:w-auto">
             <div class="relative size-14 shrink-0">
-              <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover">
+              <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover select-none">
 
               <button
                 title="Edit Profile Information" class="btn-primary absolute -right-2 -bottom-2 !p-1"

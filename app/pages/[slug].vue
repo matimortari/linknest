@@ -1,21 +1,15 @@
 <template>
-  <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all">
+  <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all select-none">
     <img src="/assets/logo.png" alt="Logo" width="35" height="35">
+    <span class="font-chau hidden text-2xl md:block">LinkNest</span>
   </nuxt-link>
 
-  <div v-if="isLoading" class="flex min-h-screen items-center justify-center p-12">
-    <Spinner />
-  </div>
+  <Spinner v-if="isLoading" />
 
   <div v-else-if="!user || !user.id" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
     <p class="text-lead text-muted-foreground text-center">
       User {{ slug }} not found.
     </p>
-
-    <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all">
-      <img src="/assets/logo.png" alt="Logo" width="35" height="35">
-      <span class="font-chau text-2xl">LinkNest</span>
-    </nuxt-link>
   </div>
 
   <div v-else class="min-h-screen p-12 pb-28" :style="backgroundStyle">
@@ -24,7 +18,7 @@
 
       <img
         v-if="user.image" :src="user.image"
-        alt="Avatar" class="size-32 object-cover"
+        alt="Avatar" class="size-24 object-cover"
         :style="profilePictureStyle"
       >
 

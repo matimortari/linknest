@@ -3,16 +3,15 @@
     <button
       v-for="theme in THEMES" :key="theme.title"
       :title="theme.title" aria-label="Select Theme"
-      tabindex="0" class="flex size-full items-center justify-center rounded-lg border-2 p-8"
+      tabindex="0" class="flex size-full cursor-pointer items-center justify-center rounded-lg border-2 p-8 hover:!border-dashed hover:opacity-80"
       :class="{
-        '!border-foreground': selectedTheme === theme.title,
-        '!border-dashed opacity-60': selectedTheme !== theme.title,
+        'opacity-60': selectedTheme !== theme.title,
       }"
       :style="getThemeButtonStyle(theme.preferences)" @click="handleThemeSelection(theme.title)"
     >
-      <div class="line-clamp-1 truncate p-2 text-center text-sm" :style="getTitleStyle(theme.preferences)">
+      <p class="line-clamp-1 truncate p-2 text-center text-sm select-none" :style="getTitleStyle(theme.preferences)">
         {{ theme.title }}
-      </div>
+      </p>
     </button>
   </div>
 </template>

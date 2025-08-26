@@ -11,7 +11,7 @@
         :duration="800"
       >
         <img src="/assets/logo.png" alt="Logo" width="120" height="120">
-        <h1 class="font-bowlby">
+        <h1>
           Sign In
         </h1>
         <p
@@ -39,12 +39,12 @@
           </button>
         </div>
 
-        <p class="text-muted-foreground p-4">
+        <p class="text-muted-foreground p-4 text-center text-sm">
           By continuing, you agree to our
-          <nuxt-link to="/legal/privacy" class="text-primary hover:underline">
+          <nuxt-link to="/legal/privacy" class="text-secondary hover:underline">
             Privacy Policy
           </nuxt-link> and
-          <nuxt-link to="/legal/terms" class="text-primary hover:underline">
+          <nuxt-link to="/legal/terms" class="text-secondary hover:underline">
             Terms of Service
           </nuxt-link>.
         </p>
@@ -77,7 +77,7 @@ const providers = [
 
 useHead({
   title: "Sign In - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }, { rel: "icon", href: "/favicon.svg" }],
   meta: [{ name: "description", content: "Sign In to LinkNest." }],
 })
 

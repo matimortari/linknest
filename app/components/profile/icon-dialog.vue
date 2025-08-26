@@ -7,7 +7,7 @@
         <button
           v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
           type="button" aria-label="Select Social Icon"
-          class="hover:bg-muted active:bg-accent flex cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all"
+          class="hover:bg-muted active:bg-accent flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all"
           :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
         >
           <icon :name="iconName" size="25" />
@@ -25,13 +25,13 @@
       </div>
 
       <footer class="flex flex-row items-center justify-between">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
+        <p class="text-warning">
+          {{ iconStore.error || '' }}
+        </p>
+
+        <button class="btn-primary" type="submit" aria-label="Save Link">
           Save
         </button>
-
-        <p v-if="iconStore.error" class="text-warning">
-          {{ iconStore.error }}
-        </p>
       </footer>
     </form>
   </Dialog>

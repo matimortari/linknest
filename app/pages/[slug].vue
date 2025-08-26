@@ -1,13 +1,12 @@
 <template>
   <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all select-none">
     <img src="/assets/logo.png" alt="Logo" width="35" height="35">
-    <span class="font-chau hidden text-2xl md:block">LinkNest</span>
   </nuxt-link>
 
   <Spinner v-if="isLoading" />
 
   <div v-else-if="!user || !user.id" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-    <p class="text-lead text-muted-foreground text-center">
+    <p class="text-lead text-center">
       User {{ slug }} not found.
     </p>
   </div>
@@ -116,7 +115,7 @@ watch(() => route.params.slug, async (newSlug) => {
 
     useHead({
       title: `@${user.slug} - LinkNest`,
-      link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }, { rel: "icon", href: "/favicon.ico" }],
+      link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }, { rel: "icon", href: "/favicon.svg" }],
       meta: [{ name: "description", content: `@${user.slug} profile on LinkNest.` }],
     })
 

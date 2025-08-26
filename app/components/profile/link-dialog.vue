@@ -3,22 +3,30 @@
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <div class="navigation-group">
         <label for="title" class="w-12 text-sm font-medium">Title</label>
-        <input id="title" v-model="form.title" type="text" placeholder="Enter link title">
+        <input
+          id="title" v-model="form.title"
+          type="text" placeholder="Enter link title"
+          class="flex-1"
+        >
       </div>
 
       <div class="navigation-group">
         <label for="url" class="w-12 text-sm font-medium">URL</label>
-        <input id="url" v-model="form.url" type="url" placeholder="https://example.com">
+        <input
+          id="url" v-model="form.url"
+          type="url" placeholder="https://example.com"
+          class="flex-1"
+        >
       </div>
 
       <footer class="flex flex-row items-center justify-between">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
+        <p class="text-warning">
+          {{ linkStore.error || '' }}
+        </p>
+
+        <button class="btn-primary" type="submit" aria-label="Save Link">
           Save
         </button>
-
-        <p v-if="linkStore.error" class="text-warning">
-          {{ linkStore.error }}
-        </p>
       </footer>
     </form>
   </Dialog>

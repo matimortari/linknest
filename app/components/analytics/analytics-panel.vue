@@ -1,10 +1,10 @@
 <template>
   <div class="section-container flex flex-col gap-4">
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         Analytics Summary
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Your Key Metrics.
       </p>
     </header>
@@ -13,9 +13,9 @@
 
     <div v-else class="my-2 grid grid-cols-2 gap-4 md:grid-cols-4 md:place-items-center">
       <div class="flex flex-row items-center gap-2">
-        <icon name="material-symbols:table-eye" size="25" class="text-accent" />
+        <icon name="material-symbols:table-eye" size="25" class="text-primary" />
         <div class="flex flex-col items-start">
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Total Page Views
           </p>
           <p class="font-semibold md:text-lg">
@@ -25,9 +25,9 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <icon name="material-symbols:ads-click" size="25" class="text-accent" />
+        <icon name="material-symbols:ads-click" size="25" class="text-primary" />
         <div class="flex flex-col items-start">
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Total Link Clicks
           </p>
           <p class="font-semibold md:text-lg">
@@ -37,9 +37,9 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <icon name="material-symbols:percent" size="25" class="text-accent" />
+        <icon name="material-symbols:percent" size="25" class="text-primary" />
         <div class="flex flex-col items-start">
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Click Rate
           </p>
           <p class="font-semibold md:text-lg">
@@ -49,9 +49,9 @@
       </div>
 
       <div class="flex flex-row items-center gap-2">
-        <icon name="material-symbols:calendar-month" size="25" class="text-accent" />
+        <icon name="material-symbols:calendar-month" size="25" class="text-primary" />
         <div class="flex flex-col items-start">
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Joined On
           </p>
           <p class="font-semibold md:text-lg">
@@ -63,19 +63,19 @@
 
     <span class="my-2 w-full border-b" />
 
-    <header class="my-2 flex flex-col gap-2">
+    <header class="my-2 flex flex-col gap-1">
       <h3>
         Profile Views
       </h3>
-      <p class="text-caption text-muted-foreground">
+      <p class="text-caption">
         Total views for your page over the last 30 days.
       </p>
     </header>
 
     <Spinner v-if="isLoading" />
-    <div v-else-if="stats.length <= 1" class="text-lead text-muted-foreground my-2 text-center">
-      <p>Not enough data yet.</p>
-    </div>
+    <p v-else-if="stats.length <= 1" class="text-lead my-2 text-center">
+      Not enough data yet.
+    </p>
 
     <AnalyticsBarChart v-else :chart-data="pageViewsChartData" />
 
@@ -83,37 +83,37 @@
 
     <div class="my-2 flex flex-col justify-between gap-2 md:flex-row">
       <div class="flex w-full flex-col gap-2">
-        <header class="my-2 flex flex-col gap-2">
+        <header class="my-2 flex flex-col gap-1">
           <h3>
             Link Clicks
           </h3>
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Total link clicks over the last 30 days.
           </p>
         </header>
 
         <Spinner v-if="isLoading" />
-        <div v-else-if="stats.length <= 1" class="text-lead text-muted-foreground my-2 text-center">
-          <p>Not enough data yet.</p>
-        </div>
+        <p v-else-if="stats.length <= 1" class="text-lead my-2 text-center">
+          Not enough data yet.
+        </p>
 
         <AnalyticsLineChart v-else :chart-data="linkClicksChartData" />
       </div>
 
       <div class="flex w-full flex-col gap-2">
-        <header class="my-2 flex flex-col gap-2">
+        <header class="my-2 flex flex-col gap-1">
           <h3>
             Social Icon Clicks
           </h3>
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Total social icon clicks over the last 30 days.
           </p>
         </header>
 
         <Spinner v-if="isLoading" />
-        <div v-else-if="stats.length <= 1" class="text-lead text-muted-foreground my-2 text-center">
-          <p>Not enough data yet.</p>
-        </div>
+        <p v-else-if="stats.length <= 1" class="text-lead my-2 text-center">
+          Not enough data yet.
+        </p>
 
         <AnalyticsLineChart v-else :chart-data="iconClicksChartData" />
       </div>
@@ -194,7 +194,7 @@ const pageViewsChartData = computed(() => ({
   datasets: [{
     label: "Page Views",
     data: stats.value.map(item => item.pageViews),
-    backgroundColor: "#31589c",
+    backgroundColor: "#c7784b",
   }],
 }))
 
@@ -203,7 +203,7 @@ const linkClicksChartData = computed(() => ({
   datasets: [{
     label: "Link Clicks",
     data: stats.value.map(item => item.linkClicks),
-    borderColor: "#31589c",
+    borderColor: "#c7784b",
     fill: false,
   }],
 }))
@@ -213,7 +213,7 @@ const iconClicksChartData = computed(() => ({
   datasets: [{
     label: "Social Icon Clicks",
     data: stats.value.map(item => item.iconClicks),
-    borderColor: "#31589c",
+    borderColor: "#c7784b",
     fill: false,
   }],
 }))

@@ -1,7 +1,7 @@
 <template>
   <header class="flex flex-col items-center gap-4 border-b p-8 text-center">
     <img src="/assets/logo.png" alt="Logo" width="100" height="100">
-    <h2 class="font-bowlby">
+    <h2>
       Terms of Service
     </h2>
     <p class="text-muted-foreground text-center">
@@ -68,7 +68,7 @@ const termsContent = [
 
 useHead({
   title: "Terms of Service - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/terms" }, { rel: "icon", href: "/favicon.ico" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/terms" }, { rel: "icon", href: "/favicon.svg" }],
   meta: [{ name: "description", content: "Terms and conditions for using LinkNest." }],
 })
 

@@ -3,13 +3,9 @@
     class="relative flex w-full max-w-80 min-w-32 flex-row items-center justify-center" :style="linkStyle"
     @mouseenter="isHovered = true" @mouseleave="isHovered = false"
   >
-    <a
-      :href="url" target="_blank"
-      rel="noopener noreferrer" class="flex size-full items-center justify-center"
-      @click="$emit('click')"
-    >
+    <nuxt-link :to="url" class="flex size-full items-center justify-center" @click="$emit('click')">
       <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle">{{ title }}</span>
-    </a>
+    </nuxt-link>
     <button
       v-if="preferences?.showCopyButton" class="hover:scale-md absolute right-2 shrink-0 transition-all"
       aria-label="Copy Link" @click.stop="copyToClipboard(props.url)"

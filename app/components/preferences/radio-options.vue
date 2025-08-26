@@ -11,7 +11,7 @@
           :value="option.value" :checked="value === option.value"
           class="hover:scale-sm transition-all" @change="$emit('update:value', option.value)"
         >
-        <span class="text-label">{{ option.label }}</span>
+        <span class="text-caption">{{ option.label }}</span>
       </label>
     </div>
   </div>

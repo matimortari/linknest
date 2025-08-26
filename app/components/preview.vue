@@ -1,5 +1,5 @@
 <template>
-  <div class="my-6 flex max-h-[560px] flex-col items-center justify-center select-none">
+  <div class="my-6 flex h-[520px] flex-col items-center justify-center select-none">
     <!-- Mobile Preview Toggle -->
     <button
       class="btn fixed bottom-8 z-20 sm:bottom-36 md:!hidden"

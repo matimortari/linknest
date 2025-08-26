@@ -1,9 +1,9 @@
 <template>
-  <div class="scroll-area grid h-64 grid-cols-1 gap-2 overflow-auto py-2 md:grid-cols-3">
+  <div class="scroll-area grid h-64 grid-cols-1 gap-2 overflow-auto py-2 md:grid-cols-3 2xl:grid-cols-4">
     <button
       v-for="theme in THEMES" :key="theme.title"
       :title="theme.title" aria-label="Select Theme"
-      tabindex="0" class="flex size-full cursor-pointer items-center justify-center rounded-lg border-2 p-8 hover:!border-dashed hover:opacity-80"
+      tabindex="0" class="flex size-full items-center justify-center rounded-lg border-2 p-8 hover:!border-dashed hover:opacity-80"
       :class="{
         'opacity-60': selectedTheme !== theme.title,
       }"

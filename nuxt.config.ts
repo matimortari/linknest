@@ -31,10 +31,9 @@ export default defineNuxtConfig({
     prefetch: true,
     preconnect: true,
     families: {
-      "Inter": true,
-      "Lato": { wght: [100, 300, 600, 700, 900] },
-      "Bowlby One": true,
-      "Chau Philomene One": true,
+      "Crimson Pro": true,
+      "Lato": true,
+      "Caprasimo": true,
       "JetBrains Mono": true,
 
       // Dynamic user fonts

@@ -2,16 +2,16 @@
   <transition name="slide-up">
     <div
       v-if="showBanner"
-      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-2 rounded-t-2xl px-8 py-4 text-[#ebe8e8] md:flex-row"
+      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-4 px-8 py-4 text-[#ebe8e8] md:flex-row md:gap-2"
       :class="bannerStyle"
     >
       <div class="flex flex-row items-center gap-2 md:flex-col md:items-start">
         <div class="flex flex-col gap-4">
-          <div class="flex flex-row-reverse items-start gap-4 text-center md:flex-row md:items-center">
+          <div class="flex flex-row items-center gap-2 text-start">
             <icon :name="bannerIcon" size="35" class="hidden shrink-0 text-[#ebe8e8] md:block" />
-            <h4>
+            <h5>
               {{ bannerMessage }}
-            </h4>
+            </h5>
           </div>
 
           <p class="text-sm leading-4">
@@ -20,9 +20,9 @@
         </div>
       </div>
 
-      <a :href="bannerLink" target="_blank" rel="noopener noreferrer" class="btn bg-[#ebe8e8] text-[#1f2937]">
+      <nuxt-link :to="bannerLink" class="btn self-center !bg-[#ebe8e8] !text-[#1f2937]">
         ACT NOW
-      </a>
+      </nuxt-link>
     </div>
   </transition>
 </template>

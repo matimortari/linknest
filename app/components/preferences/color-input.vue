@@ -5,7 +5,7 @@
     </label>
 
     <div class="hover:scale-sm flex cursor-pointer flex-row items-center gap-2 transition-all">
-      <span class="text-label text-muted-foreground">{{ value }}</span>
+      <span class="text-caption">{{ value }}</span>
       <input
         :id="id" type="color"
         :value="value" :disabled="disabled"

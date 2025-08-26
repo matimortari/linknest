@@ -5,10 +5,8 @@
         <div class="relative size-24">
           <img v-if="form.image" :src="form.image" alt="Profile preview" class="size-full rounded-full border object-cover">
           <input
-            id="image"
-            type="file"
-            accept="image/*"
-            class="absolute top-0 left-0 size-full opacity-0"
+            id="image" type="file"
+            accept="image/*" class="absolute top-0 left-0 size-full opacity-0"
             @change="handleImageChange"
           >
           <label class="btn absolute -bottom-2 -left-2" for="image">
@@ -19,22 +17,30 @@
 
       <div class="navigation-group">
         <label for="slug" class="w-20 text-sm font-medium">Slug</label>
-        <input id="slug" v-model="form.slug" type="text" placeholder="Enter your slug">
+        <input
+          id="slug" v-model="form.slug"
+          type="text" placeholder="Enter your slug"
+          class="flex-1"
+        >
       </div>
 
       <div class="navigation-group">
         <label for="description" class="w-20 text-sm font-medium">Description</label>
-        <input id="description" v-model="form.description" type="text" placeholder="Enter your description">
+        <input
+          id="description" v-model="form.description"
+          type="text" placeholder="Enter your description"
+          class="flex-1"
+        >
       </div>
 
       <footer class="flex flex-row items-center justify-between">
-        <button class="btn-primary w-32" type="submit" aria-label="Save Link">
+        <p class="text-warning">
+          {{ userStore.error || '' }}
+        </p>
+
+        <button class="btn-primary" type="submit" aria-label="Save Link">
           Save
         </button>
-
-        <p v-if="userStore.error" class="text-warning">
-          {{ userStore.error }}
-        </p>
       </footer>
     </form>
   </Dialog>

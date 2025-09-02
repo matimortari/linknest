@@ -5,39 +5,6 @@ export const useIconStore = defineStore("icon", () => {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
-  function getIconStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
-    if (!preferences) {
-      return {}
-    }
-
-    const shadowMap: Record<ShadowWeightType, string> = {
-      none: "none",
-      light: `0 2px 4px ${preferences.linkShadowColor}`,
-      medium: `0 4px 6px ${preferences.linkShadowColor}`,
-      heavy: `0 6px 10px ${preferences.linkShadowColor}`,
-    }
-
-    return {
-      backgroundColor: isHovered
-        ? preferences.iconHoverBackgroundColor
-        : preferences.iconBackgroundColor,
-      boxShadow: preferences.isIconShadow
-        ? shadowMap[preferences.iconShadowWeight as ShadowWeightType]
-        : "none",
-      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-    }
-  }
-
-  function getIconInnerStyle(preferences: UserPreferencesType | null | undefined) {
-    if (!preferences) {
-      return {}
-    }
-
-    return {
-      color: preferences.iconIconColor,
-    }
-  }
-
   async function getIcons() {
     isLoading.value = true
     error.value = null
@@ -115,7 +82,5 @@ export const useIconStore = defineStore("icon", () => {
     getIcons,
     createIcon,
     deleteIcon,
-    getIconStyle,
-    getIconInnerStyle,
   }
 })

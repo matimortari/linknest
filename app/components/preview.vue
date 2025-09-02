@@ -30,8 +30,7 @@
             <UserIcon
               v-for="icon in icons" :key="icon.id"
               :url="icon.url" :logo="icon.logo"
-              :preferences="preferences!" :icon-id="icon.id"
-              :user-id="user?.id"
+              :preferences="preferences!"
             />
           </ul>
         </div>
@@ -41,8 +40,7 @@
             <UserLink
               v-for="link in links" :key="link.id"
               :url="link.url" :title="link.title"
-              :preferences="preferences!" :link-id="link.id"
-              :user-id="user?.id"
+              :preferences="preferences!"
             />
           </ul>
 
@@ -117,33 +115,5 @@ const { preferences } = storeToRefs(preferencesStore)
 const { user } = storeToRefs(userStore)
 const isMobilePreviewVisible = ref(false)
 
-const backgroundStyle = computed(() => {
-  if (preferences.value?.backgroundType === "GRADIENT") {
-    return {
-      background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
-    }
-  }
-
-  return { backgroundColor: preferences.value?.backgroundColor }
-})
-
-const profilePictureStyle = computed(() => ({
-  borderRadius: preferences.value?.profilePictureRadius,
-  borderColor: preferences.value?.profilePictureBorderColor,
-  borderWidth: preferences.value?.profilePictureBorderWidth,
-}))
-
-const slugStyle = computed(() => ({
-  color: preferences.value?.slugTextColor,
-  fontWeight: preferences.value?.slugTextWeight,
-  fontSize: preferences.value?.slugTextSize,
-  fontFamily: preferences.value?.slugFontFamily,
-}))
-
-const descriptionStyle = computed(() => ({
-  color: preferences.value?.headerTextColor,
-  fontWeight: preferences.value?.headerTextWeight,
-  fontSize: preferences.value?.headerTextSize,
-  fontFamily: preferences.value?.headerFontFamily,
-}))
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(toRef(preferencesStore, "preferences"))
 </script>

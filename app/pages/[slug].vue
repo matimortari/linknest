@@ -13,7 +13,10 @@
 
   <div v-else class="min-h-screen p-12 pb-28" :style="backgroundStyle">
     <div class="flex flex-col items-center justify-center gap-4 text-center">
-      <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
+      <SupportBanner
+        v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'"
+        :type="user.preferences.supportBanner"
+      />
 
       <img
         v-if="user.image" :src="user.image"
@@ -33,8 +36,7 @@
         <UserIcon
           v-for="icon in user.icons" :key="icon.id"
           :url="icon.url" :logo="icon.logo"
-          :preferences="user.preferences" :icon-id="icon.id"
-          :user-id="user.id" @click="handleClick(icon.id ?? '', 'icon')"
+          :preferences="user.preferences" @click="handleClick(icon.id ?? '', 'icon')"
         />
       </ul>
 
@@ -42,8 +44,7 @@
         <UserLink
           v-for="link in user.links" :key="link.id"
           :url="link.url" :title="link.title"
-          :preferences="user.preferences" :link-id="link.id"
-          :user-id="user.id" @click="handleClick(link.id ?? '', 'link')"
+          :preferences="user.preferences" @click="handleClick(link.id ?? '', 'link')"
         />
       </ul>
 
@@ -56,42 +57,13 @@
 
 <script setup lang="ts">
 const userStore = useUserStore()
-const preferencesStore = usePreferencesStore()
 
 const route = useRoute()
 const slug = route.params.slug as string
-
 const { user, isLoading } = storeToRefs(userStore)
-const { preferences } = storeToRefs(preferencesStore)
+const preferences = computed(() => user.value?.preferences)
 
-const backgroundStyle = computed(() => {
-  if (!user.value?.preferences)
-    return {}
-
-  return preferences.value?.backgroundType === "GRADIENT"
-    ? { background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})` }
-    : { backgroundColor: preferences.value?.backgroundColor }
-})
-
-const profilePictureStyle = computed(() => ({
-  borderRadius: preferences.value?.profilePictureRadius,
-  borderColor: preferences.value?.profilePictureBorderColor,
-  borderWidth: preferences.value?.profilePictureBorderWidth,
-}))
-
-const slugStyle = computed(() => ({
-  color: preferences.value?.slugTextColor,
-  fontWeight: preferences.value?.slugTextWeight,
-  fontSize: preferences.value?.slugTextSize,
-  fontFamily: preferences.value?.slugFontFamily,
-}))
-
-const descriptionStyle = computed(() => ({
-  color: preferences.value?.headerTextColor,
-  fontWeight: preferences.value?.headerTextWeight,
-  fontSize: preferences.value?.headerTextSize,
-  fontFamily: preferences.value?.headerFontFamily,
-}))
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
 
 async function handleClick(id: string, type: "link" | "icon") {
   if (!user.value)

@@ -127,9 +127,9 @@ h6 {
 }
 
 .text-lead {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
   color: var(--muted-foreground);
 }
 .text-caption,
@@ -137,7 +137,7 @@ h6 {
 .text-success {
   font-size: 0.875rem;
   line-height: 0.875rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--muted-foreground);
 }
 .text-warning {

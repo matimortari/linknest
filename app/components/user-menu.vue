@@ -31,9 +31,6 @@
           <nuxt-link :to="`/${user.slug}`" :title="`linknest-live.vercel.app/${user.slug}`" class="text-sm font-semibold break-words hover:underline">
             @{{ user.slug }}
           </nuxt-link>
-          <p class="line-clamp-3 max-w-full text-xs break-words">
-            {{ user.description }}
-          </p>
         </div>
       </div>
 

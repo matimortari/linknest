@@ -56,7 +56,7 @@
   <section
     id="cta" v-motion
     :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
-    :duration="800" class="bg-card relative z-10 flex flex-col items-center justify-center gap-12 border-y p-12 text-center"
+    :duration="800" class="bg-card relative z-10 flex min-h-[60vh] flex-col items-center justify-center gap-12 border-y p-12 text-center"
   >
     <div class="cta-grid" />
     <div
@@ -116,7 +116,7 @@ const features = [
   },
   {
     title: "Free to Use!",
-    description: "Linknest is completely free to use, with no hidden fees.",
+    description: "LinkNest is completely free to use, with no hidden fees.",
     icon: "ri:price-tag-3-fill",
   },
 ]

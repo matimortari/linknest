@@ -25,24 +25,20 @@
           <ul class="my-2 flex flex-row items-center justify-center gap-2">
             <li
               v-for="icon in preset?.icons" :key="icon.id"
-              class="flex size-10 items-center justify-center rounded-full" :style="iconStore.getIconStyle(preferences, iconHover[icon.id] ?? false)"
-              @mouseenter="iconHover[icon.id] = true"
-              @mouseleave="iconHover[icon.id] = false"
+              class="flex size-10 items-center justify-center rounded-full" :style="iconStyle(iconHover[icon.id] ?? false)"
+              @mouseenter="iconHover[icon.id] = true" @mouseleave="iconHover[icon.id] = false"
             >
-              <icon :name="icon.logo" size="20" :style="iconStore.getIconInnerStyle(preferences)" />
+              <icon :name="icon.logo" size="20" :style="iconInnerStyle()" />
             </li>
           </ul>
 
-          <ul class=" flex flex-col items-center space-y-4 p-4">
+          <ul class="flex flex-col items-center space-y-4 p-4">
             <li
-              v-for="link in preset?.links"
-              :key="link.id"
-              class="flex w-full max-w-72 min-w-32 justify-center"
-              :style="linkStore.getLinkStyle(preferences, linkHover[link.id] ?? false)"
-              @mouseenter="linkHover[link.id] = true"
-              @mouseleave="linkHover[link.id] = false"
+              v-for="link in preset?.links" :key="link.id"
+              class="flex w-full max-w-72 min-w-32 justify-center" :style="linkStyle(linkHover[link.id] ?? false)"
+              @mouseenter="linkHover[link.id] = true" @mouseleave="linkHover[link.id] = false"
             >
-              <span :style="linkStore.getLinkInnerStyle(preferences)">{{ link.title }}</span>
+              <span :style="linkInnerStyle()">{{ link.title }}</span>
             </li>
           </ul>
         </div>
@@ -52,47 +48,26 @@
 </template>
 
 <script setup lang="ts">
-const iconStore = useIconStore()
-const linkStore = useLinkStore()
-const { currentIndex } = useCarousel(CAROUSEL_PRESETS.length, 3000)
-
 const iconHover = reactive<Record<string, boolean>>({})
 const linkHover = reactive<Record<string, boolean>>({})
+
+const { currentIndex } = useCarousel(CAROUSEL_PRESETS.length, 3000)
 
 const preset = computed(() => CAROUSEL_PRESETS[currentIndex.value])
 const preferences = computed<UserPreferencesType | undefined>(() =>
   preset.value?.preferences as UserPreferencesType,
 )
 
-const backgroundStyle = computed(() => {
-  if (preferences.value?.backgroundType === "GRADIENT") {
-    return {
-      background: `linear-gradient(to bottom, ${preferences.value?.backgroundGradientStart}, ${preferences.value?.backgroundGradientEnd})`,
-    }
-  }
-
-  return { backgroundColor: preferences.value?.backgroundColor }
-})
-
-const profilePictureStyle = computed(() => ({
-  borderRadius: preferences.value?.profilePictureRadius,
-  borderColor: preferences.value?.profilePictureBorderColor,
-  borderWidth: preferences.value?.profilePictureBorderWidth,
-}))
-
-const slugStyle = computed(() => ({
-  color: preferences.value?.slugTextColor,
-  fontWeight: preferences.value?.slugTextWeight,
-  fontSize: preferences.value?.slugTextSize,
-  fontFamily: preferences.value?.slugFontFamily,
-}))
-
-const descriptionStyle = computed(() => ({
-  color: preferences.value?.headerTextColor,
-  fontWeight: preferences.value?.headerTextWeight,
-  fontSize: preferences.value?.headerTextSize,
-  fontFamily: preferences.value?.headerFontFamily,
-}))
+const {
+  backgroundStyle,
+  profilePictureStyle,
+  slugStyle,
+  descriptionStyle,
+  iconStyle,
+  iconInnerStyle,
+  linkStyle,
+  linkInnerStyle,
+} = useDynamicStyles(preferences)
 
 const images = import.meta.glob("~/assets/presets/*", { eager: true, import: "default" })
 function getPresetImage(filename: string) {

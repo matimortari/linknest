@@ -5,44 +5,6 @@ export const useLinkStore = defineStore("link", () => {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
-  function getLinkStyle(preferences: UserPreferencesType | null | undefined, isHovered: boolean) {
-    if (!preferences) {
-      return {}
-    }
-
-    const shadowMap: Record<ShadowWeightType, string> = {
-      none: "none",
-      light: `0 2px 4px ${preferences.linkShadowColor}`,
-      medium: `0 4px 6px ${preferences.linkShadowColor}`,
-      heavy: `0 6px 10px ${preferences.linkShadowColor}`,
-    }
-
-    return {
-      backgroundColor: isHovered
-        ? preferences.linkHoverBackgroundColor
-        : preferences.linkBackgroundColor,
-      boxShadow: preferences.isLinkShadow
-        ? shadowMap[preferences.linkShadowWeight as ShadowWeightType]
-        : "none",
-      borderRadius: preferences.linkBorderRadius,
-      padding: preferences.linkPadding,
-      transition: "background-color 0.4s ease, box-shadow 0.4s ease",
-    }
-  }
-
-  function getLinkInnerStyle(preferences: UserPreferencesType | null | undefined) {
-    if (!preferences) {
-      return {}
-    }
-
-    return {
-      color: preferences.linkTextColor,
-      fontWeight: preferences.linkTextWeight,
-      fontFamily: preferences.linkFontFamily,
-      fontSize: preferences.linkTextSize,
-    }
-  }
-
   async function getLinks() {
     isLoading.value = true
     error.value = null
@@ -159,7 +121,5 @@ export const useLinkStore = defineStore("link", () => {
     createLink,
     updateLink,
     deleteLink,
-    getLinkStyle,
-    getLinkInnerStyle,
   }
 })

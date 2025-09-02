@@ -53,9 +53,9 @@ interface PageViewType {
 
 interface UserPreferencesType {
   backgroundType: BackgroundType
-  backgroundColor: string
-  backgroundGradientStart: string
-  backgroundGradientEnd: string
+  backgroundColor?: string
+  backgroundGradientStart?: string
+  backgroundGradientEnd?: string
   profilePictureRadius: string
   profilePictureBorderColor: string
   profilePictureBorderWidth: string
@@ -73,19 +73,34 @@ interface UserPreferencesType {
   linkTextSize: string
   linkFontFamily: string
   isLinkShadow: boolean
-  linkShadowColor: string
-  linkShadowWeight: string
+  linkShadowColor?: string
+  linkShadowWeight?: string
   linkHoverBackgroundColor: string
   linkBorderRadius: string
   linkPadding: string
   iconBackgroundColor: string
   isIconShadow: boolean
-  iconShadowColor: string
-  iconShadowWeight: string
+  iconShadowColor?: string
+  iconShadowWeight?: string
   iconIconColor: string
   iconHoverBackgroundColor: string
   showCopyButton?: boolean
   supportBanner?: SupportBannerType
+}
+
+interface CarouselPresetType {
+  slug: string
+  description: string
+  image: string
+  icons: {
+    id: number
+    logo: string
+  }[]
+  links: {
+    id: number
+    title: string
+  }[]
+  preferences: UserPreferencesType
 }
 
 interface UpdateUserPayload {

@@ -60,35 +60,38 @@ const iconHover = reactive<Record<string, boolean>>({})
 const linkHover = reactive<Record<string, boolean>>({})
 
 const preset = computed(() => CAROUSEL_PRESETS[currentIndex.value])
-const preferences = computed(() => (preset?.value?.preferences ?? {}) as unknown as UserPreferencesType)
+const preferences = computed<UserPreferencesType | undefined>(() =>
+  preset.value?.preferences as UserPreferencesType,
+)
 
 const backgroundStyle = computed(() => {
-  if (preferences.value.backgroundType === "GRADIENT") {
+  if (preferences.value?.backgroundType === "GRADIENT") {
     return {
-      background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})`,
+      background: `linear-gradient(to bottom, ${preferences.value?.backgroundGradientStart}, ${preferences.value?.backgroundGradientEnd})`,
     }
   }
-  return { backgroundColor: preferences.value.backgroundColor }
+
+  return { backgroundColor: preferences.value?.backgroundColor }
 })
 
 const profilePictureStyle = computed(() => ({
-  borderRadius: preferences.value.profilePictureRadius,
-  borderColor: preferences.value.profilePictureBorderColor,
-  borderWidth: preferences.value.profilePictureBorderWidth,
+  borderRadius: preferences.value?.profilePictureRadius,
+  borderColor: preferences.value?.profilePictureBorderColor,
+  borderWidth: preferences.value?.profilePictureBorderWidth,
 }))
 
 const slugStyle = computed(() => ({
-  color: preferences.value.slugTextColor,
-  fontWeight: preferences.value.slugTextWeight,
-  fontSize: preferences.value.slugTextSize,
-  fontFamily: preferences.value.slugFontFamily,
+  color: preferences.value?.slugTextColor,
+  fontWeight: preferences.value?.slugTextWeight,
+  fontSize: preferences.value?.slugTextSize,
+  fontFamily: preferences.value?.slugFontFamily,
 }))
 
 const descriptionStyle = computed(() => ({
-  color: preferences.value.headerTextColor,
-  fontWeight: preferences.value.headerTextWeight,
-  fontSize: preferences.value.headerTextSize,
-  fontFamily: preferences.value.headerFontFamily,
+  color: preferences.value?.headerTextColor,
+  fontWeight: preferences.value?.headerTextWeight,
+  fontSize: preferences.value?.headerTextSize,
+  fontFamily: preferences.value?.headerFontFamily,
 }))
 
 const images = import.meta.glob("~/assets/presets/*", { eager: true, import: "default" })

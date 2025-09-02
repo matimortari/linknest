@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  options: InputOptionType[]
+  options: ReadonlyArray<InputOptionType>
   name?: string
   value?: string
   label?: string

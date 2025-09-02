@@ -1,4 +1,4 @@
-import { userDataSchema } from "#shared/schemas/schemas"
+import { userDataSchema } from "#shared/config/schemas"
 
 export const useUserStore = defineStore("user", () => {
   const user = ref<UserType | null>(null)

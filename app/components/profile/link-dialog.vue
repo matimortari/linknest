@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { linkSchema } from "#shared/schemas/schemas"
+import { linkSchema } from "#shared/config/schemas"
 
 const props = defineProps<{
   isOpen: boolean

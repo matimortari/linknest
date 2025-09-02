@@ -21,7 +21,7 @@ defineProps<{
   id: string
   label: string
   value: string | undefined
-  options: InputOptionType[]
+  options: ReadonlyArray<InputOptionType>
   disabled?: boolean
 }>()
 

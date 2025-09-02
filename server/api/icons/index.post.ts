@@ -1,7 +1,7 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
+import { iconSchema } from "#shared/config/schemas"
 import { SOCIAL_ICONS } from "#shared/config/social-icons"
-import { iconSchema } from "#shared/schemas/schemas"
 import z from "zod"
 
 export default defineEventHandler(async (event) => {

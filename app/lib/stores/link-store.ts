@@ -1,4 +1,4 @@
-import { linkSchema } from "#shared/schemas/schemas"
+import { linkSchema } from "#shared/config/schemas"
 
 export const useLinkStore = defineStore("link", () => {
   const links = ref<LinkType[]>([])

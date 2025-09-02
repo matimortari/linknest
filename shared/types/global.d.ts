@@ -34,6 +34,49 @@ interface IconType {
   iconClicks?: { date: string | Date }[]
 }
 
+interface UserPreferencesType {
+  backgroundType: BackgroundOptionType
+  backgroundColor: string
+  backgroundGradientStart: string
+  backgroundGradientEnd: string
+
+  profilePictureRadius: RadiusSize
+  profilePictureBorderWidth: BorderWidth
+  profilePictureBorderColor: string
+
+  slugFontFamily: FontFamily
+  slugTextSize: FontSize
+  slugTextWeight: FontWeight
+  slugTextColor: string
+
+  headerFontFamily: FontFamily
+  headerTextSize: FontSize
+  headerTextWeight: FontWeight
+  headerTextColor: string
+
+  linkFontFamily: FontFamily
+  linkTextSize: LinkFontSize
+  linkTextWeight: FontWeight
+  linkTextColor: string
+  linkBackgroundColor: string
+  linkHoverBackgroundColor: string
+  linkBorderRadius: RadiusSize
+  linkPadding: LinkPaddingSize
+  isLinkShadow: boolean
+  linkShadowColor: string
+
+  linkShadowWeight?: ShadowWeightType
+  iconBackgroundColor: string
+  iconHoverBackgroundColor: string
+  iconIconColor: string
+  isIconShadow: boolean
+  iconShadowColor: string
+  iconShadowWeight?: ShadowWeightType
+  showCopyButton: boolean
+
+  supportBanner: BannerOptionType
+}
+
 interface UserStatsType {
   date: string
   pageViews: number
@@ -41,51 +84,10 @@ interface UserStatsType {
   iconClicks: number
 }
 
-type ShadowWeightType = "none" | "light" | "medium" | "heavy"
-type BackgroundType = "FLAT" | "GRADIENT"
-type SupportBannerType = "NONE" | "LGBTQ_RIGHTS" | "ANTI_RACISM" | "MENTAL_HEALTH" | "CLIMATE_ACTION"
-
 interface PageViewType {
   id: string
   userId: string
   date: Date
-}
-
-interface UserPreferencesType {
-  backgroundType: BackgroundType
-  backgroundColor?: string
-  backgroundGradientStart?: string
-  backgroundGradientEnd?: string
-  profilePictureRadius: string
-  profilePictureBorderColor: string
-  profilePictureBorderWidth: string
-  slugTextColor: string
-  slugTextWeight: string
-  slugTextSize: string
-  slugFontFamily: string
-  headerTextColor: string
-  headerTextWeight: string
-  headerTextSize: string
-  headerFontFamily: string
-  linkBackgroundColor: string
-  linkTextColor: string
-  linkTextWeight: string
-  linkTextSize: string
-  linkFontFamily: string
-  isLinkShadow: boolean
-  linkShadowColor?: string
-  linkShadowWeight?: string
-  linkHoverBackgroundColor: string
-  linkBorderRadius: string
-  linkPadding: string
-  iconBackgroundColor: string
-  isIconShadow: boolean
-  iconShadowColor?: string
-  iconShadowWeight?: string
-  iconIconColor: string
-  iconHoverBackgroundColor: string
-  showCopyButton?: boolean
-  supportBanner?: SupportBannerType
 }
 
 interface CarouselPresetType {
@@ -126,44 +128,9 @@ interface CreateIconPayload {
   url: string
 }
 
-interface UpdatePreferencesPayload {
-  backgroundType?: BackgroundType
-  backgroundColor?: string
-  backgroundGradientStart?: string
-  backgroundGradientEnd?: string
-  profilePictureRadius?: string
-  profilePictureBorderColor?: string
-  profilePictureBorderWidth?: string
-  slugTextColor?: string
-  slugTextWeight?: string
-  slugTextSize?: string
-  slugFontFamily?: string
-  headerTextColor?: string
-  headerTextWeight?: string
-  headerTextSize?: string
-  headerFontFamily?: string
-  linkBackgroundColor?: string
-  linkTextColor?: string
-  linkTextWeight?: string
-  linkTextSize?: string
-  linkFontFamily?: string
-  isLinkShadow?: boolean
-  linkShadowColor?: string
-  linkShadowWeight?: string
-  linkHoverBackgroundColor?: string
-  linkBorderRadius?: string
-  linkPadding?: string
-  iconBackgroundColor?: string
-  isIconShadow?: boolean
-  iconShadowColor?: string
-  iconShadowWeight?: string
-  iconIconColor?: string
-  iconHoverBackgroundColor?: string
-  showCopyButton?: boolean
-}
-
+type UpdatePreferencesPayload = Partial<UserPreferencesType>
 interface UpdateSupportBannerPayload {
-  supportBanner: SupportBannerType
+  supportBanner: BannerOptionType
 }
 
 interface InputOptionType {

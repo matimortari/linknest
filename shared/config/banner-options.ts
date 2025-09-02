@@ -1,10 +1,12 @@
 export const BANNER_OPTIONS = [
   { value: "NONE", label: "None" },
   { value: "LGBTQ_RIGHTS", label: "LGBTQ Rights" },
-  { value: "ANTI_RACISM", label: "Anti-Racism" },
+  { value: "ANTI_RACISM", label: "Anti Racism" },
   { value: "MENTAL_HEALTH", label: "Mental Health" },
   { value: "CLIMATE_ACTION", label: "Climate Action" },
-]
+] as const
+
+export type BannerOptionType = (typeof BANNER_OPTIONS)[number]["label"]
 
 export const BANNER_MESSAGES = {
   LGBTQ_RIGHTS: "Support the LGBTQIA+ Community",

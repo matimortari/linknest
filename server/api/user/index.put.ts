@@ -1,6 +1,6 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
-import { userDataSchema } from "#shared/schemas/schemas"
+import { userDataSchema } from "#shared/config/schemas"
 import z from "zod"
 
 export default defineEventHandler(async (event) => {

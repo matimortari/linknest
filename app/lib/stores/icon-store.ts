@@ -1,4 +1,4 @@
-import { iconSchema } from "#shared/schemas/schemas"
+import { iconSchema } from "#shared/config/schemas"
 
 export const useIconStore = defineStore("icon", () => {
   const icons = ref<IconType[]>([])

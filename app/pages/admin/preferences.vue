@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="hidden w-full md:block md:w-1/3">
+    <div class="w-full md:w-1/3">
       <Preview />
     </div>
   </div>

@@ -1,26 +1,25 @@
 <template>
-  <transition name="slide-up">
+  <transition name="banner-slide-up">
     <div
       v-if="showBanner"
-      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-4 px-8 py-4 text-[#ebe8e8] md:flex-row md:gap-2"
-      :class="bannerStyle"
+      class="fixed bottom-0 z-50 flex w-screen flex-col items-center justify-between gap-4 p-6 text-[#ebe8e8] md:flex-row md:gap-2"
+      :class="banner.class"
     >
       <div class="flex flex-row items-center gap-2 md:flex-col md:items-start">
-        <div class="flex flex-col gap-4">
-          <div class="flex flex-row items-center gap-2 text-start">
-            <icon :name="bannerIcon" size="35" class="hidden shrink-0 text-[#ebe8e8] md:block" />
+        <div class="flex flex-col gap-2 text-start">
+          <div class="flex flex-row items-center gap-2">
+            <icon :name="banner.icon" size="35" class="hidden shrink-0 text-[#ebe8e8] md:block" />
             <h5>
-              {{ bannerMessage }}
+              {{ banner.message }}
             </h5>
           </div>
-
           <p class="text-sm leading-4">
-            {{ bannerDescription }}
+            {{ banner.description }}
           </p>
         </div>
       </div>
 
-      <nuxt-link :to="bannerLink" class="btn self-center !bg-[#ebe8e8] !text-[#1f2937]">
+      <nuxt-link :to="banner.link" class="btn self-center">
         ACT NOW
       </nuxt-link>
     </div>
@@ -30,38 +29,29 @@
 <script setup lang="ts">
 import { BANNER_DESCRIPTIONS, BANNER_ICONS, BANNER_LINKS, BANNER_MESSAGES, BANNER_STYLES } from "#shared/config/banner-options"
 
-const props = defineProps<{
-  type: BannerType
-}>()
+const props = defineProps<{ type: keyof typeof BANNER_MESSAGES }>()
 
-type BannerType = keyof typeof BANNER_MESSAGES
-
-const bannerMessage = computed(() => BANNER_MESSAGES[props.type])
-const bannerDescription = computed(() => BANNER_DESCRIPTIONS[props.type])
-const bannerStyle = computed(() => BANNER_STYLES[props.type])
-const bannerIcon = computed(() => BANNER_ICONS[props.type])
-const bannerLink = computed(() => BANNER_LINKS[props.type])
+const banner = computed(() => ({
+  message: BANNER_MESSAGES[props.type],
+  description: BANNER_DESCRIPTIONS[props.type],
+  icon: BANNER_ICONS[props.type],
+  link: BANNER_LINKS[props.type],
+  class: BANNER_STYLES[props.type],
+}))
 
 const showBanner = ref(true)
 let lastScrollY = window.scrollY
 
 function handleScroll() {
-  const currentScrollY = window.scrollY
-  showBanner.value = currentScrollY < lastScrollY || currentScrollY < 10
-  lastScrollY = currentScrollY
+  const current = window.scrollY
+  showBanner.value = current < lastScrollY || current < 10
+  lastScrollY = current
 }
 
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll)
-})
+addEventListener("scroll", handleScroll)
 </script>
 
 <style scoped>
-/* Support banner styling */
 .banner.lgbtq-rights {
   background-color: #5c3963;
 }
@@ -75,14 +65,14 @@ onUnmounted(() => {
   background-color: #287445;
 }
 
-.slide-up-enter-active,
-.slide-up-leave-active {
+.banner-slide-up-enter-active,
+.banner-slide-up-leave-active {
   transition:
     transform 0.8s,
     opacity 0.8s;
 }
-.slide-up-enter-from,
-.slide-up-leave-to {
+.banner-slide-up-enter-from,
+.banner-slide-up-leave-to {
   transform: translateY(100%);
   opacity: 0;
 }

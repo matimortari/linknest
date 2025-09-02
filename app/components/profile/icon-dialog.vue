@@ -77,7 +77,7 @@ function handleSubmit() {
   }
   catch (error: any) {
     console.error("Failed to save social icon:", error)
-    iconStore.error = error?.message
+    iconStore.error = error.message
   }
 }
 

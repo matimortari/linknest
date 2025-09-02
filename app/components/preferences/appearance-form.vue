@@ -145,7 +145,7 @@ async function handleUpdatePreferences() {
   }
   catch (error: any) {
     console.error("Failed to update preferences:", error)
-    preferencesStore.error = error?.message
+    preferencesStore.error = error.message
   }
 }
 
@@ -158,7 +158,7 @@ async function handleResetPreferences() {
   }
   catch (error: any) {
     console.error("Failed to reset preferences:", error)
-    preferencesStore.error = error?.message
+    preferencesStore.error = error.message
   }
 }
 

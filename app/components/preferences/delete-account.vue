@@ -35,7 +35,7 @@ async function handleDeleteUser() {
   }
   catch (error: any) {
     console.error("Failed to delete account:", error)
-    userStore.error = error?.message
+    userStore.error = error.message
   }
 }
 </script>

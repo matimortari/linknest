@@ -1,4 +1,4 @@
-export function useDynamicStyles(preferences?: UserPreferencesType | null | Ref<UserPreferencesType | null | undefined>) {
+export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<UserPreferencesType | null | undefined>) {
   const pref = computed(() => unref(preferences))
 
   const backgroundStyle = computed(() =>

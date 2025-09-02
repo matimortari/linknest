@@ -1,4 +1,4 @@
-export const CAROUSEL_PRESETS = [
+export const CAROUSEL_PRESETS: CarouselPresetType[] = [
   {
     slug: "coffeecorner",
     description: "Your neighborhood coffee shop ☕🍩",

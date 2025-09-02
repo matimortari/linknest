@@ -56,39 +56,41 @@
 
 <script setup lang="ts">
 const userStore = useUserStore()
+const preferencesStore = usePreferencesStore()
+
 const route = useRoute()
 const slug = route.params.slug as string
 
 const { user, isLoading } = storeToRefs(userStore)
+const { preferences } = storeToRefs(preferencesStore)
 
 const backgroundStyle = computed(() => {
   if (!user.value?.preferences)
     return {}
-  const prefs = user.value.preferences
 
-  return prefs.backgroundType === "GRADIENT"
-    ? { background: `linear-gradient(to bottom, ${prefs.backgroundGradientStart}, ${prefs.backgroundGradientEnd})` }
-    : { backgroundColor: prefs.backgroundColor }
+  return preferences.value?.backgroundType === "GRADIENT"
+    ? { background: `linear-gradient(to bottom, ${preferences.value.backgroundGradientStart}, ${preferences.value.backgroundGradientEnd})` }
+    : { backgroundColor: preferences.value?.backgroundColor }
 })
 
 const profilePictureStyle = computed(() => ({
-  borderRadius: user.value?.preferences?.profilePictureRadius,
-  borderColor: user.value?.preferences?.profilePictureBorderColor,
-  borderWidth: user.value?.preferences?.profilePictureBorderWidth,
+  borderRadius: preferences.value?.profilePictureRadius,
+  borderColor: preferences.value?.profilePictureBorderColor,
+  borderWidth: preferences.value?.profilePictureBorderWidth,
 }))
 
 const slugStyle = computed(() => ({
-  color: user.value?.preferences?.slugTextColor,
-  fontWeight: user.value?.preferences?.slugTextWeight,
-  fontSize: user.value?.preferences?.slugTextSize,
-  fontFamily: user.value?.preferences?.slugFontFamily,
+  color: preferences.value?.slugTextColor,
+  fontWeight: preferences.value?.slugTextWeight,
+  fontSize: preferences.value?.slugTextSize,
+  fontFamily: preferences.value?.slugFontFamily,
 }))
 
 const descriptionStyle = computed(() => ({
-  color: user.value?.preferences?.headerTextColor,
-  fontWeight: user.value?.preferences?.headerTextWeight,
-  fontSize: user.value?.preferences?.headerTextSize,
-  fontFamily: user.value?.preferences?.headerFontFamily,
+  color: preferences.value?.headerTextColor,
+  fontWeight: preferences.value?.headerTextWeight,
+  fontSize: preferences.value?.headerTextSize,
+  fontFamily: preferences.value?.headerFontFamily,
 }))
 
 async function handleClick(id: string, type: "link" | "icon") {

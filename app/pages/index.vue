@@ -79,11 +79,11 @@
     </div>
 
     <p
-      v-motion class="text-xs italic"
-      :initial="{ opacity: 0, x: 60 }" :visible="{ opacity: 1, x: 0 }"
-      :duration="800"
+      v-if="randomQuote" v-motion
+      class="text-xs italic" :initial="{ opacity: 0, x: 60 }"
+      :visible="{ opacity: 1, x: 0 }" :duration="800"
     >
-      "{{ randomQuote?.quote }}" - <span class="text-primary font-semibold">{{ randomQuote?.author }}</span>
+      "{{ randomQuote.quote }}" - <span class="text-primary font-semibold">{{ randomQuote.author }}</span>
     </p>
   </section>
 </template>

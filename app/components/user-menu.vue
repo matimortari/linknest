@@ -11,16 +11,16 @@
   <!-- Mobile overlay -->
   <div v-if="isMobileNavOpen" class="fixed inset-0 z-20 bg-black/50" @click="isMobileNavOpen = false" />
 
-  <aside class="bg-card md:bg-background fixed top-0 left-0 z-30 h-full w-72 px-4 py-6 transition-transform md:static md:w-56 md:translate-x-0" :class="isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'">
-    <div class="flex h-full flex-col gap-4">
-      <nuxt-link to="/" class="flex flex-row items-center gap-2 transition-all select-none hover:scale-105">
+  <aside v-if="user" class="bg-card md:bg-background fixed top-0 left-0 z-30 h-full w-72 px-4 py-6 transition-transform md:static md:w-56 md:translate-x-0" :class="isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div class="flex h-full flex-col gap-8">
+      <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all select-none">
         <img src="/assets/logo.png" alt="Logo" width="35" height="35">
         <span class="font-display text-2xl">LinkNest</span>
       </nuxt-link>
 
       <div class="navigation-group w-full !gap-4">
         <div class="relative size-12 shrink-0">
-          <img v-if="user?.image" :src="user?.image" :alt="user?.slug" class="size-full rounded-full border object-cover select-none">
+          <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover select-none">
 
           <button title="Edit Profile Information" class="btn-primary absolute -right-2 -bottom-2 !p-1" aria-label="Edit Profile Information" @click="isDialogOpen = true">
             <Icon name="mdi:square-edit-outline" size="20" class="transition-all hover:scale-110" />
@@ -28,11 +28,11 @@
         </div>
 
         <div class="flex w-full min-w-0 flex-col overflow-x-hidden">
-          <nuxt-link :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-sm font-semibold break-words hover:underline">
-            @{{ user?.slug }}
+          <nuxt-link :to="`/${user.slug}`" :title="`linknest-live.vercel.app/${user.slug}`" class="text-sm font-semibold break-words hover:underline">
+            @{{ user.slug }}
           </nuxt-link>
           <p class="line-clamp-3 max-w-full text-xs break-words">
-            {{ user?.description }}
+            {{ user.description }}
           </p>
         </div>
       </div>
@@ -60,8 +60,9 @@
   </aside>
 
   <UserDialog
-    :is-open="isDialogOpen" :slug="user?.slug ?? undefined"
-    :description="user?.description ?? undefined" :image="user?.image ?? undefined"
+    v-if="user"
+    :is-open="isDialogOpen" :slug="user.slug ?? undefined"
+    :description="user.description ?? undefined" :image="user.image ?? undefined"
     @close="isDialogOpen = false"
   />
 </template>

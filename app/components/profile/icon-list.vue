@@ -50,7 +50,7 @@ async function handleCreateIcon(icon: IconType) {
   }
   catch (error: any) {
     console.error("Failed to save social icon:", error)
-    iconStore.error = error?.message
+    iconStore.error = error.message
   }
 }
 
@@ -62,7 +62,7 @@ async function handleDeleteIcon(id: string) {
   }
   catch (error: any) {
     console.error("Failed to delete social icon:", error)
-    iconStore.error = error?.message
+    iconStore.error = error.message
   }
 }
 </script>

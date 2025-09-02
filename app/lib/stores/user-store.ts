@@ -14,7 +14,7 @@ export const useUserStore = defineStore("user", () => {
       return user.value
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to get user"
+      error.value = error.message || "Failed to get user"
       throw error
     }
     finally {
@@ -30,7 +30,7 @@ export const useUserStore = defineStore("user", () => {
       user.value = await getUserBySlugService(userSlug)
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to get user by slug"
+      error.value = error.message || "Failed to get user by slug"
     }
     finally {
       isLoading.value = false
@@ -65,7 +65,7 @@ export const useUserStore = defineStore("user", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to update user data"
+      error.value = error.message || "Failed to update user data"
       throw error
     }
     finally {
@@ -89,7 +89,7 @@ export const useUserStore = defineStore("user", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to update user image"
+      error.value = error.message || "Failed to update user image"
       throw error
     }
     finally {
@@ -107,7 +107,7 @@ export const useUserStore = defineStore("user", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to delete user"
+      error.value = error.message || "Failed to delete user"
       throw error
     }
     finally {
@@ -123,7 +123,7 @@ export const useUserStore = defineStore("user", () => {
       await trackPageVisitService(userId)
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to track page visit"
+      error.value = error.message || "Failed to track page visit"
       throw error
     }
   }
@@ -136,7 +136,7 @@ export const useUserStore = defineStore("user", () => {
       await trackClickService(eventId, type, userId)
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to track click event"
+      error.value = error.message || "Failed to track click event"
       throw error
     }
   }

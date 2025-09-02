@@ -1,8 +1,8 @@
 <template>
-  <div class="my-6 flex h-[520px] flex-col items-center justify-center select-none">
+  <div v-if="user" class="my-6 flex h-[520px] flex-col items-center justify-center select-none">
     <!-- Mobile Preview Toggle -->
     <button
-      class="btn fixed bottom-8 z-20 sm:bottom-36 md:!hidden"
+      class="btn fixed bottom-8 z-20 md:!hidden"
       aria-label="Toggle Mobile Preview" @click="isMobilePreviewVisible = !isMobilePreviewVisible"
     >
       <icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
@@ -15,14 +15,14 @@
       class="fixed top-0 left-0 z-10 size-full overflow-y-auto p-12 md:hidden" :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
-        <img :src="user?.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
+        <img :src="user.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
-          @{{ user?.slug }}
+          @{{ user.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
-          {{ user?.description }}
+        <p v-if="user.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+          {{ user.description }}
         </p>
 
         <div class="my-2 w-full">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="w-full">
-          <ul v-if="links?.length" class="flex flex-col items-center gap-4">
+          <ul v-if="links.length" class="flex flex-col items-center gap-4">
             <UserLink
               v-for="link in links" :key="link.id"
               :url="link.url" :title="link.title"
@@ -65,14 +65,14 @@
       </div>
 
       <div class="flex flex-col items-center justify-start gap-4 overflow-y-auto p-4 text-center">
-        <img :src="user?.image ?? undefined" alt="Avatar" class="size-24 object-cover" :style="profilePictureStyle">
+        <img :src="user.image ?? undefined" alt="Avatar" class="size-24 object-cover" :style="profilePictureStyle">
 
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
-          @{{ user?.slug }}
+          @{{ user.slug }}
         </p>
 
-        <p v-if="user?.description" class="line-clamp-3 max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
-          {{ user?.description }}
+        <p v-if="user.description" class="line-clamp-3 max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
+          {{ user.description }}
         </p>
 
         <div class="my-2 w-full">
@@ -104,16 +104,21 @@
 </template>
 
 <script setup lang="ts">
+const userStore = useUserStore()
+const preferencesStore = usePreferencesStore()
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
-const preferencesStore = usePreferencesStore()
-const userStore = useUserStore()
 
+const { user } = storeToRefs(userStore)
+const { preferences } = storeToRefs(preferencesStore)
 const { links } = storeToRefs(linkStore)
 const { icons } = storeToRefs(iconStore)
-const { preferences } = storeToRefs(preferencesStore)
-const { user } = storeToRefs(userStore)
 const isMobilePreviewVisible = ref(false)
 
-const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(toRef(preferencesStore, "preferences"))
+const {
+  backgroundStyle,
+  profilePictureStyle,
+  slugStyle,
+  descriptionStyle,
+} = useDynamicStyles(toRef(preferencesStore, "preferences"))
 </script>

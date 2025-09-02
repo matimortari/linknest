@@ -10,7 +10,7 @@
 const props = defineProps<{
   url: string
   logo: string
-  preferences?: UserPreferencesType
+  preferences: UserPreferencesType
 }>()
 
 defineEmits(["click"])

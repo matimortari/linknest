@@ -13,7 +13,7 @@ export const useLinkStore = defineStore("link", () => {
       links.value = await getLinksService()
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to get links"
+      error.value = error.message || "Failed to get links"
       throw error
     }
     finally {
@@ -44,7 +44,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to create link"
+      error.value = error.message || "Failed to create link"
       throw error
     }
     finally {
@@ -53,7 +53,7 @@ export const useLinkStore = defineStore("link", () => {
   }
 
   async function updateLink(payload: UpdateLinkPayload) {
-    if (!payload?.id) {
+    if (!payload.id) {
       error.value = "Link ID is required to update"
       throw new Error(error.value)
     }
@@ -82,7 +82,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to update link"
+      error.value = error.message || "Failed to update link"
       throw error
     }
     finally {
@@ -105,7 +105,7 @@ export const useLinkStore = defineStore("link", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to delete link"
+      error.value = error.message || "Failed to delete link"
       throw error
     }
     finally {

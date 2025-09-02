@@ -13,7 +13,7 @@ export const useIconStore = defineStore("icon", () => {
       icons.value = await getIconsService()
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to get social icons"
+      error.value = error.message || "Failed to get social icons"
       throw error
     }
     finally {
@@ -44,7 +44,7 @@ export const useIconStore = defineStore("icon", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to create social icon"
+      error.value = error.message || "Failed to create social icon"
       throw error
     }
     finally {
@@ -67,7 +67,7 @@ export const useIconStore = defineStore("icon", () => {
       return response
     }
     catch (error: any) {
-      error.value = error?.message || "Failed to delete social icon"
+      error.value = error.message || "Failed to delete social icon"
       throw error
     }
     finally {

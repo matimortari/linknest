@@ -64,7 +64,7 @@ function handleUpdateLink(link: LinkType) {
   }
   catch (error: any) {
     console.error("Failed to update link:", error)
-    linkStore.error = error?.message
+    linkStore.error = error.message
   }
 }
 
@@ -75,7 +75,7 @@ async function handleDeleteLink(id: string) {
   }
   catch (error: any) {
     console.error("Failed to delete link:", error)
-    linkStore.error = error?.message
+    linkStore.error = error.message
   }
 }
 
@@ -94,7 +94,7 @@ async function handleSaveLink(link: LinkType) {
   }
   catch (error: any) {
     console.error("Failed to save link:", error)
-    linkStore.error = error?.message
+    linkStore.error = error.message
   }
 }
 </script>

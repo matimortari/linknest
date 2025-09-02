@@ -5,7 +5,7 @@
 
   <Spinner v-if="isLoading" />
 
-  <div v-else-if="!user || !user.id" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
+  <div v-else-if="!user" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
     <p class="text-lead text-center">
       User {{ slug }} not found.
     </p>

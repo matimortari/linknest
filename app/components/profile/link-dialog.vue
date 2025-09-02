@@ -66,7 +66,7 @@ function handleSubmit() {
   }
   catch (error: any) {
     console.error("Failed to save link:", error)
-    linkStore.error = error?.message
+    linkStore.error = error.message
   }
 }
 

@@ -38,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import { iconSchema } from "#shared/config/schemas"
 import { SOCIAL_ICONS } from "#shared/config/social-icons"
-import { iconSchema } from "#shared/schemas/schemas"
 
 const props = defineProps<{
   isOpen: boolean

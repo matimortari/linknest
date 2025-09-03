@@ -47,7 +47,10 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="isDialogOpen = false" />
+  <ProfileQrCodeDialog
+    :is-open="isDialogOpen" :slug="user?.slug ?? ''"
+    @close="closeDialog"
+  />
 </template>
 
 <script setup lang="ts">
@@ -57,6 +60,10 @@ const { user } = storeToRefs(userStore)
 const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+
+function closeDialog() {
+  isDialogOpen.value = false
+}
 
 function handleClickOutside(e: MouseEvent) {
   const target = e.target as Node

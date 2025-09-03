@@ -29,7 +29,6 @@ const emit = defineEmits<{
 
 const localPrefs = reactive({ ...props.preferences })
 
-// Emit updates whenever localPrefs changes
 watch(localPrefs, (newVal) => {
   emit("update:preferences", { ...newVal })
 }, { deep: true })

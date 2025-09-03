@@ -14,6 +14,18 @@ export default antfu({
     "no-alert": "off",
     "no-console": "off",
     "node/prefer-global/process": "off",
+    "object-curly-newline": ["error", {
+      ObjectExpression: { multiline: false, consistent: true },
+      ObjectPattern: { multiline: false, consistent: true },
+      ImportDeclaration: { multiline: false, consistent: true },
+      ExportDeclaration: { multiline: false, consistent: true },
+    }],
+    "vue/object-curly-newline": ["error", {
+      ObjectExpression: { multiline: false, consistent: true },
+      ObjectPattern: { multiline: false, consistent: true },
+      ImportDeclaration: { multiline: false, consistent: true },
+      ExportDeclaration: { multiline: false, consistent: true },
+    }],
     "vue/block-order": ["error", {
       order: ["template", "script", "style"],
     }],

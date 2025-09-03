@@ -132,8 +132,3 @@ type UpdatePreferencesPayload = Partial<UserPreferencesType>
 interface UpdateSupportBannerPayload {
   supportBanner: BannerOptionType
 }
-
-interface InputOptionType {
-  value: string
-  label: string
-}

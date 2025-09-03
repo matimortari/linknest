@@ -1,8 +1,8 @@
 <template>
   <Navbar />
 
-  <section id="hero" class="my-12 flex flex-col items-center justify-center overflow-hidden border-b-2 px-8 md:flex-row md:gap-0 md:px-24">
-    <div
+  <section id="hero" class="my-12 flex flex-col items-center min-h-screen justify-center overflow-hidden border-b-2 px-8 md:flex-row md:gap-0 md:px-24">
+    <header
       v-motion :initial="{ opacity: 0, y: -40 }"
       :visible="{ opacity: 1, y: 0 }" :duration="800"
       class="flex flex-col items-center gap-6 text-center md:items-start md:text-start"
@@ -21,7 +21,7 @@
         <span>Get Started Now!</span>
         <icon name="ri:arrow-right-line" size="20" />
       </nuxt-link>
-    </div>
+    </header>
 
     <Carousel />
   </section>

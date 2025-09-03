@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 defineProps<{
-  options: ReadonlyArray<InputOptionType>
   name?: string
-  value?: string
   label?: string
+  value?: string
+  options: ReadonlyArray<{ label: string, value: string }>
 }>()
 
 defineEmits(["update:value"])

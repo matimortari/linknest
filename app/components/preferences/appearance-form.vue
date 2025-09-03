@@ -81,14 +81,14 @@
           label="Shadow Weight" :options="SHADOW_WEIGHTS"
           :disabled="isLinkShadowDisabled"
         />
-        <PreferencesCheckboxInput id="showCopyButton" v-model:value="preferences.showCopyButton" label="Show 'Copy to Clipboard' Button" />
+        <PreferencesCheckboxInput id="showLinkCopyButton" v-model:value="preferences.showLinkCopyButton" label="Show 'Copy to Clipboard' Button" />
       </div>
     </div>
 
     <div v-if="activeTab === 'icons'" class="grid grid-cols-1 gap-2 py-2 md:grid-cols-2">
       <div class="flex flex-col gap-2">
         <PreferencesColorInput id="iconBackgroundColor" v-model:value="preferences.iconBackgroundColor" label="Background Color" />
-        <PreferencesColorInput id="iconIconColor" v-model:value="preferences.iconIconColor" label="Icon Color" />
+        <PreferencesColorInput id="iconLogoColor" v-model:value="preferences.iconLogoColor" label="Icon Color" />
         <PreferencesColorInput id="iconHoverBackgroundColor" v-model:value="preferences.iconHoverBackgroundColor" label="Hover Background Color" />
       </div>
 

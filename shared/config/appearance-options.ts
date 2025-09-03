@@ -50,10 +50,9 @@ export type FontSize = (typeof FONT_SIZES)[number]["value"]
 
 export const FONT_WEIGHTS = [
   { label: "Light", value: "400" },
-  { label: "Normal", value: "500" },
   { label: "Semibold", value: "600" },
   { label: "Bold", value: "700" },
-  { label: "Extrabold", value: "800" },
+  { label: "Extra Bold", value: "800" },
 ] as const
 
 export type FontWeight = (typeof FONT_WEIGHTS)[number]["value"]

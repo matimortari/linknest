@@ -48,7 +48,7 @@ export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<U
     if (!pref.value)
       return
 
-    return { color: pref.value.iconIconColor }
+    return { color: pref.value.iconLogoColor }
   }
 
   function linkStyle(isHovered: boolean) {

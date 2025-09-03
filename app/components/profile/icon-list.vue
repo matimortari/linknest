@@ -11,7 +11,7 @@
 
     <Spinner v-if="isLoading" />
     <p v-else-if="!icons.length" class="text-lead my-2 text-center">
-      No social icons yet. Add your first social icon!
+      Pin social icons to your profile so visitors can easily connect. Add your first icon!
     </p>
 
     <ul v-else class="flex flex-row gap-2">
@@ -32,7 +32,10 @@
     </button>
   </div>
 
-  <ProfileIconDialog :is-open="isDialogOpen" @close="isDialogOpen = false" @save="handleCreateIcon" />
+  <ProfileIconDialog
+    :is-open="isDialogOpen" @close="closeDialog"
+    @save="handleCreateIcon"
+  />
 </template>
 
 <script setup lang="ts">
@@ -40,6 +43,10 @@ const iconStore = useIconStore()
 
 const { icons, isLoading } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
+
+function closeDialog() {
+  isDialogOpen.value = false
+}
 
 async function handleCreateIcon(icon: IconType) {
   iconStore.error = null

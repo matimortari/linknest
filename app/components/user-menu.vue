@@ -60,7 +60,7 @@
     v-if="user"
     :is-open="isDialogOpen" :slug="user.slug ?? undefined"
     :description="user.description ?? undefined" :image="user.image ?? undefined"
-    @close="isDialogOpen = false"
+    @close="closeDialog"
   />
 </template>
 
@@ -72,6 +72,10 @@ const userStore = useUserStore()
 const { user } = storeToRefs(userStore)
 const isMobileNavOpen = ref(false)
 const isDialogOpen = ref(false)
+
+function closeDialog() {
+  isDialogOpen.value = false
+}
 
 function signOut() {
   clear()

@@ -11,7 +11,7 @@
 
     <Spinner v-if="isLoading" />
     <p v-else-if="!links.length" class="text-lead my-2 text-center">
-      No links yet. Add your first link!
+      Your links help visitors discover more about you. Add your first link!
     </p>
 
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-2 2xl:grid-cols-3">
@@ -45,7 +45,10 @@
     </button>
   </div>
 
-  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="isDialogOpen = false" @save="handleSaveLink" />
+  <ProfileLinkDialog
+    :is-open="isDialogOpen" :selected-link="selectedLink"
+    @close="closeDialog" @save="handleSaveLink"
+  />
 </template>
 
 <script setup lang="ts">
@@ -54,6 +57,11 @@ const linkStore = useLinkStore()
 const { links, isLoading } = storeToRefs(linkStore)
 const isDialogOpen = ref(false)
 const selectedLink = ref<LinkType | null>(null)
+
+function closeDialog() {
+  isDialogOpen.value = false
+  selectedLink.value = null
+}
 
 function handleUpdateLink(link: LinkType) {
   linkStore.error = null

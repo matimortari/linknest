@@ -194,7 +194,7 @@ const pageViewsChartData = computed(() => ({
   datasets: [{
     label: "Page Views",
     data: stats.value.map(item => item.pageViews),
-    backgroundColor: "#c7784b",
+    backgroundColor: "#63abb5",
   }],
 }))
 
@@ -203,7 +203,7 @@ const linkClicksChartData = computed(() => ({
   datasets: [{
     label: "Link Clicks",
     data: stats.value.map(item => item.linkClicks),
-    borderColor: "#c7784b",
+    borderColor: "#63abb5",
     fill: false,
   }],
 }))
@@ -213,7 +213,7 @@ const iconClicksChartData = computed(() => ({
   datasets: [{
     label: "Social Icon Clicks",
     data: stats.value.map(item => item.iconClicks),
-    borderColor: "#c7784b",
+    borderColor: "#63abb5",
     fill: false,
   }],
 }))

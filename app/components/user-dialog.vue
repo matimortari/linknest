@@ -39,7 +39,7 @@
         </p>
 
         <button class="btn-primary" type="submit" aria-label="Save Link">
-          Save
+          Update Profile
         </button>
       </footer>
     </form>

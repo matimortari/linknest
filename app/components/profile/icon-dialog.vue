@@ -3,7 +3,7 @@
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
       <span class="text-sm font-medium">Select Icon</span>
 
-      <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5">
+      <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5 2xl:grid-cols-9">
         <button
           v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
           type="button" aria-label="Select Social Icon"
@@ -30,7 +30,7 @@
         </p>
 
         <button class="btn-primary" type="submit" aria-label="Save Link">
-          Save
+          Add Social Icon
         </button>
       </footer>
     </form>

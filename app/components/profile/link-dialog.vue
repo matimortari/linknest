@@ -25,7 +25,7 @@
         </p>
 
         <button class="btn-primary" type="submit" aria-label="Save Link">
-          Save
+          {{ props.selectedLink ? 'Update Link' : 'Add Link' }}
         </button>
       </footer>
     </form>

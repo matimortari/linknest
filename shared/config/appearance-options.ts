@@ -3,8 +3,6 @@ export const BACKGROUND_TYPES = [
   { value: "GRADIENT", label: "Gradient" },
 ] as const
 
-export type BackgroundOptionType = (typeof BACKGROUND_TYPES)[number]["value"]
-
 export const RADIUS_SIZES = [
   { label: "None", value: "0rem" },
   { label: "Small", value: "0.5rem" },
@@ -12,16 +10,12 @@ export const RADIUS_SIZES = [
   { label: "Large", value: "5rem" },
 ] as const
 
-export type RadiusSize = (typeof RADIUS_SIZES)[number]["value"]
-
 export const BORDER_WIDTHS = [
   { label: "None", value: "0" },
   { label: "Thin", value: "1px" },
   { label: "Medium", value: "2px" },
   { label: "Thick", value: "4px" },
 ] as const
-
-export type BorderWidth = (typeof BORDER_WIDTHS)[number]["value"]
 
 export const FONT_FAMILIES = [
   { label: "Roboto", value: "Roboto, sans-serif" },
@@ -37,16 +31,12 @@ export const FONT_FAMILIES = [
   { label: "Ubuntu Mono", value: "Ubuntu Mono, sans-serif" },
 ] as const
 
-export type FontFamily = (typeof FONT_FAMILIES)[number]["value"]
-
 export const FONT_SIZES = [
   { label: "Small", value: "1rem" },
   { label: "Medium", value: "1.1rem" },
   { label: "Large", value: "1.25rem" },
   { label: "Extra Large", value: "1.5rem" },
 ] as const
-
-export type FontSize = (typeof FONT_SIZES)[number]["value"]
 
 export const FONT_WEIGHTS = [
   { label: "Light", value: "400" },
@@ -55,15 +45,11 @@ export const FONT_WEIGHTS = [
   { label: "Extra Bold", value: "800" },
 ] as const
 
-export type FontWeight = (typeof FONT_WEIGHTS)[number]["value"]
-
 export const LINK_FONT_SIZES = [
   { label: "Small", value: "0.8rem" },
   { label: "Medium", value: "0.9rem" },
   { label: "Large", value: "1rem" },
 ] as const
-
-export type LinkFontSize = (typeof LINK_FONT_SIZES)[number]["value"]
 
 export const SHADOW_WEIGHTS = [
   { label: "Light", value: "light" },
@@ -71,12 +57,18 @@ export const SHADOW_WEIGHTS = [
   { label: "Heavy", value: "heavy" },
 ] as const
 
-export type ShadowWeightType = (typeof SHADOW_WEIGHTS)[number]["value"]
-
 export const LINK_PADDING_SIZES = [
   { label: "Small", value: "0.5rem" },
   { label: "Medium", value: "0.75rem" },
   { label: "Large", value: "0.85rem" },
 ] as const
 
+export type RadiusSize = (typeof RADIUS_SIZES)[number]["value"]
+export type BackgroundOptionType = (typeof BACKGROUND_TYPES)[number]["value"]
+export type BorderWidth = (typeof BORDER_WIDTHS)[number]["value"]
+export type FontFamily = (typeof FONT_FAMILIES)[number]["value"]
+export type FontSize = (typeof FONT_SIZES)[number]["value"]
+export type FontWeight = (typeof FONT_WEIGHTS)[number]["value"]
+export type LinkFontSize = (typeof LINK_FONT_SIZES)[number]["value"]
+export type ShadowWeightType = (typeof SHADOW_WEIGHTS)[number]["value"]
 export type LinkPaddingSize = (typeof LINK_PADDING_SIZES)[number]["value"]

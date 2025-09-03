@@ -7,9 +7,9 @@
   --card-foreground: #2e2d2d;
   --popover: #eeeded;
   --popover-foreground: #2e2d2d;
-  --primary: #4e5e51;
+  --primary: #748d6e;
   --primary-foreground: #ebe8e8;
-  --secondary: #748d6e;
+  --secondary: #63abb5;
   --secondary-foreground: #ebe8e8;
   --muted: #b8b5b5;
   --muted-foreground: #535353;
@@ -39,7 +39,7 @@ html.dark {
   --popover-foreground: #ebe8e8;
   --primary: #748d6e;
   --primary-foreground: #ebe8e8;
-  --secondary: #4e5e51;
+  --secondary: #63abb5;
   --secondary-foreground: #ebe8e8;
   --muted: #3b3b41;
   --muted-foreground: #c7c4c4;
@@ -161,7 +161,7 @@ h6 {
   color: var(--popover-foreground);
   border: 1px solid var(--border);
   border-radius: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.4);
 }
 

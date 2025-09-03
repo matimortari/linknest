@@ -36,9 +36,9 @@ interface IconType {
 
 interface UserPreferencesType {
   backgroundType: BackgroundOptionType
-  backgroundColor: string
-  backgroundGradientStart: string
-  backgroundGradientEnd: string
+  backgroundColor?: string
+  backgroundGradientStart?: string
+  backgroundGradientEnd?: string
 
   profilePictureRadius: RadiusSize
   profilePictureBorderWidth: BorderWidth
@@ -63,18 +63,18 @@ interface UserPreferencesType {
   linkBorderRadius: RadiusSize
   linkPadding: LinkPaddingSize
   isLinkShadow: boolean
-  linkShadowColor: string
-
+  linkShadowColor?: string
   linkShadowWeight?: ShadowWeightType
+  showLinkCopyButton?: boolean
+
   iconBackgroundColor: string
   iconHoverBackgroundColor: string
-  iconIconColor: string
+  iconLogoColor: string
   isIconShadow: boolean
-  iconShadowColor: string
+  iconShadowColor?: string
   iconShadowWeight?: ShadowWeightType
-  showCopyButton: boolean
 
-  supportBanner: BannerOptionType
+  supportBanner?: BannerOptionType
 }
 
 interface UserStatsType {

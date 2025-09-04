@@ -1,7 +1,7 @@
 <template>
-  <div v-if="preset" class="m-16 -mb-20 flex items-center justify-end select-none md:mt-0 md:w-1/2 md:self-end">
+  <div v-if="preset" class="my-16 -mb-24 flex w-full items-center justify-center select-none md:w-1/2 md:justify-end">
     <transition name="carousel-3d" mode="out-in">
-      <div :key="preset.slug" class="relative flex h-[550px] w-[330px] flex-col overflow-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black">
+      <div :key="preset.slug" class="relative flex h-[550px] w-full flex-col overflow-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:w-[330px]">
         <div class="from-primary to-accent absolute -top-1 z-10 w-full rounded-t-[2.5rem] bg-gradient-to-r pb-1">
           <div class="flex flex-row items-center justify-between rounded-t-[2.5rem] bg-[#111016] p-4 pb-2">
             <div class="flex flex-row items-center gap-2">
@@ -86,7 +86,7 @@ function getCarouselPreset(presets: typeof CAROUSEL_PRESETS, interval = 3000) {
 }
 
 .carousel-3d-enter-from {
-  transform: rotateY(90deg) scale(0.95);
+  transform: rotateY(90deg) scale(0.8);
   opacity: 0;
 }
 .carousel-3d-enter-to {

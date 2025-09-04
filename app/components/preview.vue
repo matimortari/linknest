@@ -1,13 +1,17 @@
 <template>
-  <div v-if="user" class="my-6 flex-col items-center justify-center select-none md:h-[520px]">
+  <div v-if="user" class="my-6 flex-col items-center justify-center select-none md:h-[520px] md:min-w-[330px]">
     <!-- Mobile Preview Toggle -->
-    <button class="btn fixed bottom-8 left-1/2 z-20 -translate-x-1/2 md:!hidden" aria-label="Toggle Mobile Preview" @click="isMobilePreviewVisible = !isMobilePreviewVisible">
-      <icon :name="isMobilePreviewVisible ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
-      <span>{{ isMobilePreviewVisible ? 'Close Preview' : 'Preview' }}</span>
+    <button class="btn fixed bottom-4 left-1/2 z-30 -translate-x-1/2 md:!hidden" aria-label="Toggle Mobile Preview" @click="isMobilePreviewOpen = !isMobilePreviewOpen">
+      <icon :name="isMobilePreviewOpen ? 'mdi:eye-off' : 'mdi:eye'" size="25" />
+      <span>{{ isMobilePreviewOpen ? 'Close Preview' : 'Preview' }}</span>
     </button>
 
     <!-- Mobile Preview -->
-    <div v-show="isMobilePreviewVisible" id="mobile-preview" class="fixed top-0 left-0 z-10 size-full overflow-y-auto p-12 md:hidden" :style="backgroundStyle">
+    <div
+      class="fixed top-0 left-0 z-20 size-full overflow-y-auto p-12 transition-transform duration-300 ease-in-out md:hidden"
+      :class="isMobilePreviewOpen ? 'translate-x-0' : 'translate-x-full'"
+      :style="backgroundStyle"
+    >
       <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
         <img :src="user.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
 
@@ -103,7 +107,7 @@ const { user } = storeToRefs(userStore)
 const { preferences } = storeToRefs(preferencesStore)
 const { links } = storeToRefs(linkStore)
 const { icons } = storeToRefs(iconStore)
-const isMobilePreviewVisible = ref(false)
+const isMobilePreviewOpen = ref(false)
 
 const {
   backgroundStyle,

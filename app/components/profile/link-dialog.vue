@@ -54,6 +54,10 @@ const form = ref<LinkType>({
 
 function handleSubmit() {
   linkStore.error = null
+  if (!form.value.title || !form.value.url) {
+    linkStore.error = "Title and URL are required."
+    return
+  }
 
   try {
     const result = linkSchema.safeParse(form.value)

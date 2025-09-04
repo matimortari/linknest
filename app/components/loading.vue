@@ -18,13 +18,14 @@
   opacity: 0;
   animation: fadeIn 1.2s infinite;
 }
-.dot .one {
+
+.dot.one {
   animation-delay: 0s;
 }
-.dot .two {
+.dot.two {
   animation-delay: 0.2s;
 }
-.dot .three {
+.dot.three {
   animation-delay: 0.4s;
 }
 

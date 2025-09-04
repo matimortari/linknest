@@ -31,7 +31,7 @@ export function useTheme() {
   })
 
   const themeIcon = computed(() =>
-    colorMode.value === "light" ? "ph:moon" : "ph:sun",
+    colorMode.value === "light" ? "mdi:weather-night" : "mdi:weather-sunny",
   )
 
   return {

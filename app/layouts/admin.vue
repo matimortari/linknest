@@ -3,7 +3,7 @@
 
   <div v-show="!isLoading" class="min-h-screen">
     <div class="flex flex-col !items-start gap-4 p-4 md:flex-row">
-      <UserMenu />
+      <Sidebar />
 
       <main class="relative min-h-[200px] flex-1 overflow-x-hidden">
         <div :class="{ hidden: isLoading }">

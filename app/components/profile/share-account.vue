@@ -10,7 +10,10 @@
     </header>
 
     <div ref="dropdownRef" class="navigation-group relative">
-      <button title="See sharing options" class="btn-secondary" aria-label="Share Profile" @click="isDropdownOpen = !isDropdownOpen">
+      <p class="text-success">
+        {{ copySuccess || '' }}
+      </p>
+      <button title="See sharing options" class="btn" aria-label="Share Profile" @click="isDropdownOpen = !isDropdownOpen">
         <icon name="mdi:share-variant" size="20" />
         <span class="hidden md:inline">Share Now</span>
       </button>
@@ -20,7 +23,7 @@
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
             <button
               class="hover:bg-muted flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
-              aria-label="Copy Profile Link" @click="() => { copyToClipboard(`https://linknest-live.vercel.app/${user?.slug}`); isDropdownOpen = false }"
+              aria-label="Copy Profile Link" @click="copyProfileUrl()"
             >
               <icon name="mdi:clipboard-multiple-outline" size="20" />
               <span>Copy Link</span>
@@ -28,7 +31,7 @@
 
             <button
               class="hover:bg-muted flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
-              aria-label="Share on X" @click="handleShareTwitter; isDropdownOpen = false"
+              aria-label="Share on X" @click="handleShareTwitter()"
             >
               <icon name="simple-icons:x" size="20" />
               <span>Share on X</span>
@@ -36,7 +39,7 @@
 
             <button
               class="hover:bg-muted flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
-              aria-label="Get QR Code" @click="isDialogOpen = true; isDropdownOpen = false"
+              aria-label="Get QR Code" @click="() => { isDialogOpen = true; isDropdownOpen = false }"
             >
               <icon name="mdi:qrcode" size="20" />
               <span>Get QR Code</span>
@@ -60,6 +63,7 @@ const { user } = storeToRefs(userStore)
 const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+const copySuccess = ref<string | null>(null)
 
 function closeDialog() {
   isDialogOpen.value = false
@@ -75,9 +79,22 @@ function handleClickOutside(e: MouseEvent) {
   }
 }
 
+async function copyProfileUrl() {
+  await navigator.clipboard.writeText(
+    `https://linknest-live.vercel.app/${user.value?.slug}`,
+  )
+  isDropdownOpen.value = false
+  copySuccess.value = "Link copied to clipboard!"
+  setTimeout(() => {
+    copySuccess.value = null
+  }, 2000)
+}
+
 function handleShareTwitter() {
   const tweet = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 https://linknest-live.vercel.app/${user.value?.slug}`
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    tweet,
+  )}`
   window.open(twitterUrl, "_blank")
   isDropdownOpen.value = false
 }
@@ -106,7 +123,7 @@ onBeforeUnmount(() => {
 .dropdown-fade-enter-from,
 .dropdown-fade-leave-to {
   opacity: 0;
-  transform: translateY(10px) scale(0.98);
+  transform: translateY(10px) scale(0.8);
 }
 .dropdown-fade-enter-to,
 .dropdown-fade-leave-from {

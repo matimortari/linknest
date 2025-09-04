@@ -66,6 +66,10 @@ function selectIcon(label: string, iconName: string) {
 
 function handleSubmit() {
   iconStore.error = null
+  if (!form.value.platform || !form.value.url) {
+    iconStore.error = "Platform and URL are required."
+    return
+  }
 
   try {
     const result = iconSchema.safeParse(form.value)

@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="isIconsLoading || isLinksLoading" />
-    <p v-else-if="!links.length && !icons.length" class="text-lead my-2 text-center">
+    <p v-else-if="!links.length && !icons.length" class="text-lead m-8 text-center">
       No links or social icons available yet.
     </p>
 

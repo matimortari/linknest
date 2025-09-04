@@ -7,13 +7,17 @@
 
       <QrcodeVue :value="props.slug" :size="150" level="M" class="!border-muted rounded-lg border bg-white p-2" />
 
-      <button class="hover:underline" aria-label="Copy Profile Link" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
+      <button class="hover:underline" aria-label="Copy Profile Link" @click="copyPageUrl(pageUrl)">
         @{{ props.slug }}
       </button>
     </div>
 
-    <footer class="flex justify-end">
-      <button class="btn-primary w-32" aria-label="Copy Profile Link" @click="() => copyToClipboard(`https://linknest-live.vercel.app/${props.slug}`)">
+    <footer class="flex flex-row items-center justify-between">
+      <p class="text-success">
+        {{ copySuccess || '' }}
+      </p>
+
+      <button class="btn-primary" aria-label="Copy Profile Link" @click="copyPageUrl(pageUrl)">
         Copy Link
       </button>
     </footer>
@@ -29,4 +33,22 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["close", "update:isOpen"])
+
+const pageUrl = `https://linknest-live.vercel.app/${props.slug}`
+const copySuccess = ref<string | null>(null)
+
+function copyPageUrl(text: string) {
+  navigator.clipboard.writeText(text).then(() => {
+    copySuccess.value = "Profile link copied to clipboard!"
+    setTimeout(() => {
+      copySuccess.value = null
+    }, 2000)
+  }).catch((err) => {
+    console.error("Failed to copy text: ", err)
+    copySuccess.value = "Failed to copy profile link."
+    setTimeout(() => {
+      copySuccess.value = null
+    }, 2000)
+  })
+}
 </script>

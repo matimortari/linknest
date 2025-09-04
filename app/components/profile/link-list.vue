@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!links.length" class="text-lead my-2 text-center">
+    <p v-else-if="!links.length" class="text-lead m-8 text-center">
       Your links help visitors discover more about you. Add your first link!
     </p>
 
@@ -24,10 +24,10 @@
 
             <div class="flex flex-row items-center gap-1">
               <button aria-label="Update Link" class="flex items-center" @click="handleUpdateLink(link)">
-                <icon name="mdi:circle-edit-outline" size="20" class="hover:scale-md text-primary transition-all" />
+                <icon name="mdi:circle-edit-outline" size="25" class="hover:scale-md text-primary transition-all" />
               </button>
               <button aria-label="Delete Link" class="flex items-center" @click="handleDeleteLink(link.id!)">
-                <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
+                <icon name="mdi:remove-circle-outline" size="25" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
           </div>

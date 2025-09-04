@@ -1,8 +1,6 @@
 <template>
-  <div class="navigation-group w-full justify-between rounded-2xl border p-2">
-    <label :for="id" class="text-caption" :class="[disabled ? 'text-muted line-through' : '']">
-      {{ label }}
-    </label>
+  <div class="navigation-group w-full justify-between rounded-2xl border p-2" :class="disabled ? 'line-through opacity-50 cursor-not-allowed' : ''">
+    <label :for="id" class="text-caption">{{ label }}</label>
 
     <select
       :id="id" :value="value"

@@ -10,7 +10,7 @@
             @change="handleImageChange"
           >
           <label class="btn absolute -bottom-2 -left-2" for="image">
-            <icon name="ph:upload" size="20" />
+            <icon name="mdi:upload" size="20" />
           </label>
         </div>
       </div>

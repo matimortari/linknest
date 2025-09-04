@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="isLoading" />
-    <p v-else-if="!icons.length" class="text-lead my-2 text-center">
+    <p v-else-if="!icons.length" class="text-lead m-8 text-center">
       Pin social icons to your profile so visitors can easily connect. Add your first icon!
     </p>
 
@@ -21,7 +21,7 @@
         </nuxt-link>
 
         <button class="absolute right-0 bottom-0 flex items-center p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
-          <icon name="mdi:remove-circle-outline" size="20" class="hover:scale-md text-danger-foreground transition-all" />
+          <icon name="mdi:remove-circle-outline" size="25" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>
     </ul>

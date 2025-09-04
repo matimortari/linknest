@@ -9,7 +9,7 @@
             </h2>
 
             <button aria-label="Close Dialog" @mousedown="closeDialog">
-              <icon name="ph:x-bold" size="30" class="text-muted-foreground" />
+              <icon name="mdi:close" size="30" class="text-muted-foreground" />
             </button>
           </header>
 

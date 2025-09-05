@@ -13,7 +13,7 @@
 
   <aside
     v-if="user" class="bg-card md:bg-background fixed top-0 left-0 z-40 size-full p-4 transition-transform md:static md:w-56 md:translate-x-0"
-    :class="isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'"
+    :class="isMobileNavOpen ? 'slide-in' : 'slide-out'"
   >
     <div class="flex h-full flex-col gap-12">
       <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all select-none">
@@ -95,3 +95,31 @@ const navLinks = [
   { url: "/admin/analytics", icon: "material-symbols:chart-data-outline", label: "Analytics" },
 ]
 </script>
+
+<style scoped>
+.slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+</style>

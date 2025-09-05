@@ -37,7 +37,6 @@ export const iconSchema = z.object({
   url: z.url().refine(url => url.startsWith("https://"), {
     message: "Social Icon URL must start with 'https://'",
   }),
-  logo: z.string().min(1, "Social Icon logo is required"),
 })
 
 // Types inferred from schemas

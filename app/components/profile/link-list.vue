@@ -45,10 +45,7 @@
     </button>
   </div>
 
-  <ProfileLinkDialog
-    :is-open="isDialogOpen" :selected-link="selectedLink"
-    @close="closeDialog" @save="handleSaveLink"
-  />
+  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="closeDialog" @save="handleSaveLink" />
 </template>
 
 <script setup lang="ts">

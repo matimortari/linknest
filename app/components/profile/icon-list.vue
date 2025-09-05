@@ -32,10 +32,7 @@
     </button>
   </div>
 
-  <ProfileIconDialog
-    :is-open="isDialogOpen" @close="closeDialog"
-    @save="handleCreateIcon"
-  />
+  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleCreateIcon" />
 </template>
 
 <script setup lang="ts">

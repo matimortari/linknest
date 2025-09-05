@@ -1,18 +1,18 @@
 <template>
-  <div class="scroll-area grid h-64 grid-cols-1 gap-2 overflow-auto py-2 md:grid-cols-3 2xl:grid-cols-4">
-    <button
-      v-for="theme in THEMES" :key="theme.title"
-      :title="theme.title" aria-label="Select Theme"
-      tabindex="0" class="flex size-full items-center justify-center rounded-lg border-2 p-8 hover:!border-dashed hover:opacity-80"
-      :class="{
-        'opacity-60': selectedTheme !== theme.title,
-      }"
-      :style="getThemeButtonStyle(theme.preferences)" @click="handleThemeSelection(theme.title)"
-    >
-      <p class="line-clamp-1 truncate p-2 text-center text-sm select-none" :style="getTitleStyle(theme.preferences)">
-        {{ theme.title }}
-      </p>
-    </button>
+  <div class="scroll-area grid h-64 grid-cols-1 gap-4 overflow-auto py-2 md:grid-cols-2 2xl:grid-cols-4">
+    <div v-for="theme in THEMES" :key="theme.title" class="flex flex-col items-center gap-2">
+      <button
+        :title="theme.title" aria-label="Select Theme"
+        tabindex="0" class="flex size-full flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed p-8 hover:border-solid hover:opacity-80"
+        :class="{ 'opacity-60': selectedTheme !== theme.title }" :style="themeButtonStyle(theme.preferences)"
+        @click="handleThemeSelection(theme.title)"
+      >
+        <p v-for="i in 3" :key="i" class="line-clamp-1 min-h-[2rem] w-full truncate p-2 text-center text-sm select-none" :style="titleStyle(theme.preferences)">
+          {{ '' }}
+        </p>
+      </button>
+      <span class="text-sm">{{ theme.title }}</span>
+    </div>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ function handleThemeSelection(title: string) {
   }
 }
 
-function getThemeButtonStyle(preferences: any) {
+function themeButtonStyle(preferences: any) {
   return {
     backgroundImage:
       preferences.backgroundType === "GRADIENT"
@@ -41,7 +41,7 @@ function getThemeButtonStyle(preferences: any) {
   }
 }
 
-function getTitleStyle(preferences: any) {
+function titleStyle(preferences: any) {
   const shadowMap = {
     none: "none",
     light: `0px 1px 2px ${preferences.linkShadowColor}`,

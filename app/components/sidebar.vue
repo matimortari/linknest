@@ -64,10 +64,9 @@
   </aside>
 
   <UserDialog
-    v-if="user"
-    :is-open="isDialogOpen" :slug="user.slug ?? undefined"
-    :description="user.description ?? undefined" :image="user.image ?? undefined"
-    @close="closeDialog"
+    v-if="user" :is-open="isDialogOpen"
+    :slug="user.slug ?? undefined" :description="user.description ?? undefined"
+    :image="user.image ?? undefined" @close="closeDialog"
   />
 </template>
 
@@ -97,29 +96,31 @@ const navLinks = [
 </script>
 
 <style scoped>
-.slide-in {
-  animation: slideIn 0.3s ease-out forwards;
-}
-
-.slide-out {
-  animation: slideOut 0.3s ease-in forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
+@media (max-width: 767px) {
+  .slide-in {
+    animation: slideIn 0.3s ease-out forwards;
   }
-  to {
-    transform: translateX(0);
-  }
-}
 
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
-  to {
-    transform: translateX(-100%);
+
+  .slide-out {
+    animation: slideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
 }
 </style>

@@ -4,18 +4,18 @@
       <h4>
         Share your Page:
       </h4>
-      <nuxt-link :to="`/${user?.slug}`" :title="`linknest-live.vercel.app/${user?.slug}`" class="text-muted-foreground truncate text-sm hover:underline">
+      <nuxt-link :to="`/${user?.slug}`" :title="pageUrl" class="text-muted-foreground truncate text-sm hover:underline">
         @{{ user?.slug }}
       </nuxt-link>
-    </header>
-
-    <div ref="dropdownRef" class="navigation-group relative">
       <p class="text-success">
         {{ copySuccess || '' }}
       </p>
+    </header>
+
+    <div ref="dropdownRef" class="navigation-group relative">
       <button title="See sharing options" class="btn" aria-label="Share Profile" @click="isDropdownOpen = !isDropdownOpen">
         <icon name="mdi:share-variant" size="20" />
-        <span class="hidden md:inline">Share Now</span>
+        <span>Share Now</span>
       </button>
 
       <transition name="dropdown-fade">
@@ -23,7 +23,7 @@
           <div class="flex flex-col items-start gap-2 text-xs font-semibold">
             <button
               class="hover:bg-muted flex flex-row items-center gap-2 rounded-2xl p-2 whitespace-nowrap" role="menuitem"
-              aria-label="Copy Profile Link" @click="copyProfileUrl()"
+              aria-label="Copy Profile Link" @click="copyPageUrl()"
             >
               <icon name="mdi:clipboard-multiple-outline" size="20" />
               <span>Copy Link</span>
@@ -50,10 +50,7 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog
-    :is-open="isDialogOpen" :slug="user?.slug ?? ''"
-    @close="closeDialog"
-  />
+  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="closeDialog" />
 </template>
 
 <script setup lang="ts">
@@ -64,6 +61,7 @@ const isDialogOpen = ref(false)
 const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 const copySuccess = ref<string | null>(null)
+const pageUrl = `https://linknest-live.vercel.app/${user.value?.slug}`
 
 function closeDialog() {
   isDialogOpen.value = false
@@ -79,19 +77,17 @@ function handleClickOutside(e: MouseEvent) {
   }
 }
 
-async function copyProfileUrl() {
-  await navigator.clipboard.writeText(
-    `https://linknest-live.vercel.app/${user.value?.slug}`,
-  )
+async function copyPageUrl() {
+  await navigator.clipboard.writeText(pageUrl)
   isDropdownOpen.value = false
-  copySuccess.value = "Link copied to clipboard!"
+  copySuccess.value = "Copied to clipboard!"
   setTimeout(() => {
     copySuccess.value = null
   }, 2000)
 }
 
 function handleShareTwitter() {
-  const tweet = `🚀 Check out my #LinkNest profile! 🌟\n\n🔗 https://linknest-live.vercel.app/${user.value?.slug}`
+  const tweet = `🚀 Check out my #inkNest profile! 🌟\n\n🔗 ${pageUrl}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweet,
   )}`

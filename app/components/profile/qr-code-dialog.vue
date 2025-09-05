@@ -34,12 +34,12 @@ const props = defineProps({
 
 const emit = defineEmits(["close", "update:isOpen"])
 
-const pageUrl = `https://linknest-live.vercel.app/${props.slug}`
 const copySuccess = ref<string | null>(null)
+const pageUrl = `https://linknest-live.vercel.app/${props.slug}`
 
 function copyPageUrl(text: string) {
   navigator.clipboard.writeText(text).then(() => {
-    copySuccess.value = "Profile link copied to clipboard!"
+    copySuccess.value = "Copied to clipboard!"
     setTimeout(() => {
       copySuccess.value = null
     }, 2000)

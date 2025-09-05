@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     "#server": fileURLToPath(new URL("./server", import.meta.url)),
   },
   imports: {
-    dirs: ["lib", "lib/middleware", "lib/services", "lib/stores"],
+    dirs: ["lib", "lib/middleware", "lib/services"],
   },
   runtimeConfig: {
     public: {

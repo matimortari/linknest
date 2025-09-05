@@ -8,8 +8,8 @@
 
     <!-- Mobile Preview -->
     <div
-      class="fixed top-0 left-0 z-20 size-full overflow-y-auto p-12 transition-transform duration-300 ease-in-out md:hidden"
-      :class="isMobilePreviewOpen ? 'translate-x-0' : 'translate-x-full'"
+      class="fixed top-0 left-0 z-20 size-full overflow-y-auto p-12 transition-transform ease-in-out md:hidden"
+      :class="isMobilePreviewOpen ? 'slide-up' : 'slide-down'"
       :style="backgroundStyle"
     >
       <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
@@ -103,16 +103,39 @@ const preferencesStore = usePreferencesStore()
 const linkStore = useLinkStore()
 const iconStore = useIconStore()
 
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(toRef(preferencesStore, "preferences"))
+
 const { user } = storeToRefs(userStore)
 const { preferences } = storeToRefs(preferencesStore)
 const { links } = storeToRefs(linkStore)
 const { icons } = storeToRefs(iconStore)
 const isMobilePreviewOpen = ref(false)
-
-const {
-  backgroundStyle,
-  profilePictureStyle,
-  slugStyle,
-  descriptionStyle,
-} = useDynamicStyles(toRef(preferencesStore, "preferences"))
 </script>
+
+<style scoped>
+.slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease-in forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+</style>

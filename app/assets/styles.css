@@ -80,14 +80,17 @@ html.dark {
 }
 
 @layer base {
-  * {
-    box-sizing: border-box;
-    border-color: var(--border);
-  }
-
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border);
   }
 }
 
@@ -132,6 +135,7 @@ h6 {
   font-weight: 400;
   color: var(--muted-foreground);
 }
+
 .text-caption,
 .text-warning,
 .text-success {
@@ -171,6 +175,7 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-color: var(--input);
   color: var(--foreground);
   border: 1px solid var(--border);
   accent-color: var(--accent);
@@ -336,11 +341,11 @@ input[type="radio"]:checked::after {
   scrollbar-color: var(--border) var(--background);
 }
 
-.hide-scrollbar {
+.scroll-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.hide-scrollbar::-webkit-scrollbar {
+.scroll-hide::-webkit-scrollbar {
   display: none;
 }
 
@@ -380,10 +385,6 @@ html.dark {
 .bg-secondary {
   background-color: var(--secondary);
   color: var(--secondary-foreground);
-}
-.bg-accent {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
 }
 .bg-muted {
   background-color: var(--muted);

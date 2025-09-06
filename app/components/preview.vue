@@ -50,7 +50,7 @@
       v-motion :initial="{ opacity: 0, x: 20 }"
       :visible="{ opacity: 1, x: 0 }" :duration="800"
       :style="backgroundStyle"
-      class="hide-scrollbar relative mx-auto hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block md:w-10/12 2xl:w-8/12"
+      class="scroll-hide relative mx-auto hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block md:w-10/12 2xl:w-8/12"
     >
       <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
       <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">

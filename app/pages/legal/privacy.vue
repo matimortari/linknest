@@ -1,82 +1,152 @@
 <template>
-  <header class="flex flex-col items-center gap-4 border-b p-8 text-center">
-    <img src="/assets/logo-icon.png" alt="Logo" width="100" height="100">
+  <header class="flex flex-col items-start gap-2 border-b p-8 text-start">
     <h2>
       Privacy Policy
     </h2>
-    <p class="text-muted-foreground text-center">
+    <p class="text-muted-foreground">
       Learn how LinkNest collects, uses, and protects your data.
     </p>
   </header>
 
-  <div
-    v-motion class="mx-auto flex max-w-3xl flex-col items-center p-6"
-    :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
-    :duration="800"
-  >
-    <section v-for="section in privacyContent" :key="section.title">
-      <h3>
-        {{ section.title }}
-      </h3>
+  <div class="mx-auto flex w-full flex-row justify-between gap-8 px-8 py-4 md:px-24">
+    <article
+      v-motion class="flex flex-col gap-4 p-4 text-left"
+      :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
+      :duration="800"
+    >
+      <p class="text-lg">
+        <span class="font-semibold">Effective Date:</span> September 8, 2025
+      </p>
 
-      <p v-html="section.description" />
-      <ul v-if="section.list" class="text-muted-foreground list-inside list-disc space-y-1">
-        <li v-for="item in section.list" :key="item" v-html="item" />
-      </ul>
-    </section>
+      <section v-for="(section, index) in privacyContent" :key="index">
+        <h3>
+          {{ index + 1 }}. {{ section.title }}
+        </h3>
+
+        <p v-for="(para, i) in section.body" :key="`para-${i}`" class="text-muted-foreground" v-html="para" />
+        <ul class="text-muted-foreground list-disc">
+          <li v-for="(item, i) in section.list" :key="`li-${index}-${i}`">
+            {{ item }}
+          </li>
+        </ul>
+      </section>
+    </article>
+
+    <aside class="bg-card sticky top-24 hidden w-72 rounded-lg p-4 text-right shadow-2xl lg:block">
+      <nav class="space-y-4">
+        <h3 class="border-b py-4">
+          On this page
+        </h3>
+        <ul class="text-muted-foreground space-y-2">
+          <li v-for="(section, index) in privacyContent" :key="`toc-${index}`">
+            <a :href="`#${section.title?.toLowerCase().replace(/\s+/g, '-')}`" class="hover:text-primary block transition-colors">
+              {{ section.title }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
   </div>
 </template>
 
 <script setup lang="ts">
 const privacyContent = [
   {
+    title: "Introduction",
+    body: [
+      "This Privacy Policy explains how LinkNest collects, uses, and protects your personal information when you access or use our services.",
+      "In this Policy, “we”, “us”, and “our” refer to LinkNest and its affiliates, and “you” and “your” refer to users of our services.",
+    ],
+  },
+  {
     title: "Information We Collect",
-    description:
-      "We collect information you provide when creating your account, managing your links, and interacting with our services.",
+    body: [
+      "We collect information to provide and improve our services, including:",
+    ],
     list: [
-      "Name and email address.",
-      "Authentication data via Google or GitHub.",
-      "Usage data including clicks on your links and page views.",
+      "Account information from OAuth providers (Google, GitHub).",
+      "Content you create or share on your LinkNest page.",
+      "Usage analytics such as page views, clicks, and interactions.",
+      "Technical data such as device type, browser, IP address, and cookies.",
     ],
   },
   {
-    title: "How We Use Your Data",
-    description:
-      "Your data helps us provide and improve LinkNest services, communicate with you, and personalize your experience.",
-    list: [
-      "Manage and display your link pages.",
-      "Send important notifications and updates.",
-      "Analyze usage patterns for service improvements.",
+    title: "How We Use Your Information",
+    body: [
+      "We use the information we collect to:",
     ],
-  },
-  {
-    title: "Data Protection",
-    description:
-      "We employ industry-standard security measures to protect your data, including encryption and secure authentication.",
+    list: [
+      "Provide, maintain, and improve the service.",
+      "Authenticate users and secure accounts.",
+      "Analyze usage trends and generate analytics for users.",
+      "Communicate important updates, including policy changes.",
+    ],
   },
   {
     title: "Sharing and Disclosure",
-    description:
-      "We do not sell your personal information. Data may be shared with third parties only to provide essential services or comply with legal requirements.",
+    body: [
+      "We do not sell your personal information. We may share information in the following situations:",
+    ],
+    list: [
+      "With service providers that help us operate the platform.",
+      "When required by law, legal process, or governmental request.",
+      "To protect rights, safety, or property of LinkNest and our users.",
+    ],
+  },
+  {
+    title: "Cookies and Tracking",
+    body: [
+      "LinkNest uses cookies and similar technologies to enhance your experience, measure usage, and improve our services.",
+    ],
+    list: [
+      "Essential cookies to enable account login and security.",
+      "Analytics cookies to monitor traffic and feature usage.",
+      "Optional cookies for personalized preferences and improvements.",
+    ],
+  },
+  {
+    title: "Data Retention and Security",
+    body: [
+      "We retain personal data as long as necessary to provide our services or comply with legal obligations. We implement technical and organizational measures to protect data from unauthorized access, disclosure, or misuse.",
+    ],
   },
   {
     title: "Your Rights",
-    description:
-      "You can update your profile information and manage your links anytime. Contact us to request data deletion or export.",
+    body: [
+      "Depending on your jurisdiction, you may have rights regarding your personal data, including:",
+    ],
     list: [
-      "Email us at <a href=\"mailto:matheus.felipe.19rt@gmail.com\" class=\"text-link underline\">matheus.felipe.19rt@gmail.com</a> for any privacy concerns.",
+      "Accessing or correcting your personal information.",
+      "Requesting deletion of your personal information.",
+      "Objecting to or restricting certain processing activities.",
+      "Withdrawing consent where applicable.",
+    ],
+  },
+  {
+    title: "Changes to This Policy",
+    body: [
+      "We may update this Privacy Policy from time to time. Continued use of LinkNest constitutes acceptance of the updated policy. We encourage you to review this page periodically.",
+    ],
+  },
+  {
+    title: "Contact",
+    body: [
+      `If you have any questions about the Privacy Policy, email the maintainer at 
+      <a href="mailto:matheus.felipe.19rt@gmail.com" class='text-primary hover:underline'>
+        matheus.felipe.19rt@gmail.com
+      </a>.`,
     ],
   },
 ]
 
 useHead({
   title: "Privacy Policy - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/privacy" }, { rel: "icon", href: "/favicon.svg" }],
-  meta: [{ name: "description", content: "Learn how LinkNest collects and protects your data." }],
+  link: [{ rel: "canonical", href: "https://LinkNest.vercel.app/legal/privacy" }, { rel: "icon", href: "/favicon.svg" }],
+  meta: [{ name: "description", content: "Read the privacy policy for LinkNest." }],
 })
 
 useSeoMeta({
   title: "Privacy Policy - LinkNest",
-  description: "Learn how LinkNest collects and protects your data.",
+  description: "Read the privacy policy for LinkNest.",
 })
 </script>

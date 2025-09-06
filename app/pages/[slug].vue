@@ -1,6 +1,6 @@
 <template>
   <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all select-none">
-    <img src="/assets/logo.png" alt="Logo" width="35" height="35">
+    <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
   </nuxt-link>
 
   <Spinner v-if="isLoading" />

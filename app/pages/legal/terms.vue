@@ -1,6 +1,6 @@
 <template>
   <header class="flex flex-col items-center gap-4 border-b p-8 text-center">
-    <img src="/assets/logo.png" alt="Logo" width="100" height="100">
+    <img src="/assets/logo-icon.png" alt="Logo" width="100" height="100">
     <h2>
       Terms of Service
     </h2>

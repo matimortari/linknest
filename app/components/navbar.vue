@@ -1,8 +1,8 @@
 <template>
   <nav class="flex w-full items-center justify-between px-4 pt-4">
     <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all select-none">
-      <img src="/assets/logo.png" alt="Logo" width="35" height="35">
-      <span class="font-display text-2xl">LinkNest</span>
+      <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
+      <img :src="themeTitle" alt="Logo" width="140" height="35">
     </nuxt-link>
 
     <div class="flex flex-row items-center justify-end gap-2">
@@ -17,5 +17,5 @@
 </template>
 
 <script setup lang="ts">
-const { toggleTheme, themeIcon } = useTheme()
+const { toggleTheme, themeIcon, themeTitle } = useTheme()
 </script>

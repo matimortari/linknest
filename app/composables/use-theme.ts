@@ -1,3 +1,6 @@
+import logoTitleDark from "~/assets/logo-title-dark.png"
+import logoTitleLight from "~/assets/logo-title-light.png"
+
 export function useTheme() {
   const colorMode = useState<"light" | "dark">("theme", () => "light")
   const storageKey = "nuxt-color-mode"
@@ -34,9 +37,14 @@ export function useTheme() {
     colorMode.value === "light" ? "mdi:weather-night" : "mdi:weather-sunny",
   )
 
+  const themeTitle = computed(() =>
+    colorMode.value === "light" ? logoTitleLight : logoTitleDark,
+  )
+
   return {
     colorMode,
     toggleTheme,
     themeIcon,
+    themeTitle,
   }
 }

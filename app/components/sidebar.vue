@@ -17,8 +17,8 @@
   >
     <div class="flex h-full flex-col gap-12">
       <nuxt-link to="/" class="hover:scale-sm flex flex-row items-center gap-2 transition-all select-none">
-        <img src="/assets/logo.png" alt="Logo" width="35" height="35">
-        <span class="font-display text-2xl">LinkNest</span>
+        <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
+        <img :src="themeTitle" alt="Logo" width="140" height="35">
       </nuxt-link>
 
       <div class="navigation-group w-full !gap-4 px-12 md:px-0">
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-const { toggleTheme, themeIcon } = useTheme()
+const { toggleTheme, themeIcon, themeTitle } = useTheme()
 const { clear } = useUserSession()
 const userStore = useUserStore()
 

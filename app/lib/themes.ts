@@ -2,8 +2,8 @@ export const THEMES = [
   {
     title: "Mint",
     preferences: {
-      backgroundColor: "#4a5d51",
       backgroundType: "FLAT",
+      backgroundColor: "#4a5d51",
       profilePictureRadius: "5rem",
       profilePictureBorderColor: "#3f5243",
       profilePictureBorderWidth: "2px",
@@ -37,8 +37,8 @@ export const THEMES = [
   {
     title: "Arctic White",
     preferences: {
-      backgroundColor: "#e6ecf0",
       backgroundType: "FLAT",
+      backgroundColor: "#e6ecf0",
       profilePictureRadius: "1rem",
       profilePictureBorderColor: "#404345",
       profilePictureBorderWidth: "2px",
@@ -108,8 +108,8 @@ export const THEMES = [
   {
     title: "Straw",
     preferences: {
-      backgroundColor: "#f4e1a6",
       backgroundType: "FLAT",
+      backgroundColor: "#f4e1a6",
       profilePictureRadius: "0.5rem",
       profilePictureBorderColor: "#8c6239",
       profilePictureBorderWidth: "2px",
@@ -179,8 +179,8 @@ export const THEMES = [
   {
     title: "Crayons",
     preferences: {
-      backgroundColor: "#ececec",
       backgroundType: "FLAT",
+      backgroundColor: "#ececec",
       profilePictureRadius: "5rem",
       profilePictureBorderColor: "#8c6239",
       profilePictureBorderWidth: "2px",
@@ -248,8 +248,8 @@ export const THEMES = [
   {
     title: "Bleu de France",
     preferences: {
-      backgroundColor: "#318ce7",
       backgroundType: "FLAT",
+      backgroundColor: "#318ce7",
       profilePictureRadius: "1rem",
       profilePictureBorderColor: "#0d3c6c",
       profilePictureBorderWidth: "2px",
@@ -319,8 +319,8 @@ export const THEMES = [
   {
     title: "Cambridge",
     preferences: {
-      backgroundColor: "#a3c1ad",
       backgroundType: "FLAT",
+      backgroundColor: "#a3c1ad",
       profilePictureRadius: "1rem",
       profilePictureBorderColor: "#556b5d",
       profilePictureBorderWidth: "2px",
@@ -354,8 +354,8 @@ export const THEMES = [
   {
     title: "Space Cadet",
     preferences: {
-      backgroundColor: "#2a2d43",
       backgroundType: "FLAT",
+      backgroundColor: "#2a2d43",
       profilePictureRadius: "5rem",
       profilePictureBorderColor: "#2a2d43",
       profilePictureBorderWidth: "2px",

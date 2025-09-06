@@ -10,7 +10,7 @@
     </header>
 
     <div class="flex flex-col justify-between gap-2 py-2 md:flex-row">
-      <div class="flex flex-row flex-wrap items-center gap-2">
+      <div class="flex flex-row flex-wrap items-center gap-2 md:flex-nowrap">
         <button
           v-for="t in tabs" :key="t.value"
           class="btn" :class="{ ' brightness-50': activeTab === t.value }"
@@ -20,7 +20,7 @@
         </button>
       </div>
 
-      <div class="flex flex-row flex-wrap items-center gap-2">
+      <div class="flex flex-row flex-wrap items-center gap-2 md:flex-nowrap">
         <button class="btn-primary" @click="handleUpdatePreferences">
           <icon name="mdi:content-save-check" size="20" />
           <span>{{ status === 'saved' ? 'Saved!' : status === 'reset' ? 'Reset!' : 'Save Changes' }}</span>

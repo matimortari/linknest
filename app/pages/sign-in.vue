@@ -14,11 +14,7 @@
         <h1>
           Sign In
         </h1>
-        <p
-          v-motion class="text-muted-foreground"
-          :initial="{ opacity: 0, y: 20 }" :visible="{ opacity: 1, y: 0 }"
-          :duration="800"
-        >
+        <p class="text-muted-foreground">
           Choose your preferred sign-in method.
         </p>
       </header>

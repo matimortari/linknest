@@ -9,16 +9,12 @@
         <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Analytics
         </h2>
-        <p
-          v-motion class="text-caption"
-          :initial="{ opacity: 0 }" :enter="{ opacity: 1 }"
-          :duration="800"
-        >
+        <p class="text-caption">
           View your profile analytics.
         </p>
       </header>
 
-      <div class="flex flex-col gap-4 py-2">
+      <div class="flex flex-col gap-4 p-2">
         <AnalyticsPanel />
         <AnalyticsClicksByLink />
       </div>

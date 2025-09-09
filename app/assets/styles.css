@@ -19,7 +19,6 @@
   --success-foreground: #5e836d;
   --accent: #f09875;
   --border: #b8b5b5;
-  --input: #eeeded;
 
   background-color: var(--background);
   color: var(--foreground);
@@ -49,7 +48,6 @@ html.dark {
   --success-foreground: #5e836d;
   --accent: #f09875;
   --border: #3b3b41;
-  --input: #111016;
 }
 
 @theme {
@@ -71,7 +69,6 @@ html.dark {
   --color-success-foreground: var(--success-foreground);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --color-input: var(--input);
 
   --font-default: "Lato", sans-serif;
   --font-serif: "Crimson Pro", serif;
@@ -175,7 +172,7 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: var(--input);
+  background-color: var(--card);
   color: var(--foreground);
   border: 1px solid var(--border);
   accent-color: var(--accent);
@@ -194,10 +191,6 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: 1px solid var(--accent);
-}
-
-select {
-  border: none;
 }
 
 input[type="checkbox"],
@@ -366,7 +359,6 @@ html.dark {
     linear-gradient(to right, var(--muted) 1px, transparent 1px),
     linear-gradient(to bottom, var(--muted) 1px, transparent 1px);
   opacity: 50%;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 .cta-vignette {

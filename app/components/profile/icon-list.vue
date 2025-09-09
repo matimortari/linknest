@@ -11,7 +11,7 @@
 
     <Spinner v-if="isLoading" />
     <p v-else-if="!icons.length" class="text-lead m-8 text-center">
-      Pin social icons to your profile so visitors can easily connect. Add your first icon!
+      Pin social icons to your profile so visitors can easily connect. Add your first social icon!
     </p>
 
     <ul v-else class="flex flex-row gap-2">

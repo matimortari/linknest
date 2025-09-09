@@ -4,8 +4,8 @@
       <span class="mx-2 inline-block truncate px-4 text-center" :style="linkInnerStyle()">{{ title }}</span>
     </nuxt-link>
 
-    <button v-if="preferences.showLinkCopyButton" class="hover:scale-md absolute right-2 shrink-0 transition-all" aria-label="Copy Link" @click.stop="copyToClipboard(url)">
-      <icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences.linkTextColor }" />
+    <button v-if="preferences?.showLinkCopyButton" class="hover:scale-md absolute right-2 shrink-0 transition-all" aria-label="Copy Link" @click.stop="copyToClipboard(url)">
+      <icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
     </button>
   </li>
 </template>
@@ -14,7 +14,7 @@
 const props = defineProps<{
   url: string
   title: string
-  preferences: UserPreferencesType
+  preferences: UserPreferencesType | null
 }>()
 
 defineEmits(["click"])

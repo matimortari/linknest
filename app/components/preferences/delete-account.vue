@@ -4,7 +4,7 @@
       <h3>
         Delete Account
       </h3>
-      <p class="text-caption text-danger-foreground">
+      <p class="text-warning">
         This action is irreversible. All data will be lost.
       </p>
     </header>

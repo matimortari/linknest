@@ -8,9 +8,9 @@
     </p>
   </header>
 
-  <div class="mx-auto flex w-full flex-row justify-between gap-8 px-8 py-4 md:px-24">
+  <div class="mx-auto flex w-full flex-row justify-between gap-8 px-8 py-4 md:pl-32">
     <article
-      v-motion class="flex flex-col gap-4 p-4 text-left"
+      v-motion class="flex flex-col gap-4 p-4 text-start"
       :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
       :duration="800"
     >
@@ -19,7 +19,7 @@
       </p>
 
       <section v-for="(section, index) in privacyContent" :key="index">
-        <h3>
+        <h3 :id="section.title.toLowerCase().replace(/\s+/g, '-')">
           {{ index + 1 }}. {{ section.title }}
         </h3>
 
@@ -32,15 +32,15 @@
       </section>
     </article>
 
-    <aside class="bg-card sticky top-24 hidden w-72 rounded-lg p-4 text-right shadow-2xl lg:block">
+    <aside class="bg-card sticky top-24 hidden w-72 rounded-lg p-4 text-end shadow-2xl lg:block">
       <nav class="space-y-4">
-        <h3 class="border-b py-4">
+        <h4 class="border-b py-4">
           On this page
-        </h3>
+        </h4>
         <ul class="text-muted-foreground space-y-2">
           <li v-for="(section, index) in privacyContent" :key="`toc-${index}`">
             <a :href="`#${section.title?.toLowerCase().replace(/\s+/g, '-')}`" class="hover:text-primary block transition-colors">
-              {{ section.title }}
+              {{ index + 1 }}. {{ section.title }}
             </a>
           </li>
         </ul>

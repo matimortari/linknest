@@ -1,7 +1,7 @@
 <template>
   <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
-      <span class="text-sm font-medium">Select Icon</span>
+      <span class="text-sm font-medium">Select Platform</span>
 
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5 2xl:grid-cols-9">
         <button

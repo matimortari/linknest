@@ -44,12 +44,9 @@ export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<U
     }
   }
 
-  function iconInnerStyle() {
-    if (!pref.value)
-      return
-
-    return { color: pref.value.iconLogoColor }
-  }
+  const iconInnerStyle = computed(() =>
+    pref.value ? { color: pref.value.iconLogoColor } : {},
+  )
 
   function linkStyle(isHovered: boolean) {
     if (!pref.value)

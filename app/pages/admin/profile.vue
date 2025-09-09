@@ -9,24 +9,19 @@
         <h2 v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :duration="800">
           Profile
         </h2>
-        <p
-          v-if="user" v-motion
-          class="text-caption" :initial="{ opacity: 0 }"
-          :enter="{ opacity: 1 }" :duration="800"
-        >
-          Welcome back, <span class="text-accent font-bold">{{ user.slug }}</span>!
+        <p class="text-caption">
+          Welcome back, <span class="text-accent font-semibold">{{ user?.slug }}</span>!
         </p>
       </header>
 
-      <ProfileShareAccount />
-
-      <div class="flex flex-col gap-4 py-4">
+      <div class="flex flex-col gap-4 p-2">
+        <ProfileShareAccount />
         <ProfileLinkList />
         <ProfileIconList />
       </div>
     </div>
 
-    <div class="w-full md:w-1/3">
+    <div class="flex w-full justify-center md:w-1/3">
       <Preview />
     </div>
   </div>

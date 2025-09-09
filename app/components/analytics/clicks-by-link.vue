@@ -17,8 +17,8 @@
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-3">
       <li v-for="item in mergedItems" :key="item.url" class="card">
         <div class="mb-2 flex flex-row items-center gap-1">
-          <icon v-if="item.type === 'icon' && item.icon" :name="item.icon" size="20" class="text-muted-foreground" />
-          <h5 class="text-muted-foreground truncate">
+          <icon v-if="item.type === 'icon' && item.icon" :name="item.icon" size="20" />
+          <h5 class="truncate">
             {{ item.type === 'link' ? item.title : item.platform }}
           </h5>
           <span class="text-caption whitespace-nowrap">
@@ -30,7 +30,7 @@
           <p class="text-caption truncate">
             {{ item.url }}
           </p>
-          <p class="text-caption text-muted-foreground">
+          <p class="text-caption">
             Created at {{ item.formattedDate }}
           </p>
         </div>

@@ -28,7 +28,7 @@
               class="flex size-10 items-center justify-center rounded-full" :style="iconStyle(iconHover[icon.id] ?? false)"
               @mouseenter="iconHover[icon.id] = true" @mouseleave="iconHover[icon.id] = false"
             >
-              <icon :name="icon.logo" size="20" :style="iconInnerStyle()" />
+              <icon :name="icon.logo" size="20" :style="iconInnerStyle" />
             </li>
           </ul>
 

@@ -21,7 +21,9 @@
 <script setup lang="ts">
 import { SHADOW_WEIGHTS } from "#shared/config/appearance-options"
 
-const props = defineProps<{ preferences: UserPreferencesType }>()
+const props = defineProps<{
+  preferences: UserPreferencesType
+}>()
 
 const emit = defineEmits<{
   (e: "update:preferences", value: UserPreferencesType): void

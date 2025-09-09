@@ -31,7 +31,7 @@
       Why Choose LinkNest?
     </h2>
 
-    <div class="grid w-full max-w-6xl grid-cols-1 gap-4 md:grid-cols-4">
+    <div class="container mx-auto grid w-full grid-cols-1 gap-4 md:grid-cols-4">
       <div
         v-for="(feature, index) in features" :key="index"
         v-motion :initial="{ opacity: 0, y: 20 }"
@@ -53,7 +53,7 @@
     </div>
   </section>
 
-  <section id="cta" class="bg-card relative z-10 flex min-h-[60vh] flex-col items-center justify-center gap-12 border-y p-12 text-center md:p-20">
+  <section id="cta" class="bg-card relative z-10 flex min-h-[50vh] flex-col items-center justify-center gap-12 border-y p-12 text-center md:p-20">
     <div class="cta-grid" />
     <div
       v-motion :initial="{ opacity: 0 }"
@@ -76,7 +76,7 @@
 
     <p
       v-if="randomQuote" v-motion
-      class="text-sm italic md:text-xs" :initial="{ opacity: 0, x: 60 }"
+      class="text-sm italic" :initial="{ opacity: 0, x: 60 }"
       :visible="{ opacity: 1, x: 0 }" :duration="800"
     >
       "{{ randomQuote.quote }}" - <span class="text-primary font-semibold">{{ randomQuote.author }}</span>
@@ -97,7 +97,7 @@ onMounted(() => {
 const features = [
   {
     title: "Unlimited Links",
-    description: "Add as many links or social buttons as you want to your page.",
+    description: "Add as many links or social icons as you want.",
     icon: "ri:infinity-fill",
   },
   {

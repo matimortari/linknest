@@ -7,50 +7,50 @@
     </button>
 
     <!-- Mobile Preview -->
-    <div
-      class="fixed top-0 left-0 z-20 size-full overflow-y-auto p-12 transition-transform ease-in-out md:hidden"
-      :class="isMobilePreviewOpen ? 'slide-up' : 'slide-down'"
-      :style="backgroundStyle"
-    >
-      <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
-        <img :src="user.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
+    <transition name="slide">
+      <div v-if="isMobilePreviewOpen" class="fixed top-0 left-0 z-20 size-full overflow-y-auto p-12 md:hidden" :style="backgroundStyle">
+        <div class="flex flex-col items-center justify-center gap-4 text-center md:my-6">
+          <img :src="user.image ?? undefined" alt="Avatar" class="size-28 object-cover" :style="profilePictureStyle">
 
-        <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
-          @{{ user.slug }}
-        </p>
+          <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
+            @{{ user.slug }}
+          </p>
 
-        <p v-if="user.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
-          {{ user.description }}
-        </p>
+          <p v-if="user.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
+            {{ user.description }}
+          </p>
 
-        <ul v-if="icons.length" class="my-2 flex w-full flex-row items-center justify-center gap-2">
-          <UserIcon
-            v-for="icon in icons" :key="icon.id"
-            :url="icon.url" :logo="icon.logo"
-            :preferences="preferences!"
-          />
-        </ul>
+          <ul v-if="icons.length" class="my-2 flex w-full flex-row items-center justify-center gap-2">
+            <UserIcon
+              v-for="icon in icons" :key="icon.id"
+              :url="icon.url" :logo="icon.logo"
+              :preferences="preferences!"
+            />
+          </ul>
 
-        <ul v-if="links.length" class="flex w-full flex-col items-center gap-4">
-          <UserLink
-            v-for="link in links" :key="link.id"
-            :url="link.url" :title="link.title"
-            :preferences="preferences!"
-          />
-        </ul>
+          <ul v-if="links.length" class="flex w-full flex-col items-center gap-4">
+            <UserLink
+              v-for="link in links" :key="link.id"
+              :url="link.url" :title="link.title"
+              :preferences="preferences!"
+            />
+          </ul>
 
-        <p v-else class="text-muted-foreground text-center">
-          No links yet.
-        </p>
+          <p v-else class="text-muted-foreground text-center">
+            No links yet.
+          </p>
+        </div>
       </div>
-    </div>
+    </transition>
 
     <!-- Desktop Preview -->
     <div
-      v-motion :initial="{ opacity: 0, x: 20 }"
-      :visible="{ opacity: 1, x: 0 }" :duration="800"
+      v-motion
+      :initial="{ opacity: 0, x: 20 }"
+      :visible="{ opacity: 1, x: 0 }"
+      :duration="800"
       :style="backgroundStyle"
-      class="scroll-hide relative mx-auto hidden min-h-[550px] overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block md:w-10/12 2xl:w-8/12"
+      class="scroll-hide relative hidden min-h-[550px] w-full overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block"
     >
       <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
       <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
@@ -113,29 +113,23 @@ const isMobilePreviewOpen = ref(false)
 </script>
 
 <style scoped>
-.slide-up {
-  animation: slideUp 0.3s ease-out forwards;
+.slide-enter-from {
+  transform: translateY(100%);
+}
+.slide-enter-to {
+  transform: translateY(0);
+}
+.slide-enter-active {
+  transition: transform 0.3s ease-out;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+.slide-leave-from {
+  transform: translateY(0);
 }
-
-.slide-down {
-  animation: slideDown 0.3s ease-in forwards;
+.slide-leave-to {
+  transform: translateY(100%);
 }
-
-@keyframes slideDown {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
-  }
+.slide-leave-active {
+  transition: transform 0.3s ease-in;
 }
 </style>

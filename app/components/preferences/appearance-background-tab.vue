@@ -1,11 +1,11 @@
 <template>
   <div class="grid grid-cols-1 gap-2 py-2 md:grid-cols-2">
-    <PreferencesRadioOptions v-model:value="localPrefs.backgroundType" name="backgroundType" label="Background Type" :options="BACKGROUND_TYPES" />
+    <PreferencesAppearanceRadioOptions v-model:value="localPrefs.backgroundType" name="backgroundType" label="Background Type" :options="BACKGROUND_TYPES" />
 
     <div class="flex flex-col gap-2">
-      <PreferencesColorInput id="backgroundColor" v-model:value="localPrefs.backgroundColor" label="Background Color" :disabled="isBackgroundGradient" />
-      <PreferencesColorInput id="backgroundGradientStart" v-model:value="localPrefs.backgroundGradientStart" label="Gradient Start Color" :disabled="isBackgroundFlat" />
-      <PreferencesColorInput id="backgroundGradientEnd" v-model:value="localPrefs.backgroundGradientEnd" label="Gradient End Color" :disabled="isBackgroundFlat" />
+      <PreferencesAppearanceColorPicker id="backgroundColor" v-model:value="localPrefs.backgroundColor" label="Background Color" :disabled="isBackgroundGradient" />
+      <PreferencesAppearanceColorPicker id="backgroundGradientStart" v-model:value="localPrefs.backgroundGradientStart" label="Gradient Start Color" :disabled="isBackgroundFlat" />
+      <PreferencesAppearanceColorPicker id="backgroundGradientEnd" v-model:value="localPrefs.backgroundGradientEnd" label="Gradient End Color" :disabled="isBackgroundFlat" />
     </div>
   </div>
 </template>

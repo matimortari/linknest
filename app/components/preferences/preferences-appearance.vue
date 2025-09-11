@@ -32,11 +32,11 @@
       </div>
     </div>
 
-    <PreferencesBackgroundOptions v-if="activeTab === 'background'" v-model:preferences="preferences" />
-    <PreferencesUserOptions v-if="activeTab === 'user'" v-model:preferences="preferences" />
-    <PreferencesLinkOptions v-if="activeTab === 'links'" v-model:preferences="preferences" />
-    <PreferencesIconOptions v-if="activeTab === 'icons'" v-model:preferences="preferences" />
-    <PreferencesThemeOptions v-if="activeTab === 'themes'" :preferences="preferences" :set-theme="handleApplyTheme" />
+    <PreferencesAppearanceBackgroundTab v-if="activeTab === 'background'" v-model:preferences="preferences" />
+    <PreferencesAppearanceProfileTab v-if="activeTab === 'user'" v-model:preferences="preferences" />
+    <PreferencesAppearanceLinkTab v-if="activeTab === 'links'" v-model:preferences="preferences" />
+    <PreferencesAppearanceIconTab v-if="activeTab === 'icons'" v-model:preferences="preferences" />
+    <PreferencesAppearanceThemeTab v-if="activeTab === 'themes'" :preferences="preferences" :set-theme="handleApplyTheme" />
   </div>
 </template>
 

@@ -15,7 +15,7 @@
       </header>
 
       <div class="flex flex-col gap-4 p-2">
-        <AnalyticsPanel />
+        <AnalyticsSummary />
         <AnalyticsClicksByLink />
       </div>
     </div>

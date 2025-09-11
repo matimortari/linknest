@@ -38,7 +38,7 @@
               class="flex w-full max-w-72 min-w-32 justify-center" :style="linkStyle(linkHover[link.id] ?? false)"
               @mouseenter="linkHover[link.id] = true" @mouseleave="linkHover[link.id] = false"
             >
-              <span :style="linkInnerStyle()">{{ link.title }}</span>
+              <span :style="linkInnerStyle">{{ link.title }}</span>
             </li>
           </ul>
         </div>

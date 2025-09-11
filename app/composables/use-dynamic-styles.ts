@@ -67,17 +67,9 @@ export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<U
     }
   }
 
-  function linkInnerStyle() {
-    if (!pref.value)
-      return
-
-    return {
-      color: pref.value.linkTextColor,
-      fontWeight: pref.value.linkTextWeight,
-      fontFamily: pref.value.linkFontFamily,
-      fontSize: pref.value.linkTextSize,
-    }
-  }
+  const linkInnerStyle = computed(() =>
+    pref.value ? { color: pref.value.linkTextColor, fontWeight: pref.value.linkTextWeight, fontFamily: pref.value.linkFontFamily, fontSize: pref.value.linkTextSize } : {},
+  )
 
   return {
     backgroundStyle,

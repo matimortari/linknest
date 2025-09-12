@@ -1,8 +1,34 @@
-# LinkNest 🔗🪺
+<div align="center">
+  <h1>
+    <img src="public/logo-full-dark.png" alt="Logo" width="300"/>
+  </h1>
 
-Create your own landing page for sharing links to your social media profiles, websites, and more! LinkNest is a link aggregator website, inspired by [Linktree](https://linktr.ee), that makes it very easy for users or businesses to quickly set up a customizable and convenient page for all their links and share it with others.
+  <p>
+    <a href="https://sonarcloud.io/summary/new_code?id=matimortari_linknest">
+      <img src="https://sonarcloud.io/api/project_badges/measure?project=matimortari_linknest&metric=alert_status" alt="Quality Gate Status"/>
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=matimortari_secretkeepr">
+      <img src="https://sonarcloud.io/api/project_badges/measure?project=matimortari_secretkeepr&metric=vulnerabilities" alt="Vulnerabilities"/>
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=matimortari_linknest">
+      <img src="https://sonarcloud.io/api/project_badges/measure?project=matimortari_linknest&metric=ncloc" alt="Lines of Code"/>
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+      <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat&colorA=0d1117" alt="MIT License"/>
+    </a>
+    <a href="https://github.com/matimortari">
+      <img src="https://img.shields.io/github/followers/matimortari?label=Follow&style=social" alt="Follow on GitHub"/>
+    </a>
+  </p>
+</div>
+
+<div align="center">
+
+Create your own landing page for sharing links to your social media profiles, websites, and more! **LinkNest** is a link aggregator website, inspired by [Linktree](https://linktr.ee), that makes it very easy for users or businesses to quickly set up a **customizable and convenient** page for all their links and **share** it with others.
 
 [**Check it out!** 🔍](https://linknest-live.vercel.app)
+
+</div>
 
 ## 📦 Key Features
 
@@ -34,3 +60,17 @@ Feel free to reach out to discuss collaboration opportunities or to say hello!
 - [**My Email**](mailto:matheus.felipe.19rt@gmail.com)
 - [**My LinkedIn Profile**](https://www.linkedin.com/in/matheus-mortari-19rt)
 - [**My GitHub Profile**](https://github.com/matimortari)
+
+---
+
+## 📄 License
+
+MIT License
+
+Copyright (c) 2024 Matheus Mortari
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

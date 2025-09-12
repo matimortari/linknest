@@ -8,10 +8,7 @@ export default defineEventHandler(async (event) => {
 
   if (type === "pageView") {
     await db.pageView.create({
-      data: {
-        userId,
-        date: new Date(),
-      },
+      data: { userId, date: new Date() },
     })
 
     return { message: "Page view recorded successfully" }
@@ -23,17 +20,14 @@ export default defineEventHandler(async (event) => {
     }
 
     const link = await db.userLink.findUnique({ where: { id } })
-    if (!link)
+    if (!link) {
       throw createError({ statusCode: 404, statusMessage: "Link not found" })
-    if (link.userId === userId) {
-      return { message: "Self-click ignored" }
     }
+    if (link.userId === userId)
+      return
 
     const linkClick = await db.linkClick.create({
-      data: {
-        userLinkId: id,
-        date: new Date(),
-      },
+      data: { userLinkId: id, date: new Date() },
     })
 
     await db.userLink.update({
@@ -50,17 +44,14 @@ export default defineEventHandler(async (event) => {
     }
 
     const icon = await db.userIcon.findUnique({ where: { id } })
-    if (!icon)
+    if (!icon) {
       throw createError({ statusCode: 404, statusMessage: "Social icon not found" })
-    if (icon.userId === userId) {
-      return { message: "Self-click ignored" }
     }
+    if (icon.userId === userId)
+      return
 
     const iconClick = await db.iconClick.create({
-      data: {
-        userIconId: id,
-        date: new Date(),
-      },
+      data: { userIconId: id, date: new Date() },
     })
 
     await db.userIcon.update({

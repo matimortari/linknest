@@ -1,6 +1,10 @@
-# LinkNest 🔗🪺
+# LinkNest
 
-Create your own landing page for sharing links to your social media profiles, websites, and more! LinkNest is a link aggregator website, inspired by [Linktree](https://linktr.ee), that makes it very easy for users or businesses to quickly set up a customizable and convenient page for all their links and share it with others.
+<p align="center">
+  <img src="public/logo-full-dark.png" alt="SecretKeepR Logo" width="250"/>
+</p>
+
+Create your own landing page for sharing links to your social media profiles, websites, and more! LinkNest is a **link aggregator website**, inspired by [Linktree](https://linktr.ee), that makes it very easy for users or businesses to quickly set up a **customizable and convenient** page for all their links and **share** it with others.
 
 [**Check it out!** 🔍](https://linknest-live.vercel.app)
 

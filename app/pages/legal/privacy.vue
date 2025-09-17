@@ -1,16 +1,25 @@
 <template>
-  <header class="flex flex-col items-start gap-2 border-b p-8 text-start">
-    <h2>
-      Privacy Policy
-    </h2>
+  <header class="bg-card sticky top-0 z-30 border-b px-12 py-4">
+    <div class="flex flex-row items-center gap-4">
+      <nuxt-link to="/" aria-label="Go back" class="hover:text-primary transition-colors">
+        <icon name="mdi:arrow-left" size="30" />
+      </nuxt-link>
+      <h2>
+        Privacy Policy
+      </h2>
+    </div>
     <p class="text-muted-foreground">
       Learn how LinkNest collects, uses, and protects your data.
     </p>
+
+    <button class="btn absolute top-4 right-4" aria-label="Toggle Theme" @click="toggleTheme">
+      <icon :name="themeIcon" size="25" />
+    </button>
   </header>
 
-  <div class="mx-auto flex w-full flex-row justify-between gap-8 px-8 py-4 md:pl-32">
+  <div class="mx-auto flex w-full flex-row justify-between px-8 md:pr-12 md:pl-32">
     <article
-      v-motion class="flex flex-col gap-4 p-4 text-start"
+      v-motion class="flex flex-col gap-4 p-8 text-start md:px-16"
       :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
       :duration="800"
     >
@@ -24,7 +33,7 @@
         </h3>
 
         <p v-for="(para, i) in section.body" :key="`para-${i}`" class="text-muted-foreground" v-html="para" />
-        <ul class="text-muted-foreground list-disc">
+        <ul v-if="section.list" class="text-muted-foreground list-disc space-y-1 pl-6">
           <li v-for="(item, i) in section.list" :key="`li-${index}-${i}`">
             {{ item }}
           </li>
@@ -32,8 +41,8 @@
       </section>
     </article>
 
-    <aside class="bg-card sticky top-24 hidden w-72 rounded-lg p-4 text-end shadow-2xl lg:block">
-      <nav class="space-y-4">
+    <aside class="sticky top-24 hidden w-72 min-w-72 self-start rounded-b-lg p-4 text-right md:block">
+      <nav class="my-8 space-y-4">
         <h4 class="border-b py-4">
           On this page
         </h4>
@@ -50,6 +59,8 @@
 </template>
 
 <script setup lang="ts">
+const { toggleTheme, themeIcon } = useTheme()
+
 const privacyContent = [
   {
     title: "Introduction",

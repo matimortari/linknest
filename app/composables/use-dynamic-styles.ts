@@ -33,9 +33,9 @@ export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<U
 
     const shadowMap: Record<string, string> = {
       none: "none",
-      light: `0 2px 4px ${pref.value.linkShadowColor}`,
-      medium: `0 4px 6px ${pref.value.linkShadowColor}`,
-      heavy: `0 6px 10px ${pref.value.linkShadowColor}`,
+      light: `0 2px 4px ${pref.value.iconShadowColor}`,
+      medium: `0 4px 6px ${pref.value.iconShadowColor}`,
+      heavy: `0 6px 10px ${pref.value.iconShadowColor}`,
     }
     return {
       backgroundColor: isHovered ? pref.value.iconHoverBackgroundColor : pref.value.iconBackgroundColor,

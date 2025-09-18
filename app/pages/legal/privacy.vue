@@ -1,33 +1,34 @@
 <template>
-  <header class="bg-card sticky top-0 z-30 border-b px-12 py-4">
-    <div class="flex flex-row items-center gap-4">
-      <nuxt-link to="/" aria-label="Go back" class="hover:text-primary transition-colors">
-        <icon name="mdi:arrow-left" size="30" />
-      </nuxt-link>
-      <h2>
-        Privacy Policy
-      </h2>
-    </div>
-    <p class="text-muted-foreground">
-      Learn how LinkNest collects, uses, and protects your data.
-    </p>
-
+  <div class="bg-card sticky top-0 z-30 border-b px-4 py-8 md:px-12">
+    <header class="flex flex-col items-start gap-2">
+      <div class="flex flex-row items-center gap-4">
+        <nuxt-link to="/" aria-label="Go back" class="hover:text-primary transition-colors">
+          <icon name="mdi:arrow-left" size="30" />
+        </nuxt-link>
+        <h2>
+          Privacy Policy
+        </h2>
+      </div>
+      <p class="text-muted-foreground text-sm leading-5">
+        Learn how LinkNest collects, uses, and protects your data.
+      </p>
+    </header>
     <button class="btn absolute top-4 right-4" aria-label="Toggle Theme" @click="toggleTheme">
       <icon :name="themeIcon" size="25" />
     </button>
-  </header>
+  </div>
 
-  <div class="mx-auto flex w-full flex-row justify-between px-8 md:pr-12 md:pl-32">
+  <div class="mx-auto flex w-full flex-row justify-between px-8 md:pl-20">
     <article
-      v-motion class="flex flex-col gap-4 p-8 text-start md:px-16"
+      v-motion class="flex flex-col gap-4 px-4 py-12 text-start md:px-12"
       :initial="{ opacity: 0 }" :visible="{ opacity: 1 }"
       :duration="800"
     >
-      <p class="text-lg">
+      <p class="text-sm">
         <span class="font-semibold">Effective Date:</span> September 8, 2025
       </p>
 
-      <section v-for="(section, index) in privacyContent" :key="index">
+      <section v-for="(section, index) in privacyContent" :key="index" class="my-4 space-y-2">
         <h3 :id="section.title.toLowerCase().replace(/\s+/g, '-')">
           {{ index + 1 }}. {{ section.title }}
         </h3>
@@ -41,7 +42,7 @@
       </section>
     </article>
 
-    <aside class="sticky top-24 hidden w-72 min-w-72 self-start rounded-b-lg p-4 text-right md:block">
+    <aside class="sticky top-24 hidden w-72 min-w-72 self-start rounded-b-lg p-4 text-end md:block">
       <nav class="my-8 space-y-4">
         <h4 class="border-b py-4">
           On this page

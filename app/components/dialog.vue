@@ -13,7 +13,7 @@
             </button>
           </header>
 
-          <section class="m-4">
+          <section>
             <slot />
           </section>
         </div>

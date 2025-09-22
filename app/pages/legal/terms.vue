@@ -49,7 +49,10 @@
         </h4>
         <ul class="text-muted-foreground space-y-2">
           <li v-for="(section, index) in termsContent" :key="`toc-${index}`">
-            <a :href="`#${section.title?.toLowerCase().replace(/\s+/g, '-')}`" class="hover:text-primary block transition-colors">
+            <a
+              :href="`#${section.title?.toLowerCase().replace(/\s+/g, '-')}`" class="hover:text-primary block transition-colors"
+              :class="{ 'text-primary border-primary border-r-4 pr-2 font-semibold': activeSection === section.title.toLowerCase().replace(/\s+/g, '-') }"
+            >
               {{ index + 1 }}. {{ section.title }}
             </a>
           </li>
@@ -61,6 +64,7 @@
 
 <script setup lang="ts">
 const { toggleTheme, themeIcon } = useTheme()
+const { activeSection } = useActiveHeading()
 
 const termsContent = [
   {

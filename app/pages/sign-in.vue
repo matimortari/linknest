@@ -10,7 +10,7 @@
         :initial="{ opacity: 0, scale: 0.8 }" :visible="{ opacity: 1, scale: 1 }"
         :duration="800"
       >
-        <img src="/assets/logo-icon.png" alt="Logo" width="120" height="120">
+        <img src="/assets/logo-icon.png" alt="Logo Icon" width="80">
         <h1>
           Sign In
         </h1>

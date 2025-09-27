@@ -14,7 +14,7 @@
       </p>
     </header>
     <button class="btn absolute top-4 right-4" aria-label="Toggle Theme" @click="toggleTheme">
-      <icon :name="themeIcon" size="25" />
+      <icon :name="themeIcon" size="20" />
     </button>
   </div>
 

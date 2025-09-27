@@ -1,10 +1,10 @@
 <template>
   <!-- Mobile menu buttons -->
-  <button v-if="!isMobileNavOpen" class="btn fixed top-8 right-8 z-50 md:!hidden" aria-label="Open menu" @click="isMobileNavOpen = true">
+  <button v-if="!isMobileNavOpen" class="btn fixed top-2 right-2 z-50 md:!hidden" aria-label="Open menu" @click="isMobileNavOpen = true">
     <icon name="mdi:menu" size="30" />
   </button>
 
-  <button v-if="isMobileNavOpen" class="btn fixed top-8 right-8 z-50 md:!hidden" aria-label="Close menu" @click="isMobileNavOpen = false">
+  <button v-if="isMobileNavOpen" class="btn fixed top-2 right-2 z-50 md:!hidden" aria-label="Close menu" @click="isMobileNavOpen = false">
     <icon name="mdi:close" size="30" class="text-muted-foreground" />
   </button>
 
@@ -15,12 +15,12 @@
     <aside v-if="user" class="fixed top-0 left-0 z-40 size-full px-4 py-16 transition-transform md:static md:w-56 md:translate-x-0 md:py-4" :class="isMobileNavOpen ? 'translate-x-0 bg-card' : '-translate-x-full'">
       <div class="flex h-full flex-col gap-12 px-12 md:px-0">
         <nuxt-link to="/" class="hover:scale-sm hidden flex-row items-center gap-2 transition-all select-none md:flex">
-          <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
-          <img :src="themeTitle" alt="Logo" width="140" height="35">
+          <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
+          <img :src="themeTitle" alt="Logo Title" width="100">
         </nuxt-link>
 
         <div class="navigation-group w-full !gap-4">
-          <div class="relative size-16 shrink-0">
+          <div class="relative size-12 shrink-0">
             <img v-if="user.image" :src="user.image" :alt="user.slug" class="size-full rounded-full border object-cover select-none">
 
             <button title="Edit Profile Information" class="btn-primary absolute -right-2 -bottom-2 !p-1" aria-label="Edit Profile Information" @click="isDialogOpen = true">
@@ -33,7 +33,7 @@
               {{ user.name }}
             </span>
 
-            <nuxt-link :to="`/${user.slug}`" :title="`linknest-live.vercel.app/${user.slug}`" class="text-muted-foreground text-sm font-semibold break-words hover:underline">
+            <nuxt-link :to="`/${user.slug}`" :title="`linknest-live.vercel.app/${user.slug}`" class="text-muted-foreground text-sm break-words hover:underline">
               @{{ user.slug }}
             </nuxt-link>
           </div>
@@ -50,7 +50,7 @@
               :to="link.url" class="hover:scale-sm flex w-full flex-row items-center justify-start gap-4 font-semibold transition-all"
               aria-label="Navigate to {{ link.label }}" @click="isMobileNavOpen = false"
             >
-              <icon :name="link.icon" size="30" />
+              <icon :name="link.icon" size="25" />
               <span>{{ link.label }}</span>
             </nuxt-link>
           </nav>
@@ -60,19 +60,19 @@
 
         <nav class="flex flex-col gap-2" aria-label="Mobile Navigation Actions">
           <button class="hover:scale-sm flex w-full flex-row items-center justify-start gap-4 font-semibold transition-all" aria-label="Toggle Theme" @click="toggleTheme">
-            <icon :name="themeIcon" size="30" />
+            <icon :name="themeIcon" size="25" />
             <span>Toggle Theme</span>
           </button>
           <button class="hover:scale-sm flex w-full flex-row items-center justify-start gap-4 font-semibold transition-all" aria-label="Sign Out" @click="signOut">
-            <icon name="material-symbols:logout" size="30" class="text-danger-foreground" />
+            <icon name="material-symbols:logout" size="25" class="text-danger-foreground" />
             <span>Sign Out</span>
           </button>
         </nav>
       </div>
 
       <nuxt-link to="/" class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-row items-center gap-2 transition-all select-none md:hidden">
-        <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
-        <img :src="themeTitle" alt="Logo" width="140" height="35">
+        <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
+        <img :src="themeTitle" alt="Logo Title" width="100">
       </nuxt-link>
     </aside>
   </transition>
@@ -87,6 +87,7 @@
 <script setup lang="ts">
 const { toggleTheme, themeIcon, themeTitle } = useTheme()
 const { clear } = useUserSession()
+const router = useRouter()
 const userStore = useUserStore()
 
 const { user } = storeToRefs(userStore)
@@ -99,7 +100,7 @@ function closeDialog() {
 
 function signOut() {
   clear()
-  window.location.href = "/"
+  router.push("/")
 }
 
 const navLinks = [

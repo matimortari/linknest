@@ -15,7 +15,6 @@
           <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
             @{{ user.slug }}
           </p>
-
           <p v-if="user.description" class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="descriptionStyle">
             {{ user.description }}
           </p>
@@ -36,7 +35,7 @@
             />
           </ul>
 
-          <p v-else class="text-muted-foreground text-center">
+          <p v-else :style="descriptionStyle">
             No links yet.
           </p>
         </div>
@@ -45,12 +44,9 @@
 
     <!-- Desktop Preview -->
     <div
-      v-motion
-      :initial="{ opacity: 0, x: 20 }"
-      :visible="{ opacity: 1, x: 0 }"
-      :duration="800"
-      :style="backgroundStyle"
-      class="scroll-hide relative hidden min-h-[550px] w-full overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block"
+      v-motion :initial="{ opacity: 0, x: 20 }"
+      :visible="{ opacity: 1, x: 0 }" :duration="800"
+      :style="backgroundStyle" class="scroll-hide relative hidden min-h-[550px] w-full overflow-x-hidden rounded-[2.5rem] border-4 !border-black shadow-lg shadow-black md:block"
     >
       <div class="sticky top-2 left-1/2 z-10 h-2 w-24 -translate-x-1/2 rounded-full bg-black" />
       <div class="absolute top-2 right-6 z-10 flex flex-row items-center justify-end gap-2 text-black">
@@ -64,7 +60,6 @@
         <p class="line-clamp-3 max-w-sm truncate whitespace-break-spaces" :style="slugStyle">
           @{{ user.slug }}
         </p>
-
         <p v-if="user.description" class="line-clamp-3 max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
           {{ user.description }}
         </p>
@@ -88,7 +83,7 @@
             />
           </ul>
 
-          <p v-else class="text-muted-foreground text-center">
+          <p v-else :style="descriptionStyle">
             No links yet.
           </p>
         </div>

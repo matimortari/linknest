@@ -7,8 +7,8 @@
       :visible="{ opacity: 1, y: 0 }" :duration="800"
       class="flex flex-col items-center gap-4 text-center md:items-start md:text-start"
     >
-      <h5 class="text-secondary font-bold">
-        Your link-in-bio page 🔗🪺
+      <h5 class="text-secondary">
+        Your link-in-bio page 🪺
       </h5>
       <h1 class="max-w-md">
         Keep all your stuff together!

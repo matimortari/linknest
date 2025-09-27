@@ -1,5 +1,5 @@
 <template>
-  <div class="card !bg-muted mt-2 flex max-w-lg flex-row justify-between">
+  <div class="card !bg-muted mt-2 flex max-w-lg flex-row justify-between shadow-xl">
     <header class="flex max-w-[80%] flex-col gap-2 whitespace-nowrap">
       <h4>
         Share your Page:

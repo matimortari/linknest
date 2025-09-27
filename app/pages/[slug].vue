@@ -1,22 +1,19 @@
 <template>
-  <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 transition-all select-none">
-    <img src="/assets/logo-icon.png" alt="Logo" width="35" height="35">
+  <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 rounded-full transition-all select-none">
+    <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
   </nuxt-link>
 
-  <Spinner v-if="isLoading" />
+  <div v-if="isLoading || !user" class="flex min-h-screen flex-col items-center justify-center gap-4 p-12 text-center">
+    <Spinner v-if="isLoading" />
 
-  <div v-else-if="!user" class="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-    <p class="text-lead text-center">
+    <p v-else class="text-lead">
       User {{ slug }} not found.
     </p>
   </div>
 
   <div v-else class="min-h-screen p-12 pb-28" :style="backgroundStyle">
     <div class="flex flex-col items-center justify-center gap-4 text-center">
-      <SupportBanner
-        v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'"
-        :type="user.preferences.supportBanner"
-      />
+      <SupportBanner v-if="user.preferences?.supportBanner && user.preferences.supportBanner !== 'NONE'" :type="user.preferences.supportBanner" />
 
       <img
         v-if="user.image" :src="user.image"
@@ -27,7 +24,6 @@
       <p :style="slugStyle">
         {{ `@${user.slug}` }}
       </p>
-
       <p v-if="user.description" class="max-w-sm truncate leading-4 whitespace-break-spaces" :style="descriptionStyle">
         {{ user.description }}
       </p>
@@ -48,7 +44,7 @@
         />
       </ul>
 
-      <p v-else class="text-muted-foreground">
+      <p v-else :style="descriptionStyle">
         No links yet.
       </p>
     </div>

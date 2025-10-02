@@ -25,13 +25,8 @@
 <script setup lang="ts">
 useHead({
   title: "Analytics - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }, { rel: "icon", href: "/favicon.svg" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/analytics" }],
   meta: [{ name: "description", content: "LinkNest analytics page." }],
-})
-
-useSeoMeta({
-  title: "Analytics - LinkNest",
-  description: "LinkNest analytics page.",
 })
 
 definePageMeta({

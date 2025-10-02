@@ -119,25 +119,8 @@ const features = [
 
 useHead({
   title: "LinkNest - Your Link-in-Bio Page!",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app" }, { rel: "icon", href: "/favicon.svg" }],
-  meta: [
-    { name: "description", content: "Create your own landing page for sharing links to your social media profiles, websites, and more!" },
-    { property: "og:title", content: "LinkNest - Your Link-in-Bio Page!" },
-    { property: "og:description", content: "Create your own landing page for sharing links to your social media profiles, websites, and more!" },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://linknest-live.vercel.app/og-image.png" },
-    { property: "og:url", content: "https://linknest-live.vercel.app" },
-    { name: "google-site-verification", content: "2j0bcfhh8FCYPpzFylzbiPjl3Pa0X7lMuG060ctsCsA" },
-  ],
-})
-
-useSeoMeta({
-  title: "LinkNest - Your Link-in-Bio Page!",
-  description: "Create your own landing page for sharing links to your social media profiles, websites, and more!",
-  ogTitle: "LinkNest - Your Link-in-Bio Page!",
-  ogDescription: "Create your own landing page for sharing links to your social media profiles, websites, and more!",
-  ogImage: "https://linknest-live.vercel.app/og-image.png",
-  ogUrl: "https://linknest-live.vercel.app",
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app" }],
+  meta: [{ name: "description", content: "Create your own landing page for sharing links to your social media profiles, websites, and more!" }],
 })
 
 definePageMeta({

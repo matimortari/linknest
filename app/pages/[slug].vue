@@ -85,13 +85,8 @@ watch(() => route.params.slug, async (newSlug) => {
 
     useHead({
       title: `@${user.slug} - LinkNest`,
-      link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }, { rel: "icon", href: "/favicon.svg" }],
+      link: [{ rel: "canonical", href: `https://linknest.app/${user.slug}` }],
       meta: [{ name: "description", content: `@${user.slug} profile on LinkNest.` }],
-    })
-
-    useSeoMeta({
-      title: `@${user.slug} - LinkNest`,
-      description: `@${user.slug} profile on LinkNest.`,
     })
   }
 }, { immediate: true })

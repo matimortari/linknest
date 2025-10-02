@@ -73,13 +73,8 @@ const providers = [
 
 useHead({
   title: "Sign In - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }, { rel: "icon", href: "/favicon.svg" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/sign-in" }],
   meta: [{ name: "description", content: "Sign In to LinkNest." }],
-})
-
-useSeoMeta({
-  title: "Sign In - LinkNest",
-  description: "Sign In to LinkNest.",
 })
 
 definePageMeta({

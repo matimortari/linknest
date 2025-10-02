@@ -34,16 +34,8 @@ const { user } = storeToRefs(userStore)
 
 useHead({
   title: "Profile - LinkNest",
-  link: [
-    { rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" },
-    { rel: "icon", href: "/favicon.svg" },
-  ],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/profile" },],
   meta: [{ name: "description", content: "LinkNest profile page." }],
-})
-
-useSeoMeta({
-  title: "Profile - LinkNest",
-  description: "LinkNest profile page.",
 })
 
 definePageMeta({

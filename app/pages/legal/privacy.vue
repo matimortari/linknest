@@ -157,12 +157,7 @@ const privacyContent = [
 
 useHead({
   title: "Privacy Policy - LinkNest",
-  link: [{ rel: "canonical", href: "https://LinkNest.vercel.app/legal/privacy" }, { rel: "icon", href: "/favicon.svg" }],
+  link: [{ rel: "canonical", href: "https://LinkNest.vercel.app/legal/privacy" }],
   meta: [{ name: "description", content: "Read the privacy policy for LinkNest." }],
-})
-
-useSeoMeta({
-  title: "Privacy Policy - LinkNest",
-  description: "Read the privacy policy for LinkNest.",
 })
 </script>

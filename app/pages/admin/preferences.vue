@@ -29,16 +29,8 @@
 <script setup lang="ts">
 useHead({
   title: "Preferences - LinkNest",
-  link: [
-    { rel: "canonical", href: "https://linknest-live.vercel.app/admin/preferences" },
-    { rel: "icon", href: "/favicon.svg" },
-  ],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/admin/preferences" },],
   meta: [{ name: "description", content: "LinkNest preferences page." }],
-})
-
-useSeoMeta({
-  title: "Preferences - LinkNest",
-  description: "LinkNest preferences page.",
 })
 
 definePageMeta({

@@ -123,12 +123,7 @@ const termsContent = [
 
 useHead({
   title: "Terms of Service - LinkNest",
-  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/terms" }, { rel: "icon", href: "/favicon.svg" }],
+  link: [{ rel: "canonical", href: "https://linknest-live.vercel.app/legal/terms" }],
   meta: [{ name: "description", content: "Terms and conditions for using LinkNest." }],
-})
-
-useSeoMeta({
-  title: "Terms of Service - LinkNest",
-  description: "Terms and conditions for using LinkNest.",
 })
 </script>

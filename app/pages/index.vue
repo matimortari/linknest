@@ -19,7 +19,7 @@
       </p>
       <nuxt-link to="/sign-in" class="btn-primary">
         <span>Get Started Now!</span>
-        <icon name="ri:arrow-right-line" size="20" />
+        <icon name="mdi:arrow-right" size="20" />
       </nuxt-link>
     </header>
 
@@ -70,7 +70,7 @@
       </p>
       <nuxt-link to="/sign-in" class="btn-secondary">
         <span>Get Started</span>
-        <icon name="ri:arrow-right-line" size="20" />
+        <icon name="mdi:arrow-right" size="20" />
       </nuxt-link>
     </div>
 
@@ -98,22 +98,22 @@ const features = [
   {
     title: "Unlimited Links",
     description: "Add as many links or social icons as you want.",
-    icon: "ri:infinity-fill",
+    icon: "mdi:account-details-outline",
   },
   {
     title: "Fully Customizable",
     description: "Customize the colors, layouts and more for your page.",
-    icon: "ri:paint-brush-fill",
+    icon: "mdi:palette-outline",
   },
   {
     title: "Detailed Analytics",
     description: "Track your page views, clicks, and more with analytics.",
-    icon: "ri:line-chart-fill",
+    icon: "mdi:chart-bell-curve-cumulative",
   },
   {
     title: "Free to Use!",
     description: "LinkNest is completely free to use, with no hidden fees.",
-    icon: "ri:price-tag-3-fill",
+    icon: "mdi:tag-remove-outline",
   },
 ]
 

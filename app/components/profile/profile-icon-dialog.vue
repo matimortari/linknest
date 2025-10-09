@@ -1,0 +1,94 @@
+<template>
+  <Dialog :is-open="isOpen" title="Add Social Icon" @update:is-open="emit('close')">
+    <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
+      <span class="text-sm font-medium">Select Platform</span>
+
+      <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5 2xl:grid-cols-9">
+        <button
+          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
+          type="button" aria-label="Select Social Icon"
+          class="hover:bg-muted active:bg-accent flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all"
+          :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
+        >
+          <icon :name="iconName" size="25" />
+          <span class="truncate text-xs">{{ label }}</span>
+        </button>
+      </div>
+
+      <div class="navigation-group">
+        <label for="url" class="w-12 text-sm font-medium">URL</label>
+        <input
+          id="url" v-model="form.url"
+          type="url" class="flex-1"
+          placeholder="https://example.com"
+        >
+      </div>
+
+      <footer class="flex flex-row items-center justify-between">
+        <p class="text-warning">
+          {{ iconStore.errors.createIcon || '' }}
+        </p>
+
+        <button class="btn-primary" type="submit" aria-label="Save Link">
+          Add Social Icon
+        </button>
+      </footer>
+    </form>
+  </Dialog>
+</template>
+
+<script setup lang="ts">
+import { SOCIAL_ICONS } from "#shared/config/social-icons"
+import { createUserIconSchema } from "~~/shared/schemas/icons"
+
+const props = defineProps<{
+  isOpen: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: "close"): void
+  (e: "save", payload: Icon): void
+}>()
+
+const iconStore = useIconsStore()
+
+const form = ref<Icon>({
+  platform: "",
+  logo: "",
+  url: "",
+})
+
+function selectIcon(label: string, iconName: string) {
+  form.value.platform = label
+  form.value.logo = iconName
+  iconStore.errors.createIcon = null
+}
+
+function handleSubmit() {
+  iconStore.errors.createIcon = null
+  if (!form.value.platform || !form.value.url) {
+    iconStore.errors.createIcon = "Platform and URL are required."
+    return
+  }
+
+  try {
+    const result = createUserIconSchema.safeParse(form.value)
+    if (!result.success) {
+      return
+    }
+    emit("save", { ...form.value })
+    emit("close")
+  }
+  catch (error: any) {
+    console.error("Failed to save social icon:", error)
+    iconStore.errors.createIcon = error.message
+  }
+}
+
+watch(() => props.isOpen, (open) => {
+  if (open) {
+    form.value = { platform: "", logo: "", url: "" }
+    iconStore.errors.createIcon = null
+  }
+}, { immediate: true })
+</script>

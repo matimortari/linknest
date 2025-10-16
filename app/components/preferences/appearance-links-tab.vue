@@ -35,7 +35,7 @@ const emit = defineEmits<{
   (e: "update:preferences", value: UserPreferences): void
 }>()
 
-const localPrefs = reactive({ ...props.preferences, linkFontFamily: props.preferences.linkFontFamily ?? "Roboto" })
+const localPrefs = reactive({ ...props.preferences, linkFontFamily: props.preferences.linkFontFamily ?? "'Roboto'" })
 
 watch(localPrefs, (newVal) => {
   emit("update:preferences", { ...newVal })

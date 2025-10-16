@@ -23,7 +23,7 @@
             <UserIcon
               v-for="icon in icons" :key="icon.id"
               :url="icon.url" :logo="icon.logo"
-              :preferences="preferences!"
+              :preferences="preferences"
             />
           </ul>
 
@@ -31,7 +31,7 @@
             <UserLink
               v-for="link in links" :key="link.id"
               :url="link.url" :title="link.title"
-              :preferences="preferences!"
+              :preferences="preferences"
             />
           </ul>
 
@@ -69,7 +69,7 @@
             <UserIcon
               v-for="icon in icons" :key="icon.id"
               :url="icon.url" :logo="icon.logo"
-              :preferences="preferences!"
+              :preferences="preferences"
             />
           </ul>
         </div>
@@ -79,7 +79,7 @@
             <UserLink
               v-for="link in links" :key="link.id"
               :url="link.url" :title="link.title"
-              :preferences="preferences!"
+              :preferences="preferences"
             />
           </ul>
 
@@ -97,9 +97,8 @@ const userStore = useUserStore()
 const linkStore = useLinksStore()
 const iconStore = useIconsStore()
 
-const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(toRef(userStore, "user"))
-
-const preferences = userStore.user?.preferences ?? null
+const preferences = computed(() => userStore.user?.preferences ?? null)
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
 
 const { user } = storeToRefs(userStore)
 const { links } = storeToRefs(linkStore)

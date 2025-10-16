@@ -1,6 +1,6 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
-import { createUserLinkSchema } from "#shared/schemas/link"
+import { createUserLinkSchema } from "#shared/schemas/links"
 
 export default defineEventHandler(async (event) => {
   const sessionUser = await getUserFromSession(event)

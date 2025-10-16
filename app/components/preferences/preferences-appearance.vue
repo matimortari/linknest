@@ -51,7 +51,14 @@ const tabs = [
 
 const userStore = useUserStore()
 
-const preferences = userStore.user?.preferences ?? null
+const preferences = ref(userStore.user?.preferences ?? null)
+
+// Watch for changes in user store and update local preferences
+watch(() => userStore.user?.preferences, (newPreferences) => {
+  if (newPreferences) {
+    preferences.value = { ...newPreferences }
+  }
+}, { immediate: true })
 
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
@@ -77,7 +84,46 @@ async function handleResetPreferences() {
   userStore.errors.updatePreferences = null
 
   try {
-    await userStore.updatePreferences()
+    // Reset to default preferences based on Prisma schema defaults
+    const defaultPreferences = {
+      backgroundType: "FLAT" as const,
+      backgroundColor: "#f9f5f2",
+      backgroundGradientStart: "#000000",
+      backgroundGradientEnd: "#000000",
+      profilePictureRadius: "0.5rem",
+      profilePictureBorderColor: "#cecfd1",
+      profilePictureBorderWidth: "2px",
+      slugTextColor: "#111827",
+      slugTextWeight: "400",
+      slugTextSize: "1rem",
+      slugFontFamily: "Roboto, sans-serif",
+      headerTextColor: "#1f2937",
+      headerTextWeight: "400",
+      headerTextSize: "1.1rem",
+      headerFontFamily: "Roboto, sans-serif",
+      linkBackgroundColor: "#cecfd1",
+      linkTextColor: "#374151",
+      linkTextWeight: "400",
+      linkTextSize: "0.9rem",
+      linkFontFamily: "Roboto, sans-serif",
+      isLinkShadow: false,
+      linkShadowColor: "#9ca3af",
+      linkShadowWeight: "medium",
+      linkHoverBackgroundColor: "#9ca3af",
+      linkBorderRadius: "0.5rem",
+      linkPadding: "0.5rem",
+      showLinkCopyButton: true,
+      iconBackgroundColor: "#cecfd1",
+      isIconShadow: false,
+      iconShadowColor: "#9ca3af",
+      iconShadowWeight: "medium",
+      iconLogoColor: "#374151",
+      iconHoverBackgroundColor: "#9ca3af",
+      supportBanner: "NONE" as const,
+    }
+
+    await userStore.updatePreferences(defaultPreferences)
+    preferences.value = { ...defaultPreferences }
     status.value = "reset"
   }
   catch (error: any) {

@@ -49,6 +49,8 @@
 </template>
 
 <script setup lang="ts">
+import type { CreateUserLinkInput } from "#shared/schemas/links"
+
 const linkStore = useLinksStore()
 
 const { links, loading } = storeToRefs(linkStore)
@@ -86,17 +88,20 @@ async function handleDeleteLink(id: string) {
   }
 }
 
-async function handleSaveLink(payload: { link: Link, isUpdate: boolean }) {
-  const { link, isUpdate } = payload
-
+async function handleSaveLink(payload: CreateUserLinkInput | { link: Link, isUpdate: boolean }) {
   try {
-    if (isUpdate) {
+    if ("link" in payload && "isUpdate" in payload) {
+      // Handle update case
+      const { link, isUpdate } = payload
       console.log("Link updated successfully:", link.title)
+      if (links.value.length === 0 || isUpdate) {
+        await linkStore.getLinks()
+      }
     }
     else {
-      console.log("Link created successfully:", link.title)
-    }
-    if (links.value.length === 0 || isUpdate) {
+      // Handle create case
+      const { title } = payload
+      console.log("Link created successfully:", title)
       await linkStore.getLinks()
     }
   }

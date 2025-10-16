@@ -10,6 +10,28 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   vite: { plugins: [tailwindcss()] },
   css: ["~/assets/styles.css"],
+  fonts: {
+    processCSSVariables: true,
+    families: [
+      { name: "Lato", provider: "google" },
+      { name: "Crimson Pro", provider: "google" },
+      { name: "Caprasimo", provider: "google" },
+      { name: "JetBrains Mono", provider: "google" },
+
+      // Dynamic fonts for user preferences - force global loading
+      { name: "Roboto", provider: "google", global: true },
+      { name: "Noto Sans", provider: "google", global: true },
+      { name: "Montserrat", provider: "google", global: true },
+      { name: "Playfair Display", provider: "google", global: true },
+      { name: "Lora", provider: "google", global: true },
+      { name: "Amarante", provider: "google", global: true },
+      { name: "Righteous", provider: "google", global: true },
+      { name: "Ribeye", provider: "google", global: true },
+      { name: "Ribeye Marrow", provider: "google", global: true },
+      { name: "Audiowide", provider: "google", global: true },
+      { name: "Ubuntu Mono", provider: "google", global: true },
+    ],
+  },
   colorMode: {
     classSuffix: "",
     preference: "system",

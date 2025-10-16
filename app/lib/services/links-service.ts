@@ -1,4 +1,4 @@
-import type { CreateUserLinkInput, UpdateUserLinkInput } from "#shared/schemas/link"
+import type { CreateUserLinkInput, UpdateUserLinkInput } from "#shared/schemas/links"
 
 const API_BASE = "/api/links"
 

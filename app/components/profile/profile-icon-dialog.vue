@@ -5,7 +5,7 @@
 
       <div class="scroll-area grid max-h-48 grid-cols-3 gap-1 overflow-y-auto pr-2 md:grid-cols-5 2xl:grid-cols-9">
         <button
-          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS)" :key="label"
+          v-for="[label, iconName] in Object.entries(SOCIAL_ICONS) as [keyof typeof SOCIAL_ICONS, typeof SOCIAL_ICONS[keyof typeof SOCIAL_ICONS]][]" :key="label"
           type="button" aria-label="Select Social Icon"
           class="hover:bg-muted active:bg-accent flex flex-col items-center justify-center gap-1 rounded-lg border p-2 transition-all"
           :class="{ 'bg-accent': form.platform === label }" @click="selectIcon(label, iconName)"
@@ -38,8 +38,9 @@
 </template>
 
 <script setup lang="ts">
+import type { CreateUserIconInput } from "#shared/schemas/icons"
 import { SOCIAL_ICONS } from "#shared/config/social-icons"
-import { createUserIconSchema } from "~~/shared/schemas/icons"
+import { createUserIconSchema } from "#shared/schemas/icons"
 
 const props = defineProps<{
   isOpen: boolean
@@ -47,18 +48,18 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void
-  (e: "save", payload: Icon): void
+  (e: "save", payload: CreateUserIconInput): void
 }>()
 
 const iconStore = useIconsStore()
 
-const form = ref<Icon>({
-  platform: "",
-  logo: "",
+const form = ref<Partial<CreateUserIconInput>>({
+  platform: undefined,
+  logo: undefined,
   url: "",
 })
 
-function selectIcon(label: string, iconName: string) {
+function selectIcon(label: keyof typeof SOCIAL_ICONS, iconName: typeof SOCIAL_ICONS[keyof typeof SOCIAL_ICONS]) {
   form.value.platform = label
   form.value.logo = iconName
   iconStore.errors.createIcon = null
@@ -76,7 +77,7 @@ function handleSubmit() {
     if (!result.success) {
       return
     }
-    emit("save", { ...form.value })
+    emit("save", result.data)
     emit("close")
   }
   catch (error: any) {
@@ -87,7 +88,7 @@ function handleSubmit() {
 
 watch(() => props.isOpen, (open) => {
   if (open) {
-    form.value = { platform: "", logo: "", url: "" }
+    form.value = { platform: undefined, logo: undefined, url: "" }
     iconStore.errors.createIcon = null
   }
 }, { immediate: true })

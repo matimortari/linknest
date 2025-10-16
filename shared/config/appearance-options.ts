@@ -18,17 +18,17 @@ export const BORDER_WIDTHS = [
 ] as const
 
 export const FONT_FAMILIES = [
-  { label: "Roboto", value: "Roboto, sans-serif" },
-  { label: "Noto Sans", value: "Noto Sans, sans-serif" },
-  { label: "Montserrat", value: "Montserrat, sans-serif" },
-  { label: "Playfair Display", value: "Playfair Display, serif" },
-  { label: "Lora", value: "Lora, serif" },
-  { label: "Amarante", value: "Amarante, serif" },
-  { label: "Righteous", value: "Righteous, serif" },
-  { label: "Ribeye", value: "Ribeye, serif" },
-  { label: "Ribeye Marrow", value: "Ribeye Marrow, serif" },
-  { label: "Audiowide", value: "Audiowide, sans-serif" },
-  { label: "Ubuntu Mono", value: "Ubuntu Mono, sans-serif" },
+  { label: "Roboto", value: "'Roboto', sans-serif" },
+  { label: "Noto Sans", value: "'Noto Sans', sans-serif" },
+  { label: "Montserrat", value: "'Montserrat', sans-serif" },
+  { label: "Playfair Display", value: "'Playfair Display', serif" },
+  { label: "Lora", value: "'Lora', serif" },
+  { label: "Amarante", value: "'Amarante', serif" },
+  { label: "Righteous", value: "'Righteous', sans-serif" },
+  { label: "Ribeye", value: "'Ribeye', serif" },
+  { label: "Ribeye Marrow", value: "'Ribeye Marrow', serif" },
+  { label: "Audiowide", value: "'Audiowide', sans-serif" },
+  { label: "Ubuntu Mono", value: "'Ubuntu Mono', monospace" },
 ] as const
 
 export const FONT_SIZES = [
@@ -64,11 +64,11 @@ export const LINK_PADDING_SIZES = [
 ] as const
 
 export type RadiusSize = (typeof RADIUS_SIZES)[number]["value"]
-export type BackgroundOptionType = (typeof BACKGROUND_TYPES)[number]["value"]
+export type BackgroundOption = (typeof BACKGROUND_TYPES)[number]["value"]
 export type BorderWidth = (typeof BORDER_WIDTHS)[number]["value"]
 export type FontFamily = (typeof FONT_FAMILIES)[number]["value"]
 export type FontSize = (typeof FONT_SIZES)[number]["value"]
 export type FontWeight = (typeof FONT_WEIGHTS)[number]["value"]
 export type LinkFontSize = (typeof LINK_FONT_SIZES)[number]["value"]
-export type ShadowWeightType = (typeof SHADOW_WEIGHTS)[number]["value"]
+export type ShadowWeight = (typeof SHADOW_WEIGHTS)[number]["value"]
 export type LinkPaddingSize = (typeof LINK_PADDING_SIZES)[number]["value"]

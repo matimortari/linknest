@@ -1,4 +1,4 @@
-export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<UserPreferencesType | null | undefined>) {
+export function useDynamicStyles(preferences: UserPreferences | null | Ref<UserPreferences | null | undefined>) {
   const pref = computed(() => unref(preferences))
 
   const backgroundStyle = computed(() =>
@@ -67,9 +67,11 @@ export function useDynamicStyles(preferences: UserPreferencesType | null | Ref<U
     }
   }
 
-  const linkInnerStyle = computed(() =>
-    pref.value ? { color: pref.value.linkTextColor, fontWeight: pref.value.linkTextWeight, fontFamily: pref.value.linkFontFamily, fontSize: pref.value.linkTextSize } : {},
-  )
+  const linkInnerStyle = computed(() => {
+    if (pref.value) {
+      return { color: pref.value.linkTextColor, fontWeight: pref.value.linkTextWeight, fontFamily: pref.value.linkFontFamily, fontSize: pref.value.linkTextSize }
+    }
+  })
 
   return {
     backgroundStyle,

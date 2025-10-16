@@ -6,8 +6,7 @@
         <input
           id="title" v-model="form.title"
           type="text" placeholder="Enter link title"
-          class="flex-1"
-          :disabled="isLoading"
+          class="flex-1" :disabled="isLoading"
         >
       </div>
 
@@ -16,8 +15,7 @@
         <input
           id="url" v-model="form.url"
           type="url" placeholder="https://example.com"
-          class="flex-1"
-          :disabled="isLoading"
+          class="flex-1" :disabled="isLoading"
         >
       </div>
 
@@ -27,21 +25,10 @@
         </p>
 
         <div class="flex gap-2">
-          <button
-            type="button"
-            class="btn-secondary"
-            aria-label="Cancel"
-            :disabled="isLoading"
-            @click="emit('close')"
-          >
+          <button class="btn-secondary" aria-label="Cancel" :disabled="isLoading" @click="emit('close')">
             Cancel
           </button>
-          <button
-            class="btn-primary"
-            type="submit"
-            aria-label="Save Link"
-            :disabled="isLoading || !isFormValid"
-          >
+          <button class="btn-primary" type="submit" aria-label="Save Link" :disabled="isLoading || !isFormValid">
             <Spinner v-if="isLoading" size="sm" />
             <span v-else>{{ isUpdateMode ? 'Update Link' : 'Add Link' }}</span>
           </button>
@@ -52,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import type { CreateUserLinkInput, UpdateUserLinkInput } from "~~/shared/schemas/link"
-import { createUserLinkSchema, updateUserLinkSchema } from "~~/shared/schemas/link"
+import type { CreateUserLinkInput, UpdateUserLinkInput } from "#shared/schemas/links"
+import { createUserLinkSchema, updateUserLinkSchema } from "#shared/schemas/links"
 
 const props = defineProps<{
   isOpen: boolean
@@ -62,7 +49,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void
-  (e: "save", payload: { link: Link, isUpdate: boolean }): void
+  (e: "save", payload: CreateUserLinkInput | { link: Link, isUpdate: boolean }): void
 }>()
 
 const linkStore = useLinksStore()
@@ -83,9 +70,7 @@ const isFormValid = computed(() => {
 })
 
 const errorMessage = computed(() => {
-  return isUpdateMode.value
-    ? linkStore.errors.updateLink
-    : linkStore.errors.createLink
+  return isUpdateMode.value ? linkStore.errors.updateLink : linkStore.errors.createLink
 })
 
 const hasFormChanged = computed(() => {
@@ -105,15 +90,12 @@ async function handleSubmit() {
     linkStore.errors[errorKey] = "Title and URL are required."
     return
   }
-
   if (isUpdateMode.value && !hasFormChanged.value) {
     emit("close")
     return
   }
 
   isLoading.value = true
-
-  // Clear previous errors
   linkStore.errors.createLink = null
   linkStore.errors.updateLink = null
 
@@ -155,18 +137,13 @@ async function handleUpdateLink() {
     return
   }
 
-  // Prepare update data - only include changed fields
   const updateData: UpdateUserLinkInput = {}
-
   if (form.value.title !== props.selectedLink.title) {
     updateData.title = form.value.title
   }
-
   if (form.value.url !== props.selectedLink.url) {
     updateData.url = form.value.url
   }
-
-  // If no changes, just close
   if (Object.keys(updateData).length === 0) {
     emit("close")
     return
@@ -185,11 +162,8 @@ async function handleUpdateLink() {
 }
 
 function resetForm() {
-  form.value = props.selectedLink
-    ? { ...props.selectedLink }
-    : { title: "", url: "" }
+  form.value = props.selectedLink ? { ...props.selectedLink } : { title: "", url: "" }
 
-  // Clear errors when opening dialog
   linkStore.errors.createLink = null
   linkStore.errors.updateLink = null
   isLoading.value = false
@@ -201,7 +175,6 @@ watch(() => props.isOpen, (open) => {
   }
 }, { immediate: true })
 
-// Watch for selectedLink changes to update form
 watch(() => props.selectedLink, () => {
   if (props.isOpen) {
     resetForm()

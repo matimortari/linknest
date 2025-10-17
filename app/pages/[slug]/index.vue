@@ -77,17 +77,22 @@ watch(() => route.params.slug, async (newSlug) => {
   if (!newSlug)
     return
 
-  await userStore.getUserBySlug(newSlug as string)
+  try {
+    await userStore.getUserBySlug(newSlug as string)
 
-  const user = userStore.user
-  if (user?.id) {
-    // await userStore.trackPageVisit(user.id)
+    const currentUser = userStore.user
+    if (currentUser?.id) {
+      // await userStore.trackPageVisit(currentUser.id)
 
-    useHead({
-      title: `@${user.slug}`,
-      link: [{ rel: "canonical", href: `https://linknest.vercel.app/${user.slug}` }],
-      meta: [{ name: "description", content: `@${user.slug} profile on LinkNest.` }],
-    })
+      useHead({
+        title: `@${currentUser.slug}`,
+        link: [{ rel: "canonical", href: `https://linknest.vercel.app/${currentUser.slug}` }],
+        meta: [{ name: "description", content: `@${currentUser.slug} profile on LinkNest.` }],
+      })
+    }
+  }
+  catch (error) {
+    console.error("Failed to load user profile:", error)
   }
 }, { immediate: true })
 

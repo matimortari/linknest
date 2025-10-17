@@ -1,5 +1,5 @@
 <template>
-  <main class="flex min-h-screen items-center justify-center overflow-x-hidden text-center">
+  <main class="min-h-screen overflow-x-hidden">
     <slot />
   </main>
 </template>

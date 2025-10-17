@@ -45,11 +45,13 @@ export const useUserStore = defineStore("user", () => {
 
     try {
       const res = await userService.getUserBySlug(slug) as User
+      user.value = res
       return res
     }
     catch (err: any) {
       errors.value.getUserBySlug = err?.message || "Failed to get user by slug"
       console.error("getUserBySlug error:", err)
+      user.value = null
       throw err
     }
     finally {

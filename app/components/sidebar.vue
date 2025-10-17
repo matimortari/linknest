@@ -33,7 +33,7 @@
               {{ user.name }}
             </span>
 
-            <nuxt-link :to="`/${user.slug}`" :title="`linknest-live.vercel.app/${user.slug}`" class="text-muted-foreground text-sm break-words hover:underline">
+            <nuxt-link :to="`/${user.slug}`" :title="`linknest.vercel.app/${user.slug}`" class="text-muted-foreground text-sm break-words hover:underline">
               @{{ user.slug }}
             </nuxt-link>
           </div>

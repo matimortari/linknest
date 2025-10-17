@@ -1,25 +1,38 @@
 <template>
+  <nav class="flex w-full items-center justify-between border-b px-4 py-2 md:px-8">
+    <nuxt-link to="/" class="flex flex-row items-center gap-2">
+      <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
+      <img :src="themeTitle" alt="Logo Title" width="100">
+    </nuxt-link>
+    <button class="btn" aria-label="Toggle Theme" @click="toggleTheme">
+      <icon :name="themeIcon" size="25" />
+    </button>
+  </nav>
+
   <Loading v-if="isLoading" />
 
-  <div v-show="!isLoading" class="flex max-w-[80%] flex-col gap-8 md:flex-row">
+  <div v-show="!isLoading" class="flex flex-col gap-8 p-4 md:flex-row">
     <main class="flex-1">
       <div
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :duration="600"
+        v-motion :initial="{ opacity: 0, y: 10 }"
+        :enter="{ opacity: 1, y: 0 }" :duration="600"
         class="markdown bg-background w-full p-4 md:px-8"
       >
-        <ContentRenderer v-if="apiSpec" :value="apiSpec" />
+        <article v-if="apiSpec">
+          <ContentRenderer :value="apiSpec" />
+        </article>
       </div>
     </main>
 
-    <aside class="border-border sticky top-12 hidden h-[calc(100vh-6rem)] flex-shrink-0 overflow-auto pr-4 md:block md:w-64">
+    <aside class="scroll-area sticky top-12 hidden h-[calc(100vh-6rem)] flex-shrink-0 overflow-auto pr-4 md:block md:w-64">
       <nav class="space-y-2">
-        <h3>Sections</h3>
+        <h3>On This Page</h3>
         <ul class="space-y-1">
-          <li v-for="header in headers" :key="header.id" :class="{ 'ml-2': header.level === 3, 'ml-4': header.level === 4 }">
-            <a :href="`#${header.id}`" class="hover:text-primary flex items-center gap-2">
+          <li
+            v-for="header in headers" :key="header.id"
+            :class="[header.level === 3 ? 'ml-2' : header.level === 4 ? 'ml-4' : '', activeSection === header.id ? 'text-primary font-semibold' : '']"
+          >
+            <a :href="`#${header.id}`" class="flex items-center gap-2">
               {{ header.text }}
               <span v-if="header.method" :class="`px-2 py-1 rounded-full font-mono text-xs ${methodColors[header.method as keyof typeof methodColors]}`">
                 {{ header.method }}
@@ -38,6 +51,9 @@ const apiSpec = await queryCollection("content").path("/api").first()
 const headers = ref<{ id: string, text: string, level: number, method?: string }[]>([])
 const isLoading = ref(true)
 
+const { activeSection } = useActiveHeading()
+const { toggleTheme, themeIcon, themeTitle } = useTheme()
+
 const methodColors = {
   GET: "bg-green-100 text-green-800",
   POST: "bg-blue-100 text-blue-800",
@@ -45,8 +61,10 @@ const methodColors = {
   DELETE: "bg-red-100 text-red-800",
 }
 
-onMounted(() => {
-  const container = document.querySelector(".markdown")
+onMounted(async () => {
+  await nextTick()
+
+  const container = document.querySelector(".markdown article")
   if (container) {
     const hElements = container.querySelectorAll("h2, h3, h4")
     headers.value = Array.from(hElements).map((el) => {
@@ -55,15 +73,9 @@ onMounted(() => {
       el.id = id
 
       let method: string | undefined
-
       const headerMatch = text.match(/^\s*(GET|POST|PUT|DELETE)\b/i)
       if (headerMatch && headerMatch[1]) {
         method = headerMatch[1].toUpperCase()
-        const badge = document.createElement("span")
-        badge.textContent = method
-        badge.className = `ml-2 px-2 py-0.5 rounded font-mono text-xs ${methodColors[method as keyof typeof methodColors]}`
-        el.appendChild(badge)
-
         text = text.replace(headerMatch[0], "").trim()
         if (el.childNodes[0])
           el.childNodes[0].textContent = text

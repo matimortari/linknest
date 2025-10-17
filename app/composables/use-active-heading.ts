@@ -17,7 +17,11 @@ export function useActiveHeading() {
       },
     )
 
-    document.querySelectorAll("article section h3").forEach((heading) => {
+    document.querySelectorAll("article h2, article h3, article h4").forEach((heading) => {
+      if (!heading.id) {
+        const text = heading.textContent?.trim() || ""
+        heading.id = text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-")
+      }
       observer.observe(heading)
     })
 

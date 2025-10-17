@@ -20,11 +20,10 @@ export default defineNuxtConfig({
     processCSSVariables: true,
     families: [
       { name: "Lato", provider: "google" },
-      { name: "Crimson Pro", provider: "google" },
       { name: "Caprasimo", provider: "google" },
       { name: "JetBrains Mono", provider: "google" },
 
-      // Dynamic fonts for user preferences - force global loading
+      // Dynamic fonts for user preferences
       { name: "Roboto", provider: "google", global: true },
       { name: "Noto Sans", provider: "google", global: true },
       { name: "Montserrat", provider: "google", global: true },

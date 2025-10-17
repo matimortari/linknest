@@ -1,6 +1,6 @@
 <template>
   <nuxt-link to="/" class="hover:scale-sm fixed top-4 left-4 z-50 flex flex-row items-center gap-2 rounded-full transition-all select-none">
-    <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
+    <img src="/assets/logo.png" alt="Logo" width="30">
   </nuxt-link>
 
   <div v-if="loading.getUserBySlug || !user" class="flex min-h-screen flex-col items-center justify-center gap-4 p-12 text-center">

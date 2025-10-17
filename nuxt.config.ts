@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url"
 import tailwindcss from "@tailwindcss/vite"
 
 export default defineNuxtConfig({
-  modules: ["@nuxt/fonts", "@nuxt/icon", "@nuxt/image", "@nuxtjs/color-mode", "@pinia/nuxt", "@vueuse/motion/nuxt", "nuxt-auth-utils"],
+  modules: ["@nuxt/content", "@nuxt/fonts", "@nuxt/icon", "@nuxt/image", "@nuxtjs/color-mode", "@pinia/nuxt", "@vueuse/motion/nuxt", "nuxt-auth-utils"],
   imports: { dirs: ["lib/**"] },
   alias: {
     "#server": fileURLToPath(new URL("./server", import.meta.url)),
@@ -10,6 +10,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   vite: { plugins: [tailwindcss()] },
   css: ["~/assets/styles.css"],
+  colorMode: {
+    classSuffix: "",
+    preference: "system",
+    fallback: "light",
+    storageKey: "nuxt-color-mode",
+  },
   fonts: {
     processCSSVariables: true,
     families: [
@@ -31,12 +37,6 @@ export default defineNuxtConfig({
       { name: "Audiowide", provider: "google", global: true },
       { name: "Ubuntu Mono", provider: "google", global: true },
     ],
-  },
-  colorMode: {
-    classSuffix: "",
-    preference: "system",
-    fallback: "light",
-    storageKey: "nuxt-color-mode",
   },
   icon: {
     mode: "svg",

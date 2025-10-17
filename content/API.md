@@ -64,9 +64,7 @@ All responses follow a consistent JSON format:
 
 ### User Endpoints
 
-#### Get Current User
-
-**GET** `/user`
+#### GET `/user`
 
 Retrieves the authenticated user's profile information.
 
@@ -122,9 +120,7 @@ Retrieves the authenticated user's profile information.
 }
 ```
 
-#### Update User
-
-**PUT** `/user`
+#### PUT `/user`
 
 Updates the authenticated user's profile information.
 
@@ -157,11 +153,9 @@ Updates the authenticated user's profile information.
 }
 ```
 
-#### Delete User
+#### DELETE `/user`
 
-**DELETE** `/user`
-
-Deletes the authenticated user's account and all associated data.
+Permanently deletes the authenticated user's account and all associated data.
 
 **Authentication:** Required
 
@@ -173,9 +167,7 @@ Deletes the authenticated user's account and all associated data.
 }
 ```
 
-#### Get Public User Profile
-
-**GET** `/user/{slug}`
+#### GET `/user/{slug}`
 
 Retrieves a user's public profile by slug, including links, icons, and preferences.
 
@@ -217,9 +209,7 @@ Retrieves a user's public profile by slug, including links, icons, and preferenc
 }
 ```
 
-#### Update User Preferences
-
-**PUT** `/user/preferences`
+#### PUT `/user/preferences`
 
 Updates the authenticated user's appearance preferences.
 
@@ -280,9 +270,7 @@ Updates the authenticated user's appearance preferences.
 
 ### Links Endpoints
 
-#### Get User Links
-
-**GET** `/links`
+#### GET `/links`
 
 Retrieves all links for the authenticated user.
 
@@ -304,9 +292,7 @@ Retrieves all links for the authenticated user.
 }
 ```
 
-#### Create Link
-
-**POST** `/links`
+#### POST `/links`
 
 Creates a new link for the authenticated user.
 
@@ -335,9 +321,7 @@ Creates a new link for the authenticated user.
 }
 ```
 
-#### Update Link
-
-**PUT** `/links/{id}`
+#### PUT `/links/{id}`
 
 Updates an existing link for the authenticated user.
 
@@ -370,9 +354,7 @@ Updates an existing link for the authenticated user.
 }
 ```
 
-#### Delete Link
-
-**DELETE** `/links/{id}`
+#### DELETE `/links/{id}`
 
 Deletes a link for the authenticated user.
 
@@ -394,9 +376,7 @@ Deletes a link for the authenticated user.
 
 ### Icons Endpoints
 
-#### Get User Icons
-
-**GET** `/icons`
+#### GET `/icons`
 
 Retrieves all social media icons for the authenticated user.
 
@@ -419,9 +399,7 @@ Retrieves all social media icons for the authenticated user.
 }
 ```
 
-#### Create Icon
-
-**POST** `/icons`
+#### POST `/icons`
 
 Creates a new social media icon for the authenticated user.
 
@@ -456,9 +434,7 @@ Creates a new social media icon for the authenticated user.
 }
 ```
 
-#### Delete Icon
-
-**DELETE** `/icons/{id}`
+#### DELETE `/icons/{id}`
 
 Deletes a social media icon for the authenticated user.
 
@@ -480,9 +456,7 @@ Deletes a social media icon for the authenticated user.
 
 ### Analytics Endpoints
 
-#### Record Analytics
-
-**POST** `/analytics`
+#### POST `/analytics`
 
 Records analytics data for page views, link clicks, or icon clicks.
 
@@ -504,9 +478,7 @@ Records analytics data for page views, link clicks, or icon clicks.
 }
 ```
 
-#### Delete Analytics
-
-**DELETE** `/analytics`
+#### DELETE `/analytics`
 
 Deletes all analytics data for the authenticated user.
 

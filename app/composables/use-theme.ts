@@ -1,5 +1,5 @@
-import logoTitleDark from "~/assets/logo-title-dark.png"
-import logoTitleLight from "~/assets/logo-title-light.png"
+import logoDark from "~/assets/wordmark-dark.png"
+import logoLight from "~/assets/wordmark-light.png"
 
 export function useTheme() {
   const colorMode = useState<"light" | "dark">("theme", () => "light")
@@ -38,7 +38,7 @@ export function useTheme() {
   )
 
   const themeTitle = computed(() =>
-    colorMode.value === "light" ? logoTitleLight : logoTitleDark,
+    colorMode.value === "light" ? logoDark : logoLight,
   )
 
   return {

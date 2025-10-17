@@ -2,7 +2,7 @@
   <footer class="bg-card w-full">
     <div class="container mx-auto flex flex-col-reverse px-8 py-4 md:flex-row md:justify-between">
       <div class="flex flex-col justify-end gap-2 border-t py-8 md:border-0">
-        <img :src="themeTitle" alt="Logo Title" width="100">
+        <img :src="themeTitle" alt="Wordmark" width="100">
 
         <div class="flex flex-row items-center justify-between gap-4">
           <p class="text-muted-foreground text-sm whitespace-nowrap">

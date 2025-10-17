@@ -71,7 +71,6 @@ html.dark {
   --color-border: var(--border);
 
   --font-default: "Lato", sans-serif;
-  --font-serif: "Crimson Pro", serif;
   --font-display: "Caprasimo";
   --font-mono: "JetBrains Mono", monospace;
 }
@@ -102,13 +101,11 @@ h2 {
   font-size: 2rem;
   line-height: 2.25rem;
   font-weight: 800;
-  font-family: var(--font-serif);
 }
 h3 {
   font-size: 1.75rem;
   line-height: 2rem;
   font-weight: 700;
-  font-family: var(--font-serif);
 }
 h4 {
   font-size: 1.25rem;

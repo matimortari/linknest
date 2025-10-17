@@ -1,8 +1,8 @@
 <template>
   <nav class="flex w-full items-center justify-between border-b px-4 py-2 md:px-8">
     <nuxt-link to="/" class="flex flex-row items-center gap-2">
-      <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
-      <img :src="themeTitle" alt="Logo Title" width="100">
+      <img src="/assets/logo.png" alt="Logo" width="30">
+      <img :src="themeTitle" alt="Wordmark" width="100">
     </nuxt-link>
     <button class="btn" aria-label="Toggle Theme" @click="toggleTheme">
       <icon :name="themeIcon" size="25" />

@@ -1,8 +1,8 @@
 <template>
   <nav class="absolute top-4 right-0 left-0 z-50 flex items-center justify-between p-4 md:top-0">
     <div class="flex flex-row items-center gap-4">
-      <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
-      <img :src="themeTitle" alt="Logo Title" width="100">
+      <img src="/assets/logo.png" alt="Logo" width="30">
+      <img :src="themeTitle" alt="Wordmark" width="100">
     </div>
 
     <div class="flex flex-row items-center gap-4" aria-label="User Actions">

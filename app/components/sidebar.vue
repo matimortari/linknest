@@ -15,8 +15,8 @@
     <aside v-if="user" class="fixed top-0 left-0 z-40 size-full px-4 py-16 transition-transform md:static md:w-56 md:translate-x-0 md:py-4" :class="isMobileNavOpen ? 'translate-x-0 bg-card' : '-translate-x-full'">
       <div class="flex h-full flex-col gap-12 px-12 md:px-0">
         <nuxt-link to="/" class="hover:scale-sm hidden flex-row items-center gap-2 transition-all select-none md:flex">
-          <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
-          <img :src="themeTitle" alt="Logo Title" width="100">
+          <img src="/assets/logo.png" alt="Logo" width="30">
+          <img :src="themeTitle" alt="Wordmark" width="100">
         </nuxt-link>
 
         <div class="navigation-group w-full !gap-4">
@@ -71,8 +71,8 @@
       </div>
 
       <nuxt-link to="/" class="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-row items-center gap-2 transition-all select-none md:hidden">
-        <img src="/assets/logo-icon.png" alt="Logo Icon" width="30">
-        <img :src="themeTitle" alt="Logo Title" width="100">
+        <img src="/assets/logo.png" alt="Logo" width="30">
+        <img :src="themeTitle" alt="Wordmark" width="100">
       </nuxt-link>
     </aside>
   </transition>

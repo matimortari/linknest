@@ -21,7 +21,7 @@
 
       <footer class="flex flex-row items-center justify-between">
         <p class="text-warning">
-          {{ errorMessage }}
+          {{ isUpdateMode ? linkStore.errors.updateLink || '' : linkStore.errors.createLink || '' }}
         </p>
 
         <div class="flex gap-2">
@@ -29,8 +29,7 @@
             Cancel
           </button>
           <button class="btn-primary" type="submit" aria-label="Save Link" :disabled="isLoading || !isFormValid">
-            <Spinner v-if="isLoading" size="sm" />
-            <span v-else>{{ isUpdateMode ? 'Update Link' : 'Add Link' }}</span>
+            {{ isUpdateMode ? 'Update Link' : 'Add Link' }}
           </button>
         </div>
       </footer>
@@ -49,39 +48,17 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void
-  (e: "save", payload: CreateUserLinkInput | { link: Link, isUpdate: boolean }): void
 }>()
 
 const linkStore = useLinksStore()
 
-const form = ref<Link>({
+const { form, isLoading, isFormValid, resetForm, validateForm, hasFormChanged } = useFormValidation<CreateUserLinkInput | UpdateUserLinkInput>({
   title: "",
   url: "",
 })
 
-const isLoading = ref(false)
-
 const isUpdateMode = computed(() => {
   return !!(props.selectedLink?.id)
-})
-
-const isFormValid = computed(() => {
-  return form.value.title.trim() !== "" && form.value.url.trim() !== ""
-})
-
-const errorMessage = computed(() => {
-  return isUpdateMode.value ? linkStore.errors.updateLink : linkStore.errors.createLink
-})
-
-const hasFormChanged = computed(() => {
-  if (!isUpdateMode.value)
-    return true
-
-  const original = props.selectedLink
-  if (!original)
-    return true
-
-  return original.title !== form.value.title || original.url !== form.value.url
 })
 
 async function handleSubmit() {
@@ -90,7 +67,7 @@ async function handleSubmit() {
     linkStore.errors[errorKey] = "Title and URL are required."
     return
   }
-  if (isUpdateMode.value && !hasFormChanged.value) {
+  if (isUpdateMode.value && !hasFormChanged(props.selectedLink || undefined)) {
     emit("close")
     return
   }
@@ -107,10 +84,9 @@ async function handleSubmit() {
       await handleCreateLink()
     }
   }
-  catch (error: any) {
-    console.error("Failed to save link:", error)
-    const errorKey = isUpdateMode.value ? "updateLink" : "createLink"
-    linkStore.errors[errorKey] = error.message || "Failed to save link"
+  catch (err: any) {
+    console.error("Failed to save link:", err)
+    isUpdateMode.value ? linkStore.errors.updateLink = err.message || "Failed to save link" : linkStore.errors.createLink = err.message || "Failed to save link"
   }
   finally {
     isLoading.value = false
@@ -118,16 +94,14 @@ async function handleSubmit() {
 }
 
 async function handleCreateLink() {
-  const validation = createUserLinkSchema.safeParse(form.value)
-  if (!validation.success) {
+  if (!validateForm(createUserLinkSchema)) {
     linkStore.errors.createLink = "Please check your input and try again."
     return
   }
 
-  const createData: CreateUserLinkInput = validation.data
+  const createData = form.value as CreateUserLinkInput
   await linkStore.createLink(createData)
 
-  emit("save", { link: form.value, isUpdate: false })
   emit("close")
 }
 
@@ -157,27 +131,22 @@ async function handleUpdateLink() {
 
   await linkStore.updateLink(props.selectedLink.id, validation.data)
 
-  emit("save", { link: { ...props.selectedLink, ...updateData }, isUpdate: true })
   emit("close")
-}
-
-function resetForm() {
-  form.value = props.selectedLink ? { ...props.selectedLink } : { title: "", url: "" }
-
-  linkStore.errors.createLink = null
-  linkStore.errors.updateLink = null
-  isLoading.value = false
 }
 
 watch(() => props.isOpen, (open) => {
   if (open) {
-    resetForm()
+    resetForm(props.selectedLink ? { ...props.selectedLink } : { title: "", url: "" })
+    linkStore.errors.createLink = null
+    linkStore.errors.updateLink = null
   }
 }, { immediate: true })
 
 watch(() => props.selectedLink, () => {
   if (props.isOpen) {
-    resetForm()
+    resetForm(props.selectedLink ? { ...props.selectedLink } : { title: "", url: "" })
+    linkStore.errors.createLink = null
+    linkStore.errors.updateLink = null
   }
 }, { deep: true })
 </script>

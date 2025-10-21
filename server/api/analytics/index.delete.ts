@@ -96,9 +96,9 @@ export default defineEventHandler(async (event) => {
       deletedCount,
     }
   }
-  catch (error: any) {
-    if (error.statusCode) {
-      throw error
+  catch (err: any) {
+    if (err.statusCode) {
+      throw err
     }
     throw createError({ statusCode: 500, statusMessage: "Failed to delete analytics data" })
   }

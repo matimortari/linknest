@@ -33,8 +33,8 @@ export default defineOAuthGitHubEventHandler({
       provider: "github",
     })
   },
-  async onError(event: H3Event, error: any) {
-    console.error("GitHub OAuth error:", error)
+  async onError(event: H3Event, err: any) {
+    console.error("GitHub OAuth error:", err)
     if (!event || !event.node?.res) {
       throw createError({ statusCode: 500, message: "Internal server error" })
     }

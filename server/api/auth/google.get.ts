@@ -33,8 +33,8 @@ export default defineOAuthGoogleEventHandler({
       provider: "google",
     })
   },
-  async onError(event: H3Event, error: any) {
-    console.error("Google OAuth error:", error)
+  async onError(event: H3Event, err: any) {
+    console.error("Google OAuth error:", err)
     if (!event || !event.node?.res) {
       throw createError({ statusCode: 500, message: "Internal server error" })
     }

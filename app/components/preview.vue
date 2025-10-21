@@ -97,13 +97,13 @@ const userStore = useUserStore()
 const linkStore = useLinksStore()
 const iconStore = useIconsStore()
 
-const preferences = computed(() => userStore.user?.preferences ?? null)
-const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
-
 const { user } = storeToRefs(userStore)
 const { links } = storeToRefs(linkStore)
 const { icons } = storeToRefs(iconStore)
 const isMobilePreviewOpen = ref(false)
+
+const preferences = computed(() => user.value?.preferences ?? null)
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
 </script>
 
 <style scoped>

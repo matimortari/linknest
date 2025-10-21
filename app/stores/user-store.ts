@@ -2,15 +2,7 @@ import type { UpdateUserInput, UpdateUserPreferencesInput } from "#shared/schema
 
 export const useUserStore = defineStore("user", () => {
   const user = ref<User | null>(null)
-
-  const loading = ref<Record<"getUser" | "getUserBySlug" | "updateUser" | "updatePreferences" | "deleteUser", boolean>>({
-    getUser: false,
-    getUserBySlug: false,
-    updateUser: false,
-    updatePreferences: false,
-    deleteUser: false,
-  })
-
+  const loading = ref<boolean>(false)
   const errors = ref<Record<"getUser" | "getUserBySlug" | "updateUser" | "updatePreferences" | "deleteUser", string | null>>({
     getUser: null,
     getUserBySlug: null,
@@ -20,7 +12,7 @@ export const useUserStore = defineStore("user", () => {
   })
 
   async function getUser() {
-    loading.value.getUser = true
+    loading.value = true
     errors.value.getUser = null
 
     try {
@@ -35,12 +27,12 @@ export const useUserStore = defineStore("user", () => {
       throw err
     }
     finally {
-      loading.value.getUser = false
+      loading.value = false
     }
   }
 
   async function getUserBySlug(slug: string) {
-    loading.value.getUserBySlug = true
+    loading.value = true
     errors.value.getUserBySlug = null
 
     try {
@@ -55,12 +47,12 @@ export const useUserStore = defineStore("user", () => {
       throw err
     }
     finally {
-      loading.value.getUserBySlug = false
+      loading.value = false
     }
   }
 
   async function updateUser(data: UpdateUserInput) {
-    loading.value.updateUser = true
+    loading.value = true
     errors.value.updateUser = null
 
     try {
@@ -73,12 +65,12 @@ export const useUserStore = defineStore("user", () => {
       throw err
     }
     finally {
-      loading.value.updateUser = false
+      loading.value = false
     }
   }
 
   async function updatePreferences(data: UpdateUserPreferencesInput) {
-    loading.value.updatePreferences = true
+    loading.value = true
     errors.value.updatePreferences = null
 
     try {
@@ -93,12 +85,12 @@ export const useUserStore = defineStore("user", () => {
       throw err
     }
     finally {
-      loading.value.updatePreferences = false
+      loading.value = false
     }
   }
 
   async function deleteUser() {
-    loading.value.deleteUser = true
+    loading.value = true
     errors.value.deleteUser = null
 
     try {
@@ -111,7 +103,7 @@ export const useUserStore = defineStore("user", () => {
       throw err
     }
     finally {
-      loading.value.deleteUser = false
+      loading.value = false
     }
   }
 

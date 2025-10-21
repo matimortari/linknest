@@ -29,7 +29,7 @@
           {{ iconStore.errors.createIcon || '' }}
         </p>
 
-        <button class="btn-primary" type="submit" aria-label="Save Link">
+        <button class="btn-primary" type="submit" aria-label="Save Link" :disabled="!isFormValid">
           Add Social Icon
         </button>
       </footer>
@@ -48,14 +48,13 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: "close"): void
-  (e: "save", payload: CreateUserIconInput): void
 }>()
 
 const iconStore = useIconsStore()
 
-const form = ref<Partial<CreateUserIconInput>>({
-  platform: undefined,
-  logo: undefined,
+const { form, isFormValid, resetForm, validateForm } = useFormValidation<CreateUserIconInput>({
+  platform: "" as keyof typeof SOCIAL_ICONS,
+  logo: "" as typeof SOCIAL_ICONS[keyof typeof SOCIAL_ICONS],
   url: "",
 })
 
@@ -65,30 +64,29 @@ function selectIcon(label: keyof typeof SOCIAL_ICONS, iconName: typeof SOCIAL_IC
   iconStore.errors.createIcon = null
 }
 
-function handleSubmit() {
-  iconStore.errors.createIcon = null
-  if (!form.value.platform || !form.value.url) {
+async function handleSubmit() {
+  if (!validateForm(createUserIconSchema)) {
     iconStore.errors.createIcon = "Platform and URL are required."
     return
   }
 
   try {
-    const result = createUserIconSchema.safeParse(form.value)
-    if (!result.success) {
-      return
-    }
-    emit("save", result.data)
+    await iconStore.createIcon(form.value)
     emit("close")
   }
-  catch (error: any) {
-    console.error("Failed to save social icon:", error)
-    iconStore.errors.createIcon = error.message
+  catch (err: any) {
+    console.error("Failed to save social icon:", err)
+    iconStore.errors.createIcon = err.message || "Failed to save social icon"
   }
 }
 
 watch(() => props.isOpen, (open) => {
   if (open) {
-    form.value = { platform: undefined, logo: undefined, url: "" }
+    resetForm({
+      platform: "" as keyof typeof SOCIAL_ICONS,
+      logo: "" as typeof SOCIAL_ICONS[keyof typeof SOCIAL_ICONS],
+      url: "",
+    })
     iconStore.errors.createIcon = null
   }
 }, { immediate: true })

@@ -15,7 +15,7 @@ const props = defineProps<{
 
 defineEmits(["click"])
 
-const isHovered = ref(false)
-
 const { iconStyle, iconInnerStyle } = useDynamicStyles(toRef(props, "preferences"))
+
+const isHovered = ref(false)
 </script>

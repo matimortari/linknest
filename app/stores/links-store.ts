@@ -2,14 +2,7 @@ import type { CreateUserLinkInput, UpdateUserLinkInput } from "#shared/schemas/l
 
 export const useLinksStore = defineStore("links", () => {
   const links = ref<Link[]>([])
-
-  const loading = ref<Record<"getLinks" | "createLink" | "updateLink" | "deleteLink", boolean>>({
-    getLinks: false,
-    createLink: false,
-    updateLink: false,
-    deleteLink: false,
-  })
-
+  const loading = ref<boolean>(false)
   const errors = ref<Record<"getLinks" | "createLink" | "updateLink" | "deleteLink", string | null>>({
     getLinks: null,
     createLink: null,
@@ -18,7 +11,7 @@ export const useLinksStore = defineStore("links", () => {
   })
 
   async function getLinks() {
-    loading.value.getLinks = true
+    loading.value = true
     errors.value.getLinks = null
 
     try {
@@ -33,12 +26,12 @@ export const useLinksStore = defineStore("links", () => {
       throw err
     }
     finally {
-      loading.value.getLinks = false
+      loading.value = false
     }
   }
 
   async function createLink(data: CreateUserLinkInput) {
-    loading.value.createLink = true
+    loading.value = true
     errors.value.createLink = null
 
     try {
@@ -53,12 +46,12 @@ export const useLinksStore = defineStore("links", () => {
       throw err
     }
     finally {
-      loading.value.createLink = false
+      loading.value = false
     }
   }
 
   async function updateLink(id: string, data: UpdateUserLinkInput) {
-    loading.value.updateLink = true
+    loading.value = true
     errors.value.updateLink = null
 
     try {
@@ -76,12 +69,12 @@ export const useLinksStore = defineStore("links", () => {
       throw err
     }
     finally {
-      loading.value.updateLink = false
+      loading.value = false
     }
   }
 
   async function deleteLink(id: string) {
-    loading.value.deleteLink = true
+    loading.value = true
     errors.value.deleteLink = null
 
     try {
@@ -94,7 +87,7 @@ export const useLinksStore = defineStore("links", () => {
       throw err
     }
     finally {
-      loading.value.deleteLink = false
+      loading.value = false
     }
   }
 

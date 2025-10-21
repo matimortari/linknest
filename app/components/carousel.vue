@@ -52,19 +52,9 @@ const iconHover = reactive<Record<string, boolean>>({})
 const linkHover = reactive<Record<string, boolean>>({})
 
 const preset = getCarouselPreset(CAROUSEL_PRESETS, 3000)
-const preferences = computed(() => preset.value?.preferences)
-const images = import.meta.glob("/assets/presets/*", { eager: true, import: "default" })
+const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle, iconStyle, iconInnerStyle, linkStyle, linkInnerStyle } = useDynamicStyles(preset.value?.preferences)
 
-const {
-  backgroundStyle,
-  profilePictureStyle,
-  slugStyle,
-  descriptionStyle,
-  iconStyle,
-  iconInnerStyle,
-  linkStyle,
-  linkInnerStyle,
-} = useDynamicStyles(preferences)
+const images = import.meta.glob("/assets/presets/*", { eager: true, import: "default" })
 
 function getPresetImage(filename: string) {
   return images[`/assets/presets/${filename}`]

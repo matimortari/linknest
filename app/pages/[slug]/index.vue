@@ -3,8 +3,8 @@
     <img src="/assets/logo.png" alt="Logo" width="30">
   </nuxt-link>
 
-  <div v-if="loading.getUserBySlug || !user" class="flex min-h-screen flex-col items-center justify-center gap-4 p-12 text-center">
-    <Spinner v-if="loading.getUserBySlug" />
+  <div v-if="userStore.loading || !user" class="flex min-h-screen flex-col items-center justify-center gap-4 p-12 text-center">
+    <Spinner v-if="userStore.loading" />
 
     <p v-else class="text-lead">
       User {{ slug }} not found.
@@ -53,12 +53,10 @@
 
 <script setup lang="ts">
 const userStore = useUserStore()
-
 const route = useRoute()
 const slug = route.params.slug as string
-const { user, loading } = storeToRefs(userStore)
-const preferences = computed(() => user.value?.preferences)
-
+const { user } = storeToRefs(userStore)
+const preferences = computed(() => user.value?.preferences ?? null)
 const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
 
 async function handleClick(id: string, type: "link" | "icon") {
@@ -68,8 +66,8 @@ async function handleClick(id: string, type: "link" | "icon") {
   try {
     // await userStore.trackClick(id, type, user.value.id ?? "")
   }
-  catch (error: any) {
-    console.error(`Failed to track ${type} click:`, error)
+  catch (err: any) {
+    console.error(`Failed to track ${type} click:`, err)
   }
 }
 

@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close="closeDialog" />
+  <ProfileQrCodeDialog :is-open="isDialogOpen" :slug="user?.slug ?? ''" @close=" isDialogOpen = false" />
 </template>
 
 <script setup lang="ts">
@@ -62,10 +62,6 @@ const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 const copySuccess = ref<string | null>(null)
 const pageUrl = `https://linknest.vercel.app/${user.value?.slug}`
-
-function closeDialog() {
-  isDialogOpen.value = false
-}
 
 function handleClickOutside(e: MouseEvent) {
   const target = e.target as Node

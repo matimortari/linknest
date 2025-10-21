@@ -41,6 +41,12 @@
 </template>
 
 <script setup lang="ts">
+const userStore = useUserStore()
+
+const preferences = ref(userStore.user?.preferences ?? null)
+const activeTab = ref("background")
+const status = ref<"idle" | "saved" | "reset">("idle")
+
 const tabs = [
   { label: "Background", value: "background" },
   { label: "User Info", value: "user" },
@@ -48,20 +54,6 @@ const tabs = [
   { label: "Social Icons", value: "icons" },
   { label: "Themes", value: "themes" },
 ]
-
-const userStore = useUserStore()
-
-const preferences = ref(userStore.user?.preferences ?? null)
-
-// Watch for changes in user store and update local preferences
-watch(() => userStore.user?.preferences, (newPreferences) => {
-  if (newPreferences) {
-    preferences.value = { ...newPreferences }
-  }
-}, { immediate: true })
-
-const activeTab = ref("background")
-const status = ref<"idle" | "saved" | "reset">("idle")
 
 function handleApplyTheme(newPreferences: UserPreferences) {
   preferences.value = newPreferences
@@ -74,9 +66,9 @@ async function handleUpdatePreferences() {
     await userStore.updatePreferences(preferences.value!)
     status.value = "saved"
   }
-  catch (error: any) {
-    console.error("Failed to update preferences:", error)
-    userStore.errors.updatePreferences = error.message
+  catch (err: any) {
+    console.error("Failed to update preferences:", err)
+    userStore.errors.updatePreferences = err.message
   }
 }
 
@@ -84,7 +76,6 @@ async function handleResetPreferences() {
   userStore.errors.updatePreferences = null
 
   try {
-    // Reset to default preferences based on Prisma schema defaults
     const defaultPreferences = {
       backgroundType: "FLAT" as const,
       backgroundColor: "#f9f5f2",
@@ -126,9 +117,9 @@ async function handleResetPreferences() {
     preferences.value = { ...defaultPreferences }
     status.value = "reset"
   }
-  catch (error: any) {
-    console.error("Failed to reset preferences:", error)
-    userStore.errors.updatePreferences = error.message
+  catch (err: any) {
+    console.error("Failed to reset preferences:", err)
+    userStore.errors.updatePreferences = err.message
   }
 }
 
@@ -140,4 +131,10 @@ watch(status, (newStatus, _, onInvalidate) => {
     onInvalidate(() => clearTimeout(timer))
   }
 })
+
+watch(() => userStore.user?.preferences, (newPreferences) => {
+  if (newPreferences) {
+    preferences.value = { ...newPreferences }
+  }
+}, { immediate: true })
 </script>

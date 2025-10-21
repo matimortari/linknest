@@ -5,7 +5,7 @@
     </nuxt-link>
 
     <button v-if="preferences?.showLinkCopyButton" class="hover:scale-md absolute right-2 shrink-0 transition-all" aria-label="Copy Link" @click.stop="copyToClipboard(url)">
-      <icon :name="copied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
+      <icon :name="isCopied ? 'mdi:check' : 'mdi:content-copy'" size="15" :style="{ color: preferences?.linkTextColor }" />
     </button>
   </li>
 </template>
@@ -19,8 +19,8 @@ const props = defineProps<{
 
 defineEmits(["click"])
 
-const isHovered = ref(false)
-const copied = ref(false)
-
 const { linkStyle, linkInnerStyle } = useDynamicStyles(toRef(props, "preferences"))
+
+const isHovered = ref(false)
+const isCopied = ref(false)
 </script>

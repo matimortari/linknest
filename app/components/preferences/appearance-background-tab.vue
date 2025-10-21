@@ -23,10 +23,10 @@ const emit = defineEmits<{
 
 const localPrefs = reactive({ ...props.preferences })
 
+const isBackgroundFlat = computed(() => localPrefs.backgroundType === "FLAT")
+const isBackgroundGradient = computed(() => localPrefs.backgroundType === "GRADIENT")
+
 watch(localPrefs, (newVal) => {
   emit("update:preferences", { ...newVal })
 }, { deep: true })
-
-const isBackgroundFlat = computed(() => localPrefs.backgroundType === "FLAT")
-const isBackgroundGradient = computed(() => localPrefs.backgroundType === "GRADIENT")
 </script>

@@ -2,13 +2,7 @@ import type { CreateUserIconInput } from "#shared/schemas/icons"
 
 export const useIconsStore = defineStore("icons", () => {
   const icons = ref<Icon[]>([])
-
-  const loading = ref<Record<"getIcons" | "createIcon" | "deleteIcon", boolean>>({
-    getIcons: false,
-    createIcon: false,
-    deleteIcon: false,
-  })
-
+  const loading = ref<boolean>(false)
   const errors = ref<Record<"getIcons" | "createIcon" | "deleteIcon", string | null>>({
     getIcons: null,
     createIcon: null,
@@ -16,7 +10,7 @@ export const useIconsStore = defineStore("icons", () => {
   })
 
   async function getIcons() {
-    loading.value.getIcons = true
+    loading.value = true
     errors.value.getIcons = null
 
     try {
@@ -29,12 +23,12 @@ export const useIconsStore = defineStore("icons", () => {
       throw err
     }
     finally {
-      loading.value.getIcons = false
+      loading.value = false
     }
   }
 
   async function createIcon(data: CreateUserIconInput) {
-    loading.value.createIcon = true
+    loading.value = true
     errors.value.createIcon = null
 
     try {
@@ -47,12 +41,12 @@ export const useIconsStore = defineStore("icons", () => {
       throw err
     }
     finally {
-      loading.value.createIcon = false
+      loading.value = false
     }
   }
 
   async function deleteIcon(id: string) {
-    loading.value.deleteIcon = true
+    loading.value = true
     errors.value.deleteIcon = null
 
     try {
@@ -65,7 +59,7 @@ export const useIconsStore = defineStore("icons", () => {
       throw err
     }
     finally {
-      loading.value.deleteIcon = false
+      loading.value = false
     }
   }
 

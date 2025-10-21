@@ -9,7 +9,7 @@
       </p>
     </header>
 
-    <Spinner v-if="isLoading" />
+    <Spinner v-if="linkStore.loading" />
     <p v-else-if="!links.length" class="text-lead m-8 text-center">
       Your links help visitors discover more about you. Add your first link!
     </p>
@@ -26,7 +26,7 @@
               <button aria-label="Update Link" class="flex items-center" @click="handleUpdateLink(link)">
                 <icon name="mdi:circle-edit-outline" size="25" class="hover:scale-md text-primary transition-all" />
               </button>
-              <button aria-label="Delete Link" class="flex items-center" @click="handleDeleteLink(link.id!)">
+              <button aria-label="Delete Link" class="flex items-center" @click="linkStore.deleteLink(link.id!)">
                 <icon name="mdi:remove-circle-outline" size="25" class="hover:scale-md text-danger-foreground transition-all" />
               </button>
             </div>
@@ -45,71 +45,18 @@
     </button>
   </div>
 
-  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="closeDialog" @save="handleSaveLink" />
+  <ProfileLinkDialog :is-open="isDialogOpen" :selected-link="selectedLink" @close="isDialogOpen = false ; selectedLink = null" />
 </template>
 
 <script setup lang="ts">
-import type { CreateUserLinkInput } from "#shared/schemas/links"
-
 const linkStore = useLinksStore()
 
-const { links, loading } = storeToRefs(linkStore)
+const { links } = storeToRefs(linkStore)
 const isDialogOpen = ref(false)
 const selectedLink = ref<Link | null>(null)
 
-const isLoading = computed(() => loading.value.getLinks)
-
-function closeDialog() {
-  isDialogOpen.value = false
-  selectedLink.value = null
-}
-
 function handleUpdateLink(link: Link) {
-  linkStore.errors.updateLink = null
-
-  try {
-    selectedLink.value = link
-    isDialogOpen.value = true
-  }
-  catch (error: any) {
-    console.error("Failed to update link:", error)
-    linkStore.errors.updateLink = error.message
-  }
-}
-
-async function handleDeleteLink(id: string) {
-  linkStore.errors.deleteLink = null
-  try {
-    await linkStore.deleteLink(id)
-  }
-  catch (error: any) {
-    console.error("Failed to delete link:", error)
-    linkStore.errors.deleteLink = error.message
-  }
-}
-
-async function handleSaveLink(payload: CreateUserLinkInput | { link: Link, isUpdate: boolean }) {
-  try {
-    if ("link" in payload && "isUpdate" in payload) {
-      // Handle update case
-      const { link, isUpdate } = payload
-      console.log("Link updated successfully:", link.title)
-      if (links.value.length === 0 || isUpdate) {
-        await linkStore.getLinks()
-      }
-    }
-    else {
-      // Handle create case
-      const { title } = payload
-      console.log("Link created successfully:", title)
-      await linkStore.getLinks()
-    }
-  }
-  catch (error: any) {
-    console.error("Failed to handle save link:", error)
-  }
-  finally {
-    closeDialog()
-  }
+  selectedLink.value = link
+  isDialogOpen.value = true
 }
 </script>

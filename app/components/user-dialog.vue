@@ -96,9 +96,9 @@ watch(() => props.isOpen, (open) => {
     const response = await userStore.updateUserImage(formData)
     form.value.image = response.imageUrl
   }
-  catch (error: any) {
-    console.error("Failed to upload image:", error)
-    userStore.errors = error.message
+  catch (err: any) {
+    console.error("Failed to upload image:", err)
+    userStore.errors = err.message
   }
 } */
 
@@ -120,9 +120,9 @@ async function handleSubmit() {
     await userStore.getUser()
     emit("close")
   }
-  catch (error: any) {
-    console.error("Failed to update user data:", error)
-    userStore.errors.updateUser = error.message
+  catch (err: any) {
+    console.error("Failed to update user data:", err)
+    userStore.errors.updateUser = err.message
   }
 }
 </script>

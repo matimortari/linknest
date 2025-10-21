@@ -9,7 +9,7 @@
       </p>
     </header>
 
-    <Spinner v-if="isLoading" />
+    <Spinner v-if="iconStore.loading" />
     <p v-else-if="!icons.length" class="text-lead m-8 text-center">
       Pin social icons to your profile so visitors can easily connect. Add your first social icon!
     </p>
@@ -20,7 +20,7 @@
           <icon :name="icon.logo" :size="30" />
         </nuxt-link>
 
-        <button class="absolute right-0 bottom-0 flex items-center p-1" aria-label="Delete Social Icon" @click="handleDeleteIcon(icon.id!)">
+        <button class="absolute right-0 bottom-0 flex items-center p-1" aria-label="Delete Social Icon" @click="iconStore.deleteIcon(icon.id!)">
           <icon name="mdi:remove-circle-outline" size="25" class="hover:scale-md text-danger-foreground transition-all" />
         </button>
       </li>
@@ -32,45 +32,12 @@
     </button>
   </div>
 
-  <ProfileIconDialog :is-open="isDialogOpen" @close="closeDialog" @save="handleCreateIcon" />
+  <ProfileIconDialog :is-open="isDialogOpen" @close=" isDialogOpen = false" />
 </template>
 
 <script setup lang="ts">
-import type { CreateUserIconInput } from "#shared/schemas/icons"
-
 const iconStore = useIconsStore()
 
-const { icons, loading } = storeToRefs(iconStore)
+const { icons } = storeToRefs(iconStore)
 const isDialogOpen = ref(false)
-
-const isLoading = computed(() => loading.value.getIcons)
-
-function closeDialog() {
-  isDialogOpen.value = false
-}
-
-async function handleCreateIcon(icon: CreateUserIconInput) {
-  iconStore.errors.createIcon = null
-
-  try {
-    await iconStore.createIcon(icon)
-    isDialogOpen.value = false
-  }
-  catch (error: any) {
-    console.error("Failed to save social icon:", error)
-    iconStore.errors.createIcon = error.message
-  }
-}
-
-async function handleDeleteIcon(id: string) {
-  iconStore.errors.deleteIcon = null
-
-  try {
-    await iconStore.deleteIcon(id)
-  }
-  catch (error: any) {
-    console.error("Failed to delete social icon:", error)
-    iconStore.errors.deleteIcon = error.message
-  }
-}
 </script>

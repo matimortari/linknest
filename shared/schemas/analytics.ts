@@ -13,3 +13,5 @@ export const analyticsRecordSchema = z.object({
   message: "ID is required for link and social icon analytics",
   path: ["id"],
 })
+
+export type AnalyticsRecordSchema = z.infer<typeof analyticsRecordSchema>

@@ -32,7 +32,7 @@
         <UserIcon
           v-for="icon in user.icons" :key="icon.id"
           :url="icon.url" :logo="icon.logo"
-          :preferences="user.preferences" @click="handleClick(icon.id ?? '', 'icon')"
+          :preferences="user.preferences" @click="handleIconClick(icon.id ?? '')"
         />
       </ul>
 
@@ -40,7 +40,7 @@
         <UserLink
           v-for="link in user.links" :key="link.id"
           :url="link.url" :title="link.title"
-          :preferences="user.preferences" @click="handleClick(link.id ?? '', 'link')"
+          :preferences="user.preferences" @click="handleLinkClick(link.id ?? '')"
         />
       </ul>
 
@@ -52,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import { analyticsService } from "~/lib/services/analytics-service"
+
 const userStore = useUserStore()
 const route = useRoute()
 const slug = route.params.slug as string
@@ -59,15 +61,27 @@ const { user } = storeToRefs(userStore)
 const preferences = computed(() => user.value?.preferences ?? null)
 const { backgroundStyle, profilePictureStyle, slugStyle, descriptionStyle } = useDynamicStyles(preferences)
 
-async function handleClick(id: string, type: "link" | "icon") {
-  if (!user.value)
+async function handleLinkClick(linkId: string) {
+  if (!user.value?.id)
     return
 
   try {
-    // await userStore.trackClick(id, type, user.value.id ?? "")
+    await analyticsService.recordLinkClick(user.value.id, linkId)
   }
   catch (err: any) {
-    console.error(`Failed to track ${type} click:`, err)
+    console.error("Failed to track link click:", err)
+  }
+}
+
+async function handleIconClick(iconId: string) {
+  if (!user.value?.id)
+    return
+
+  try {
+    await analyticsService.recordIconClick(user.value.id, iconId)
+  }
+  catch (err: any) {
+    console.error("Failed to track icon click:", err)
   }
 }
 
@@ -80,7 +94,7 @@ watch(() => route.params.slug, async (newSlug) => {
 
     const currentUser = userStore.user
     if (currentUser?.id) {
-      // await userStore.trackPageVisit(currentUser.id)
+      await analyticsService.recordPageView(currentUser.id)
 
       useHead({
         title: `@${currentUser.slug}`,

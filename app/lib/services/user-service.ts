@@ -15,6 +15,17 @@ export const userService = {
   },
 
   /**
+   * Get user by slug
+   * @param slug User slug to fetch
+   */
+  getUserBySlug: async (slug: string) => {
+    const response = await $fetch(`${API_BASE}/${slug}`, {
+      method: "GET",
+    })
+    return response
+  },
+
+  /**
    * Update current user
    * @param data Partial object with name/email
    */
@@ -41,12 +52,17 @@ export const userService = {
   },
 
   /**
-   * Get user by slug
-   * @param slug User slug to fetch
+   * Update user profile image
+   * @param file Image file to upload (png, jpeg, or webp, max 5MB)
    */
-  getUserBySlug: async (slug: string) => {
-    const response = await $fetch(`${API_BASE}/${slug}`, {
-      method: "GET",
+  updateUserImage: async (file: File) => {
+    const formData = new FormData()
+    formData.append("file", file)
+
+    const response = await $fetch<{ imageUrl: string }>(`${API_BASE}/image-upload`, {
+      method: "PUT",
+      body: formData,
+      credentials: "include",
     })
     return response
   },

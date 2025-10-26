@@ -9,7 +9,7 @@ export default defineOAuthGitHubEventHandler({
     redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/github`,
   },
 
-  async onSuccess(event: any, { user, tokens }: any) {
+  async onSuccess(event: any, { user }: any) {
     if (!user || typeof user !== "object") {
       throw createError({ statusCode: 400, message: "Invalid user data received from GitHub" })
     }
@@ -19,8 +19,6 @@ export default defineOAuthGitHubEventHandler({
     const name = user.name
     const picture = user.avatar_url
 
-    console.log("Received tokens from GitHub:", JSON.stringify(tokens, null, 2))
-    console.log("Extracted user data from GitHub:", { githubId, email, name, picture })
     if (!githubId || !email) {
       throw createError({ statusCode: 400, message: "Missing required user data from GitHub" })
     }

@@ -3,10 +3,11 @@ import type { UpdateUserInput, UpdateUserPreferencesInput } from "#shared/schema
 export const useUserStore = defineStore("user", () => {
   const user = ref<User | null>(null)
   const loading = ref<boolean>(false)
-  const errors = ref<Record<"getUser" | "getUserBySlug" | "updateUser" | "updatePreferences" | "deleteUser", string | null>>({
+  const errors = ref<Record<"getUser" | "getUserBySlug" | "updateUser" | "updateUserImage" | "updatePreferences" | "deleteUser", string | null>>({
     getUser: null,
     getUserBySlug: null,
     updateUser: null,
+    updateUserImage: null,
     updatePreferences: null,
     deleteUser: null,
   })
@@ -69,6 +70,27 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
+  async function updateUserImage(file: File) {
+    loading.value = true
+    errors.value.updateUserImage = null
+
+    try {
+      const res = await userService.updateUserImage(file)
+      if (user.value && res.imageUrl) {
+        user.value.image = res.imageUrl
+      }
+      return res
+    }
+    catch (err: any) {
+      errors.value.updateUserImage = err?.message || "Failed to update user image"
+      console.error("updateUserImage error:", err)
+      throw err
+    }
+    finally {
+      loading.value = false
+    }
+  }
+
   async function updatePreferences(data: UpdateUserPreferencesInput) {
     loading.value = true
     errors.value.updatePreferences = null
@@ -114,6 +136,7 @@ export const useUserStore = defineStore("user", () => {
     getUser,
     getUserBySlug,
     updateUser,
+    updateUserImage,
     updatePreferences,
     deleteUser,
   }

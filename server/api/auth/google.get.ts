@@ -9,7 +9,7 @@ export default defineOAuthGoogleEventHandler({
     redirectURL: `${process.env.NUXT_PUBLIC_BASE_URL}/api/auth/google`,
   },
 
-  async onSuccess(event: any, { user, tokens }: any) {
+  async onSuccess(event: any, { user }: any) {
     if (!user || typeof user !== "object") {
       throw createError({ statusCode: 400, message: "Invalid user data received from Google" })
     }
@@ -19,8 +19,6 @@ export default defineOAuthGoogleEventHandler({
     const name = user.name || user.given_name
     const picture = user.picture
 
-    console.log("Received tokens from Google:", JSON.stringify(tokens, null, 2))
-    console.log("Extracted user data from Google:", { googleId, email, name, picture })
     if (!googleId || !email) {
       throw createError({ statusCode: 400, message: "Missing required user data from Google" })
     }

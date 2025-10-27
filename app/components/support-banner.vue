@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { BANNER_DESCRIPTIONS, BANNER_ICONS, BANNER_LINKS, BANNER_MESSAGES, BANNER_STYLES } from "#shared/config/banner-options"
+import { BANNER_DESCRIPTIONS, BANNER_ICONS, BANNER_LINKS, BANNER_MESSAGES, BANNER_STYLES } from "#shared/config/appearance-options"
 
 const props = defineProps<{
   type: keyof typeof BANNER_MESSAGES

@@ -1,6 +1,5 @@
 import db from "#server/lib/db"
 import { getUserFromSession } from "#server/lib/utils"
-import { createError, defineEventHandler } from "h3"
 
 export default defineEventHandler(async (event) => {
   const user = await db.user.findUnique({

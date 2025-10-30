@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug")
 
   const user = await db.user.findUnique({
-    where: { slug: slug as string },
+    where: { slug },
     include: {
       links: true,
       icons: true,

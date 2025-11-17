@@ -18,10 +18,7 @@
       <li v-for="item in items" :key="item.id" class="card flex flex-col gap-2 p-2">
         <div class="flex items-center justify-between">
           <div class="flex max-w-[70%] items-center gap-2 truncate font-semibold">
-            <!-- Icon display -->
             <icon v-if="item.type === 'icon' && item.logo" :name="item.logo" :size="30" />
-
-            <!-- Link display -->
             <span v-else>{{ item.title }}</span>
           </div>
 

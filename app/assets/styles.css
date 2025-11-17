@@ -314,12 +314,10 @@ input[type="radio"]:checked::after {
   --btn-fg: var(--secondary-foreground);
 }
 .btn-danger {
-  --btn-bg: var(--card);
-  --btn-fg: var(--secondary-foreground);
+  --btn-fg: var(--danger);
 }
 .btn-success {
-  --btn-bg: var(--success);
-  --btn-fg: var(--secondary-foreground);
+  --btn-fg: var(--success);
 }
 
 .btn,

@@ -19,7 +19,7 @@
 
       <aside
         id="table-of-contents"
-        class="scroll-area fixed top-0 right-0 z-40 h-full w-3/4 transform border-l bg-card px-4! py-12! transition-transform duration-300 md:w-1/4 xl:relative xl:z-auto xl:translate-x-0 xl:border-l"
+        class="scroll-area fixed top-0 right-0 z-40 h-full w-4/5 transform border-l bg-card px-4! py-12! transition-transform duration-300 md:w-2/5 xl:relative xl:z-auto xl:translate-x-0 xl:border-l"
         :class="sidebarOpen ? 'translate-x-0' : 'translate-x-full'"
       >
         <div class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">

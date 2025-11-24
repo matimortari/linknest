@@ -76,8 +76,8 @@
       "{{ randomQuote?.quote }}" -<span class="font-semibold text-primary transition-colors ease-in-out">{{ randomQuote?.author }}</span>
     </p>
 
-    <div class="absolute bottom-0 left-0 h-1 w-full overflow-hidden bg-muted">
-      <span class="absolute top-0 left-0 h-full bg-linear-to-r from-primary to-secondary transition-all" :style="{ width: `${progress}%` }" />
+    <div class="absolute bottom-0 left-0 h-1 w-full overflow-hidden">
+      <span key="progress" class="animate-progress absolute top-0 left-0 h-full bg-linear-to-r from-primary to-secondary opacity-20" />
     </div>
   </section>
 </template>
@@ -85,36 +85,35 @@
 <script setup lang="ts">
 const randomQuote = ref<{ quote: string, author: string }>()
 const fading = ref(false)
-const progress = ref(0)
 
-let interval: NodeJS.Timeout
+const CYCLE = 10000
+let cycleInterval: NodeJS.Timeout
+let fadeTimeout: NodeJS.Timeout
+
+function setRandomQuote() {
+  randomQuote.value = QUOTES[Math.floor(Math.random() * QUOTES.length)]
+}
+
+function runCycle() {
+  fading.value = true
+
+  fadeTimeout = setTimeout(() => {
+    setRandomQuote()
+    fading.value = false
+  }, 300)
+}
 
 onMounted(() => {
-  const duration = 10000
-  const step = 100
-  let elapsed = 0
+  setRandomQuote()
+  runCycle()
 
-  const updateQuote = () => {
-    fading.value = true
-    setTimeout(() => {
-      randomQuote.value = QUOTES[Math.floor(Math.random() * QUOTES.length)]
-      fading.value = false
-      elapsed = 0
-      progress.value = 0
-    }, 300)
-  }
-
-  updateQuote()
-
-  interval = setInterval(() => {
-    elapsed += step
-    progress.value = Math.min((elapsed / duration) * 100, 100)
-    if (elapsed >= duration)
-      updateQuote()
-  }, step)
+  cycleInterval = setInterval(runCycle, CYCLE)
 })
 
-onBeforeUnmount(() => clearInterval(interval))
+onBeforeUnmount(() => {
+  clearInterval(cycleInterval)
+  clearTimeout(fadeTimeout)
+})
 
 useHead({
   title: "Your Link-in-Bio Page!",
@@ -146,10 +145,25 @@ definePageMeta({
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
+
+  /* fixed: fade toward transparent so it works in both themes */
   background: radial-gradient(
     ellipse at center,
-    color-mix(in oklab, var(--muted) 0%, transparent 100%) 50%,
-    color-mix(in oklab, var(--muted) 100%, var(--background) 0%) 100%
+    color-mix(in oklab, var(--background) 0%, transparent 100%) 10%,
+    color-mix(in oklab, var(--background) 100%, transparent 10%) 90%
   );
+}
+
+.animate-progress {
+  animation: progress 10s linear infinite;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 </style>

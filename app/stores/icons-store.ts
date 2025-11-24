@@ -3,20 +3,14 @@ import type { CreateUserIconInput } from "#shared/schemas/icon-schema"
 export const useIconsStore = defineStore("icons", () => {
   const icons = ref<Icon[]>([])
   const loading = ref<boolean>(false)
-  const errors = ref<Record<"getIcons" | "createIcon" | "deleteIcon", string | null>>({
-    getIcons: null,
-    createIcon: null,
-    deleteIcon: null,
-  })
+  const errors = ref<Record<string, string | null>>({ getIcons: null, createIcon: null, deleteIcon: null })
 
   async function getIcons() {
     loading.value = true
     errors.value.getIcons = null
+
     try {
-      const res = await $fetch<{ icons: Icon[] }>(`${API_URL}/icons`, {
-        method: "GET",
-        credentials: "include",
-      })
+      const res = await $fetch<{ icons: Icon[] }>(`${API_URL}/icons`, { method: "GET", credentials: "include" })
       icons.value = res.icons
     }
     catch (err: any) {
@@ -31,12 +25,9 @@ export const useIconsStore = defineStore("icons", () => {
   async function createIcon(data: CreateUserIconInput) {
     loading.value = true
     errors.value.createIcon = null
+
     try {
-      const res = await $fetch<{ icon: Icon }>(`${API_URL}/icons`, {
-        method: "POST",
-        body: data,
-        credentials: "include",
-      })
+      const res = await $fetch<{ icon: Icon }>(`${API_URL}/icons`, { method: "POST", body: data, credentials: "include" })
       icons.value.push(res.icon)
     }
     catch (err: any) {
@@ -51,11 +42,9 @@ export const useIconsStore = defineStore("icons", () => {
   async function deleteIcon(id: string) {
     loading.value = true
     errors.value.deleteIcon = null
+
     try {
-      await $fetch(`${API_URL}/icons/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      })
+      await $fetch(`${API_URL}/icons/${id}`, { method: "DELETE", credentials: "include" })
       icons.value = icons.value.filter(icon => icon.id !== id)
     }
     catch (err: any) {

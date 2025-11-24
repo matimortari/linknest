@@ -48,12 +48,12 @@ const props = defineProps<{
 
 const emit = defineEmits<(e: "close") => void>()
 
-const { errors, createLink, updateLink } = useLinkActions()
+const linksStore = useLinksStore()
+const { errors } = storeToRefs(linksStore)
 const { form, isLoading, isFormValid, resetForm, validateForm, hasFormChanged } = useFormValidation<CreateUserLinkInput | UpdateUserLinkInput>({
   title: "",
   url: "",
 })
-
 const isUpdateMode = computed(() => !!(props.selectedLink?.id))
 
 async function handleSubmit() {
@@ -98,7 +98,7 @@ async function handleCreateLink() {
   }
 
   const createData = form.value as CreateUserLinkInput
-  await createLink(createData)
+  await linksStore.createLink(createData)
 
   emit("close")
 }
@@ -127,7 +127,7 @@ async function handleUpdateLink() {
     return
   }
 
-  await updateLink(props.selectedLink.id, validation.data)
+  await linksStore.updateLink(props.selectedLink.id, validation.data)
 
   emit("close")
 }

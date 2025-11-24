@@ -37,25 +37,22 @@
     <PreferencesAppearanceProfileTab v-if="activeTab === 'user'" v-model:preferences="preferences" />
     <PreferencesAppearanceLinksTab v-if="activeTab === 'links'" v-model:preferences="preferences" />
     <PreferencesAppearanceIconsTab v-if="activeTab === 'icons'" v-model:preferences="preferences" />
-    <PreferencesAppearanceThemeTab v-if="activeTab === 'themes'" :preferences="preferences" :set-theme="handleApplyTheme" />
+    <PreferencesAppearanceThemeTab v-if="activeTab === 'themes'" :preferences="preferences" />
   </div>
 </template>
 
 <script setup lang="ts">
-const { user, errors, updatePreferences } = useUserActions()
+const userStore = useUserStore()
+const { user, errors } = storeToRefs(userStore)
 const preferences = ref(user.value?.preferences ?? null)
 const activeTab = ref("background")
 const status = ref<"idle" | "saved" | "reset">("idle")
-
-function handleApplyTheme(newPreferences: UserPreferences) {
-  preferences.value = newPreferences
-}
 
 async function handleUpdatePreferences() {
   errors.value.updatePreferences = null
 
   try {
-    await updatePreferences(preferences.value!)
+    await userStore.updatePreferences(preferences.value!)
     status.value = "saved"
   }
   catch (err: any) {
@@ -104,7 +101,7 @@ async function handleResetPreferences() {
       supportBanner: "NONE" as const,
     }
 
-    await updatePreferences(defaultPreferences)
+    await userStore.updatePreferences(defaultPreferences)
     preferences.value = { ...defaultPreferences }
     status.value = "reset"
   }
@@ -113,7 +110,7 @@ async function handleResetPreferences() {
   }
 }
 
-watch(status, (newStatus, _, onInvalidate) => {
+watch(status, (newStatus, _oldStatus, onInvalidate) => {
   if (newStatus !== "idle") {
     const timer = setTimeout(() => {
       status.value = "idle"

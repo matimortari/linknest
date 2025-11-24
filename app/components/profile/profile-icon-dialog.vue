@@ -88,7 +88,7 @@ async function handleSubmit() {
     emit("close")
   }
   catch (err: any) {
-    errors.value.createIcon = err.message || "Failed to add social icon"
+    errors.value.createIcon = err.data.message
   }
   finally {
     isLoading.value = false

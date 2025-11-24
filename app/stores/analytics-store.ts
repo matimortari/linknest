@@ -23,7 +23,7 @@ export const useAnalyticsStore = defineStore("analytics", () => {
       return res
     }
     catch (err: any) {
-      errors.value.getAnalytics = err?.message || "Failed to fetch analytics"
+      errors.value.getAnalytics = err.data.message || "Failed to fetch analytics"
       console.error("getAnalytics error:", err)
     }
     finally {
@@ -46,7 +46,7 @@ export const useAnalyticsStore = defineStore("analytics", () => {
       return res
     }
     catch (err: any) {
-      errors.value.recordPageView = err?.message || "Failed to record page view"
+      errors.value.recordPageView = err.data.message || "Failed to record page view"
       console.error("recordPageView error:", err)
     }
     finally {
@@ -70,7 +70,7 @@ export const useAnalyticsStore = defineStore("analytics", () => {
       return res
     }
     catch (err: any) {
-      errors.value.recordLinkClick = err?.message || "Failed to record link click"
+      errors.value.recordLinkClick = err.data.message || "Failed to record link click"
       console.error("recordLinkClick error:", err)
     }
     finally {
@@ -94,7 +94,7 @@ export const useAnalyticsStore = defineStore("analytics", () => {
       return res
     }
     catch (err: any) {
-      errors.value.recordIconClick = err?.message || "Failed to record icon click"
+      errors.value.recordIconClick = err.data.message || "Failed to record icon click"
       console.error("recordIconClick error:", err)
     }
     finally {
@@ -120,7 +120,7 @@ export const useAnalyticsStore = defineStore("analytics", () => {
       return res
     }
     catch (err: any) {
-      errors.value.deleteAnalytics = err?.message || "Failed to delete analytics"
+      errors.value.deleteAnalytics = err.data.message || "Failed to delete analytics"
       console.error("deleteAnalytics error:", err)
     }
     finally {

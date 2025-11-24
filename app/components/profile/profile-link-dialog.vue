@@ -80,10 +80,10 @@ async function handleSubmit() {
   }
   catch (err: any) {
     if (isUpdateMode.value) {
-      errors.value.updateLink = err.message || "Failed to save link"
+      errors.value.updateLink = err.data.message
     }
     else {
-      errors.value.createLink = err.message || "Failed to save link"
+      errors.value.createLink = err.data.message
     }
   }
   finally {

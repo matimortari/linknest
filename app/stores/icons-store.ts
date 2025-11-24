@@ -20,7 +20,7 @@ export const useIconsStore = defineStore("icons", () => {
       icons.value = res.icons
     }
     catch (err: any) {
-      errors.value.getIcons = err?.message || "Failed to get icons"
+      errors.value.getIcons = err.data.message || "Failed to get icons"
       console.error("getIcons error:", err)
     }
     finally {
@@ -40,7 +40,7 @@ export const useIconsStore = defineStore("icons", () => {
       icons.value.push(res.icon)
     }
     catch (err: any) {
-      errors.value.createIcon = err?.message || "Failed to create icon"
+      errors.value.createIcon = err.data.message || "Failed to create icon"
       console.error("createIcon error:", err)
     }
     finally {
@@ -59,7 +59,7 @@ export const useIconsStore = defineStore("icons", () => {
       icons.value = icons.value.filter(icon => icon.id !== id)
     }
     catch (err: any) {
-      errors.value.deleteIcon = err?.message || "Failed to delete icon"
+      errors.value.deleteIcon = err.data.message || "Failed to delete icon"
       console.error("deleteIcon error:", err)
     }
     finally {

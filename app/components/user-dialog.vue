@@ -89,7 +89,7 @@ async function handleUpdateImage(event: Event) {
     }
   }
   catch (err: any) {
-    errors.value.updateUserImage = err.message
+    errors.value.updateUserImage = err.data.message
   }
 }
 
@@ -114,7 +114,7 @@ async function handleSubmit() {
     emit("close")
   }
   catch (err: any) {
-    errors.value.updateUser = err.message
+    errors.value.updateUser = err.data.message
   }
 }
 </script>

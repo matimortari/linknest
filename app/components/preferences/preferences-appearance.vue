@@ -59,7 +59,7 @@ async function handleUpdatePreferences() {
     status.value = "saved"
   }
   catch (err: any) {
-    errors.value.updatePreferences = err.message
+    errors.value.updatePreferences = err.data.message
   }
 }
 
@@ -109,7 +109,7 @@ async function handleResetPreferences() {
     status.value = "reset"
   }
   catch (err: any) {
-    errors.value.updatePreferences = err.message
+    errors.value.updatePreferences = err.data.message
   }
 }
 

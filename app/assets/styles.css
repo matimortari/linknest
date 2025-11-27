@@ -4,15 +4,15 @@
   Base styles
 */
 :root {
-  --background: #f1f1f1;
+  --background: #f3f3f8;
   --foreground: #2e2d2d;
   --card: #ededee;
-  --overlay: #e0e0e2;
+  --overlay: #ededf1;
   --primary: #748d6e;
   --primary-foreground: #ebe8e8;
   --secondary: #63abb5;
   --secondary-foreground: #ebe8e8;
-  --muted: #a8a7a7;
+  --muted: #ced3db;
   --muted-foreground: #535353;
   --danger: #c53333;
   --success: #5e836d;
@@ -264,25 +264,21 @@ input[type="radio"]:checked::after {
 .btn:hover,
 .btn-primary:hover,
 .btn-secondary:hover,
-.btn-danger:hover {
-  transform: scale(1.025);
-  filter: brightness(0.8);
-}
-
+.btn-danger:hover,
 .btn:active,
 .btn-primary:active,
 .btn-secondary:active,
 .btn-danger:active,
 .btn-success:active {
-  transform: scale(1);
-  filter: brightness(0.4);
+  transform: scale(1.02);
+  filter: brightness(0.8);
 }
 
 .btn:disabled,
 .btn-primary:disabled,
 .btn-secondary:disabled,
 .btn-danger:disabled {
-  filter: brightness(0.4);
+  filter: brightness(0.8);
   cursor: not-allowed;
 }
 

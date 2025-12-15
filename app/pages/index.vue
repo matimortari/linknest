@@ -8,10 +8,10 @@
       <span class="text-lg font-semibold text-secondary">
         Your link-in-bio page 🪺
       </span>
-      <h1 class="max-w-lg font-display md:text-6xl! 2xl:text-7xl!">
+      <h1 class="max-w-md font-display md:text-5xl! 2xl:text-6xl!">
         Keep all your stuff together!
       </h1>
-      <p class="max-w-xl font-semibold text-muted-foreground 2xl:text-lg">
+      <p class="max-w-lg font-semibold text-muted-foreground 2xl:text-lg">
         Welcome to <span class="font-bold text-secondary">LinkNest</span>! Your links, profiles, contact info, and more
         in one place. Create and customize your page and share it with your audience.
       </p>
@@ -71,7 +71,7 @@
         :visible="{ opacity: 1, y: 0 }" :duration="800"
         :delay="200 * index" class="card flex flex-col items-center gap-4 text-center"
       >
-        <span class="flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-primary to-secondary text-xl font-bold text-primary-foreground">
+        <span class="text-primary-foreground flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-primary to-secondary text-xl font-bold">
           {{ index + 1 }}
         </span>
         <h3 class="font-display-alt text-lg">

@@ -10,7 +10,7 @@
     </header>
 
     <Spinner v-if="loading" />
-    <Empty v-if="!links.length" message="Your links help visitors discover more about you. Add your first link!" icon-name="mdi:link-variant-minus" :icon-size="30" />
+    <Empty v-if="!links.length" message="Your links help visitors discover more about you. Add your first link!" icon-name="mdi:link-variant-minus" />
 
     <ul v-else class="grid grid-cols-1 gap-2 md:grid-cols-2 2xl:grid-cols-3">
       <li v-for="link in links" :key="link.id" class="card">

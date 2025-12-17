@@ -18,18 +18,16 @@
           </button>
         </div>
 
-        <footer class="mx-auto border-t py-4 text-center">
-          <p class="text-sm font-medium text-muted-foreground">
-            By signing in, you agree to our
-            <nuxt-link to="/legal/terms" class="text-primary hover:underline">
-              Terms of Service
-            </nuxt-link>
-            and
-            <nuxt-link to="/legal/privacy" class="text-primary hover:underline">
-              Privacy Policy.
-            </nuxt-link>
-          </p>
-        </footer>
+        <p class="mx-auto max-w-sm border-t py-4 text-center text-sm font-medium text-muted-foreground">
+          By signing in, you agree to our
+          <nuxt-link to="/legal/terms" class="text-primary hover:underline">
+            Terms of Service
+          </nuxt-link>
+          and
+          <nuxt-link to="/legal/privacy" class="text-primary hover:underline">
+            Privacy Policy.
+          </nuxt-link>
+        </p>
       </div>
     </div>
 
@@ -39,7 +37,7 @@
     </div>
 
     <!-- Fullscreen image for mobile -->
-    <img src="/assets/sign-in-image.png" alt="Sign In Background" class="absolute inset-0 -z-10 block size-full object-cover opacity-20 md:hidden">
+    <img src="/assets/sign-in-image.png" alt="Sign In Background" class="absolute inset-0 -z-10 block size-full object-cover opacity-10 md:hidden">
   </div>
 </template>
 

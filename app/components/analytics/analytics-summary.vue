@@ -1,13 +1,8 @@
 <template>
-  <div class="card flex flex-col gap-4">
-    <header class="my-2 flex flex-col gap-2">
-      <h3>
-        Analytics Summary
-      </h3>
-      <p class="text-caption">
-        View your analytics data at a glance.
-      </p>
-    </header>
+  <div class="card flex flex-col gap-2">
+    <h3>
+      Summary
+    </h3>
 
     <div class="grid grid-cols-2 gap-4 border-b py-4 md:grid-cols-4 md:place-items-center">
       <div v-for="item in summaryItems" :key="item.label" class="navigation-group">

@@ -109,8 +109,8 @@ h2 {
   font-weight: 700;
 }
 h3 {
-  font-size: 1.875rem;
-  line-height: 1.875rem;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
   font-weight: 700;
 }
 h4 {
@@ -147,7 +147,7 @@ h6 {
   background-color: var(--card);
   border: 1px solid var(--muted);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.875rem;
 }
 
 .overlay {
